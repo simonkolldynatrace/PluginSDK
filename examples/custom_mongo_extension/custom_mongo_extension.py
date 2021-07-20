@@ -16,15 +16,15 @@ class CustomMongoExtension(BasePlugin):
         self.mongodb_client = self.create_client()
 
     def create_client(self) -> Optional[pymongo.MongoClient]:
-        url = f"mongodb://d1pacmworkshop:dynatrace@127.0.0.1:27017/test"
+        url = "mongodb://d1pacmworkshop:dynatrace@127.0.0.1:27017/test"
         try:
-            url = f"mongodb://d1pacmworkshop:dynatrace@127.0.0.1:27017/test"
+            url = "mongodb://d1pacmworkshop:dynatrace@127.0.0.1:27017/test"
             mongodb_client = pymongo.MongoClient(url, ssl=True, ssl_cert_reqs=ssl.CERT_NONE, serverSelectionTimeoutMS=TIMEOUT)
             mongodb_client.list_databases()
             log.info("Connected to mongodb[SSL]")
             return mongodb_client
         except ConnectionFailure:
-            url = f"mongodb://d1pacmworkshop:dynatrace@127.0.0.1:27017/test"
+            url = "mongodb://d1pacmworkshop:dynatrace@127.0.0.1:27017/test"
             mongodb_client = pymongo.MongoClient(url, serverSelectionTimeoutMS=TIMEOUT)
             mongodb_client.list_databases()
             log.info("Connected to mongodb")
