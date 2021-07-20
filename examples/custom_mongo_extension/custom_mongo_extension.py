@@ -13,7 +13,7 @@ log = logging.getLogger(__name__)
 
 class CustomMongoExtension(BasePlugin):
     def initialize(self, **kwargs):
-        self.mongodb_client = self.create_client(url)
+        self.mongodb_client = self.create_client()
 
     def create_client(self) -> Optional[pymongo.MongoClient]:
         port = self.config.get("port")
