@@ -1,0 +1,15 @@
+:orphan:
+
+Known process types list
+========================
+Processes are deprecated. Please use technologies for plugin activation.
+
+The table presents names and IDs of known process types supported by Dynatrace, which are used in metadata section of plugin.json.
+
+Use `Process type name` in `processTypeNames` and `Process type ID` in `processTypes`.
+
+.. csv-table:: 
+   :widths: 140 100
+   :header: "Process type name", "Process type ID"
+   :file: known_process_types.json
+   

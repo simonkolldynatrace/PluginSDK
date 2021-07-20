@@ -1,0 +1,95 @@
+Debugging
+=========
+
+In this section we discuss remote debugging with Eclipse as IDE and PyDev support for Python.
+ 
+**Prepare Eclipse environment.**
+
+Assumptions:
+
+* OneAgent installed
+* Eclipse
+* Python 3.6
+* Running plugin you wish to debug
+    
+The plugin you want to debug has to run on your host (a monitored process should be visible and running).
+    
+*Install pydev plugin for Eclipse.*
+
+Detailed description how to install is under http://www.pydev.org/manual_101_install.html .
+You could install pydev using standard Eclipse installation procedure (via  Eclipse update manager) or download manually from pydev sourceforge site (https://sourceforge.net/projects/pydev/files/ ).
+
+*Setup python runtime in Eclipse.*
+
+Open in the Window › Preference › Pydev › Interpreter Python menu. Press the New button and enter t path to python.exe from Python installation directory. 
+        
+.. image:: ../images/PictureEclipse1.png
+
+*Open pydev perspective.*
+
+Open python development perspective by selecting following command Window › Open Perspective › Other... and select PyDev.
+        
+.. image:: ../images/PicturePerspective2.png
+        
+**Prepare plugin code**
+
+*Create Eclipse project for plugin.*
+
+From menu select File › PyDev Project. Enter a name for a project, select Python as project type and Create links to existing sources checkbox. Press Next.
+        
+.. image:: /images/Picture Project 3.png
+
+On the next dialog add directory with plugin code using "Add external source folder" button (for example "c:\\Program Files (x86)\\dynatrace\\oneagent\\agent\\plugin\\plugins\\ruxit.python.mysql"). The directory can be agent plugin directory.
+Press Finish.
+
+*Add runtime libraries to directory.*
+
+This is for removing Eclipse errors for Python code.
+
+From Package Explorer select Properties on right clicked menu on newly created project. Choose PyDev - PYTHONPATH and choose External Libraries tab.
+        
+.. image:: ../images/PictureLibraries4.png
+
+Press Add source folder and enter c:\\Program Files (x86)\\dynatrace\\oneagent\\agent\\plugin\\engine" directory.
+
+*Add pydevd to your sources*
+
+For linux copy 
+/home/user_name/.p2/pool/plugins/org.python.pydev_5.4.0.201611281236/pysrc/*
+into
+/opt/dynatrace/oneagent/agent/plugin/engine/site-packages
+	
+For Windows copy 
+C:\\Users\\user_name\\.p2\\pool\\plugins\\org.python.pydev_5.4.0.201611281236\\pysrc\\*
+into
+C:\\Program Files (x86)\\dynatrace\\oneagent\\agent\\plugin\\engine\\site-packages
+
+*Modify plugin code.*
+
+Open plugin code for editing (for example ruxit_mysql.py)
+Add pydevd import phrase::
+
+   import pydevd
+
+and modify initialize function::
+
+   def initialize(self, **kwargs):
+      pydevd.settrace()
+
+You are ready to run debugging.
+
+**Run and debug**
+
+*Run PyDev debugger.*
+        
+Open Debug perspective Window › Open Perspective › Other.. › Debug. Run PyDev debugger.
+        
+.. image:: ../images/PictureDebugButton5.png
+        
+*Restart Plugin Agent*
+
+On Windows restart OneAgent service. On linux use the following command "sudo /etc/init.d/oneagent restart"
+
+*Wait in eclipse for break point.*
+
+.. image:: ../images/PictureEclipseDebug6.png

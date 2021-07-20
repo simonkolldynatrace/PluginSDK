@@ -1,0 +1,85 @@
+Plugin simulator
+================
+
+This guide briefly describes the ``oneagent_simulate_plugin`` command line tool. The plugin simulator enables you to quickly test your code without deploying OneAgent and/or upload plugins
+to Dynatrace Cluster Node.
+
+A typical plugin simulator workflow might proceed as follows:
+
+#. Write the plugin code and ``plugin.json``.
+#. Create a ``simulator_snapshot.json`` file with the minimum data required to trigger plugin activation.
+#. Create a ``properties.json`` file with the configuration properties required by your plugin.
+#. Run the plugin simulator and observe the reported results. Address any identified errors.
+
+Command syntax
+--------------
+
+The options are available by issuing the ``oneagent_simulate_plugin --help`` or ``oneagent_sim --help``
+command::
+
+    usage: oneagent_simulate_plugin [-h] [-p PLUGIN_DIR] [-v] [-s SNAPSHOT]
+                                 [-r PROPERTIES] [-i INTERVAL] [--version]
+
+    optional arguments:
+      -h, --help            show this help message and exit
+      -p PLUGIN_DIR, --plugin_dir PLUGIN_DIR
+                            plugin directory path
+      -v, --verbose         increase verbosity
+      -n SNAPSHOT, --snapshot SNAPSHOT
+                            path to snapshot file (PLUGIN_DIR/simulator_snapshot.json by
+                            default)
+      -r PROPERTIES, --properties PROPERTIES
+                            path to properties file (PLUGIN_DIR/properties.json by
+                            default)
+      -i INTERVAL, --interval INTERVAL
+                            set the interval between plugin measurements (default:
+                            60 seconds)
+      --version             show program's version and exit
+
+Plugin directory
+^^^^^^^^^^^^^^^^
+
+This is the path to the directory that contains the plugin you're testing.
+The plugin directory path must contain the `plugin.json` file, which will be added to the Python module search path. You can
+set this to the path where you're developing your plugin, or you can set it to the output of the ``oneagent_build_plugin``
+command. This later approach has the advantage of immediately providing the libraries that your plugin depends on. However it also requires that you run the build command for syncing.
+
+Snapshot file
+^^^^^^^^^^^^^
+
+This is the path to a JSON file that contains the process snapshot. The plugin simulator uses this information to determine
+whether it can test the plugin.
+
+The structure of the `simulator_snapshot.json` file resembles :class:`~embedded_api.ProcessSnapshot`, where fields
+that are not required for testing the plugin are set to default values. An example snapshot might look
+like this:
+
+.. literalinclude:: ../plugin_sdk/examples/demo_oneagent_plugin_auth/simulator_snapshot.json
+    :linenos:
+    :language: json
+
+Properties file
+^^^^^^^^^^^^^^^
+
+If your plugin requires configuration, use a JSON file that contains
+a dictionary of properties and their values. Here's an example:
+
+.. literalinclude:: ../plugin_sdk/examples/demo_oneagent_plugin_auth/properties.json
+    :linenos:
+    :language: json
+
+Interval
+^^^^^^^^
+
+The plugin simulator can also change the interval between measurements. This can be useful for calling methods at a higher frequency, or when your plugin requires multiple measurements to send results
+(for example, if it computes differences or averages between consecutive measurements).
+
+Limitations
+-----------
+
+Current limitations of the plugin simulator are:
+
+ * Process snapshot must be created manually
+ * Plugin properties must be created manually
+ * There is currently no means of testing visualization of plugin measurements
+ * The simulator uses the Python interpreter and environment that you provide. It doesn't install libraries, even when they're required by the plugin.

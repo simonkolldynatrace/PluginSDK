@@ -1,0 +1,7 @@
+ActiveGate Plugins API Reference
+********************************
+
+.. toctree::
+   :maxdepth: 2
+
+   ../_apidoc/ruxit_remote.api

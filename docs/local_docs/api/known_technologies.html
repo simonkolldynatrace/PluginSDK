@@ -1,0 +1,697 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Known technologies</title>
+  
+
+  <link rel="stylesheet" href="../_static/css/main.css">
+  <link rel="stylesheet" href="../_static/css/ext.css">
+  <link rel="stylesheet" href="../_static/css/fonts.css">
+
+  <script>document.documentElement.className += ' js';</script>
+  <script type="text/javascript">
+    var ruxitFont = ruxitFont || {};
+    ruxitFont.storeKey = 'fcache';
+
+    ruxitFont.addStyles = function addStyles(fonts) {
+      if(document.getElementById('font-css') !== null) {
+        return;
+      }
+      var scriptElem = document.getElementsByTagName('script')[0];
+      var styleTag = document.createElement('style');
+      styleTag.id = 'font-css';
+      styleTag.setAttribute('type', 'text/css');
+      styleTag.innerHTML = fonts;
+      scriptElem.parentNode.insertBefore(styleTag, scriptElem);
+    }
+
+    if (localStorage.getItem(ruxitFont.storeKey) !== null) {
+      ruxitFont.addStyles(localStorage.getItem(ruxitFont.storeKey));
+    }
+  </script>
+</head>
+
+<body>
+
+<header class="header header-alt">
+  <a class="header-brand-link" href="https://help.dynatrace.com/">
+
+      <img src="../_static/images/logos/dynatrace-logo.svg" alt="Dynatrace" class="header-brand-logo svgLogo" height="36">
+  </a>
+  <div class="header-nav-right">
+    <a class="btn btn--navigation nav__cta" href="https://www.dynatrace.com/trial/">Free trial</a>
+  </div>
+  <nav id="oc-nav" class="menubar">
+    <div class="menubar-nav">
+      <ul class="menubar-list">
+
+
+
+          <li class="menubar-listitem menu-level-0"><a title="Help" href="https://help.dynatrace.com/">Help</a></li>
+          <li class="menubar-listitem menu-level-0"><a title="Answers" href="https://answers.ruxit.com/">Answers</a>
+          </li>
+          <li class="menubar-listitem menu-level-0"><a title="Support" href="https://support.ruxit.com/">Support</a>
+          </li>
+
+        <li class="menubar-listitem menu-level-0">
+          <svg class="icon-defs" xmlns="http://www.w3.org/2000/svg"> <defs> <g id="search_magnifyingglass"> <path d="M200.759,104.318c25.76,0,49.979,10.032,68.194,28.248c37.6,37.604,37.6,98.785,0,136.385
+c-18.216,18.216-42.434,28.248-68.194,28.248c-25.76,0-49.978-10.032-68.194-28.248c-18.216-18.212-28.245-42.431-28.245-68.19
+s10.029-49.979,28.245-68.194C150.781,114.351,174.999,104.318,200.759,104.318 M200.759,66
+c-34.486,0-68.973,13.157-95.286,39.475c-52.628,52.623-52.628,137.948,0,190.572c26.31,26.314,60.796,39.471,95.286,39.471
+c34.486,0,68.973-13.156,95.287-39.471c52.627-52.627,52.627-137.949,0-190.572C269.731,79.157,235.245,66,200.759,66L200.759,66z"></path> <path d="M443.765,411.84c2.979,2.979,2.979,7.858,0,10.837l-21.083,21.09c-2.979,2.979-7.854,2.979-10.837,0
+l-106.699-106.7c-2.979-2.979-2.979-7.857,0-10.836l21.086-21.087c2.982-2.979,7.854-2.979,10.837,0L443.765,411.84z"></path> </g> </defs> </svg>
+
+
+
+
+
+
+
+
+
+          <form autocomplete="off" id="search" action="../search.html" method="GET">
+            <input id="search-input" class="search-input" type="input" name="q" placeholder="Search for..." value="">
+            <label for="search-input" aria-label="Search">
+              <svg class="search-icon" viewBox="0 0 512 512">
+                <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#search_magnifyingglass"></use>
+              </svg>
+            </label>
+            <input type="hidden" name="check_keywords" value="yes" />
+            <input type="hidden" name="area" value="default" />
+          </form>
+        </li>
+      </ul>
+    </div>
+  </nav>
+</header>
+<ul class="breadcrumbs">
+    <li><a href="../index.html">Docs</a></li>
+      
+    <li><span>Known technologies</span></li>
+</ul>
+
+<div class="main-area">
+    <nav class="sidebar">
+    
+        <h1 class="headline">
+            <a href="../index.html"> Plugin SDK </a>
+            <div class="sidebar__info">version: 1.221</div>
+        </h1>
+    
+
+    
+    
+    
+        
+            
+        
+        <a class="sidebar__item" href="../readme.html">
+            <span class="sidebar__headline">Write your first OneAgent plugin</span>
+        </a>
+    
+        
+            
+        
+        <a class="sidebar__item" href="../extending_plugin/index.html">
+            <span class="sidebar__headline">Extend your plugin</span>
+        </a>
+    
+        
+            
+        
+        <a class="sidebar__item" href="../deploying_extension/index.html">
+            <span class="sidebar__headline">Deploy your plugin</span>
+        </a>
+    
+        
+            
+        
+        <a class="sidebar__item" href="../troubleshooting/index.html">
+            <span class="sidebar__headline">Troubleshooting</span>
+        </a>
+    
+        
+            
+        
+        <a class="sidebar__item" href="../plugin_lifecycle/index.html">
+            <span class="sidebar__headline">Plugin life cycle</span>
+        </a>
+    
+        
+            
+        
+        <a class="sidebar__item" href="../apidoc.html">
+            <span class="sidebar__headline">Reference</span>
+        </a>
+    
+        
+            
+        
+        <a class="sidebar__item" href="../plugins/index.html">
+            <span class="sidebar__headline">Plugin reference</span>
+        </a>
+    
+        
+            
+        
+        <a class="sidebar__item" href="remote_python_apidoc.html">
+            <span class="sidebar__headline">ActiveGate Plugins API Reference</span>
+        </a>
+    
+        
+            
+        
+        <a class="sidebar__item" href="index.html">
+            <span class="sidebar__headline">Index</span>
+        </a>
+    
+</nav>
+    <article id="content" class="wrapper cf">
+        <div class="content-area content">
+            <main role="main">
+                
+  <div class="section" id="known-technologies">
+<h1>Known technologies<a class="headerlink" href="#known-technologies" title="Permalink to this headline">¶</a></h1>
+<p>The table presents names of known technologies supported by Dynatrace, which are used in <cite>technologies</cite> field of plugin.json file - metadata section.</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="100%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Technology name</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>ACTIVE_MQ</td>
+</tr>
+<tr class="row-odd"><td>ADO_NET</td>
+</tr>
+<tr class="row-even"><td>AIX_SYSTEM</td>
+</tr>
+<tr class="row-odd"><td>AKKA</td>
+</tr>
+<tr class="row-even"><td>AMAZON_REDSHIFT</td>
+</tr>
+<tr class="row-odd"><td>AMQP</td>
+</tr>
+<tr class="row-even"><td>APACHE_CAMEL</td>
+</tr>
+<tr class="row-odd"><td>APACHE_DERBY</td>
+</tr>
+<tr class="row-even"><td>APACHE_HTTPD</td>
+</tr>
+<tr class="row-odd"><td>APACHE_HTTP_CLIENT_ASYNC</td>
+</tr>
+<tr class="row-even"><td>APACHE_HTTP_CLIENT_SYNC</td>
+</tr>
+<tr class="row-odd"><td>APACHE_SOLR</td>
+</tr>
+<tr class="row-even"><td>APACHE_SPARK</td>
+</tr>
+<tr class="row-odd"><td>APACHE_SYNAPSE</td>
+</tr>
+<tr class="row-even"><td>APMNG</td>
+</tr>
+<tr class="row-odd"><td>APPARMOR</td>
+</tr>
+<tr class="row-even"><td>APPLICATION_INSIGHTS_SDK</td>
+</tr>
+<tr class="row-odd"><td>APP_DYNAMIC</td>
+</tr>
+<tr class="row-even"><td>ARTEMIS</td>
+</tr>
+<tr class="row-odd"><td>ASP_NET</td>
+</tr>
+<tr class="row-even"><td>ASP_NET_CORE</td>
+</tr>
+<tr class="row-odd"><td>ASYNC_HTTP_CLIENT</td>
+</tr>
+<tr class="row-even"><td>AWS_LAMBDA</td>
+</tr>
+<tr class="row-odd"><td>AWS_RDS</td>
+</tr>
+<tr class="row-even"><td>AWS_SERVICE</td>
+</tr>
+<tr class="row-odd"><td>AXIS</td>
+</tr>
+<tr class="row-even"><td>AZURE_FUNCTIONS</td>
+</tr>
+<tr class="row-odd"><td>AZURE_SERVICE_BUS</td>
+</tr>
+<tr class="row-even"><td>AZURE_SERVICE_FABRIC</td>
+</tr>
+<tr class="row-odd"><td>AZURE_STORAGE</td>
+</tr>
+<tr class="row-even"><td>BOSH</td>
+</tr>
+<tr class="row-odd"><td>BOSHBPM</td>
+</tr>
+<tr class="row-even"><td>CASSANDRA</td>
+</tr>
+<tr class="row-odd"><td>CEILOMETER</td>
+</tr>
+<tr class="row-even"><td>CINDER</td>
+</tr>
+<tr class="row-odd"><td>CITRIX</td>
+</tr>
+<tr class="row-even"><td>CITRIX_COMMON</td>
+</tr>
+<tr class="row-odd"><td>CITRIX_DESKTOP_DELIVERY_CONTROLLERS</td>
+</tr>
+<tr class="row-even"><td>CITRIX_DIRECTOR</td>
+</tr>
+<tr class="row-odd"><td>CITRIX_LICENSE_SERVER</td>
+</tr>
+<tr class="row-even"><td>CITRIX_PROVISIONING_SERVICES</td>
+</tr>
+<tr class="row-odd"><td>CITRIX_STOREFRONT</td>
+</tr>
+<tr class="row-even"><td>CITRIX_VIRTUAL_DELIVERY_AGENT</td>
+</tr>
+<tr class="row-odd"><td>CITRIX_WORKSPACE_ENVIRONMENT_MANAGEMENT</td>
+</tr>
+<tr class="row-even"><td>CITRIX_XEN</td>
+</tr>
+<tr class="row-odd"><td>CLOUDFOUNDRY</td>
+</tr>
+<tr class="row-even"><td>CLOUDFOUNDRY_AUCTIONEER</td>
+</tr>
+<tr class="row-odd"><td>CLOUDFOUNDRY_GOROUTER</td>
+</tr>
+<tr class="row-even"><td>CLR</td>
+</tr>
+<tr class="row-odd"><td>COLDFUSION</td>
+</tr>
+<tr class="row-even"><td>CONFLUENT_KAFKA_CLIENT</td>
+</tr>
+<tr class="row-odd"><td>CONTAINERD</td>
+</tr>
+<tr class="row-even"><td>CORE_DNS</td>
+</tr>
+<tr class="row-odd"><td>COUCHBASE</td>
+</tr>
+<tr class="row-even"><td>COUCHDB</td>
+</tr>
+<tr class="row-odd"><td>CRIO</td>
+</tr>
+<tr class="row-even"><td>CTG</td>
+</tr>
+<tr class="row-odd"><td>CXF</td>
+</tr>
+<tr class="row-even"><td>DATASTAX</td>
+</tr>
+<tr class="row-odd"><td>DB2</td>
+</tr>
+<tr class="row-even"><td>DIEGO_CELL</td>
+</tr>
+<tr class="row-odd"><td>DJANGO</td>
+</tr>
+<tr class="row-even"><td>DOCKER</td>
+</tr>
+<tr class="row-odd"><td>DOCKERDEAMON</td>
+</tr>
+<tr class="row-even"><td>DOTNET</td>
+</tr>
+<tr class="row-odd"><td>DOTNET_REMOTING</td>
+</tr>
+<tr class="row-even"><td>DYNATRACE_CLASSIC</td>
+</tr>
+<tr class="row-odd"><td>DYNATRACE_CLASSIC_SERVER</td>
+</tr>
+<tr class="row-even"><td>ELASTIC_SEARCH</td>
+</tr>
+<tr class="row-odd"><td>ENVOY</td>
+</tr>
+<tr class="row-even"><td>ERLANG</td>
+</tr>
+<tr class="row-odd"><td>ETCD</td>
+</tr>
+<tr class="row-even"><td>F5_LTM</td>
+</tr>
+<tr class="row-odd"><td>FSHARP</td>
+</tr>
+<tr class="row-even"><td>GARDEN</td>
+</tr>
+<tr class="row-odd"><td>GLANCE</td>
+</tr>
+<tr class="row-even"><td>GLASSFISH</td>
+</tr>
+<tr class="row-odd"><td>GO</td>
+</tr>
+<tr class="row-even"><td>GRAAL_TRUFFLE</td>
+</tr>
+<tr class="row-odd"><td>GRPC</td>
+</tr>
+<tr class="row-even"><td>GRSECURITY</td>
+</tr>
+<tr class="row-odd"><td>HADOOP</td>
+</tr>
+<tr class="row-even"><td>HADOOP_HDFS</td>
+</tr>
+<tr class="row-odd"><td>HADOOP_YARN</td>
+</tr>
+<tr class="row-even"><td>HAPROXY</td>
+</tr>
+<tr class="row-odd"><td>HEAT</td>
+</tr>
+<tr class="row-even"><td>HESSIAN</td>
+</tr>
+<tr class="row-odd"><td>HORIZON</td>
+</tr>
+<tr class="row-even"><td>HORNET_Q</td>
+</tr>
+<tr class="row-odd"><td>IBM_CICS_AOR</td>
+</tr>
+<tr class="row-even"><td>IBM_CICS_REGION</td>
+</tr>
+<tr class="row-odd"><td>IBM_CICS_TOR</td>
+</tr>
+<tr class="row-even"><td>IBM_IMS_CONNECT</td>
+</tr>
+<tr class="row-odd"><td>IBM_IMS_CONTROL</td>
+</tr>
+<tr class="row-even"><td>IBM_IMS_MPR</td>
+</tr>
+<tr class="row-odd"><td>IBM_IMS_SOAP_GATEWAY</td>
+</tr>
+<tr class="row-even"><td>IBM_INTEGRATION_BUS</td>
+</tr>
+<tr class="row-odd"><td>IBM_MQ_CLIENT</td>
+</tr>
+<tr class="row-even"><td>IIS</td>
+</tr>
+<tr class="row-odd"><td>IIS_APP_POOL</td>
+</tr>
+<tr class="row-even"><td>ISTIO</td>
+</tr>
+<tr class="row-odd"><td>JAVA</td>
+</tr>
+<tr class="row-even"><td>JAX_WS</td>
+</tr>
+<tr class="row-odd"><td>JBOSS</td>
+</tr>
+<tr class="row-even"><td>JBOSS_EAP</td>
+</tr>
+<tr class="row-odd"><td>JDK_HTTP_SERVER</td>
+</tr>
+<tr class="row-even"><td>JERSEY</td>
+</tr>
+<tr class="row-odd"><td>JETTY</td>
+</tr>
+<tr class="row-even"><td>JRUBY</td>
+</tr>
+<tr class="row-odd"><td>JYTHON</td>
+</tr>
+<tr class="row-even"><td>KAFKA</td>
+</tr>
+<tr class="row-odd"><td>KEYSTONE</td>
+</tr>
+<tr class="row-even"><td>KNOWN_TECHNOLOGY_INVALID</td>
+</tr>
+<tr class="row-odd"><td>KUBERNETES</td>
+</tr>
+<tr class="row-even"><td>KVM</td>
+</tr>
+<tr class="row-odd"><td>LIBC</td>
+</tr>
+<tr class="row-even"><td>LIBVIRT</td>
+</tr>
+<tr class="row-odd"><td>LINKERD</td>
+</tr>
+<tr class="row-even"><td>LINUX_SYSTEM</td>
+</tr>
+<tr class="row-odd"><td>MARIADB</td>
+</tr>
+<tr class="row-even"><td>MEMCACHED</td>
+</tr>
+<tr class="row-odd"><td>MONGODB</td>
+</tr>
+<tr class="row-even"><td>MONGODB_CLIENT</td>
+</tr>
+<tr class="row-odd"><td>MONGODB_CLIENT_DOTNET</td>
+</tr>
+<tr class="row-even"><td>MONGODB_ROUTER</td>
+</tr>
+<tr class="row-odd"><td>MQ_SERIES</td>
+</tr>
+<tr class="row-even"><td>MSMQ</td>
+</tr>
+<tr class="row-odd"><td>MSSQL</td>
+</tr>
+<tr class="row-even"><td>MSSQL_CLIENT</td>
+</tr>
+<tr class="row-odd"><td>MSSQL_COMPACT_CLIENT</td>
+</tr>
+<tr class="row-even"><td>MULE_ESB</td>
+</tr>
+<tr class="row-odd"><td>MUSLC</td>
+</tr>
+<tr class="row-even"><td>MYSQL</td>
+</tr>
+<tr class="row-odd"><td>MYSQL_CONNECTOR</td>
+</tr>
+<tr class="row-even"><td>NETFLIX_SERVO</td>
+</tr>
+<tr class="row-odd"><td>NETTY</td>
+</tr>
+<tr class="row-even"><td>NEUTRON</td>
+</tr>
+<tr class="row-odd"><td>NEW_RELIC</td>
+</tr>
+<tr class="row-even"><td>NGINX</td>
+</tr>
+<tr class="row-odd"><td>NODE_JS</td>
+</tr>
+<tr class="row-even"><td>NOVA</td>
+</tr>
+<tr class="row-odd"><td>OK_HTTP_CLIENT</td>
+</tr>
+<tr class="row-even"><td>ONEAGENT_SDK</td>
+</tr>
+<tr class="row-odd"><td>OPENCENSUS</td>
+</tr>
+<tr class="row-even"><td>OPENSHIFT</td>
+</tr>
+<tr class="row-odd"><td>OPENSTACK</td>
+</tr>
+<tr class="row-even"><td>OPENSTACK_COMPUTE</td>
+</tr>
+<tr class="row-odd"><td>OPENSTACK_CONTROLLER</td>
+</tr>
+<tr class="row-even"><td>OPENTELEMETRY</td>
+</tr>
+<tr class="row-odd"><td>OPENTRACING</td>
+</tr>
+<tr class="row-even"><td>OPEN_LIBERTY</td>
+</tr>
+<tr class="row-odd"><td>ORACLE_DATA_PROVIDER</td>
+</tr>
+<tr class="row-even"><td>ORACLE_DB</td>
+</tr>
+<tr class="row-odd"><td>OTHER_JAVA_AGENT</td>
+</tr>
+<tr class="row-even"><td>OWIN</td>
+</tr>
+<tr class="row-odd"><td>OWIN_KATANA</td>
+</tr>
+<tr class="row-even"><td>PERL</td>
+</tr>
+<tr class="row-odd"><td>PHP</td>
+</tr>
+<tr class="row-even"><td>PHP_FPM</td>
+</tr>
+<tr class="row-odd"><td>PLAY</td>
+</tr>
+<tr class="row-even"><td>POSTGRES</td>
+</tr>
+<tr class="row-odd"><td>POSTGRE_DOTNET_DATA_PROVIDER</td>
+</tr>
+<tr class="row-even"><td>POWER_DNS</td>
+</tr>
+<tr class="row-odd"><td>PROGRESS</td>
+</tr>
+<tr class="row-even"><td>PYTHON</td>
+</tr>
+<tr class="row-odd"><td>QEMU</td>
+</tr>
+<tr class="row-even"><td>RABBITMQ</td>
+</tr>
+<tr class="row-odd"><td>RAILS</td>
+</tr>
+<tr class="row-even"><td>REACTOR_CORE</td>
+</tr>
+<tr class="row-odd"><td>REDIS</td>
+</tr>
+<tr class="row-even"><td>RESTEASY</td>
+</tr>
+<tr class="row-odd"><td>RESTLET</td>
+</tr>
+<tr class="row-even"><td>RIAK</td>
+</tr>
+<tr class="row-odd"><td>RUBY</td>
+</tr>
+<tr class="row-even"><td>SAG_WEBMETHODS_IS</td>
+</tr>
+<tr class="row-odd"><td>SAP</td>
+</tr>
+<tr class="row-even"><td>SAP_HANADB</td>
+</tr>
+<tr class="row-odd"><td>SAP_HYBRIS</td>
+</tr>
+<tr class="row-even"><td>SAP_MAXDB</td>
+</tr>
+<tr class="row-odd"><td>SAP_SYBASE</td>
+</tr>
+<tr class="row-even"><td>SCALA</td>
+</tr>
+<tr class="row-odd"><td>SELINUX</td>
+</tr>
+<tr class="row-even"><td>SHAREPOINT</td>
+</tr>
+<tr class="row-odd"><td>SIGNALR</td>
+</tr>
+<tr class="row-even"><td>SIGNALR_CORE</td>
+</tr>
+<tr class="row-odd"><td>SPRING</td>
+</tr>
+<tr class="row-even"><td>SQLITE</td>
+</tr>
+<tr class="row-odd"><td>STORM</td>
+</tr>
+<tr class="row-even"><td>SWIFT</td>
+</tr>
+<tr class="row-odd"><td>THRIFT</td>
+</tr>
+<tr class="row-even"><td>TIBCO</td>
+</tr>
+<tr class="row-odd"><td>TIBCO_BW</td>
+</tr>
+<tr class="row-even"><td>TIBCO_EMS</td>
+</tr>
+<tr class="row-odd"><td>TOMCAT</td>
+</tr>
+<tr class="row-even"><td>UNDERTOW_IO</td>
+</tr>
+<tr class="row-odd"><td>VARNISH_CACHE</td>
+</tr>
+<tr class="row-even"><td>VIM2</td>
+</tr>
+<tr class="row-odd"><td>WCF</td>
+</tr>
+<tr class="row-even"><td>WEB2PY</td>
+</tr>
+<tr class="row-odd"><td>WEBLOGIC</td>
+</tr>
+<tr class="row-even"><td>WEBSPHERE</td>
+</tr>
+<tr class="row-odd"><td>WEBSPHERE_LIBERTY</td>
+</tr>
+<tr class="row-even"><td>WILDFLY</td>
+</tr>
+<tr class="row-odd"><td>WINC</td>
+</tr>
+<tr class="row-even"><td>WINDOWS_SERVICE</td>
+</tr>
+<tr class="row-odd"><td>WINDOWS_SYSTEM</td>
+</tr>
+<tr class="row-even"><td>WINK</td>
+</tr>
+<tr class="row-odd"><td>WSGI</td>
+</tr>
+<tr class="row-even"><td>ZEROMQ</td>
+</tr>
+<tr class="row-odd"><td>ZOS_CONNECT</td>
+</tr>
+</tbody>
+</table>
+</div>
+
+
+            </main>
+            
+
+        </div>
+    </article>
+</div>
+
+<footer class="footer">
+  <div class="footer__socials">
+    <h3>Join us on</h3>
+    <a href="https://www.facebook.com/Dynatrace/" class="footer__sociallink">
+      <svg viewBox="0 1 23 23">
+        <title>Facebook</title>
+        <path d="M9.6,20.1v-7.3H7.2V9.6h2.4V8.4c0-2.2,1.6-4.1,3.6-4.1h2.6v3.2h-2.6c-0.3,0-0.6,0.3-0.6,0.9v1.3 h3.2v3.2h-3.2v7.3H9.6z"></path>
+      </svg>
+    </a>
+    <a href="https://twitter.com/Dynatrace" class="footer__sociallink">
+      <svg viewBox="0 0 23 23">
+        <title>Twitter</title>
+        <path id="twitter" d="M14.4,5.6c1.3,0,2,0.4,2.6,1c0.6,0,1.3-0.4,1.7-0.6c0.1-0.1,0.3-0.2,0.4-0.2 C19,6.5,18.6,7,18.1,7.4c-0.1,0.1-0.2,0.2-0.4,0.3v0c0.7,0,1.3-0.3,1.9-0.5v0c-0.3,0.5-0.7,1-1.1,1.3c-0.2,0.1-0.3,0.3-0.5,0.4 c0,0.8,0,1.5-0.2,2.1c-0.8,3.8-3,6.3-6.5,7.4C10,18.8,8,19,6.6,18.6c-0.7-0.2-1.4-0.4-2-0.6c-0.3-0.1-0.6-0.3-0.9-0.5 c-0.1-0.1-0.2-0.1-0.3-0.2c0.3,0,0.7,0.1,1.1,0c0.3-0.1,0.7,0,1-0.1c0.8-0.2,1.4-0.4,2-0.7c0.3-0.2,0.7-0.4,0.9-0.6 c-0.4,0-0.7-0.1-1-0.2c-1.1-0.4-1.7-1.1-2.1-2.1c0.3,0,1.3,0.1,1.5-0.1c-0.4,0-0.8-0.3-1.1-0.4C4.7,12.6,4,11.7,4,10.2 c0.1,0.1,0.2,0.1,0.3,0.2c0.2,0.1,0.4,0.1,0.7,0.2c0.1,0,0.3,0.1,0.5,0c0,0,0,0,0,0c-0.2-0.2-0.4-0.3-0.6-0.5 c-0.6-0.7-1.1-1.8-0.7-3c0.1-0.3,0.2-0.6,0.4-0.9c0,0,0,0,0,0c0.1,0.1,0.2,0.2,0.3,0.3c0.3,0.4,0.6,0.7,1,1c1.2,1,2.3,1.5,4.1,2 c0.4,0.1,1,0.2,1.5,0.2c-0.2-0.4-0.1-1.1,0-1.6c0.3-1.1,0.9-1.8,1.9-2.2c0.2-0.1,0.5-0.2,0.7-0.2C14.2,5.6,14.3,5.6,14.4,5.6z"></path>
+      </svg>
+    </a>
+    <a href="https://www.linkedin.com/company/dynatrace" class="footer__sociallink">
+      <svg viewBox="0 2 23 23">
+        <title>Linkedin</title>
+        <path d="M7.5,19.1V9.8H4.4v9.4H7.5z M6,8.5c1.1,0,1.8-0.7,1.8-1.6 C7.7,6,7.1,5.3,6,5.3C4.9,5.3,4.2,6,4.2,6.9C4.2,7.8,4.9,8.5,6,8.5L6,8.5L6,8.5z"></path>
+        <path d="M9.3,19.1h3.1v-5.2c0-0.3,0-0.6,0.1-0.8 c0.2-0.6,0.7-1.1,1.6-1.1c1.1,0,1.6,0.9,1.6,2.1v5h3.1v-5.4c0-2.9-1.5-4.2-3.6-4.2c-1.7,0-2.4,0.9-2.8,1.6h0V9.8H9.3 C9.3,10.7,9.3,19.1,9.3,19.1L9.3,19.1z"></path>
+      </svg>
+    </a>
+    <a href="https://plus.google.com/+dynatrace/about" class="footer__sociallink">
+      <svg viewBox="0 0 23 23">
+        <title>Google+</title>
+        <path d="M2.9,11.2c0-2.8,2.6-5.3,5.5-5.2C9.7,6,11,6.6,12,7.4c-0.4,0.5-0.9,1-1.4,1.4C9.4,8,7.6,7.7,6.4,8.7
+		c-1.8,1.2-1.9,4.1-0.1,5.5c1.7,1.5,4.8,0.8,5.3-1.6c-1,0-2.1,0-3.1,0c0-0.6,0-1.2,0-1.9c1.7,0,3.5,0,5.2,0c0.1,1.5-0.1,3-1,4.2
+		c-1.4,1.9-4.1,2.5-6.2,1.7C4.2,15.8,2.7,13.5,2.9,11.2z"></path> <path d="M17,9.1c0.5,0,1,0,1.6,0c0,0.5,0,1,0,1.6c0.5,0,1,0,1.6,0c0,0.5,0,1,0,1.6c-0.5,0-1,0-1.6,0c0,0.5,0,1,0,1.6
+		c-0.5,0-1,0-1.6,0c0-0.5,0-1,0-1.6c-0.5,0-1,0-1.6,0c0-0.5,0-1,0-1.6c0.5,0,1,0,1.6,0C17,10.2,17,9.7,17,9.1z"></path>
+      </svg>
+    </a>
+  </div>
+</footer>
+<script src="../_static/js/main.js"></script>
+<script type="text/javascript">
+    var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:'',
+        VERSION:'1.221.112.20210715.143702',
+        COLLAPSE_INDEX:false,
+        FILE_SUFFIX:'.html',
+        HAS_SOURCE: true
+    };
+</script>
+  <script type="text/javascript" src="../_static/jquery.js"></script>
+  <script type="text/javascript" src="../_static/underscore.js"></script>
+  <script type="text/javascript" src="../_static/doctools.js"></script>
+
+<script src="../_static/js/ext.js"></script>
+
+<script type="text/javascript">
+  var ruxitFont = ruxitFont || {};
+
+  ruxitFont.cache = (function(s, xhr) {
+
+    var cssPath = '../_static/css/fonts.css';
+
+    if (s.getItem(ruxitFont.storeKey) === null) {
+      var http = new xhr();
+        http.open('GET', cssPath);
+      http.send();
+      http.onload = function() {
+        ruxitFont.addStyles(this.responseText);
+        s.setItem(ruxitFont.storeKey, this.responseText);
+      }
+    } else {
+      ruxitFont.addStyles(s.getItem(ruxitFont.storeKey));
+    }
+
+  })(window.localStorage, XMLHttpRequest);
+</script> 
+
+</body>
+
+</html>

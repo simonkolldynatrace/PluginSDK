@@ -1,0 +1,4 @@
+.. automodule:: ruxit_haproxy
+    :members:
+    :undoc-members:
+    :show-inheritance:

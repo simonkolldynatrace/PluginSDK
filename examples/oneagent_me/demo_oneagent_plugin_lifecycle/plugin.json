@@ -1,0 +1,118 @@
+{
+  "name": "custom.python.demo_plugin_lifecycle",
+  "version": "1.021",
+  "type": "python",
+  "entity": "HOST",
+  "technologies": [ "PYTHON" ],
+  "metricGroup": "demo_metrics_lifecycle",
+  "source": {
+    "package": "demo_plugin_lifecycle",
+    "className": "DemoPluginLifeCycle",
+    "install_requires": [
+      "requests>=2.6.0"
+    ],
+    "activation": "Singleton"
+  },
+  "metrics": [
+    {
+      "entity": "PROCESS_GROUP_INSTANCE",
+      "timeseries": {
+        "key": "random_pgi",
+        "unit": "Count",
+        "displayname": "Random Value PGI"
+      }
+    },
+    {
+      "entity": "PROCESS_GROUP_INSTANCE",
+      "timeseries": {
+        "key": "counter_pgi",
+        "unit": "Count",
+        "displayname": "Counter Value PGI"
+      }
+    },
+    {
+      "entity": "PROCESS_GROUP",
+      "timeseries": {
+        "key": "random_pg",
+        "unit": "Count",
+        "displayname": "Random Value PG"
+      }
+    },
+    {
+      "entity": "PROCESS_GROUP",
+      "timeseries": {
+        "key": "counter_pg",
+        "unit": "Count",
+        "displayname": "Counter Value PG"
+      }
+    },
+    {
+      "timeseries": {
+        "key": "random_host",
+        "unit": "Count",
+        "displayname": "Random Value HOST"
+      }
+    },
+    {
+      "timeseries": {
+        "key": "counter_host",
+        "unit": "Count",
+        "displayname": "Counter Value HOST"
+      }
+    },
+    {
+      "entity": "PROCESS_GROUP_INSTANCE",
+      "statetimeseries": {
+        "key": "state",
+        "states": [
+          "OK",
+          "WARNING",
+          "ERROR"
+        ],
+        "displayname": "State metric",
+        "dimensions": ["app"]
+      }
+    }
+  ],
+  "configUI": {
+    "displayName": "OneAgent Demo Extension Life Cycle"
+  },
+  "ui": {
+    "pgmetrics": [
+       { "key" : "counter_pg", "displayname" : "Counter PG", "mergeaggregation": "sum", "aggregation": "max" },
+       { "key" : "random_pgi", "displayname" : "Random PGI", "mergeaggregation": "sum", "aggregation": "max" }
+    ],
+    "keycharts" : [
+      {
+        "group" : "Demo Plugin",
+        "title" : "Life cycle",
+        "series" : [
+          {
+            "key" : "counter_host",
+            "displayname" : "Counter host"
+          },
+          {
+            "key" : "random_host",
+            "displayname" : "Random host"
+          }
+        ]
+      },
+      {
+        "group": "Demo - cluster",
+        "title": "Life cycle",
+        "series" : [
+          {
+            "key" : "counter_pg",
+            "displayname" : "Counter PG",
+            "mergeaggregation": "sum", "seriestype": "bar", "color" : "#82d8f9", "aggregation": "max"
+          },
+          {
+            "key" : "random_pg",
+            "displayname" : "Random PG",
+            "seriestype": "line", "mergeaggregation": "sum", "color" : "#003a8a", "aggregation": "max"
+          }
+        ]
+      }
+    ]
+  }
+}

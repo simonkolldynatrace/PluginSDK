@@ -1,0 +1,47 @@
+{
+  "name": "custom.python.demo_plugin",
+  "version": "1.44",
+  "type": "python",
+  "entity": "PROCESS_GROUP_INSTANCE",
+  "technologies": [ "PYTHON" ],
+  "metricGroup": "demo_metrics",
+  "source": {
+    "package": "demo_plugin",
+    "className": "DemoPlugin",
+    "install_requires": [
+      "requests>=2.6.0"
+    ],
+    "activation": "Singleton"
+  },
+  "metrics": [
+    {
+      "timeseries": {
+        "key": "random",
+        "unit": "Count",
+        "displayname": "Random Value"
+      }
+    },
+    {
+      "timeseries": {
+        "key": "counter",
+        "unit": "Count",
+        "displayname": "Counter Value"
+      }
+    },
+    {
+      "statetimeseries": {
+        "key": "state",
+        "states": [
+          "OK",
+          "WARNING",
+          "ERROR"
+        ],
+        "displayname": "State metric",
+        "dimensions": ["app"]
+      }
+    }
+  ],
+  "configUI": {
+    "displayName": "OneAgent Demo Extension"
+  }
+}

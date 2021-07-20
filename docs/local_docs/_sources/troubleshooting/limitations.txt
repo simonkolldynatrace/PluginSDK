@@ -1,0 +1,119 @@
+Limitations
+===========
+
+In this section, most of the possible issues are listed along with workarounds, if available.
+
+Using external libraries
+------------------------
+
+OneAgent embeds Python 3.6 interpreter without any significant modifications. This means limitations
+Python has apply to parts of the agent and plugins. One of these limitations is the way import system
+works in Python. In short running a plugin requires importing it as Python module, and the state
+of already loaded modules is basically a global object. This means that if you have two plugins, both
+of them containing a file named my_plugin.py only one of those files will actually be loaded when
+an import statement is executed
+(it will be the one that is present in the python module search path first).
+
+To limit the risk of having a plugin loading incorrect modules, it is possible to specify
+the expected libraries versions in your plugin.json file - those requirements will be parsed
+at the start of the agent, and if other plugins declare conflicting requirements - it will be
+detected and reported.
+
+A conflict however cannot be solved automatically, except for not loading one of the plugins, which
+is rarely desired. Except for modifying the requirements to be less restrictive, another approach is
+possible. If the problem affects python files created by you - you can rename them, if it is caused
+by third-party libraries you want to use - you can follow the process of "vendorizing" or "bundling"
+them - which simply means renaming them to something unique, i.e.: renaming requests package
+to my_plugin_requests. In fact, request package is an example of module already following that
+approach (as it bundles urllib3, which is otherwise an externally available package). This approach
+does require some additional manual work (renaming the directory/file might also imply rewriting the
+import statements in the source code of vendorized packages) but grants you full control over
+the dependencies of your plugin.
+
+OneAgent could deliver some alternative solution for this, but since none of them were perfect,
+we decided to go with the most basic approach - as it also is the most widely known and understood,
+and the risk of having duplicate conflicting version of modules required to run at once was deemed
+not high enough to justify implementing a costly solution.
+
+ * Running plugins in separate processes would be strenuous on the system performance, which is
+   an undesirable trait of a monitoring solution.
+ * Manipulating ``sys.modules`` and ``sys.path`` while a plugin is being executed could lead to
+   very difficult problems, when for example a plugin is spawning another thread.
+ * Modifying the interpreter would severely impact any possibility or delivering plugins
+   as a pure python package in the future, not mentioning being a risky approach, and limiting
+   the understanding of the system by developers already acquainted with Python.
+ * Using subinterpreters has the same drawback as modifying the interpreter, as they are currently
+   not exposes in a python api, and only available in custom embedding scenarios, and additionally,
+   extension modules are not guaranteed to run correctly.
+ * Using .egg files or importing directly from .whl packages
+   could limit the area where library conflicts
+   are detected, but .eggs are currently not a recommended distribution format, .whl files are not
+   meant for direct import (even though they are zip files), and again, some limitations with
+   extension modules would not work.
+
+Multiple plugin versions
+------------------------
+
+There are some considerations regarding plugin versions on the Dynatrace Cluster Node. You should take care
+when running different plugin versions on multiple hosts. In such a scenario - changes you make
+to your plugin should not break previous versions of your plugins, i.e. you
+should pay special attention to removing or changing the properties of
+measurement keys and configuration properties. For example if plugin in version 1.0 requires
+"user" and "password" configuration key, and plugin in version 1.1 renames the keys to
+"plugin_user", "plugin_password", any plugins running in version 1.0 might have a hard time coping
+with that change.
+
+Any general rules that help with maintaining backward compatibility are helpful, as well maintaining
+only 1 version of the plugin (the one most recently uploaded to the server) working in your cluster.
+
+Extension modules
+-----------------
+
+In general Python (CPython more precisely) can use extensions of two types - those written only
+in python (commonly referred to as pure python packages) and extension modules - which are binary
+files distributed as either .so or .dll files. Simplifying, those modules need to be build with
+the same environment that the interpreter was build - which is feasible on Windows, but currently
+unsupported on Linux (that is also the reason there are no binary wheel distributions available on
+PyPi). This means, that you should avoid specifying extension modules as dependencies.
+
+If met with the necessity of using such a package, consider:
+ * finding a pure-python alternative
+ * check if the extension parts are optional
+ * sending us a feature request to have this package part of the agent installation
+
+In some cases, it is not really a python extension module, that you need to use, but a library
+available on your system, which exposes a C interface. In that case, you can use the ctypes module,
+which is part of Python's standard library, to bridge the gap between C and Python.
+
+Configuring multiple plugins on one host
+----------------------------------------
+
+OneAgent serves only one set of properties per plugin per host. So, each instance of a plugin:
+
+* that is activated for each instance of process group it wants to monitor
+* specifies properties in plugin.json
+
+Would be configured with the same set of properties for a given host. Different properties per host can
+be configured in the UI, but there is no way to specify multiple configurations for one host.
+
+Possible solutions for this:
+
+* make your plugin a singleton by specifying activation type as described in :doc:`../plugin_lifecycle/index`
+* use different means of providing configuration to your plugin
+
+Docker
+------
+
+When running Docker on your host, certain information present in the process snapshot might be
+valid only in the context of the running container, while the agent runs outside of it
+- i.e: ports on which a process is listening.
+Proceed with caution when consuming process snapshot information about processes that are
+running in containers, or use other means of discovering their properties, as applicable.
+
+Hanging plugins
+---------------
+
+If a plugin would hang in an infinite loop, or never timing-out I/O call, it will not be
+scheduled for another round of gathering data, nor restarted. Detecting such a plugin is possible,
+but fully automated resolution of such a problem is currently not implemented, as killing a Python
+thread (or any thread at all) can cause undesired resource leaks.

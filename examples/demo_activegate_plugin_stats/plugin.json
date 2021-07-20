@@ -1,0 +1,161 @@
+{
+	"name": "custom.remote.python.demo_stats",
+	"version": "1.011",
+	"type": "python",
+	"entity": "CUSTOM_DEVICE",
+	"metricGroup": "tech.Demo_Technology.Stats",
+	"processTypeNames": ["PYTHON"],
+	"technologies": ["ActiveGate Demo Technology"],
+	"favicon": "https://lh3.googleusercontent.com/gN6iBKP1b2GTXZZoCxhyXiYIAh8QJ_8xzlhEK6csyDadA4GdkEdIEy9Bc8s5jozt1g=w300",
+	"source": {
+		"package": "demo_activegate_plugin_stats",
+		"className": "DemoPluginRemote",
+		"install_requires": ["requests>=2.6.0"],
+		"activation": "Remote"
+	},
+	"configUI": {
+		"displayName": "ActiveGate Demo Extension - Stats",
+		"properties": [{
+			"key": "url",
+			"displayName": "URL",
+			"displayHint": "http://localhost:8769"
+		}]
+	},
+	"properties": [{
+		"key": "url",
+		"type": "String",
+        "defaultValue": "http://localhost:8769"
+	}],
+	"metrics": [{
+			"entity": "CUSTOM_DEVICE",
+			"timeseries": {
+				"key": "random",
+				"unit": "Count",
+				"displayname": "Random"
+			}
+		},
+		{
+			"entity": "CUSTOM_DEVICE",
+			"timeseries": {
+				"key": "counter",
+				"unit": "Count",
+				"displayname": "Counter"
+			}
+		},
+		{
+			"entity": "CUSTOM_DEVICE",
+			"timeseries": {
+				"key": "counter_persecond",
+				"unit": "PerSecond",
+				"displayname": "Counter per second"
+			}
+		},
+		{
+			"entity": "CUSTOM_DEVICE",
+			"timeseries": {
+				"key": "statcounter",
+				"unit": "Count",
+				"displayname": "Statcounter"
+			}
+		},
+		{
+			"entity": "CUSTOM_DEVICE",
+			"statetimeseries": {
+				"key": "state",
+				"states": ["OK", "WARNING", "ERROR"],
+				"displayname": "State"
+			}
+		}
+	],
+	"ui": {
+		"keymetrics": [{
+				"key": "counter",
+				"aggregation": "avg",
+				"mergeaggregation": "avg",
+				"displayname": "Counter"
+			},
+			{
+				"key": "random",
+				"aggregation": "avg",
+				"mergeaggregation": "avg",
+				"displayname": "Random"
+			}
+		],
+		"keycharts": [{
+			"group": "Demo group",
+			"title": "Demo title",
+			"description": "Demo description",
+			"explanation": "Not used",
+			"link": "Demo link",
+			"series": [{
+					"key": "counter",
+					"displayname": "Counter",
+					"aggregation": "avg",
+					"mergeaggregation": "avg",
+					"color": "#00a6fb",
+					"seriestype": "line",
+					"rightaxis": false,
+					"stacked": false,
+					"unit": "Count",
+					"metricexplanation": "Not used"
+				},
+				{
+					"key": "random",
+					"displayname": "Random",
+					"aggregation": "avg",
+					"mergeaggregation": "avg",
+					"color": "#008cdb",
+					"seriestype": "line",
+					"rightaxis": false,
+					"stacked": false,
+					"unit": "Count",
+					"metricexplanation": "Not used"
+				}
+			]
+		}],
+		"charts": [{
+			"group": "Demo group",
+			"title": "Demo statcounter",
+			"description": "Demo description",
+			"explanation": "Not used",
+			"link": "Demo link",
+			"series": [{
+					"key": "statcounter",
+                    "displayname": "Avg",
+					"aggregation": "avg",
+					"mergeaggregation": "avg",
+					"color": "#00a6fb",
+					"seriestype": "line",
+					"rightaxis": false,
+					"stacked": false,
+					"unit": "Count",
+					"metricexplanation": "Not used"
+				},
+				{
+					"key": "statcounter",
+                    "displayname": "Max",
+					"aggregation": "max",
+					"mergeaggregation": "avg",
+					"color": "#b4e5f9",
+					"seriestype": "area",
+					"rightaxis": false,
+					"stacked": false,
+					"unit": "Count",
+					"metricexplanation": "Not used"
+				},
+                {
+					"key": "statcounter",
+                    "displayname": "Min",
+					"aggregation": "min",
+					"mergeaggregation": "avg",
+					"color": "#b4e5f9",
+					"seriestype": "area",
+					"rightaxis": false,
+					"stacked": false,
+					"unit": "Count",
+					"metricexplanation": "Not used"
+				}
+			]
+		}]
+	}
+}

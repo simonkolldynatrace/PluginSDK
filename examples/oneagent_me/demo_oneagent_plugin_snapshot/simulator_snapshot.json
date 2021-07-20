@@ -1,0 +1,39 @@
+{
+  "host_id": 112233445566,
+  "entries": [
+    {
+      "group_id": 12668946693571282165,
+      "group_instance_id": 18165771568562771184,
+      "group_name": "plugin_sdk.demo_app",
+      "processes": [
+        {
+          "pid": "7352",
+		  "process_name": "python3.5",
+          "properties": {
+            "CmdLine": "-m plugin_sdk.demo_app",
+            "WorkDir": "/home/demo",
+            "ListeningPorts": "8769"
+          }
+        }
+      ],
+      "properties": {"Technologies": "PYTHON"}
+    },
+    {
+      "group_id": 99999999999999999999,
+      "group_instance_id": 11111111111111111111,
+      "group_name": "plugin_sdk.demo_app_auth",
+      "processes": [
+        {
+          "pid": "7777",
+		  "process_name": "python3.5",
+          "properties": {
+            "CmdLine": "-m plugin_sdk.demo_app_auth",
+            "WorkDir": "/home/demo",
+            "ListeningPorts": "8790"
+          }
+        }
+      ],
+      "properties": {"Technologies": "PYTHON"}
+    }	
+  ]
+}

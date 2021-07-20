@@ -1,0 +1,4 @@
+.. automodule:: ruxit_mysql
+    :members:
+    :undoc-members:
+    :show-inheritance:

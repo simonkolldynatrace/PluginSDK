@@ -1,0 +1,20 @@
+{
+  "entries": [
+    {
+      "group_name": "plugin_sdk.demo_app",
+      "group_id" : 10278,
+      "group_instance_id": 10001,
+      "processes": [
+        {
+          "process_name": "python3.5",
+          "properties": {
+            "CmdLine": "-m plugin_sdk.demo_app",
+            "WorkDir": "/home/demo",
+            "ListeningPorts": "8991"
+          }
+        }
+      ],
+      "properties": {"Technologies": "PYTHON"}
+    } 
+  ]
+}

@@ -1,0 +1,295 @@
+Plugin life cycle
+*****************
+
+While OneAgent automates all plugin activity (for example, deciding whether or not a particular plugin
+should be run, restarting plugins that generate errors, and gathering required configuration details) there
+are situations where deeper understanding of internal agent mechanisms can be beneficial. For example, if a
+newly developed plugin doesn't start, an outdated version of a plugin is running, or you run into other unexpected
+behavior.
+
+Here are the stages of a plugin's life cycle:
+
+#. Loading
+#. Activation
+#. Running
+#. Closing
+
+Plugin loading
+==============
+
+The plugin loading process takes place when OneAgent starts. This process evaluates whether or not the plugin is compatible with the current version of OneAgent and other plugins
+
+When the loading process is over, plugins wait until certain conditions are meant before they are activated (plugin activation is described in the next section).
+
+OneAgent uses 3 locations to load plugins:
+
+* ``plugin_deployment`` directory - located in the root of your OneAgent installation [1]_
+* plugins downloaded from Dynatrace Cluster Node by OneAgent
+* plugins distributed with the OneAgent installer
+
+Each plugin is checked for compatibility with already loaded plugins.
+Two plugins may declare that they require a certain library in a conflicting version (in other words, plugin_a
+needs requests==2.9.1 while plugin_b states that it needs requests<=2.8.3. The plugin that causes the
+conflict will not be loaded. The plugin that causes the conflict depends on the order of loading, which
+is the order of locations stated above, and the lexicographical order of the plugin names within each location.
+
+For details of possible plugin incompatibility and ways to cope with this, please refer to :doc:`../troubleshooting/limitations`.
+
+The last 2 locations are used only internally. Files located here should not be modified manually.
+The ``plugin_deployment`` folder can however be used in any way you want.
+
+
+Plugin activation
+=================
+
+In most cases, a plugin starts when it detects the process it is to monitor.
+
+Once a plugin is loaded, OneAgent decides if it should activate it.
+Activating a plugin triggers an attempt to get the plugin's configuration, which is stored on the server. OneAgent also confirms that the plugin is enabled.
+Once available, the plugin is run.
+
+The most important factor in plugin activation is the :doc:`process snapshot<../api/process_snapshot>`. This data
+structure contains information about the important processes recognized on your system. If a match is
+detected between a process snapshot and information contained in ``plugin.json``, the plugin is activated. In most cases,
+this information takes the form of detection of a process of a given type. Consequently, if data from the process snapshot disappears,
+the plugin will no longer be active.
+
+The second factor that determines plugin activation is the ``plugin.json`` file. In this file, you can declare
+which process types are to trigger your plugin activation.
+
+3 types of activation are currently available:
+
+ * Run a single plugin instance when a triggering process is detected
+ * Run as many plugin instances as there are detected monitored process group instances
+ * Always run the plugin
+
+So much for the description. Now let's take a look at possible activation types:
+
+Activate a single plugin instance for all monitored processes
+-------------------------------------------------------------
+
+In most common cases (as presented in our :doc:`first tutorial<../readme>`) it's best to create one instance of a plugin
+when a process of a specified type is detected. This requires the following in ``plugin.json``:
+
+.. code-block:: json
+
+     {
+       "entity": "PROCESS_GROUP_INSTANCE",
+       "technologies": [ "PYTHON" ],
+       "source": {
+         "activation": "Singleton"
+       },
+     }
+
+With above code snippet included in a ``plugin.json``, any Python process group instance present in the snapshot will activate the plugin.
+So, for example, the following snapshot would be sufficient:
+
+ .. code-block:: python
+    :emphasize-lines: 8, 19, 25, 32
+
+     ProcessSnapshot(
+         host_id=11711730974707348096,
+         entries=[
+             ProcessSnapshotEntry(
+                 group_id=9849894537414073908,
+                 node_id=0,
+                 group_instance_id=11914897446187082808,
+                 group_name='plugin_sdk.demo_app',
+                 processes=[
+                     ProcessInfo(
+                         pid=1541,
+                         process_name='python3.5',
+                         properties={
+                             'CmdLine': '-m plugin_sdk.demo_app',
+                             'WorkDir': '/home/demo',
+                             'ListeningPorts': '8090'
+                         })
+                     ],
+                 properties={"Technologies": "PYTHON"}
+             ),
+             ProcessSnapshotEntry(
+                 group_id=483552688914919364,
+                 node_id=0,
+                 group_instance_id=11834758190185815364,
+                 group_name='puppet',
+                 processes=[
+                     ProcessInfo(
+                         pid=1257,
+                         process_name='puppet',
+                         properties={'CmdLine': '/usr/bin/puppet agent', 'WorkDir': '/'})
+                 ],
+                 properties={'Technologies': 'RUBY'}
+             )
+         containers=[]
+     )
+
+This snapshot contains 2 process groups, one of type ``python``, which includes ``plugin_sdk.demo_app``, and one of type ``ruby``,
+which runs ``puppet``.
+
+Only one instance of the plugin is created regardless of how many Python processes are running. This means that if the process type is a common one
+(like Python, Java, or Ruby), you'll need to check if the snapshot contains the process you want to monitor.
+
+Activate a plugin for each process group of a given type
+--------------------------------------------------------
+
+In some circumstances it's best to create one plugin instance per process group instance detected on the host. With
+this approach, you don't need to worry about searching the process snapshot to make sure the process you want to monitor
+is running. On the downside, if your plugin requires configuration, and multiple process group instances
+of the monitored process are running, you can't use Dynatrace Server to provide the configuration (because it would provide the same configuration
+to each plugin instance).
+
+A good example of a plugin that works fine with the "per process group instance" approach is MSSQL plugin. This plugin requires
+no additional configuration, and its ``plugin.json`` file only declares:
+
+ .. code-block:: json
+
+     {
+       "entity": "PROCESS_GROUP_INSTANCE",
+       "technologies": [ "MSSQL" ]
+     }
+
+So, given this example process snapshot:
+
+ .. code-block:: python
+    :emphasize-lines: 13, 25
+
+     ProcessSnapshot(host_id=16649240629743570171, entries=[
+         ProcessSnapshotEntry(
+             group_id=4337044249244370985,
+             node_id=0,
+             group_instance_id=9687064182437432279,
+             group_name='MSSQL10_50.NAMED_ID',
+             processes=[
+                 ProcessInfo(
+                     pid=26988,
+                     process_name='sqlservr.exe',
+                     properties={'CmdLine': '-sNAMED_INSTANCE_01', 'WorkDir': 'C:\\Windows\\system32\\'})
+                 ],
+                 properties={'Technologies': 'MSSQL', 'mssql_instance_name': 'NAMED_INSTANCE_01'}),
+         ProcessSnapshotEntry(
+             group_id=12107707763631947228,
+             node_id=0,
+             group_instance_id=10160066155805379574,
+             group_name='MSSQL10.SQLEXPRESS',
+             processes=[
+                 ProcessInfo(
+                     pid=36632,
+                     process_name='sqlservr.exe',
+                     properties={'CmdLine': '-sSQLEXPRESS', 'WorkDir': 'C:\\Windows\\system32\\'})
+                 ],
+             properties={'Technologies': 'MSSQL', 'mssql_instance_name': 'SQLEXPRESS'})
+         containers=[]
+     )
+
+Two instances of such a plugin would be created by OneAgent, as there are 2 group instances of process technology type Python
+(in this case, these correspond to MSSQL instances).
+
+In summary, if your plugin monitors a process of an uncommon type, and you don't need to use Dynatrace Server for
+additional configuration, activating 1 plugin instance per process group instance is a viable approach.
+
+
+Activate only if a process name matches pattern
+-----------------------------------------------
+
+In cases where activation per process type is too open an approach, you can specify additional criteria to determine when an
+plugin should be run. Modify your `plugin.json` file to contain a fragment such as this:
+
+ .. code-block:: json
+    :emphasize-lines: 5
+
+     {
+       "entity": "PROCESS_GROUP_INSTANCE",
+       "technologies": [ "PYTHON" ],
+       "source": {
+         "activation_name_pattern": "^plugin_sdk.demo_app$"
+       }
+     }
+
+
+In this case the plugin will be activated only if detected processes have a name that matches the specified pattern.
+Matching is done via Python's `re.search function <https://docs.python.org/3.6/library/re.html#re.search>`_.
+The difference between these two modes of activation is that the first one creates a plugin instance for each
+occurrence of the process that meets the matching criteria. Whereas the second activation mode creates at most 1 instance of the plugin.
+
+
+Keep plugin active continuously
+-------------------------------
+
+The last option for activation is to have the plugin continuously active. This is achieved with the following configuration:
+
+ .. code-block:: json
+
+     {
+       "entity": "HOST"
+     }
+
+In this case, as soon as OneAgent receives a process snapshot it activates the plugin. This activation type is
+however not recommended for a few reasons:
+
+* Your plugin needs to do all the work required to check if it has any data to gather.
+* Each measurement you specify in the `plugin.json` file needs to also declare the "entity" type that it's associated with.
+  Otherwise the measurements will be associated with the host and it won't be visible on the server.
+* Each measurement you gather in Python code needs to have an entity ID extracted from the process snapshot.
+
+
+Activation tips
+---------------
+
+If your plugin isn't activated:
+
+* Take a look at the agent logs to see if your plugin is activated.
+  Refer to the Auditing logs section of :doc:`troubleshooting guide<../troubleshooting/index>`.
+* Make sure the process you want to monitor is running.
+* Make sure the process you want to monitor is relevant (confirm that it's listed on the corresponding Host page in the in the UI).
+* Use ``demo_oneagent_plugin_snapshot`` plugin from Plugin SDK examples to get the information about all discovered processes, entities IDs and process names which can be used for activation. Just deploy the plugin to your production machine with the technology you want to monitor running and you will get the process snapshot information in plugin agent log file. The plugin activation information will be also displayed on UI in ``Properties`` section of each process as ``Extension technology``. There are ``Python plugin activation technologies`` which can be used as the ``technologies`` property in plugin.json and ``Python plugin activation_name_pattern`` which can be used as the ``activation_name_pattern`` in the source section of plugin.json.
+
+
+Running plugins
+===============
+
+Once active plugins have received their required configurations they're ready to do their work. In the
+most simple case, a plugin query method is run with a 1-minute interval. Nonetheless, there are a few rules you should follow:
+
+OneAgent tries to limit the amount of plugin instances created. That is, as long as a plugin is working properly (no exceptions are thrown from its methods)
+and its configuration hasn't changed, all calls will happen on the same instance object. This is useful if you want to maintain
+some state in your plugin. This is easily achieved by overriding the
+:func:`~ruxit.api.base_plugin.BasePlugin.initialize` method.
+
+When a plugin's configuration changes (for example, if you modified the credentials used to connect to a
+monitored system) the previous plugin instance is discarded, and the query method is called
+on a new plugin instance. Before this occurs you have the option of cleaning up the :func:`~ruxit.api.base_plugin.BasePlugin.close` method, if you overrode it with your plugin.
+
+The plugin instance will also be replaced if your plugin throws exceptions.
+
+ * If the exception comes from  :mod:`ruxit.api.exceptions`
+   we classify it as a recoverable error. A plugin will be quickly restarted a couple times and then
+   OneAgent will attempt to run it every hour.
+ * If the exception isn't recognized, and the plugin failed to execute correctly
+   for a limited number of trials, the plugin is no longer scheduled.
+ * Successful plugin execution resets any crash count associated with it.
+ * The current crash limit is set to 20.
+ * While the plugin query method executes on a given plugin instance, it won't be scheduled
+   again until it completes. If your plugin gathers data for longer than a minute (for example 2 minutes), it
+   will only be executed every 2 minutes. If the plugin hangs indefinitely, OneAgent won't schedule another
+   round of data gathering (though other plugins will be unaffected).
+
+Note that creating a new instance of your plugin:
+
+ * Doesn't affect the :class:`~ruxit.api.results_buider.ResultsBuilder` associated with your plugin. This remains
+   the same until your plugin is deactivated (for example, the monitored process is no longer detected).
+ * Doesn't reload the Python modules used by your plugin. This can only be achieved
+   by restarting OneAgent.
+
+
+Plugin closing
+==============
+
+A plugin is closed when its life comes to an end (a sad, but inevitable fact). At the end of the road, the
+:func:`~ruxit.api.base_plugin.BasePlugin.close` method is called, so if your plugin
+acquired some resources, it can release them. The most common reasons for calling this method are:
+
+ * the plugin instance is being replaced with a new one due to an error or configuration change
+ * the plugin is being deactivated (monitored processes are no longer detected on the system)
+ * OneAgent is closing, and it closes all the plugins as well.
+
+.. [1] Usually "/opt/dynatrace/oneagent" or "C:\\Program Files (x86)\\dynatrace\\oneagent"

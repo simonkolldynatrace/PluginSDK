@@ -1,0 +1,11 @@
+:orphan:
+
+Known technologies
+==================
+
+The table presents names of known technologies supported by Dynatrace, which are used in `technologies` field of plugin.json file - metadata section.
+
+.. csv-table:: 
+   :widths: 150
+   :header: "Technology name"
+   :file: known_technologies.json

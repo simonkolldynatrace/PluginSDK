@@ -1,0 +1,45 @@
+{
+  "version": "1.8",
+  "name": "custom.python.demo_plugin_auth",
+  "type": "python",
+  "entity": "PROCESS_GROUP_INSTANCE",
+  "metricGroup": "demo_metrics.auth",
+  "technologies": ["PYTHON"],
+  "source": {
+    "package": "demo_plugin_auth",
+    "className": "DemoPlugin",
+    "install_requires": ["requests>=2.6.0"],
+    "activation": "Singleton"
+  },
+  "metrics": [
+    {
+      "timeseries": {
+        "key": "random",
+        "unit": "Count",
+        "dimensions": [],
+	"displayname": "Random value"
+      }
+    },
+    {
+      "timeseries": {
+        "key": "counter",
+        "unit": "Count",
+        "dimensions": [],
+	"displayname":"Counter Value"
+      }
+    }
+  ],
+  "configUI": {
+    "displayName": "OneAgent Demo Auth Extension"
+  },
+  "properties": [
+    {
+      "key": "user",
+      "type": "String"
+    },
+    {
+      "key": "password",
+      "type": "Password"
+    }
+  ]
+}

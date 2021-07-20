@@ -1,0 +1,1584 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>ruxit.api package</title>
+  
+
+  <link rel="stylesheet" href="../_static/css/main.css">
+  <link rel="stylesheet" href="../_static/css/ext.css">
+  <link rel="stylesheet" href="../_static/css/fonts.css">
+
+  <script>document.documentElement.className += ' js';</script>
+  <script type="text/javascript">
+    var ruxitFont = ruxitFont || {};
+    ruxitFont.storeKey = 'fcache';
+
+    ruxitFont.addStyles = function addStyles(fonts) {
+      if(document.getElementById('font-css') !== null) {
+        return;
+      }
+      var scriptElem = document.getElementsByTagName('script')[0];
+      var styleTag = document.createElement('style');
+      styleTag.id = 'font-css';
+      styleTag.setAttribute('type', 'text/css');
+      styleTag.innerHTML = fonts;
+      scriptElem.parentNode.insertBefore(styleTag, scriptElem);
+    }
+
+    if (localStorage.getItem(ruxitFont.storeKey) !== null) {
+      ruxitFont.addStyles(localStorage.getItem(ruxitFont.storeKey));
+    }
+  </script>
+</head>
+
+<body>
+
+<header class="header header-alt">
+  <a class="header-brand-link" href="https://help.dynatrace.com/">
+
+      <img src="../_static/images/logos/dynatrace-logo.svg" alt="Dynatrace" class="header-brand-logo svgLogo" height="36">
+  </a>
+  <div class="header-nav-right">
+    <a class="btn btn--navigation nav__cta" href="https://www.dynatrace.com/trial/">Free trial</a>
+  </div>
+  <nav id="oc-nav" class="menubar">
+    <div class="menubar-nav">
+      <ul class="menubar-list">
+
+
+
+          <li class="menubar-listitem menu-level-0"><a title="Help" href="https://help.dynatrace.com/">Help</a></li>
+          <li class="menubar-listitem menu-level-0"><a title="Answers" href="https://answers.ruxit.com/">Answers</a>
+          </li>
+          <li class="menubar-listitem menu-level-0"><a title="Support" href="https://support.ruxit.com/">Support</a>
+          </li>
+
+        <li class="menubar-listitem menu-level-0">
+          <svg class="icon-defs" xmlns="http://www.w3.org/2000/svg"> <defs> <g id="search_magnifyingglass"> <path d="M200.759,104.318c25.76,0,49.979,10.032,68.194,28.248c37.6,37.604,37.6,98.785,0,136.385
+c-18.216,18.216-42.434,28.248-68.194,28.248c-25.76,0-49.978-10.032-68.194-28.248c-18.216-18.212-28.245-42.431-28.245-68.19
+s10.029-49.979,28.245-68.194C150.781,114.351,174.999,104.318,200.759,104.318 M200.759,66
+c-34.486,0-68.973,13.157-95.286,39.475c-52.628,52.623-52.628,137.948,0,190.572c26.31,26.314,60.796,39.471,95.286,39.471
+c34.486,0,68.973-13.156,95.287-39.471c52.627-52.627,52.627-137.949,0-190.572C269.731,79.157,235.245,66,200.759,66L200.759,66z"></path> <path d="M443.765,411.84c2.979,2.979,2.979,7.858,0,10.837l-21.083,21.09c-2.979,2.979-7.854,2.979-10.837,0
+l-106.699-106.7c-2.979-2.979-2.979-7.857,0-10.836l21.086-21.087c2.982-2.979,7.854-2.979,10.837,0L443.765,411.84z"></path> </g> </defs> </svg>
+
+
+
+
+
+
+
+
+
+          <form autocomplete="off" id="search" action="../search.html" method="GET">
+            <input id="search-input" class="search-input" type="input" name="q" placeholder="Search for..." value="">
+            <label for="search-input" aria-label="Search">
+              <svg class="search-icon" viewBox="0 0 512 512">
+                <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#search_magnifyingglass"></use>
+              </svg>
+            </label>
+            <input type="hidden" name="check_keywords" value="yes" />
+            <input type="hidden" name="area" value="default" />
+          </form>
+        </li>
+      </ul>
+    </div>
+  </nav>
+</header>
+<ul class="breadcrumbs">
+    <li><a href="../index.html">Docs</a></li>
+      
+          <li><a href="../apidoc.html">Reference</a></li>
+      
+          <li><a href="../api/python_apidoc.html">Python API reference</a></li>
+      
+          <li><a href="ruxit.html">ruxit package</a></li>
+      
+    <li><span>ruxit.api package</span></li>
+</ul>
+
+<div class="main-area">
+    <nav class="sidebar">
+    
+        <h1 class="headline">
+            <a href="../index.html"> Plugin SDK </a>
+            <div class="sidebar__info">version: 1.221</div>
+        </h1>
+    
+
+    
+    
+    
+        
+            
+        
+        <a class="sidebar__item" href="../readme.html">
+            <span class="sidebar__headline">Write your first OneAgent plugin</span>
+        </a>
+    
+        
+            
+        
+        <a class="sidebar__item" href="../extending_plugin/index.html">
+            <span class="sidebar__headline">Extend your plugin</span>
+        </a>
+    
+        
+            
+        
+        <a class="sidebar__item" href="../deploying_extension/index.html">
+            <span class="sidebar__headline">Deploy your plugin</span>
+        </a>
+    
+        
+            
+        
+        <a class="sidebar__item" href="../troubleshooting/index.html">
+            <span class="sidebar__headline">Troubleshooting</span>
+        </a>
+    
+        
+            
+        
+        <a class="sidebar__item" href="../plugin_lifecycle/index.html">
+            <span class="sidebar__headline">Plugin life cycle</span>
+        </a>
+    
+        
+            
+        
+        <a class="sidebar__item sidebar__item--active" href="../apidoc.html">
+            <span class="sidebar__headline">Reference</span>
+        </a>
+    
+        
+            
+        
+        <a class="sidebar__item" href="../plugins/index.html">
+            <span class="sidebar__headline">Plugin reference</span>
+        </a>
+    
+        
+            
+        
+        <a class="sidebar__item" href="../api/remote_python_apidoc.html">
+            <span class="sidebar__headline">ActiveGate Plugins API Reference</span>
+        </a>
+    
+        
+            
+        
+        <a class="sidebar__item" href="../api/index.html">
+            <span class="sidebar__headline">Index</span>
+        </a>
+    
+</nav>
+    <article id="content" class="wrapper cf">
+        <div class="content-area content">
+            <main role="main">
+                
+  <div class="section" id="ruxit-api-package">
+<h1>ruxit.api package<a class="headerlink" href="#ruxit-api-package" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="submodules">
+<h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="module-ruxit.api.base_plugin">
+<span id="ruxit-api-base-plugin-module"></span><h2>ruxit.api.base_plugin module<a class="headerlink" href="#module-ruxit.api.base_plugin" title="Permalink to this headline">¶</a></h2>
+<p>Defines the base class for other plugins to use.</p>
+<dl class="class">
+<dt id="ruxit.api.base_plugin.BasePlugin">
+<em class="property">class </em><code class="descclassname">ruxit.api.base_plugin.</code><code class="descname">BasePlugin</code><span class="sig-paren">(</span><em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#ruxit.api.base_plugin.BasePlugin" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">object</span></code></p>
+<p>Base class for plugins.</p>
+<p>__init__ should not be overridden without a call to super.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>config</strong> -- <code class="xref py py-class docutils literal"><span class="pre">Dict[str,</span> <span class="pre">str]</span></code> plugin configuration</li>
+<li><strong>results_builder</strong> -- <a class="reference internal" href="#ruxit.api.results_builder.ResultsBuilder" title="ruxit.api.results_builder.ResultsBuilder"><code class="xref py py-class docutils literal"><span class="pre">ResultsBuilder</span></code></a> instance for this plugin</li>
+<li><strong>json_config</strong> -- parsed plugin.json contents</li>
+<li><strong>plugin_info</strong> -- <code class="xref py py-class docutils literal"><span class="pre">ruxit.package_utils.plugin_updater.PluginInfo</span></code> json data of the plugin exposed in a more convenient way</li>
+<li><strong>associated_entity</strong> -- monitored entity associated with the plugin, if any (deprecated)</li>
+<li><strong>activation_context</strong> -- activation context for the plugin</li>
+<li><strong>process_snapshot</strong> -- <code class="xref py py-class docutils literal"><span class="pre">ProcessSnapshot</span></code> latest available at method call</li>
+<li><strong>entity_resolver</strong> -- <code class="xref py py-class docutils literal"><span class="pre">ruxit.entity_resolver.EntityResolver</span></code>  exposes additional methods for querying snapshot</li>
+<li><strong>logger</strong> -- plugin: specific logger for plugin development, set to None only in unit tests</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<dl class="class">
+<dt id="ruxit.api.base_plugin.BasePlugin.AgentVersion">
+<em class="property">class </em><code class="descname">AgentVersion</code><span class="sig-paren">(</span><em>major</em>, <em>minor</em>, <em>revision</em>, <em>build</em><span class="sig-paren">)</span><a class="headerlink" href="#ruxit.api.base_plugin.BasePlugin.AgentVersion" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">tuple</span></code></p>
+<p>Create new instance of AgentVersion(major, minor, revision, build)</p>
+<dl class="attribute">
+<dt id="ruxit.api.base_plugin.BasePlugin.AgentVersion.build">
+<code class="descname">build</code><a class="headerlink" href="#ruxit.api.base_plugin.BasePlugin.AgentVersion.build" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="ruxit.api.base_plugin.BasePlugin.AgentVersion.major">
+<code class="descname">major</code><a class="headerlink" href="#ruxit.api.base_plugin.BasePlugin.AgentVersion.major" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="ruxit.api.base_plugin.BasePlugin.AgentVersion.minor">
+<code class="descname">minor</code><a class="headerlink" href="#ruxit.api.base_plugin.BasePlugin.AgentVersion.minor" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="ruxit.api.base_plugin.BasePlugin.AgentVersion.revision">
+<code class="descname">revision</code><a class="headerlink" href="#ruxit.api.base_plugin.BasePlugin.AgentVersion.revision" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="attribute">
+<dt id="ruxit.api.base_plugin.BasePlugin.agent_version">
+<code class="descclassname">BasePlugin.</code><code class="descname">agent_version</code><a class="headerlink" href="#ruxit.api.base_plugin.BasePlugin.agent_version" title="Permalink to this definition">¶</a></dt>
+<dd><p><em>return</em> -- Agent version as AgentVersion = NamedTuple('AgentVersion', [('major', int), ('minor', int), ('revision', int), ('build', str)])</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="ruxit.api.base_plugin.BasePlugin.close">
+<code class="descclassname">BasePlugin.</code><code class="descname">close</code><span class="sig-paren">(</span><em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#ruxit.api.base_plugin.BasePlugin.close" title="Permalink to this definition">¶</a></dt>
+<dd><p>Abstract method called when plugin is deactivated.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>**kwargs</strong> -- see <a class="reference internal" href="#ruxit.api.base_plugin.BasePlugin" title="ruxit.api.base_plugin.BasePlugin"><code class="xref py py-class docutils literal"><span class="pre">BasePlugin</span></code></a> for keyword args reference</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="ruxit.api.base_plugin.BasePlugin.find_all_process_groups">
+<code class="descclassname">BasePlugin.</code><code class="descname">find_all_process_groups</code><span class="sig-paren">(</span><em>predicate</em><span class="sig-paren">)</span><a class="headerlink" href="#ruxit.api.base_plugin.BasePlugin.find_all_process_groups" title="Permalink to this definition">¶</a></dt>
+<dd><p>Searches the latest process snapshot for all process groups matching the predicate</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>predicate</strong> -- One parameter function returning bool if snapshot entry meets predicate conditions</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">list of process snapshot entries</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="ruxit.api.base_plugin.BasePlugin.find_all_processes">
+<code class="descclassname">BasePlugin.</code><code class="descname">find_all_processes</code><span class="sig-paren">(</span><em>process_predicate</em><span class="sig-paren">)</span><a class="headerlink" href="#ruxit.api.base_plugin.BasePlugin.find_all_processes" title="Permalink to this definition">¶</a></dt>
+<dd><p>Searches the latest process snapshot for a process and associated process group that match the criteria passed
+in arguments. Only processes of types associated with plugin are searched.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>process_predicate</strong> -- one parameter function which takes process info as input and returns bool</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">list of tuple(PGI, process) that matched predicate</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="ruxit.api.base_plugin.BasePlugin.find_single_process">
+<code class="descclassname">BasePlugin.</code><code class="descname">find_single_process</code><span class="sig-paren">(</span><em>process_predicate</em><span class="sig-paren">)</span><a class="headerlink" href="#ruxit.api.base_plugin.BasePlugin.find_single_process" title="Permalink to this definition">¶</a></dt>
+<dd><p>Searches the latest process snapshot for a process and associated process group that match the criteria passed
+in arguments. If more than one process matching the criteria is found, an exception is raised.
+Only processes of types associated with plugin are searched.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>process_predicate</strong> -- one parameter function which takes process info as input and returns bool</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Raises:</th><td class="field-body"><code class="xref py py-class docutils literal"><span class="pre">ConfigException</span></code>: if not exactly 1 matching process found</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">tuple(PGI, process)</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="ruxit.api.base_plugin.BasePlugin.find_single_process_group">
+<code class="descclassname">BasePlugin.</code><code class="descname">find_single_process_group</code><span class="sig-paren">(</span><em>predicate</em><span class="sig-paren">)</span><a class="headerlink" href="#ruxit.api.base_plugin.BasePlugin.find_single_process_group" title="Permalink to this definition">¶</a></dt>
+<dd><p>Searches the latest process snapshot for a process group matching the predicate</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>predicate</strong> -- One parameter function returning bool if snapshot entry meets predicate conditions</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">list of process snapshot entries</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="ruxit.api.base_plugin.BasePlugin.get_monitored_entities">
+<code class="descclassname">BasePlugin.</code><code class="descname">get_monitored_entities</code><span class="sig-paren">(</span><em>me_type=None</em><span class="sig-paren">)</span> &rarr; typing.List[]<a class="headerlink" href="#ruxit.api.base_plugin.BasePlugin.get_monitored_entities" title="Permalink to this definition">¶</a></dt>
+<dd><p>Gets the list of MonitoredEntities related to the plugin based on the entity type defined in plugin.json or given type as argument.
+By default, the type is taken from plugin.json - entity field.
+If a type other than the type defined in the entity field is required, the me_type must be given as an argument.
+A typical example is the plugin reporting most data on the process group instance level, where the entity is PROCESS_GROUP_INSTANCE, but some metrics are on the process group (cluster) level.
+Then the me_type PROCESS_GROUP should be given as an argument and the corresponding group ID will be returned.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>me_type</strong> -- optional monitored entity type. One of: process, group, host</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">MonitoredEntity object containing: id, type, snapshot_entry</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="ruxit.api.base_plugin.BasePlugin.initialize">
+<code class="descclassname">BasePlugin.</code><code class="descname">initialize</code><span class="sig-paren">(</span><em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#ruxit.api.base_plugin.BasePlugin.initialize" title="Permalink to this definition">¶</a></dt>
+<dd><p>Abstract method for custom plugin initialization.
+Called after __init__. Override if additional initialization
+(for example, acquiring connections once instead of on every query method execution) is needed.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>**kwargs</strong> -- see <a class="reference internal" href="#ruxit.api.base_plugin.BasePlugin" title="ruxit.api.base_plugin.BasePlugin"><code class="xref py py-class docutils literal"><span class="pre">BasePlugin</span></code></a> for keyword args reference</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="ruxit.api.base_plugin.BasePlugin.query">
+<code class="descclassname">BasePlugin.</code><code class="descname">query</code><span class="sig-paren">(</span><em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#ruxit.api.base_plugin.BasePlugin.query" title="Permalink to this definition">¶</a></dt>
+<dd><p>Abstract method called to gather measurements. Every plugin should override this method.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>**kwargs</strong> -- see <a class="reference internal" href="#ruxit.api.base_plugin.BasePlugin" title="ruxit.api.base_plugin.BasePlugin"><code class="xref py py-class docutils literal"><span class="pre">BasePlugin</span></code></a> for keyword args reference</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="ruxit.api.base_plugin.ExternalFunctions">
+<em class="property">class </em><code class="descclassname">ruxit.api.base_plugin.</code><code class="descname">ExternalFunctions</code><span class="sig-paren">(</span><em>agent_version</em><span class="sig-paren">)</span><a class="headerlink" href="#ruxit.api.base_plugin.ExternalFunctions" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">tuple</span></code></p>
+<p>Create new instance of ExternalFunctions(agent_version,)</p>
+<dl class="attribute">
+<dt id="ruxit.api.base_plugin.ExternalFunctions.agent_version">
+<code class="descname">agent_version</code><a class="headerlink" href="#ruxit.api.base_plugin.ExternalFunctions.agent_version" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="ruxit.api.base_plugin.MonitoredEntities">
+<em class="property">class </em><code class="descclassname">ruxit.api.base_plugin.</code><code class="descname">MonitoredEntities</code><span class="sig-paren">(</span><em>result_builder</em>, <em>activation_context</em>, <em>plugin_info</em><span class="sig-paren">)</span><a class="headerlink" href="#ruxit.api.base_plugin.MonitoredEntities" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">object</span></code></p>
+<p>MonitoredEntities class for plugins provides the list of MonitoredEntity objects related to the activation context.
+Each MonitoredEntity contains such properties as: ID, type, snapshot and all the methods for sending plugin data.</p>
+<dl class="method">
+<dt id="ruxit.api.base_plugin.MonitoredEntities.get">
+<code class="descname">get</code><span class="sig-paren">(</span><em>snapshot_complete</em>, <em>me_type: ruxit.api.selectors.EntityType = None</em><span class="sig-paren">)</span> &rarr; typing.List[]<a class="headerlink" href="#ruxit.api.base_plugin.MonitoredEntities.get" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="ruxit.api.base_plugin.MonitoredEntity">
+<em class="property">class </em><code class="descclassname">ruxit.api.base_plugin.</code><code class="descname">MonitoredEntity</code><span class="sig-paren">(</span><em>result_builder</em>, <em>id</em>, <em>type</em>, <em>snapshot</em><span class="sig-paren">)</span><a class="headerlink" href="#ruxit.api.base_plugin.MonitoredEntity" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">object</span></code></p>
+<p>MonitoredEntity class for plugins.</p>
+<dl class="method">
+<dt id="ruxit.api.base_plugin.MonitoredEntity.absolute">
+<code class="descname">absolute</code><span class="sig-paren">(</span><em>key</em>, <em>value</em>, <em>dimensions=None</em><span class="sig-paren">)</span><a class="headerlink" href="#ruxit.api.base_plugin.MonitoredEntity.absolute" title="Permalink to this definition">¶</a></dt>
+<dd><p>Adds an absolute results. Absolute results are sent unmodified - no additional calculations are performed.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>key</strong> -- metric key.</li>
+<li><strong>value</strong> -- metric value</li>
+<li><strong>dimensions</strong> -- optional dictionary of 2 strings {'key', 'value'}</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="ruxit.api.base_plugin.MonitoredEntity.event_availability">
+<code class="descname">event_availability</code><span class="sig-paren">(</span><em>description: str = None</em>, <em>title: str = None</em>, <em>properties: typing.Dict[] = {}</em><span class="sig-paren">)</span><a class="headerlink" href="#ruxit.api.base_plugin.MonitoredEntity.event_availability" title="Permalink to this definition">¶</a></dt>
+<dd><p>Reports an availability event.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>description</strong> -- default None, Event description as string of max 10240 characters long.</li>
+<li><strong>title</strong> -- Event title as string of max 1024 characters long.</li>
+<li><strong>properties</strong> -- Event properties as dictionary of 2 strings. Max key length is 100 characters, max value length is 1000 characters. Max number of elements in the dictionary is 100.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="ruxit.api.base_plugin.MonitoredEntity.event_custom_annotation">
+<code class="descname">event_custom_annotation</code><span class="sig-paren">(</span><em>description: str = None</em>, <em>annotation_type: str = None</em>, <em>source: str = None</em>, <em>properties: typing.Dict[] = {}</em><span class="sig-paren">)</span><a class="headerlink" href="#ruxit.api.base_plugin.MonitoredEntity.event_custom_annotation" title="Permalink to this definition">¶</a></dt>
+<dd><p>Reports a custom annotation event.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>description</strong> -- Event description as string of max 10240 characters long.</li>
+<li><strong>annotation_type</strong> -- Event annotation_type as string of max 10240 characters long.</li>
+<li><strong>source</strong> -- Event source as string of max 10240 characters long.</li>
+<li><strong>properties</strong> -- Event properties as dictionary of 2 strings. Max key length is 100 characters, max value length is 1000 characters. Max number of elements in the dictionary is 100.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="ruxit.api.base_plugin.MonitoredEntity.event_custom_deployment">
+<code class="descname">event_custom_deployment</code><span class="sig-paren">(</span><em>source: str = None</em>, <em>project: str = None</em>, <em>version: str = None</em>, <em>ci_link: str = None</em>, <em>remediation_action_link: str = None</em>, <em>deployment_name: str = None</em>, <em>properties: typing.Dict[] = {}</em><span class="sig-paren">)</span><a class="headerlink" href="#ruxit.api.base_plugin.MonitoredEntity.event_custom_deployment" title="Permalink to this definition">¶</a></dt>
+<dd><p>Reports a custom deployment event.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>source</strong> -- Event source as string of max 10240 characters long.</li>
+<li><strong>project</strong> -- Event project as string of max 10240 characters long.</li>
+<li><strong>version</strong> -- Event version as string of max 10240 characters long.</li>
+<li><strong>ci_link</strong> -- Event link as string of max 10240 characters long.</li>
+<li><strong>remediation_action_link</strong> -- Event remediation action link as string of max 10240 characters long.</li>
+<li><strong>deployment_name</strong> -- Event deployment name as string of max 10240 characters long.</li>
+<li><strong>properties</strong> -- Event properties as dictionary of 2 strings. Max key length is 100 characters, max value length is 1000 characters. Max number of elements in the dictionary is 100.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="ruxit.api.base_plugin.MonitoredEntity.event_custom_info">
+<code class="descname">event_custom_info</code><span class="sig-paren">(</span><em>description: str = None</em>, <em>title: str = None</em>, <em>properties: typing.Dict[] = {}</em><span class="sig-paren">)</span><a class="headerlink" href="#ruxit.api.base_plugin.MonitoredEntity.event_custom_info" title="Permalink to this definition">¶</a></dt>
+<dd><p>Reports a custom info event.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>description</strong> -- default None, Event description as string of max 10240 characters long.</li>
+<li><strong>title</strong> -- Event title as string of max 1024 characters long.</li>
+<li><strong>properties</strong> -- Event properties as dictionary of 2 strings. Max key length is 100 characters, max value length is 1000 characters. Max number of elements in the dictionary is 100.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="ruxit.api.base_plugin.MonitoredEntity.event_error">
+<code class="descname">event_error</code><span class="sig-paren">(</span><em>description: str = None</em>, <em>title: str = None</em>, <em>properties: typing.Dict[] = {}</em><span class="sig-paren">)</span><a class="headerlink" href="#ruxit.api.base_plugin.MonitoredEntity.event_error" title="Permalink to this definition">¶</a></dt>
+<dd><p>Reports an error event.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>description</strong> -- default None, Event description as string of max 10240 characters long.</li>
+<li><strong>title</strong> -- Event title as string of max 1024 characters long.</li>
+<li><strong>properties</strong> -- Event properties as dictionary of 2 strings. Max key length is 100 characters, max value length is 1000 characters. Max number of elements in the dictionary is 100.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="ruxit.api.base_plugin.MonitoredEntity.event_performance">
+<code class="descname">event_performance</code><span class="sig-paren">(</span><em>description: str = None</em>, <em>title: str = None</em>, <em>properties: typing.Dict[] = {}</em><span class="sig-paren">)</span><a class="headerlink" href="#ruxit.api.base_plugin.MonitoredEntity.event_performance" title="Permalink to this definition">¶</a></dt>
+<dd><p>Reports a performance event.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>description</strong> -- default None, Event description as string of max 10240 characters long.</li>
+<li><strong>title</strong> -- Event title as string of max 1024 characters long.</li>
+<li><strong>properties</strong> -- Event properties as dictionary of 2 strings. Max key length is 100 characters, max value length is 1000 characters. Max number of elements in the dictionary is 100.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="ruxit.api.base_plugin.MonitoredEntity.event_resource_contention">
+<code class="descname">event_resource_contention</code><span class="sig-paren">(</span><em>description: str = None</em>, <em>title: str = None</em>, <em>properties: typing.Dict[] = {}</em><span class="sig-paren">)</span><a class="headerlink" href="#ruxit.api.base_plugin.MonitoredEntity.event_resource_contention" title="Permalink to this definition">¶</a></dt>
+<dd><p>Reports a resource contention event.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>description</strong> -- default None, Event description as string of max 10240 characters long.</li>
+<li><strong>title</strong> -- Event title as string of max 1024 characters long.</li>
+<li><strong>properties</strong> -- Event properties as dictionary of 2 strings. Max key length is 100 characters, max value length is 1000 characters. Max number of elements in the dictionary is 100.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="ruxit.api.base_plugin.MonitoredEntity.id">
+<code class="descname">id</code><a class="headerlink" href="#ruxit.api.base_plugin.MonitoredEntity.id" title="Permalink to this definition">¶</a></dt>
+<dd><p>The identifier of the monitored entity.
+:return: str</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="ruxit.api.base_plugin.MonitoredEntity.per_second">
+<code class="descname">per_second</code><span class="sig-paren">(</span><em>key</em>, <em>value</em>, <em>dimensions=None</em><span class="sig-paren">)</span><a class="headerlink" href="#ruxit.api.base_plugin.MonitoredEntity.per_second" title="Permalink to this definition">¶</a></dt>
+<dd><p>Adds per second result. Use for metrics that increase monotonically (such as counters) After gathering the second result,
+the difference between the current and previous results is sent to the server (if it is non-negative). It will be
+divided by the time difference between measurements in seconds, resulting in a per-second rate. If there is a
+negative difference between the measurements, nothing is sent.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>key</strong> -- metric key.</li>
+<li><strong>value</strong> -- metric value</li>
+<li><strong>dimensions</strong> -- optional dictionary of two strings {'key', 'value'}</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="ruxit.api.base_plugin.MonitoredEntity.process_name">
+<code class="descname">process_name</code><a class="headerlink" href="#ruxit.api.base_plugin.MonitoredEntity.process_name" title="Permalink to this definition">¶</a></dt>
+<dd><p>Name of the process group. This is assigned in a manner specific to each process type.
+:return:</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="ruxit.api.base_plugin.MonitoredEntity.property">
+<code class="descname">property</code><span class="sig-paren">(</span><em>key</em>, <em>value</em><span class="sig-paren">)</span><a class="headerlink" href="#ruxit.api.base_plugin.MonitoredEntity.property" title="Permalink to this definition">¶</a></dt>
+<dd><p>Adds entity property. PluginProperty object is constructed implicitly in the method.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>key</strong> -- key of the measurement. Must be a string.</li>
+<li><strong>value</strong> -- value of the measurement. Must be convertible to float.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="ruxit.api.base_plugin.MonitoredEntity.relative">
+<code class="descname">relative</code><span class="sig-paren">(</span><em>key</em>, <em>value</em>, <em>dimensions=None</em><span class="sig-paren">)</span><a class="headerlink" href="#ruxit.api.base_plugin.MonitoredEntity.relative" title="Permalink to this definition">¶</a></dt>
+<dd><p>Adds a relative result. Use for metrics that increase monotonically (such as counters) After gathering the second result,
+the difference between the current and previous results is sent to the server (if it is non-negative). If there is a
+negative difference between measurements, nothing is sent.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>key</strong> -- metric key.</li>
+<li><strong>value</strong> -- metric value</li>
+<li><strong>dimensions</strong> -- optional dictionary of two strings {'key', 'value'}</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="ruxit.api.base_plugin.MonitoredEntity.snapshot">
+<code class="descname">snapshot</code><a class="headerlink" href="#ruxit.api.base_plugin.MonitoredEntity.snapshot" title="Permalink to this definition">¶</a></dt>
+<dd><p>Process snapshot containing all processes related to the activation context.
+:return: List of ProcessGroupInstance</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="ruxit.api.base_plugin.MonitoredEntity.state_metric">
+<code class="descname">state_metric</code><span class="sig-paren">(</span><em>key</em>, <em>value</em>, <em>dimensions=None</em><span class="sig-paren">)</span><a class="headerlink" href="#ruxit.api.base_plugin.MonitoredEntity.state_metric" title="Permalink to this definition">¶</a></dt>
+<dd><p>Adds state metric. <a class="reference internal" href="#ruxit.api.data.PluginStateMetric" title="ruxit.api.data.PluginStateMetric"><code class="xref py py-class docutils literal"><span class="pre">PluginStateMetric</span></code></a> object is constructed implicitly in the method.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>key</strong> -- key of the measurement. Must be a string.</li>
+<li><strong>value</strong> -- value of the measurement. Must be convertible to float.</li>
+<li><strong>dimensions</strong> -- dimensions of the measurement. A Dictionary with string keys and string values.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="ruxit.api.base_plugin.MonitoredEntity.type">
+<code class="descname">type</code><a class="headerlink" href="#ruxit.api.base_plugin.MonitoredEntity.type" title="Permalink to this definition">¶</a></dt>
+<dd><p><em>The type of the monitored entity. Possible values</em> -- EntityType.HOST, EntityType.PROCESS_GROUP_INSTANCE, EntityType.PROCESS_GROUP
+:return:</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="ruxit.api.base_plugin.ProcessGroupInstance">
+<em class="property">class </em><code class="descclassname">ruxit.api.base_plugin.</code><code class="descname">ProcessGroupInstance</code><a class="headerlink" href="#ruxit.api.base_plugin.ProcessGroupInstance" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">tuple</span></code></p>
+<p>Contains information about a single process group. It contains the entity of the group that should be used to report measurements associated with processes in the group.</p>
+<p>Create new instance of ProcessGroupInstance(group_id, node_id, group_instance_id, process_type, group_name, processes, properties)</p>
+<dl class="attribute">
+<dt id="ruxit.api.base_plugin.ProcessGroupInstance.group_id">
+<code class="descname">group_id</code><a class="headerlink" href="#ruxit.api.base_plugin.ProcessGroupInstance.group_id" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="ruxit.api.base_plugin.ProcessGroupInstance.group_instance_id">
+<code class="descname">group_instance_id</code><a class="headerlink" href="#ruxit.api.base_plugin.ProcessGroupInstance.group_instance_id" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="ruxit.api.base_plugin.ProcessGroupInstance.group_name">
+<code class="descname">group_name</code><a class="headerlink" href="#ruxit.api.base_plugin.ProcessGroupInstance.group_name" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="ruxit.api.base_plugin.ProcessGroupInstance.node_id">
+<code class="descname">node_id</code><a class="headerlink" href="#ruxit.api.base_plugin.ProcessGroupInstance.node_id" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="ruxit.api.base_plugin.ProcessGroupInstance.process_type">
+<code class="descname">process_type</code><a class="headerlink" href="#ruxit.api.base_plugin.ProcessGroupInstance.process_type" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="ruxit.api.base_plugin.ProcessGroupInstance.processes">
+<code class="descname">processes</code><a class="headerlink" href="#ruxit.api.base_plugin.ProcessGroupInstance.processes" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="ruxit.api.base_plugin.ProcessGroupInstance.properties">
+<code class="descname">properties</code><a class="headerlink" href="#ruxit.api.base_plugin.ProcessGroupInstance.properties" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="ruxit.api.base_plugin.ProcessGroupInstance.technologies">
+<code class="descname">technologies</code><a class="headerlink" href="#ruxit.api.base_plugin.ProcessGroupInstance.technologies" title="Permalink to this definition">¶</a></dt>
+<dd><p>Technologies recognized for the process, often used for plugin activation. Please refer to Plugin.json reference for the full list of available technologies.
+:return: List of strings.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="ruxit.api.base_plugin.ProcessInfo">
+<em class="property">class </em><code class="descclassname">ruxit.api.base_plugin.</code><code class="descname">ProcessInfo</code><span class="sig-paren">(</span><em>pid</em>, <em>name</em>, <em>properties</em><span class="sig-paren">)</span><a class="headerlink" href="#ruxit.api.base_plugin.ProcessInfo" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">tuple</span></code></p>
+<p>Create new instance of ProcessInfo(pid, name, properties)</p>
+<dl class="attribute">
+<dt id="ruxit.api.base_plugin.ProcessInfo.name">
+<code class="descname">name</code><a class="headerlink" href="#ruxit.api.base_plugin.ProcessInfo.name" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="ruxit.api.base_plugin.ProcessInfo.pid">
+<code class="descname">pid</code><a class="headerlink" href="#ruxit.api.base_plugin.ProcessInfo.pid" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="ruxit.api.base_plugin.ProcessInfo.properties">
+<code class="descname">properties</code><a class="headerlink" href="#ruxit.api.base_plugin.ProcessInfo.properties" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="ruxit.api.base_plugin.RemoteBasePlugin">
+<em class="property">class </em><code class="descclassname">ruxit.api.base_plugin.</code><code class="descname">RemoteBasePlugin</code><span class="sig-paren">(</span><em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#ruxit.api.base_plugin.RemoteBasePlugin" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#ruxit.api.base_plugin.BasePlugin" title="ruxit.api.base_plugin.BasePlugin"><code class="xref py py-class docutils literal"><span class="pre">ruxit.api.base_plugin.BasePlugin</span></code></a></p>
+</dd></dl>
+
+</div>
+<div class="section" id="module-ruxit.api.data">
+<span id="ruxit-api-data-module"></span><h2>ruxit.api.data module<a class="headerlink" href="#module-ruxit.api.data" title="Permalink to this headline">¶</a></h2>
+<p>Structures for holding data gathered by plugins. They enforce types so that a plugin cannot accidentally report
+a number as a string.</p>
+<dl class="class">
+<dt id="ruxit.api.data.BaseMetric">
+<em class="property">class </em><code class="descclassname">ruxit.api.data.</code><code class="descname">BaseMetric</code><span class="sig-paren">(</span><em>key</em>, <em>value</em>, <em>dimensions: typing.Dict[] = {}</em>, <em>entity_selector=FromPluginSelector()</em><span class="sig-paren">)</span><a class="headerlink" href="#ruxit.api.data.BaseMetric" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">object</span></code></p>
+<dl class="attribute">
+<dt id="ruxit.api.data.BaseMetric.PID_KEY">
+<code class="descname">PID_KEY</code><em class="property"> = 'rx_pid'</em><a class="headerlink" href="#ruxit.api.data.BaseMetric.PID_KEY" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="ruxit.api.data.BaseMetric.dimensions">
+<code class="descname">dimensions</code><a class="headerlink" href="#ruxit.api.data.BaseMetric.dimensions" title="Permalink to this definition">¶</a></dt>
+<dd><p>Dimensions of the measurement. A Dictionary with string keys and string values.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="ruxit.api.data.BaseMetric.dimensions_keys_tuple">
+<code class="descname">dimensions_keys_tuple</code><a class="headerlink" href="#ruxit.api.data.BaseMetric.dimensions_keys_tuple" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="ruxit.api.data.BaseMetric.key">
+<code class="descname">key</code><a class="headerlink" href="#ruxit.api.data.BaseMetric.key" title="Permalink to this definition">¶</a></dt>
+<dd><p>Key of the measurement. Must be a string.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="ruxit.api.data.BaseMetric.value">
+<code class="descname">value</code><a class="headerlink" href="#ruxit.api.data.BaseMetric.value" title="Permalink to this definition">¶</a></dt>
+<dd><p>Value of the measurement. Must be convertible to float.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="ruxit.api.data.MEAttribute">
+<em class="property">class </em><code class="descclassname">ruxit.api.data.</code><code class="descname">MEAttribute</code><a class="headerlink" href="#ruxit.api.data.MEAttribute" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">enum.IntEnum</span></code></p>
+<p>Enumerates types of properties to report.</p>
+<dl class="attribute">
+<dt id="ruxit.api.data.MEAttribute.CONTRIBUTED_NAME">
+<code class="descname">CONTRIBUTED_NAME</code><em class="property"> = &lt;MEAttribute.CONTRIBUTED_NAME: 4&gt;</em><a class="headerlink" href="#ruxit.api.data.MEAttribute.CONTRIBUTED_NAME" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="ruxit.api.data.MEAttribute.CUSTOM_DEVICE_METADATA">
+<code class="descname">CUSTOM_DEVICE_METADATA</code><em class="property"> = &lt;MEAttribute.CUSTOM_DEVICE_METADATA: 6&gt;</em><a class="headerlink" href="#ruxit.api.data.MEAttribute.CUSTOM_DEVICE_METADATA" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="ruxit.api.data.MEAttribute.CUSTOM_HOST_METADATA">
+<code class="descname">CUSTOM_HOST_METADATA</code><em class="property"> = &lt;MEAttribute.CUSTOM_HOST_METADATA: 7&gt;</em><a class="headerlink" href="#ruxit.api.data.MEAttribute.CUSTOM_HOST_METADATA" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="ruxit.api.data.MEAttribute.CUSTOM_PG_METADATA">
+<code class="descname">CUSTOM_PG_METADATA</code><em class="property"> = &lt;MEAttribute.CUSTOM_PG_METADATA: 5&gt;</em><a class="headerlink" href="#ruxit.api.data.MEAttribute.CUSTOM_PG_METADATA" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="ruxit.api.data.MEAttribute.DOCKER_CONTAINER_PROPS">
+<code class="descname">DOCKER_CONTAINER_PROPS</code><em class="property"> = &lt;MEAttribute.DOCKER_CONTAINER_PROPS: 2&gt;</em><a class="headerlink" href="#ruxit.api.data.MEAttribute.DOCKER_CONTAINER_PROPS" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="ruxit.api.data.MEAttribute.INTERNAL_DEBUG_PROPERTY">
+<code class="descname">INTERNAL_DEBUG_PROPERTY</code><em class="property"> = &lt;MEAttribute.INTERNAL_DEBUG_PROPERTY: 1&gt;</em><a class="headerlink" href="#ruxit.api.data.MEAttribute.INTERNAL_DEBUG_PROPERTY" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="ruxit.api.data.MEAttribute.PROCESS_GROUP_TECHS">
+<code class="descname">PROCESS_GROUP_TECHS</code><em class="property"> = &lt;MEAttribute.PROCESS_GROUP_TECHS: 3&gt;</em><a class="headerlink" href="#ruxit.api.data.MEAttribute.PROCESS_GROUP_TECHS" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="ruxit.api.data.PluginMeasurement">
+<em class="property">class </em><code class="descclassname">ruxit.api.data.</code><code class="descname">PluginMeasurement</code><span class="sig-paren">(</span><em>key: str</em>, <em>value: float</em>, <em>dimensions: typing.Dict[] = None</em>, <em>entity_selector=FromPluginSelector()</em><span class="sig-paren">)</span><a class="headerlink" href="#ruxit.api.data.PluginMeasurement" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#ruxit.api.data.BaseMetric" title="ruxit.api.data.BaseMetric"><code class="xref py py-class docutils literal"><span class="pre">ruxit.api.data.BaseMetric</span></code></a></p>
+<p>Single plugin measurement.</p>
+<p>Use of this class is optional. <a class="reference internal" href="#ruxit.api.results_builder.ResultsBuilder" title="ruxit.api.results_builder.ResultsBuilder"><code class="xref py py-class docutils literal"><span class="pre">ResultsBuilder</span></code></a> exposes methods that handle this
+type directly and those that abstract them away.</p>
+<dl class="attribute">
+<dt id="ruxit.api.data.PluginMeasurement.key">
+<code class="descname">key</code><a class="headerlink" href="#ruxit.api.data.PluginMeasurement.key" title="Permalink to this definition">¶</a></dt>
+<dd><p>Key of the measurement. Must be a string.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="ruxit.api.data.PluginMeasurement.value">
+<code class="descname">value</code><a class="headerlink" href="#ruxit.api.data.PluginMeasurement.value" title="Permalink to this definition">¶</a></dt>
+<dd><p>Value of the measurement. Must be convertible to float.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="ruxit.api.data.PluginMeasurementList">
+<em class="property">class </em><code class="descclassname">ruxit.api.data.</code><code class="descname">PluginMeasurementList</code><span class="sig-paren">(</span><em>timestamp=None</em>, <em>measurements=None</em><span class="sig-paren">)</span><a class="headerlink" href="#ruxit.api.data.PluginMeasurementList" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">object</span></code></p>
+<p>Collection of PluginMeasurements. Used internally.</p>
+</dd></dl>
+
+<dl class="class">
+<dt id="ruxit.api.data.PluginMeasurementStorage">
+<em class="property">class </em><code class="descclassname">ruxit.api.data.</code><code class="descname">PluginMeasurementStorage</code><span class="sig-paren">(</span><em>topx_data: typing.Dict[] = {}</em><span class="sig-paren">)</span><a class="headerlink" href="#ruxit.api.data.PluginMeasurementStorage" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">object</span></code></p>
+<dl class="attribute">
+<dt id="ruxit.api.data.PluginMeasurementStorage.MAX_DIMENSIONS_PER_METRIC">
+<code class="descname">MAX_DIMENSIONS_PER_METRIC</code><em class="property"> = 1000</em><a class="headerlink" href="#ruxit.api.data.PluginMeasurementStorage.MAX_DIMENSIONS_PER_METRIC" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="ruxit.api.data.PluginMeasurementStorage.clear_results_only">
+<code class="descname">clear_results_only</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#ruxit.api.data.PluginMeasurementStorage.clear_results_only" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="ruxit.api.data.PluginMeasurementStorage.flush">
+<code class="descname">flush</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#ruxit.api.data.PluginMeasurementStorage.flush" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="ruxit.api.data.PluginMeasurementStorage.items">
+<code class="descname">items</code><span class="sig-paren">(</span><span class="sig-paren">)</span> &rarr; typing.List[]<a class="headerlink" href="#ruxit.api.data.PluginMeasurementStorage.items" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="ruxit.api.data.PluginMeasurementStorage.load">
+<code class="descname">load</code><span class="sig-paren">(</span><em>pm: ruxit.api.data.PluginMeasurement</em><span class="sig-paren">)</span> &rarr; ruxit.api.data.PluginMeasurement<a class="headerlink" href="#ruxit.api.data.PluginMeasurementStorage.load" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="ruxit.api.data.PluginMeasurementStorage.overflow_info">
+<code class="descname">overflow_info</code><a class="headerlink" href="#ruxit.api.data.PluginMeasurementStorage.overflow_info" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="ruxit.api.data.PluginMeasurementStorage.size">
+<code class="descname">size</code><a class="headerlink" href="#ruxit.api.data.PluginMeasurementStorage.size" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="ruxit.api.data.PluginMeasurementStorage.store">
+<code class="descname">store</code><span class="sig-paren">(</span><em>pm: ruxit.api.data.PluginMeasurement</em><span class="sig-paren">)</span> &rarr; bool<a class="headerlink" href="#ruxit.api.data.PluginMeasurementStorage.store" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="ruxit.api.data.PluginMeasurementStorage.topx_overflow">
+<code class="descname">topx_overflow</code><a class="headerlink" href="#ruxit.api.data.PluginMeasurementStorage.topx_overflow" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="ruxit.api.data.PluginMeasurementV3">
+<em class="property">class </em><code class="descclassname">ruxit.api.data.</code><code class="descname">PluginMeasurementV3</code><span class="sig-paren">(</span><em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#ruxit.api.data.PluginMeasurementV3" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#ruxit.api.data.BaseMetric" title="ruxit.api.data.BaseMetric"><code class="xref py py-class docutils literal"><span class="pre">ruxit.api.data.BaseMetric</span></code></a></p>
+<p>Not allowed for Custom Plugin</p>
+<dl class="attribute">
+<dt id="ruxit.api.data.PluginMeasurementV3.key">
+<code class="descname">key</code><a class="headerlink" href="#ruxit.api.data.PluginMeasurementV3.key" title="Permalink to this definition">¶</a></dt>
+<dd><p>Key of the measurement. Must be a string.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="ruxit.api.data.PluginMeasurementV3.value">
+<code class="descname">value</code><a class="headerlink" href="#ruxit.api.data.PluginMeasurementV3.value" title="Permalink to this definition">¶</a></dt>
+<dd><p>Value of the measurement. Must be convertible to float.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="ruxit.api.data.PluginProperty">
+<em class="property">class </em><code class="descclassname">ruxit.api.data.</code><code class="descname">PluginProperty</code><span class="sig-paren">(</span><em>key=None</em>, <em>value=None</em>, <em>entity_selector=FromPluginSelector()</em>, <em>me_attribute=&lt;MEAttribute.INTERNAL_DEBUG_PROPERTY: 1&gt;</em><span class="sig-paren">)</span><a class="headerlink" href="#ruxit.api.data.PluginProperty" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">object</span></code></p>
+<p>A text property a plugin can gather.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>key</strong> -- <code class="xref py py-class docutils literal"><span class="pre">str</span></code>: property key</li>
+<li><strong>value</strong> -- <code class="xref py py-class docutils literal"><span class="pre">str</span></code>: property value</li>
+<li><strong>entity_selector</strong> -- plugin's entity selector <a class="reference internal" href="#ruxit.api.selectors.FromPluginSelector" title="ruxit.api.selectors.FromPluginSelector"><code class="xref py py-class docutils literal"><span class="pre">FromPluginSelector</span></code></a> by default</li>
+<li><strong>me_attribute(MEAttribute)</strong> -- property type</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<dl class="classmethod">
+<dt id="ruxit.api.data.PluginProperty.is_allowed_for_pa">
+<em class="property">classmethod </em><code class="descname">is_allowed_for_pa</code><span class="sig-paren">(</span><em>attribute: ruxit.api.data.MEAttribute</em><span class="sig-paren">)</span> &rarr; bool<a class="headerlink" href="#ruxit.api.data.PluginProperty.is_allowed_for_pa" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">true if property with attribute could be directly created from custom plugin (PA case)</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="classmethod">
+<dt id="ruxit.api.data.PluginProperty.is_custom">
+<em class="property">classmethod </em><code class="descname">is_custom</code><span class="sig-paren">(</span><em>attribute: ruxit.api.data.MEAttribute</em><span class="sig-paren">)</span> &rarr; bool<a class="headerlink" href="#ruxit.api.data.PluginProperty.is_custom" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">true if property attribute is a custom property (with limits)</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="ruxit.api.data.PluginProperty.key">
+<code class="descname">key</code><a class="headerlink" href="#ruxit.api.data.PluginProperty.key" title="Permalink to this definition">¶</a></dt>
+<dd><p>Key of property.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="ruxit.api.data.PluginProperty.me_attribute">
+<code class="descname">me_attribute</code><a class="headerlink" href="#ruxit.api.data.PluginProperty.me_attribute" title="Permalink to this definition">¶</a></dt>
+<dd><p>Property type</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="ruxit.api.data.PluginProperty.value">
+<code class="descname">value</code><a class="headerlink" href="#ruxit.api.data.PluginProperty.value" title="Permalink to this definition">¶</a></dt>
+<dd><p>Value of property</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="ruxit.api.data.PluginStateMetric">
+<em class="property">class </em><code class="descclassname">ruxit.api.data.</code><code class="descname">PluginStateMetric</code><span class="sig-paren">(</span><em>key: str</em>, <em>value: str</em>, <em>dimensions: typing.Dict[] = None</em>, <em>entity_selector=FromPluginSelector()</em><span class="sig-paren">)</span><a class="headerlink" href="#ruxit.api.data.PluginStateMetric" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#ruxit.api.data.BaseMetric" title="ruxit.api.data.BaseMetric"><code class="xref py py-class docutils literal"><span class="pre">ruxit.api.data.BaseMetric</span></code></a></p>
+<p>State measurement.</p>
+<p>States are string described in plugin json as statetimeseries</p>
+<dl class="attribute">
+<dt id="ruxit.api.data.PluginStateMetric.key">
+<code class="descname">key</code><a class="headerlink" href="#ruxit.api.data.PluginStateMetric.key" title="Permalink to this definition">¶</a></dt>
+<dd><p>Key of the measurement. Must be a string.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="ruxit.api.data.PluginStateMetric.value">
+<code class="descname">value</code><a class="headerlink" href="#ruxit.api.data.PluginStateMetric.value" title="Permalink to this definition">¶</a></dt>
+<dd><p>Value of the measurement. Must be convertible to float.</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-ruxit.api.exceptions">
+<span id="ruxit-api-exceptions-module"></span><h2>ruxit.api.exceptions module<a class="headerlink" href="#module-ruxit.api.exceptions" title="Permalink to this headline">¶</a></h2>
+<p>Exceptions hierarchy usable by plugins. Those errors are not raised automatically, but plugin developers
+can use them to hint certain categories of errors.</p>
+<dl class="exception">
+<dt id="ruxit.api.exceptions.AuthException">
+<em class="property">exception </em><code class="descclassname">ruxit.api.exceptions.</code><code class="descname">AuthException</code><a class="headerlink" href="#ruxit.api.exceptions.AuthException" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">Exception</span></code></p>
+<p>Should be raised when problems with getting required access are detected and identified as
+being caused by insufficient/invalid permissions (e.g. wrong db password)</p>
+</dd></dl>
+
+<dl class="exception">
+<dt id="ruxit.api.exceptions.ConfigException">
+<em class="property">exception </em><code class="descclassname">ruxit.api.exceptions.</code><code class="descname">ConfigException</code><a class="headerlink" href="#ruxit.api.exceptions.ConfigException" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">Exception</span></code></p>
+<p>Should be used when a general configuration error is detected (e.g. no reponse when trying to connect
+to an endpoint specified by the user. Messages from this exception are passed in plugin status.</p>
+</dd></dl>
+
+<dl class="exception">
+<dt id="ruxit.api.exceptions.NothingToReportException">
+<em class="property">exception </em><code class="descclassname">ruxit.api.exceptions.</code><code class="descname">NothingToReportException</code><a class="headerlink" href="#ruxit.api.exceptions.NothingToReportException" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">Exception</span></code></p>
+<p>Should be used when a plugin detects a situation where it was activated, but has no data to report, e.g.</p>
+<blockquote>
+<div><ul class="simple">
+<li>A plugin is using broad activation triggers - all Java processes - but is interested only in a specific
+application e.g elasticsearch</li>
+<li>A plugin monitors a process that report new stats on an infrequent basic - like once every hour.</li>
+<li>Monitored process is not configured to expose any metrics</li>
+</ul>
+</div></blockquote>
+</dd></dl>
+
+</div>
+<div class="section" id="ruxit-api-topology-builder-module">
+<h2>ruxit.api.topology_builder module<a class="headerlink" href="#ruxit-api-topology-builder-module" title="Permalink to this headline">¶</a></h2>
+<p>TopologyBuilder module provides an API for the plugins to send the information about the topology.</p>
+<dl class="class">
+<dt>
+<em class="property">class </em><code class="descclassname">ruxit.api.topology_builder.</code><code class="descname">MetricSink</code><span class="sig-paren">(</span><em>results_builder: ruxit.api.results_builder.ResultsBuilder</em><span class="sig-paren">)</span></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">object</span></code></p>
+<dl class="method">
+<dt>
+<code class="descname">absolute</code><span class="sig-paren">(</span><em>key: str</em>, <em>value: float</em>, <em>dimensions: typing.Dict[] = None</em><span class="sig-paren">)</span></dt>
+<dd><p>Reports an absolute value for a metric, for a given <a class="reference internal" href="ruxit_remote.api.html#ruxit.api.topology_builder.Device" title="ruxit.api.topology_builder.Device"><code class="xref py py-class docutils literal"><span class="pre">Device</span></code></a> or <a class="reference internal" href="ruxit_remote.api.html#ruxit.api.topology_builder.Group" title="ruxit.api.topology_builder.Group"><code class="xref py py-class docutils literal"><span class="pre">Group</span></code></a> entity.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>key</strong> -- The metric key.</li>
+<li><strong>value</strong> -- The metric value to send</li>
+<li><strong>dimensions</strong> -- An optional dictionary of pairs (dimension key, dimension value)</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Example:</th><td class="field-body"></td>
+</tr>
+</tbody>
+</table>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">e</span> <span class="o">=</span> <span class="n">g</span><span class="o">.</span><span class="n">create_device</span><span class="p">(</span><span class="o">...</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">e</span><span class="o">.</span><span class="n">absolute</span><span class="p">(</span><span class="s1">&#39;my_metric_key&#39;</span><span class="p">,</span> <span class="mi">42</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">e</span><span class="o">.</span><span class="n">absolute</span><span class="p">(</span><span class="s1">&#39;my_metric_key_with_dim&#39;</span><span class="p">,</span> <span class="mi">42</span><span class="p">,</span> <span class="p">{</span><span class="s1">&#39;my_dim&#39;</span><span class="p">:</span> <span class="s1">&#39;my_dim_val&#39;</span><span class="p">})</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="method">
+<dt>
+<code class="descname">relative</code><span class="sig-paren">(</span><em>key: str</em>, <em>value: float</em>, <em>dimensions: typing.Dict[] = None</em><span class="sig-paren">)</span></dt>
+<dd><p>Reports a relative value for a metric, for a given <a class="reference internal" href="ruxit_remote.api.html#ruxit.api.topology_builder.Device" title="ruxit.api.topology_builder.Device"><code class="xref py py-class docutils literal"><span class="pre">Device</span></code></a> or <a class="reference internal" href="ruxit_remote.api.html#ruxit.api.topology_builder.Group" title="ruxit.api.topology_builder.Group"><code class="xref py py-class docutils literal"><span class="pre">Group</span></code></a> entity.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>key</strong> -- The metric key.</li>
+<li><strong>value</strong> -- The metric value to send</li>
+<li><strong>dimensions</strong> -- An optional dictionary of pairs (dimension key, dimension value)</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Example:</th><td class="field-body"></td>
+</tr>
+</tbody>
+</table>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">e</span> <span class="o">=</span> <span class="n">g</span><span class="o">.</span><span class="n">create_device</span><span class="p">(</span><span class="o">...</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">e</span><span class="o">.</span><span class="n">relative</span><span class="p">(</span><span class="s1">&#39;my_metric_key&#39;</span><span class="p">,</span> <span class="mi">42</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">e</span><span class="o">.</span><span class="n">relative</span><span class="p">(</span><span class="s1">&#39;my_metric_key_with_dim&#39;</span><span class="p">,</span> <span class="mi">42</span><span class="p">,</span> <span class="p">{</span><span class="s1">&#39;my_dim&#39;</span><span class="p">:</span> <span class="s1">&#39;my_dim_val&#39;</span><span class="p">})</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="method">
+<dt>
+<code class="descname">per_second</code><span class="sig-paren">(</span><em>key: str</em>, <em>value: float</em>, <em>dimensions: typing.Dict[] = None</em><span class="sig-paren">)</span></dt>
+<dd><p>Adds per second result. Use for metrics that increase monotonically (such as counters).
+After gathering the second result, the difference between the current and previous results is sent to the server (if it is non-negative).
+It will be divided by the time difference between measurements in seconds, resulting in a per-second rate.
+If there is a negative difference between measurements, nothing is sent.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>key</strong> -- The metric key.</li>
+<li><strong>value</strong> -- The metric value to send</li>
+<li><strong>dimensions</strong> -- An optional dictionary of pairs (dimension key, dimension value)</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Example:</th><td class="field-body"></td>
+</tr>
+</tbody>
+</table>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">e</span> <span class="o">=</span> <span class="n">g</span><span class="o">.</span><span class="n">create_device</span><span class="p">(</span><span class="o">...</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">e</span><span class="o">.</span><span class="n">per_second</span><span class="p">(</span><span class="s1">&#39;my_metric_key&#39;</span><span class="p">,</span> <span class="mi">42</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">e</span><span class="o">.</span><span class="n">per_second</span><span class="p">(</span><span class="s1">&#39;my_metric_key_with_dim&#39;</span><span class="p">,</span> <span class="mi">42</span><span class="p">,</span> <span class="p">{</span><span class="s1">&#39;my_dim&#39;</span><span class="p">:</span> <span class="s1">&#39;my_dim_val&#39;</span><span class="p">})</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="method">
+<dt>
+<code class="descname">report_property</code><span class="sig-paren">(</span><em>key: str</em>, <em>value: str</em><span class="sig-paren">)</span></dt>
+<dd><p>Reports a custom property for an entity property.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>key</strong> -- Property key as string.</li>
+<li><strong>value</strong> -- Property value as string.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Example:</th><td class="field-body"></td>
+</tr>
+</tbody>
+</table>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">e</span> <span class="o">=</span> <span class="n">e</span><span class="o">.</span><span class="n">report_property</span><span class="p">(</span><span class="s2">&quot;my_prop&quot;</span><span class="p">,</span> <span class="s2">&quot;my_prop_val&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="method">
+<dt>
+<code class="descname">state_metric</code><span class="sig-paren">(</span><em>key: str</em>, <em>value: str</em>, <em>dimensions: typing.Dict[] = None</em><span class="sig-paren">)</span></dt>
+<dd><p>Reports a state metric.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>key</strong> -- Mandatory state metric name as string.</li>
+<li><strong>value</strong> -- Mandatory state metric value as string.</li>
+<li><strong>dimensions</strong> -- optional metric dimensions as dictionary of 2 strings.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt>
+<em class="property">class </em><code class="descclassname">ruxit.api.topology_builder.</code><code class="descname">Device</code><span class="sig-paren">(</span><em>name: str</em>, <em>entity_id: int</em>, <em>technology: str</em>, <em>results_builder: ruxit.api.results_builder.ResultsBuilder</em><span class="sig-paren">)</span> &rarr; None</dt>
+<dd><p>Bases: <a class="reference internal" href="ruxit_remote.api.html#ruxit.api.topology_builder.MetricSink" title="ruxit.api.topology_builder.MetricSink"><code class="xref py py-class docutils literal"><span class="pre">ruxit.api.topology_builder.MetricSink</span></code></a></p>
+<p>Class used to store device data reported from the plugin. For the reference of the metric API, see the base class.</p>
+<dl class="method">
+<dt>
+<code class="descname">add_endpoint</code><span class="sig-paren">(</span><em>ip: str</em>, <em>port: int = None</em>, <em>dnsNames: typing.List[] = None</em>, <em>port_list: typing.List[] = None</em>, <em>range_list: typing.List[] = None</em><span class="sig-paren">)</span> &rarr; None</dt>
+<dd><p>Add an endpoint to the Device. Total number of ports cannot exceed 100. Adding more ports causes ConfigException.
+:param ip: Valid IP address as string
+:param port: Optional single port number
+:param dnsNames: Optional list of domains bound to the address as a list of strings
+:param port_list: Optional list of port numbers
+:param range_list: Optional list of tuples with (range_from, range_to) numbers in range (1, 65535)
+:raises <code class="xref py py-class docutils literal"><span class="pre">ConfigException</span></code>:
+:return:</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Example:</th><td class="field-body"><div class="first last highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">add_endpoint</span><span class="p">(</span><span class="n">ip</span><span class="o">=</span><span class="s2">&quot;1.1.1.1&quot;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">add_endpoint</span><span class="p">(</span><span class="n">ip</span><span class="o">=</span><span class="s2">&quot;1.1.1.1&quot;</span><span class="p">,</span> <span class="n">port</span><span class="o">=</span><span class="mi">80</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">add_endpoint</span><span class="p">(</span><span class="n">ip</span><span class="o">=</span><span class="s2">&quot;1.1.1.1&quot;</span><span class="p">,</span> <span class="n">port</span><span class="o">=</span><span class="mi">80</span><span class="p">,</span> <span class="n">dnsNames</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;name.com&quot;</span><span class="p">])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">add_endpoint</span><span class="p">(</span><span class="n">ip</span><span class="o">=</span><span class="s2">&quot;1.1.1.1&quot;</span><span class="p">,</span> <span class="n">port</span><span class="o">=</span><span class="mi">80</span><span class="p">,</span> <span class="n">dnsNames</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;name.com&quot;</span><span class="p">],</span> <span class="n">port_list</span><span class="o">=</span><span class="p">[</span><span class="mi">88</span><span class="p">,</span><span class="mi">8080</span><span class="p">],</span> <span class="n">range_list</span><span class="o">=</span><span class="p">[(</span><span class="mi">680</span><span class="p">,</span> <span class="mi">690</span><span class="p">),</span> <span class="p">(</span><span class="mi">880</span><span class="p">,</span> <span class="mi">900</span><span class="p">)])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">add_endpoint</span><span class="p">(</span><span class="n">ip</span><span class="o">=</span><span class="s2">&quot;1.1.1.1&quot;</span><span class="p">,</span> <span class="n">port</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">dnsNames</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;name.com&quot;</span><span class="p">],</span> <span class="n">port_list</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">range_list</span><span class="o">=</span><span class="p">[(</span><span class="mi">80</span><span class="p">,</span> <span class="mi">88</span><span class="p">),</span> <span class="p">(</span><span class="mi">447</span><span class="p">,</span> <span class="mi">450</span><span class="p">)])</span>
+</pre></div>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt>
+<code class="descname">report_performance_event</code><span class="sig-paren">(</span><em>description: str = None</em>, <em>title: str = None</em>, <em>properties: typing.Dict[] = {}</em><span class="sig-paren">)</span></dt>
+<dd><p>Reports a performance event.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>description</strong> -- Event description as string (default = None, max length = 10240 characters).</li>
+<li><strong>title</strong> -- Event title as string (max length = 10240 characters).</li>
+<li><strong>properties</strong> -- Event properties as dictionary of two strings (max key length = 100 characters, max value length = 1000 characters, max number of elements in dictionary = 100).</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt>
+<code class="descname">report_error_event</code><span class="sig-paren">(</span><em>description: str = None</em>, <em>title: str = None</em>, <em>properties: typing.Dict[] = {}</em><span class="sig-paren">)</span></dt>
+<dd><p>Reports an error event.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>description</strong> -- default None, Event description as string (default = None, max length = 10240 characters).</li>
+<li><strong>title</strong> -- Event title as string (max length = 10240 characters).</li>
+<li><strong>properties</strong> -- Event properties as dictionary of 2 strings (max key length = 100 characters, max value length = 1000 characters, max number of elements in dictionary = 100).</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt>
+<code class="descname">report_availability_event</code><span class="sig-paren">(</span><em>description: str = None</em>, <em>title: str = None</em>, <em>properties: typing.Dict[] = {}</em><span class="sig-paren">)</span></dt>
+<dd><p>Reports an availability event.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>description</strong> -- default None, Event description as string (default = None, max length = 10240 characters).</li>
+<li><strong>title</strong> -- Event title as string (max length = 10240 characters).</li>
+<li><strong>properties</strong> -- Event properties as dictionary of 2 strings (max key length = 100 characters, max value length = 1000 characters, max number of elements in dictionary = 100).</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt>
+<code class="descname">report_resource_contention_event</code><span class="sig-paren">(</span><em>description: str = None</em>, <em>title: str = None</em>, <em>properties: typing.Dict[] = {}</em><span class="sig-paren">)</span></dt>
+<dd><p>Reports a resource contention event.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>description</strong> -- default None, Event description as string (default = None, max length = 10240 characters).</li>
+<li><strong>title</strong> -- Event title as string (max length = 10240 characters).</li>
+<li><strong>properties</strong> -- Event properties as dictionary of 2 strings. (max key length = 100 characters, max value length = 1000 characters, max number of elements in dictionary = 100).</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt>
+<code class="descname">report_custom_info_event</code><span class="sig-paren">(</span><em>description: str = None</em>, <em>title: str = None</em>, <em>properties: typing.Dict[] = {}</em><span class="sig-paren">)</span></dt>
+<dd><p>Reports a custom info event.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>description</strong> -- default None, Event description as string of (default = None, max length = 10240 characters).</li>
+<li><strong>title</strong> -- Event title as string (max length = 10240 characters).</li>
+<li><strong>properties</strong> -- Event properties as dictionary of 2 strings. (max key length = 100 characters, max value length = 1000 characters, max number of elements in dictionary = 100).</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt>
+<code class="descname">report_custom_deployment_event</code><span class="sig-paren">(</span><em>source: str = None</em>, <em>project: str = None</em>, <em>version: str = None</em>, <em>ci_link: str = None</em>, <em>remediation_action_link: str = None</em>, <em>deployment_name: str = None</em>, <em>properties: typing.Dict[] = {}</em><span class="sig-paren">)</span></dt>
+<dd><p>Reports a custom deployment event.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>source</strong> -- Event source as string (max length = 10240 characters).</li>
+<li><strong>project</strong> -- Event project as string (max length = 10240 characters).</li>
+<li><strong>version</strong> -- Event version as string (max length = 10240 characters).</li>
+<li><strong>ci_link</strong> -- Event link as string (max length = 10240 characters).</li>
+<li><strong>remediation_action_link</strong> -- Event remediation action link as string (max length = 10240 characters).</li>
+<li><strong>deployment_name</strong> -- Event deployment name as string (max length = 10240 characters).</li>
+<li><strong>properties</strong> -- Event properties as dictionary of 2 strings. Max key length is 100 characters, max value length is 1000 characters. Max number of elements in the dictionary is 100.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt>
+<code class="descname">report_custom_annotation_event</code><span class="sig-paren">(</span><em>description: str = None</em>, <em>annotation_type: str = None</em>, <em>source: str = None</em>, <em>properties: typing.Dict[] = {}</em><span class="sig-paren">)</span></dt>
+<dd><p>Reports a custom annotation event.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>description</strong> -- Event description as string (max length = 10240 characters).</li>
+<li><strong>annotation_type</strong> -- Event annotation_type as string (max length = 10240 characters).</li>
+<li><strong>source</strong> -- Event source as string (max length = 10240 characters).</li>
+<li><strong>properties</strong> -- Event properties as dictionary of 2 strings. Max key length is 100 characters, max value length is 1000 characters. Max number of elements in the dictionary is 100.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt>
+<em class="property">class </em><code class="descclassname">ruxit.api.topology_builder.</code><code class="descname">Group</code><span class="sig-paren">(</span><em>entity_id: int</em>, <em>name: str</em>, <em>technologies: typing.List[]</em>, <em>results_builder: ruxit.api.results_builder.ResultsBuilder</em><span class="sig-paren">)</span> &rarr; None</dt>
+<dd><p>Bases: <a class="reference internal" href="ruxit_remote.api.html#ruxit.api.topology_builder.MetricSink" title="ruxit.api.topology_builder.MetricSink"><code class="xref py py-class docutils literal"><span class="pre">ruxit.api.topology_builder.MetricSink</span></code></a></p>
+<p>Class used to store group data reported from the plugin. For the reference of the metric API, see the base class.</p>
+<dl class="method">
+<dt>
+<code class="descname">create_device</code><span class="sig-paren">(</span><em>identifier: str</em>, <em>display_name: str = None</em><span class="sig-paren">)</span> &rarr; ruxit.api.topology_builder.Device</dt>
+<dd><p>Adds a new device to the device group. Also calculates its unique ID based on identifier.
+This method is available since ver. 159.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>identifier</strong> -- String parameter used for unique device ID calculation. To create two different devices, you need to provide two different identifiers.</li>
+<li><strong>display_name</strong> -- Optional string to define the device display name. If not provided, the identifier parameter will be used instead.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">The created device object.</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Example:</th><td class="field-body"></td>
+</tr>
+</tbody>
+</table>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">grp</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">topology_builder</span><span class="o">.</span><span class="n">create_group</span><span class="p">(</span><span class="s2">&quot;my_group_id&quot;</span><span class="p">,</span> <span class="s2">&quot;my_group_name&quot;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">device</span> <span class="o">=</span> <span class="n">grp</span><span class="o">.</span><span class="n">create_device</span><span class="p">(</span><span class="s2">&quot;my_device_id&quot;</span><span class="p">,</span> <span class="s2">&quot;my_device_name&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="method">
+<dt>
+<code class="descname">create_element</code><span class="sig-paren">(</span><em>identifier: str</em>, <em>element_name: str</em><span class="sig-paren">)</span> &rarr; ruxit.api.topology_builder.Device</dt>
+<dd><p>Adds a new element to the reported topology. Also calculates its ID based on element name and identifier.</p>
+<p>This method is deprecated since ver. 159 and will be removed. use <a class="reference internal" href="ruxit_remote.api.html#ruxit.api.topology_builder.Group.create_device" title="ruxit.api.topology_builder.Group.create_device"><code class="xref py py-meth docutils literal"><span class="pre">create_device()</span></code></a> instead.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>element_name</strong> -- The name of the entity.</li>
+<li><strong>identifier</strong> -- Identifier used for element id calculation.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">The created element object.</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Example:</th><td class="field-body"></td>
+</tr>
+</tbody>
+</table>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">grp</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">topology_builder</span><span class="o">.</span><span class="n">create_group</span><span class="p">(</span><span class="s2">&quot;my_group_id&quot;</span><span class="p">,</span> <span class="s2">&quot;my_group_name&quot;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">elem</span> <span class="o">=</span> <span class="n">grp</span><span class="o">.</span><span class="n">create_element</span><span class="p">(</span><span class="s2">&quot;my_elem_id&quot;</span><span class="p">,</span> <span class="s2">&quot;my_elem_name&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt>
+<em class="property">class </em><code class="descclassname">ruxit.api.topology_builder.</code><code class="descname">Topology</code><span class="sig-paren">(</span><em>group</em>, <em>config_id</em><span class="sig-paren">)</span></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">tuple</span></code></p>
+<p>Create new instance of Topology(group, config_id)</p>
+<dl class="attribute">
+<dt>
+<code class="descname">config_id</code></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt>
+<code class="descname">group</code></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt>
+<em class="property">class </em><code class="descclassname">ruxit.api.topology_builder.</code><code class="descname">TopologyBuilder</code><span class="sig-paren">(</span><em>config_id: int</em>, <em>plugin_name: str</em>, <em>tenant_id: str</em>, <em>technologies: typing.List[]</em>, <em>results_builder: ruxit.api.results_builder.ResultsBuilder</em><span class="sig-paren">)</span></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">object</span></code></p>
+<p>Class storing topology data reported by plugins.</p>
+<dl class="method">
+<dt>
+<code class="descname">create_group</code><span class="sig-paren">(</span><em>identifier: str</em>, <em>group_name: str</em><span class="sig-paren">)</span> &rarr; ruxit.api.topology_builder.Group</dt>
+<dd><p>Creates a new group to the reported topology. Also calculates its ID based on identifier and group name.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>identifier</strong> -- Mandatory identifier used for group ID calculation.</li>
+<li><strong>group_name</strong> -- Mandatory name of the group.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">The created group object.</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-ruxit.api">
+<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-ruxit.api" title="Permalink to this headline">¶</a></h2>
+</div>
+</div>
+
+
+            </main>
+            
+
+    <nav role="navigation" id="toc">
+        <div class="sidebar-element">
+            <h3>On this page</h3>
+            <ul id="inline-toc" class="toc">
+                
+                    <li><a href="#submodules">Submodules</a></li>
+                
+                    <li><a href="#module-ruxit.api.base_plugin">ruxit.api.base_plugin module</a></li>
+                
+                    <li><a href="#module-ruxit.api.data">ruxit.api.data module</a></li>
+                
+                    <li><a href="#module-ruxit.api.exceptions">ruxit.api.exceptions module</a></li>
+                
+                    <li><a href="#ruxit-api-topology-builder-module">ruxit.api.topology_builder module</a></li>
+                
+                    <li><a href="#module-ruxit.api">Module contents</a></li>
+                
+            </ul>
+        </div>
+    </nav>
+
+        </div>
+    </article>
+</div>
+
+<footer class="footer">
+  <div class="footer__socials">
+    <h3>Join us on</h3>
+    <a href="https://www.facebook.com/Dynatrace/" class="footer__sociallink">
+      <svg viewBox="0 1 23 23">
+        <title>Facebook</title>
+        <path d="M9.6,20.1v-7.3H7.2V9.6h2.4V8.4c0-2.2,1.6-4.1,3.6-4.1h2.6v3.2h-2.6c-0.3,0-0.6,0.3-0.6,0.9v1.3 h3.2v3.2h-3.2v7.3H9.6z"></path>
+      </svg>
+    </a>
+    <a href="https://twitter.com/Dynatrace" class="footer__sociallink">
+      <svg viewBox="0 0 23 23">
+        <title>Twitter</title>
+        <path id="twitter" d="M14.4,5.6c1.3,0,2,0.4,2.6,1c0.6,0,1.3-0.4,1.7-0.6c0.1-0.1,0.3-0.2,0.4-0.2 C19,6.5,18.6,7,18.1,7.4c-0.1,0.1-0.2,0.2-0.4,0.3v0c0.7,0,1.3-0.3,1.9-0.5v0c-0.3,0.5-0.7,1-1.1,1.3c-0.2,0.1-0.3,0.3-0.5,0.4 c0,0.8,0,1.5-0.2,2.1c-0.8,3.8-3,6.3-6.5,7.4C10,18.8,8,19,6.6,18.6c-0.7-0.2-1.4-0.4-2-0.6c-0.3-0.1-0.6-0.3-0.9-0.5 c-0.1-0.1-0.2-0.1-0.3-0.2c0.3,0,0.7,0.1,1.1,0c0.3-0.1,0.7,0,1-0.1c0.8-0.2,1.4-0.4,2-0.7c0.3-0.2,0.7-0.4,0.9-0.6 c-0.4,0-0.7-0.1-1-0.2c-1.1-0.4-1.7-1.1-2.1-2.1c0.3,0,1.3,0.1,1.5-0.1c-0.4,0-0.8-0.3-1.1-0.4C4.7,12.6,4,11.7,4,10.2 c0.1,0.1,0.2,0.1,0.3,0.2c0.2,0.1,0.4,0.1,0.7,0.2c0.1,0,0.3,0.1,0.5,0c0,0,0,0,0,0c-0.2-0.2-0.4-0.3-0.6-0.5 c-0.6-0.7-1.1-1.8-0.7-3c0.1-0.3,0.2-0.6,0.4-0.9c0,0,0,0,0,0c0.1,0.1,0.2,0.2,0.3,0.3c0.3,0.4,0.6,0.7,1,1c1.2,1,2.3,1.5,4.1,2 c0.4,0.1,1,0.2,1.5,0.2c-0.2-0.4-0.1-1.1,0-1.6c0.3-1.1,0.9-1.8,1.9-2.2c0.2-0.1,0.5-0.2,0.7-0.2C14.2,5.6,14.3,5.6,14.4,5.6z"></path>
+      </svg>
+    </a>
+    <a href="https://www.linkedin.com/company/dynatrace" class="footer__sociallink">
+      <svg viewBox="0 2 23 23">
+        <title>Linkedin</title>
+        <path d="M7.5,19.1V9.8H4.4v9.4H7.5z M6,8.5c1.1,0,1.8-0.7,1.8-1.6 C7.7,6,7.1,5.3,6,5.3C4.9,5.3,4.2,6,4.2,6.9C4.2,7.8,4.9,8.5,6,8.5L6,8.5L6,8.5z"></path>
+        <path d="M9.3,19.1h3.1v-5.2c0-0.3,0-0.6,0.1-0.8 c0.2-0.6,0.7-1.1,1.6-1.1c1.1,0,1.6,0.9,1.6,2.1v5h3.1v-5.4c0-2.9-1.5-4.2-3.6-4.2c-1.7,0-2.4,0.9-2.8,1.6h0V9.8H9.3 C9.3,10.7,9.3,19.1,9.3,19.1L9.3,19.1z"></path>
+      </svg>
+    </a>
+    <a href="https://plus.google.com/+dynatrace/about" class="footer__sociallink">
+      <svg viewBox="0 0 23 23">
+        <title>Google+</title>
+        <path d="M2.9,11.2c0-2.8,2.6-5.3,5.5-5.2C9.7,6,11,6.6,12,7.4c-0.4,0.5-0.9,1-1.4,1.4C9.4,8,7.6,7.7,6.4,8.7
+		c-1.8,1.2-1.9,4.1-0.1,5.5c1.7,1.5,4.8,0.8,5.3-1.6c-1,0-2.1,0-3.1,0c0-0.6,0-1.2,0-1.9c1.7,0,3.5,0,5.2,0c0.1,1.5-0.1,3-1,4.2
+		c-1.4,1.9-4.1,2.5-6.2,1.7C4.2,15.8,2.7,13.5,2.9,11.2z"></path> <path d="M17,9.1c0.5,0,1,0,1.6,0c0,0.5,0,1,0,1.6c0.5,0,1,0,1.6,0c0,0.5,0,1,0,1.6c-0.5,0-1,0-1.6,0c0,0.5,0,1,0,1.6
+		c-0.5,0-1,0-1.6,0c0-0.5,0-1,0-1.6c-0.5,0-1,0-1.6,0c0-0.5,0-1,0-1.6c0.5,0,1,0,1.6,0C17,10.2,17,9.7,17,9.1z"></path>
+      </svg>
+    </a>
+  </div>
+</footer>
+<script src="../_static/js/main.js"></script>
+<script type="text/javascript">
+    var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:'',
+        VERSION:'1.221.112.20210715.143702',
+        COLLAPSE_INDEX:false,
+        FILE_SUFFIX:'.html',
+        HAS_SOURCE: true
+    };
+</script>
+  <script type="text/javascript" src="../_static/jquery.js"></script>
+  <script type="text/javascript" src="../_static/underscore.js"></script>
+  <script type="text/javascript" src="../_static/doctools.js"></script>
+
+<script src="../_static/js/ext.js"></script>
+
+<script type="text/javascript">
+  var ruxitFont = ruxitFont || {};
+
+  ruxitFont.cache = (function(s, xhr) {
+
+    var cssPath = '../_static/css/fonts.css';
+
+    if (s.getItem(ruxitFont.storeKey) === null) {
+      var http = new xhr();
+        http.open('GET', cssPath);
+      http.send();
+      http.onload = function() {
+        ruxitFont.addStyles(this.responseText);
+        s.setItem(ruxitFont.storeKey, this.responseText);
+      }
+    } else {
+      ruxitFont.addStyles(s.getItem(ruxitFont.storeKey));
+    }
+
+  })(window.localStorage, XMLHttpRequest);
+</script> 
+
+</body>
+
+</html>

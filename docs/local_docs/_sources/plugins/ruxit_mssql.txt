@@ -1,0 +1,4 @@
+.. automodule:: ruxit_mssql
+    :members:
+    :undoc-members:
+    :show-inheritance:

@@ -1,0 +1,62 @@
+Monitor multiple applications
+=============================
+
+In this guide we will modify the plugin described in :doc:`extending plugin with error handling <error_handling>`
+to make it possible to monitor more then one application (or "process group", as they are called in *Dynatrace*).
+
+The plugin will monitor both of the test applications used so far. We will run the applications on different TCP ports and expect them to
+bind to the local IP address **127.0.0.1**. We will start the demo applications listening on ports **8991** and **8992** respectively:
+
+.. code-block:: bash
+
+  python -m plugin_sdk.demo_app  -p 8991
+  python -m plugin_sdk.demo_app_auth -p 8992
+
+
+To begin, let's look at the entire plugin source. Then we'll go over the modifications that need to be performed.
+Here's the plugin source code:
+
+.. literalinclude:: ../plugin_sdk/examples/demo_oneagent_plugin_multi/demo_plugin_multi.py
+    :linenos:
+
+And the corresponding plugin.json is almost identical. The only modified lines are:
+
+.. literalinclude:: ../plugin_sdk/examples/demo_oneagent_plugin_multi/plugin.json
+    :emphasize-lines: 2,4,9-10,31
+    :language: json
+
+Please refer to :doc:`plugin.json reference <../api/plugin_json_apidoc>` for further information regarding
+properties and configUI elements, including more descriptive field names, ordering of fields, and more.
+
+In our plugin we want to monitor all applications discovered by OneAgent that begin with the prefix ``plugin_sdk.demo_app``.
+After we start the demo applications, as explained above, web UI shows them as:
+
+.. image:: ../images/demo_03_applications.png
+
+This means we want to monitor applications ``plugin_sdk.demo_app`` and ``plugin_sdk.demo_app_auth``. Below is the fragment that
+searches for them in :doc:`current processes snapshot <../api/process_snapshot>`:
+
+.. literalinclude:: ../plugin_sdk/examples/demo_oneagent_plugin_multi/demo_plugin_multi.py
+    :lines: 31
+
+In our case, the snapshot appears as follows (entries of interest are highlighted):
+
+.. literalinclude:: ../api/process_snapshot_demo_03.txt
+   :emphasize-lines: 5,7,16,25,27,36
+   :language: python
+
+Then, based on all found applications, we read from the snapshot the TCP port on which the given application is listening. Information
+about listening ports opened by applications is collected by OneAgent and made available for plugin agent in the process snapshot. We use this to create a URL that we will query with HTTP for counters of interest:
+
+.. literalinclude:: ../plugin_sdk/examples/demo_oneagent_plugin_multi/demo_plugin_multi.py
+    :lines: 36-42
+
+
+.. :rubirc: Next steps
+
+
+To learn more, please explore these additional resources:
+
+* :doc:`More information on plugin.json files <../api/plugin_json_apidoc>`.
+* :doc:`Plugin lifecycle <../plugin_lifecycle/index>`.
+* :doc:`Technical documentation <../apidoc>`.

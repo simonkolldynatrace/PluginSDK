@@ -1,0 +1,12 @@
+Plugin reference
+****************
+
+OneAgent already ships with a set of plugins already available that you can explore at your convenience.
+
+.. toctree::
+   :glob:
+   :maxdepth: 1
+
+   *
+
+Additional examples could be found in OneAgent installation folder (Usually ``/opt/dynatrace/oneagent/agent/plugin/plugins`` or ``C:\\Program Files (x86)\\dynatrace\\oneagentoneagent\\agent\\plugin\\plugins``).

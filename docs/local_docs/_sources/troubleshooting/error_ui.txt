@@ -1,0 +1,6 @@
+Error UI
+=========
+
+Problems reported by a running plugin are displayed on web UI. On the Monitored Technologies screen, available via Home>>Settings>>Monitoring>>Monitored Technologies>>Custom plugins, all plugins that report errors will be marked with red color. Upon clicking the plugin name, you will see the error it reported. Please reference :doc:`../extending_plugin/error_handling` section of our guide on extending your first plugin in order to learn more on how those error messages are generated. 
+
+.. image:: ../images/demo_02_configuration_config_error.png  

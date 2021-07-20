@@ -1,0 +1,18 @@
+{
+  "entries": [
+    {
+      "group_name": "plugin_sdk.demo_app_auth",
+      "processes": [
+        {
+          "process_name": "python3.5",
+          "properties": {
+            "CmdLine": "-m plugin_sdk.demo_app_auth",
+            "WorkDir": "/home/demo",
+            "ListeningPorts": "8090"
+          }
+        }
+      ],
+      "properties": {"Technologies": "PYTHON"}
+    }
+  ]
+}

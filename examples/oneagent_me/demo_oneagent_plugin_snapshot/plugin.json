@@ -1,0 +1,47 @@
+{
+  "name": "custom.python.demo_plugin_snapshot",
+  "version": "1.2",
+  "type": "python",
+  "entity": "HOST",
+  "technologies": [],
+  "source": {
+    "package": "demo_plugin_snapshot",
+    "className": "DemoPluginSnapshot",
+    "install_requires": [
+      "requests>=2.6.0"
+    ],
+    "activation": "Singleton"
+  },
+  "metricGroup": "demo_metrics_snapshot",
+  "metrics": [
+    {
+      "timeseries": {
+        "key": "random",
+        "unit": "Count",
+        "displayname": "Random Value"
+      }
+    },
+    {
+      "timeseries": {
+        "key": "counter",
+        "unit": "Count",
+        "displayname": "Counter Value"
+      }
+    },
+    {
+      "statetimeseries": {
+        "key": "state",
+        "states": [
+          "OK",
+          "WARNING",
+          "ERROR"
+        ],
+        "displayname": "State metric",
+        "dimensions": ["app"]
+      }
+    }
+  ],
+  "configUI": {
+    "displayName": "OneAgent Demo Extension Snapshot"
+  }
+}

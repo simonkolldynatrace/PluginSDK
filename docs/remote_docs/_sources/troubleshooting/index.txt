@@ -1,0 +1,13 @@
+Troubleshooting
+***************
+
+OneAgent plugin SDK provides extensive development troubleshooting facilities covering all aspects of solving problems related to custom plugin development, testing and deployment. This chapter will guide you through tools available at your disposal as well as some common pitfalls and limitations. 
+
+Normally a plugin developer doesn’t need to understand Dynatrace architecture, however in some cases it will be helpful get familiar with plugin file cycle. Please refer to:
+:doc:`How are plugins run <../plugin_lifecycle/index>`.
+
+.. toctree::
+   :glob:
+   :maxdepth: 3
+
+   *

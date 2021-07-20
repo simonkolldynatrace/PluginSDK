@@ -1,0 +1,41 @@
+{
+  "host_id": 112233445566, 
+  "entries": [
+    {
+	  "group_id": 12668946693571282165, 
+	  "group_instance_id": 18165771568562771184,
+      "group_name": "plugin_sdk.demo_app",
+      "processes": [
+        {
+          "process_name": "python3.5",
+          "properties": {
+            "CmdLine": "-m plugin_sdk.demo_app",
+            "WorkDir": "/home/demo",
+            "ListeningPorts": "8769"
+          }
+        },
+		{
+          "process_name": "python3.5",
+          "properties": {
+            "CmdLine": "-m plugin_sdk.demo_app",
+            "WorkDir": "/home/demo",
+            "ListeningPorts": "8770"
+          }
+        }
+      ],
+       "properties": {"Technologies": "PYTHON"}
+    },
+	{
+	  "group_id": 2990796923270118870, 
+	  "group_instance_id": 2990796923270118777,
+      "group_name": "Spotify",
+      "processes": [
+        {
+          "process_name": "Spotify.exe",
+          "properties": {}
+        }
+      ],
+       "properties": {"Technologies": "UNKNOWN"}
+    }
+  ]
+}

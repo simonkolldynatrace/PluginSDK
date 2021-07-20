@@ -1,0 +1,50 @@
+ruxit.api package
+=================
+
+Submodules
+----------
+
+ruxit.api.base_plugin module
+----------------------------
+
+.. automodule:: ruxit.api.base_plugin
+    :noindex:
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
+ruxit.api.data module
+---------------------
+
+.. automodule:: ruxit.api.data
+    :noindex:
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
+ruxit.api.exceptions module
+---------------------------
+
+.. automodule:: ruxit.api.exceptions
+    :noindex:
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
+
+ruxit.api.topology_builder module
+---------------------------------
+.. automodule:: ruxit.api.topology_builder
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
+
+Module contents
+---------------
+
+.. automodule:: ruxit.api
+    :noindex:
+    :members:
+    :undoc-members:
+    :show-inheritance:

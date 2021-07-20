@@ -1,0 +1,16 @@
+Extend your plugin
+******************
+
+In this section you'll enhance a plugin that was described in the :doc:`first tutorial <../readme>` by adding
+new capabilities to the plugin, including a way to :doc:`pass configuration <demo_plugin_conf>` from Dynatrace Cluster Node and an approach to more graceful :doc:`error handling <error_handling>`.
+
+Please note, the concepts built upon in this section are explained in detail in previous sections. If you're just
+setting out on your OneAgent custom plugins adventure, it's recommended that you first familiarize yourself with the content listed below in order:
+
+.. toctree::
+   :glob:
+   :maxdepth: 3
+
+   demo_plugin_conf
+   error_handling
+   *

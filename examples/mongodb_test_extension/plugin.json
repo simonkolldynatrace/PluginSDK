@@ -1,0 +1,655 @@
+{
+  "version": "1.003",
+  "name": "custom.python.mongodb_extension",
+  "type": "python",
+  "entity": "PROCESS_GROUP_INSTANCE",
+  "processTypeNames": ["UNKNOWN", "MONGODB"],
+  "metricGroup": "tech.MongoDB.Extended",
+  "ui": {
+    "pgmetrics": [
+      {
+        "key" : "current_queue",
+        "displayname" : "Current queue"
+      },
+      {
+        "key" : "active_clients",
+        "displayname" : "Active clients"
+      },
+      {
+        "key" : "resident_memory",
+        "displayname" : "Resident memory",
+        "unit" : "MegaByte"
+      },
+      {
+        "key" : "virtual_memory",
+        "displayname" : "Virtual memory",
+        "unit" : "MegaByte"
+      }
+    ],
+    "keyMetrics": [
+      {
+        "key": "current_connections",
+        "displayname": "Connections",
+        "mergeaggregation" : "sum"
+      }
+    ],
+    "keycharts": [
+      {
+        "title" : "Current connections",
+        "group" : "MongoDB metrics",
+        "series" : [
+          {
+            "key" : "current_connections",
+            "displayname" : "Connections",
+            "seriestype" : "bar",
+            "unit" : "Count"
+          }
+        ]
+      },
+      {
+        "title" : "Available connections",
+        "group" : "MongoDB metrics",
+        "series" : [
+          {
+            "key" : "available_connections",
+            "displayname" : "Available connections",
+            "seriestype" : "bar",
+            "unit" : "Count"
+          }
+        ]
+      },
+      {
+        "group" : "Oplog",
+        "title" : "Oplog Window",
+        "series" : [
+          {
+            "key" : "oplog_window",
+            "displayname" : "Oplog Window Time"
+          }
+        ]
+      },
+      {
+        "group" : "Oplog",
+        "title" : "Oplog Used",
+        "series" : [
+          {
+            "key" : "oplog_window",
+            "displayname" : "Oplog Used %"
+          }
+        ]
+      },
+      {
+        "group" : "WiredTiger",
+        "title" : "Tickets",
+        "series" : [
+          {
+            "key" : "read_tickets_available",
+            "displayname" : "Read tickets available"
+          },
+          {
+            "key" : "write_tickets_available",
+            "displayname" : "Write tickets available"
+          }
+        ]
+      },
+      {
+        "group" : "Replicaset",
+        "title" : "State",
+        "description": "0: \"STARTUP\", 1: \"PRIMARY\", 2: \"SECONDARY\", 3: \"RECOVERING\", 5: \"STARTUP2\", 6: \"UNKNOWN\", 7: \"ARBITER\", 8: \"DOWN\", 9: \"ROLLBACK\"",
+        "series" : [
+          {
+            "key" : "state",
+            "displayname" : "Replicaset State"
+          }
+        ]
+      }
+    ],
+    "charts" : [
+      {
+        "group" : "Operations",
+        "title" : "Insert",
+        "series" : [
+          {
+            "key" : "insert_operations",
+            "displayname" : "Insert",
+            "seriestype" : "line",
+            "unit" : "PerSecond"
+          }
+        ]
+      },
+      {
+        "group" : "Operations",
+        "title" : "Query",
+        "series" : [
+          {
+            "key" : "query_operations",
+            "displayname" : "Query",
+            "seriestype" : "line",
+            "unit" : "PerSecond"
+          }
+        ]
+      },
+      {
+        "group" : "Operations",
+        "title" : "Update",
+        "series" : [
+          {
+            "key" : "update_operations",
+            "displayname" : "Update",
+            "seriestype" : "line",
+            "unit" : "PerSecond"
+          }
+        ]
+      },
+      {
+        "group" : "Operations",
+        "title" : "Delete",
+        "series" : [
+          {
+            "key" : "delete_operations",
+            "displayname" : "Delete",
+            "seriestype" : "line",
+            "unit" : "PerSecond"
+          }
+        ]
+      },
+      {
+        "group" : "Operations",
+        "title" : "Getmore",
+        "series" : [
+          {
+            "key" : "getmore_operations",
+            "displayname" : "Getmore",
+            "seriestype" : "line",
+            "unit" : "PerSecond"
+          }
+        ]
+      },
+      {
+        "group" : "Operations",
+        "title" : "Command",
+        "series" : [
+          {
+            "key" : "command_operations",
+            "displayname" : "Command",
+            "seriestype" : "line",
+            "unit" : "PerSecond"
+          }
+        ]
+      },
+      {
+        "group" : "Memory",
+        "title" : "Memory",
+        "series" : [
+          {
+            "key" : "resident_memory",
+            "displayname" : "Resident",
+            "seriestype" : "line",
+            "unit" : "MegaByte",
+            "color" : "#b4e5f9"
+          },
+          {
+            "key" : "virtual_memory",
+            "displayname" : "Virtual",
+            "seriestype" : "line",
+            "unit" : "MegaByte",
+            "color" : "#004999"
+          }
+        ]
+      },
+      {
+        "group" : "Lock",
+        "title" : "Lock",
+        "series" : [
+          {
+            "key" : "current_queue",
+            "displayname" : "Current queue",
+            "seriestype" : "bar",
+            "color" : "#b4e5f9"
+          },
+          {
+            "key" : "active_clients",
+            "displayname" : "Active clients",
+            "seriestype" : "bar"
+          }
+        ]
+      },
+      {
+        "group" : "Asserts",
+        "title" : "Regular",
+        "series" : [
+          {
+            "key" : "regular_asserts",
+            "displayname" : "Regular",
+            "seriestype" : "line",
+            "unit" : "PerSecond"
+          }
+        ]
+      },
+      {
+        "group" : "Asserts",
+        "title" : "Warning",
+        "series" : [
+          {
+            "key" : "warning_asserts",
+            "displayname" : "Warning",
+            "seriestype" : "line",
+            "unit" : "PerSecond"
+          }
+        ]
+      },
+      {
+        "group" : "Asserts",
+        "title" : "Message",
+        "series" : [
+          {
+            "key" : "message_asserts",
+            "displayname" : "Message",
+            "seriestype" : "line",
+            "unit" : "PerSecond"
+          }
+        ]
+      },
+      {
+        "group" : "Asserts",
+        "title" : "User",
+        "series" : [
+          {
+            "key" : "user_asserts",
+            "displayname" : "User",
+            "seriestype" : "line",
+            "unit" : "PerSecond"
+          }
+        ]
+      },
+      {
+        "group" : "Asserts",
+        "title" : "Rollover",
+        "series" : [
+          {
+            "key" : "rollover_asserts",
+            "displayname" : "Rollover",
+            "seriestype" : "line",
+            "unit" : "PerSecond"
+          }
+        ]
+      },
+      {
+        "group" : "Database",
+        "title" : "Objects and indexes",
+        "series" : [
+          {
+            "key" : "objects",
+            "displayname" : "Objects",
+            "seriestype" : "bar",
+            "color" : "#b4e5f9"
+          },
+          {
+            "key" : "indexes",
+            "displayname" : "Indexes",
+            "rightaxis" : true,
+            "seriestype" : "bar"
+          }
+        ]
+      },
+      {
+        "group" : "Database",
+        "title" : "Data",
+        "series" : [
+          {
+            "key" : "db_data_size",
+            "displayname" : "Data size",
+            "seriestype" : "line",
+            "unit": "Byte",
+            "color" : "#b4e5f9"
+          },
+          {
+            "key" : "db_storage_size",
+            "displayname" : "Storage size",
+            "seriestype" : "line",
+            "unit": "Byte"
+          },
+          {
+            "key" : "db_index_size",
+            "displayname" : "Index size",
+            "seriestype" : "line",
+            "unit": "Byte",
+            "color" : "#004999"
+          }
+        ]
+      },
+      {
+        "group" : "Oplog",
+        "title" : "Oplog Window",
+        "series" : [
+          {
+            "key" : "oplog_window",
+            "displayname" : "Oplog Window Time"
+          }
+        ]
+      },
+      {
+        "group" : "Oplog",
+        "title" : "Oplog Used",
+        "series" : [
+          {
+            "key" : "oplog_window",
+            "displayname" : "Oplog Used %"
+          }
+        ]
+      },
+      {
+        "group" : "WiredTiger",
+        "title" : "Tickets",
+        "series" : [
+          {
+            "key" : "read_tickets_available",
+            "displayname" : "Read tickets available"
+          },
+          {
+            "key" : "write_tickets_available",
+            "displayname" : "Write tickets available"
+          }
+        ]
+      },
+      {
+        "group" : "Replicaset",
+        "title" : "State",
+        "description": "0: \"STARTUP\", 1: \"PRIMARY\", 2: \"SECONDARY\", 3: \"RECOVERING\", 5: \"STARTUP2\", 6: \"UNKNOWN\", 7: \"ARBITER\", 8: \"DOWN\", 9: \"ROLLBACK\"",
+        "series" : [
+          {
+            "key" : "state",
+            "displayname" : "Replicaset State"
+          }
+        ]
+      }
+    ]
+  },
+  "source": {
+    "package": "mongodb_extension",
+    "className": "MongoDBExtended",
+    "activation": "Singleton",
+    "install_requires": ["pymongo==3.9"]
+  },
+  "configUI" :{
+    "displayName": "MongoDB Extended",
+    "properties" : [
+      { "key" : "auth_user", "displayName": "User", "displayOrder": 1 },
+      { "key" : "auth_password", "displayName": "Password", "displayOrder": 2 },
+      { "key" : "port", "displayName": "Port", "displayOrder": 3 },
+      { "key" : "auth_db", "displayName": "Authentication Database", "displayOrder": 4, "displayHint": "Leave empty for default" },
+      { "key" : "profile", "displayName": "Monitoring Profile", "displayOrder": 5, "displayHint": "Number of metrics, Basic: 9, Standard: 16, Advanced: 29" }
+	]
+  },
+  "properties" : [
+    {
+      "key" : "port",
+      "type" :  "String",
+      "defaultValue" : "27017"
+    },
+    {
+      "key" : "auth_user",
+      "type" :  "String",
+      "defaultValue" : "d1pacmworkshop"
+    },
+    {
+      "key" : "auth_password",
+      "type" :  "Password",
+      "defaultValue" : "dynatrace"
+    },
+    {
+      "key" : "auth_db",
+      "type": "String",
+      "defaultValue":  ""
+    },
+    {
+      "key" : "profile",
+      "type": "Dropdown",
+      "dropdownValues":  ["Basic", "Standard", "Advanced"],
+      "defaultValue": "Basic"
+    }
+  ],
+  "metrics": [
+    {
+      "timeseries": {
+        "key": "current_connections",
+        "unit": "Count",
+        "displayname" : "Current connections"
+      },
+      "source": {
+        "profiles": ["Basic", "Standard", "Advanced"]
+      }
+    },
+    {
+      "timeseries": {
+        "key": "available_connections",
+        "unit": "Count",
+        "displayname" : "Available connections"
+      },
+      "source": {
+        "profiles": ["Advanced"]
+      }
+    },
+    {
+      "timeseries": {
+        "key": "insert_operations",
+        "unit": "PerSecond",
+        "displayname" : "Insert operations"
+      },
+      "source": {
+        "profiles": ["Advanced"]
+      }
+    },
+    {
+      "timeseries": {
+        "key": "query_operations",
+        "unit": "PerSecond",
+        "displayname" : "Query operations"
+      },
+      "source": {
+        "profiles": ["Advanced"]
+      }
+    },
+    {
+      "timeseries": {
+        "key": "update_operations",
+        "unit": "PerSecond",
+        "displayname" : "Update operations"
+      },
+      "source": {
+        "profiles": ["Advanced"]
+      }
+    },
+    {
+      "timeseries": {
+        "key": "delete_operations",
+        "unit": "PerSecond",
+        "displayname" : "Delete operations"
+      },
+      "source": {
+        "profiles": ["Advanced"]
+      }
+    },
+    {
+      "timeseries": {
+        "key": "getmore_operations",
+        "unit": "PerSecond",
+        "displayname" : "Getmore operations"
+      },
+      "source": {
+        "profiles": ["Advanced"]
+      }
+    },
+    {
+      "timeseries": {
+        "key": "command_operations",
+        "unit": "PerSecond",
+        "displayname" : "Command operations"
+      },
+      "source": {
+        "profiles": ["Advanced"]
+      }
+    },
+    {
+      "timeseries": {
+        "key": "resident_memory",
+        "unit": "MegaByte",
+        "displayname" : "Resident memory"
+      },
+      "source": {
+        "profiles": ["Basic", "Standard", "Advanced"]
+      }
+    },
+    {
+      "timeseries": {
+        "key": "virtual_memory",
+        "unit": "MegaByte",
+        "displayname" : "Virtual memory"
+      },
+      "source": {
+        "profiles": ["Basic", "Standard", "Advanced"]
+      }
+    },
+    {
+      "timeseries": {
+        "key": "current_queue",
+        "unit": "Count",
+        "displayname":"Current queue"
+      },
+      "source": {
+        "profiles": ["Advanced"]
+      }
+    },
+    {
+      "timeseries": {
+        "key": "active_clients",
+        "unit": "Count",
+        "displayname" : "Active clients"
+      },
+      "source": {
+        "profiles": ["Standard", "Advanced"]
+      }
+    },
+    {
+      "timeseries": {
+        "key": "regular_asserts",
+        "unit": "PerSecond",
+        "displayname" : "Regular asserts"
+      },
+      "source": {
+        "profiles": ["Standard", "Advanced"]
+      }
+    },
+    {
+      "timeseries": {
+        "key": "warning_asserts",
+        "unit": "PerSecond",
+        "displayname" : "Warning asserts"
+      },
+      "source": {
+        "profiles": ["Standard", "Advanced"]
+      }
+    },
+    {
+      "timeseries": {
+        "key": "message_asserts",
+        "unit": "PerSecond",
+        "displayname" : "Message asserts"
+      },
+      "source": {
+        "profiles": ["Standard", "Advanced"]
+      }
+    },
+    {
+      "timeseries": {
+        "key": "user_asserts",
+        "unit": "PerSecond",
+        "displayname" : "User asserts"
+      },
+      "source": {
+        "profiles": ["Standard", "Advanced"]
+      }
+    },
+    {
+      "timeseries": {
+        "key": "rollover_asserts",
+        "unit": "PerSecond",
+        "displayname" : "Rollover asserts"
+      },
+      "source": {
+        "profiles": ["Standard", "Advanced"]
+      }
+    },
+    {
+      "timeseries": {
+        "key": "objects",
+        "unit": "Count",
+        "dimensions": [
+          "database"
+        ],
+        "displayname":"Objects"
+      },
+      "source": {
+        "profiles": ["Advanced"]
+      }
+    },
+    {
+      "timeseries": {
+        "key": "indexes",
+        "unit": "Count",
+        "dimensions": [
+          "database"
+        ],
+        "displayname":"Indexes"
+      },
+      "source": {
+        "profiles": ["Advanced"]
+      }
+    },
+    {
+      "timeseries": {
+        "key": "db_data_size",
+        "unit": "Byte",
+        "dimensions": [
+          "database"
+        ],
+        "displayname" : "Data size"
+      },
+      "source": {
+        "profiles": ["Advanced"]
+      }
+    },
+    {
+      "timeseries": {
+        "key": "db_storage_size",
+        "unit": "Byte",
+        "dimensions": [
+          "database"
+        ],
+        "displayname" : "Storage size"
+      },
+      "source": {
+        "profiles": ["Advanced"]
+      }
+    },
+    {
+      "timeseries": {
+        "key": "db_index_size",
+        "unit": "Byte",
+        "dimensions": [
+          "database"
+        ],
+        "displayname" : "Index size"
+      },
+      "source": {
+        "profiles": ["Advanced"]
+      }
+    },
+    { "timeseries": { "key": "read_tickets_available", "unit": "Count", "displayname": "WiredTiger Read Tickets" }, "source":  {"profiles":  ["Basic", "Standard", "Advanced"]}},
+    { "timeseries": { "key": "write_tickets_available", "unit": "Count", "displayname": "WiredTiger Write Tickets" }, "source":  {"profiles":  ["Basic", "Standard", "Advanced"]}},
+    { "timeseries": { "key": "state", "unit": "Count", "displayname": "Member State" }, "source":  {"profiles":  ["Basic", "Standard", "Advanced"]}},
+    { "timeseries": { "key": "oplog_window", "unit": "Second", "displayname": "Oplog - Window"}, "source":  {"profiles":  ["Standard", "Advanced"]}},
+    { "timeseries": { "key": "oplog_used", "unit": "Percent", "displayname": "Oplog - Used %"}, "source":  {"profiles":  ["Standard", "Advanced"]}}
+
+  ]
+}

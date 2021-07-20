@@ -1,0 +1,864 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Write your first OneAgent plugin</title>
+  
+
+  <link rel="stylesheet" href="_static/css/main.css">
+  <link rel="stylesheet" href="_static/css/ext.css">
+  <link rel="stylesheet" href="_static/css/fonts.css">
+
+  <script>document.documentElement.className += ' js';</script>
+  <script type="text/javascript">
+    var ruxitFont = ruxitFont || {};
+    ruxitFont.storeKey = 'fcache';
+
+    ruxitFont.addStyles = function addStyles(fonts) {
+      if(document.getElementById('font-css') !== null) {
+        return;
+      }
+      var scriptElem = document.getElementsByTagName('script')[0];
+      var styleTag = document.createElement('style');
+      styleTag.id = 'font-css';
+      styleTag.setAttribute('type', 'text/css');
+      styleTag.innerHTML = fonts;
+      scriptElem.parentNode.insertBefore(styleTag, scriptElem);
+    }
+
+    if (localStorage.getItem(ruxitFont.storeKey) !== null) {
+      ruxitFont.addStyles(localStorage.getItem(ruxitFont.storeKey));
+    }
+  </script>
+</head>
+
+<body>
+
+<header class="header header-alt">
+  <a class="header-brand-link" href="https://help.dynatrace.com/">
+
+      <img src="_static/images/logos/dynatrace-logo.svg" alt="Dynatrace" class="header-brand-logo svgLogo" height="36">
+  </a>
+  <div class="header-nav-right">
+    <a class="btn btn--navigation nav__cta" href="https://www.dynatrace.com/trial/">Free trial</a>
+  </div>
+  <nav id="oc-nav" class="menubar">
+    <div class="menubar-nav">
+      <ul class="menubar-list">
+
+
+
+          <li class="menubar-listitem menu-level-0"><a title="Help" href="https://help.dynatrace.com/">Help</a></li>
+          <li class="menubar-listitem menu-level-0"><a title="Answers" href="https://answers.ruxit.com/">Answers</a>
+          </li>
+          <li class="menubar-listitem menu-level-0"><a title="Support" href="https://support.ruxit.com/">Support</a>
+          </li>
+
+        <li class="menubar-listitem menu-level-0">
+          <svg class="icon-defs" xmlns="http://www.w3.org/2000/svg"> <defs> <g id="search_magnifyingglass"> <path d="M200.759,104.318c25.76,0,49.979,10.032,68.194,28.248c37.6,37.604,37.6,98.785,0,136.385
+c-18.216,18.216-42.434,28.248-68.194,28.248c-25.76,0-49.978-10.032-68.194-28.248c-18.216-18.212-28.245-42.431-28.245-68.19
+s10.029-49.979,28.245-68.194C150.781,114.351,174.999,104.318,200.759,104.318 M200.759,66
+c-34.486,0-68.973,13.157-95.286,39.475c-52.628,52.623-52.628,137.948,0,190.572c26.31,26.314,60.796,39.471,95.286,39.471
+c34.486,0,68.973-13.156,95.287-39.471c52.627-52.627,52.627-137.949,0-190.572C269.731,79.157,235.245,66,200.759,66L200.759,66z"></path> <path d="M443.765,411.84c2.979,2.979,2.979,7.858,0,10.837l-21.083,21.09c-2.979,2.979-7.854,2.979-10.837,0
+l-106.699-106.7c-2.979-2.979-2.979-7.857,0-10.836l21.086-21.087c2.982-2.979,7.854-2.979,10.837,0L443.765,411.84z"></path> </g> </defs> </svg>
+
+
+
+
+
+
+
+
+
+          <form autocomplete="off" id="search" action="search.html" method="GET">
+            <input id="search-input" class="search-input" type="input" name="q" placeholder="Search for..." value="">
+            <label for="search-input" aria-label="Search">
+              <svg class="search-icon" viewBox="0 0 512 512">
+                <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#search_magnifyingglass"></use>
+              </svg>
+            </label>
+            <input type="hidden" name="check_keywords" value="yes" />
+            <input type="hidden" name="area" value="default" />
+          </form>
+        </li>
+      </ul>
+    </div>
+  </nav>
+</header>
+<ul class="breadcrumbs">
+    <li><a href="index.html">Docs</a></li>
+      
+    <li><span>Write your first OneAgent plugin</span></li>
+</ul>
+
+<div class="main-area">
+    <nav class="sidebar">
+    
+        <h1 class="headline">
+            <a href="index.html"> Plugin SDK </a>
+            <div class="sidebar__info">version: 1.221</div>
+        </h1>
+    
+
+    
+    
+    
+        
+            
+        
+        <a class="sidebar__item sidebar__item--active" href="">
+            <span class="sidebar__headline">Write your first OneAgent plugin</span>
+        </a>
+    
+        
+            
+        
+        <a class="sidebar__item" href="extending_plugin/index.html">
+            <span class="sidebar__headline">Extend your plugin</span>
+        </a>
+    
+        
+            
+        
+        <a class="sidebar__item" href="deploying_extension/index.html">
+            <span class="sidebar__headline">Deploy your plugin</span>
+        </a>
+    
+        
+            
+        
+        <a class="sidebar__item" href="troubleshooting/index.html">
+            <span class="sidebar__headline">Troubleshooting</span>
+        </a>
+    
+        
+            
+        
+        <a class="sidebar__item" href="plugin_lifecycle/index.html">
+            <span class="sidebar__headline">Plugin life cycle</span>
+        </a>
+    
+        
+            
+        
+        <a class="sidebar__item" href="apidoc.html">
+            <span class="sidebar__headline">Reference</span>
+        </a>
+    
+        
+            
+        
+        <a class="sidebar__item" href="plugins/index.html">
+            <span class="sidebar__headline">Plugin reference</span>
+        </a>
+    
+        
+            
+        
+        <a class="sidebar__item" href="api/remote_python_apidoc.html">
+            <span class="sidebar__headline">ActiveGate Plugins API Reference</span>
+        </a>
+    
+        
+            
+        
+        <a class="sidebar__item" href="api/index.html">
+            <span class="sidebar__headline">Index</span>
+        </a>
+    
+</nav>
+    <article id="content" class="wrapper cf">
+        <div class="content-area content">
+            <main role="main">
+                
+  <div class="section" id="write-your-first-oneagent-plugin">
+<h1>Write your first OneAgent plugin<a class="headerlink" href="#write-your-first-oneagent-plugin" title="Permalink to this headline">¶</a></h1>
+<p>Welcome to the OneAgent custom plugin documentation. These lessons will guide you step-by-step through the process of creating your first OneAgent plugin.</p>
+<div class="section" id="set-up-your-environment">
+<h2>Set up your environment<a class="headerlink" href="#set-up-your-environment" title="Permalink to this headline">¶</a></h2>
+<p>To develop custom plugins for OneAgent, you first need to set up your environment.</p>
+<div class="section" id="prerequisites">
+<h3>Prerequisites<a class="headerlink" href="#prerequisites" title="Permalink to this headline">¶</a></h3>
+<ol class="arabic simple">
+<li>OneAgent installed and running on your system</li>
+<li>Python 3.6</li>
+<li><code class="docutils literal"><span class="pre">plugin-sdk</span></code> python package installed</li>
+</ol>
+<p class="rubric">Obtaining OneAgent Plugin SDK</p>
+<p>Download the OneAgent Plugin SDK from the Dynatrace UI.</p>
+<ol class="arabic simple">
+<li>Go to <strong>Settings &gt; Monitoring &gt; Monitored technologies</strong>.</li>
+<li>Click the <strong>Add new technology monitoring</strong> button.</li>
+<li>In the <strong>Monitor any technology</strong> section, click the <strong>Add OneAgent plugin</strong> button.</li>
+<li>You will see a high level overview of the steps required to develop your plugin, along with the SDK download link.</li>
+</ol>
+<img alt="_images/download_sdk.png" data-action="zoom" src="_images/download_sdk.png" />
+<p class="rubric">Installing OneAgent Plugin SDK</p>
+<p>The OneAgent Plugin SDK is shipped as a ZIP archive that contains this documentation and a wheel package (WHL format).</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">We recommend that you install the Plugin SDK using Python virtual environment. For guidance, see <a class="reference external" href="https://docs.python.org/3/tutorial/venv.html">Virtual Environments and Packages</a> in Python documentation.</p>
+</div>
+<p>You can install the SDK wheel package using pip3, for example:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">pip3</span> <span class="n">install</span> <span class="n">plugin_sdk</span><span class="o">-</span><span class="mf">1.184</span><span class="o">.</span><span class="mf">0.20191202</span><span class="o">.</span><span class="mi">134853</span><span class="o">-</span><span class="n">py3</span><span class="o">-</span><span class="n">none</span><span class="o">-</span><span class="nb">any</span><span class="o">.</span><span class="n">whl</span>
+</pre></div>
+</div>
+<p>If you need help installing Python packages, please see the <a class="reference external" href="https://python-packaging-user-guide.readthedocs.io">Python Packaging User Guide</a></p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">If you're short on time, or get stuck, the plugin source code is available in the directory <cite>examples/demo_oneagent_plugin</cite>
+of your SDK package</p>
+</div>
+</div>
+<div class="section" id="demo-application">
+<h3>Demo application<a class="headerlink" href="#demo-application" title="Permalink to this headline">¶</a></h3>
+<p>The first plugin we'll present gathers data from a simple Python web application. The application itself is provided as part of
+the SDK package and can be run by typing:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">plugin_sdk</span> <span class="n">start_demo_app</span>
+</pre></div>
+</div>
+<p>When run without parameters, the application listens on <code class="docutils literal"><span class="pre">localhost:8769</span></code>, and responds to HTTP requests with a small JSON document
+that looks like this:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="p">{</span><span class="s2">&quot;counter&quot;</span><span class="p">:</span> <span class="mi">147</span><span class="p">,</span> <span class="s2">&quot;random&quot;</span><span class="p">:</span> <span class="mi">907</span><span class="p">}</span>
+</pre></div>
+</div>
+<p><code class="docutils literal"><span class="pre">counter</span></code> increases with every hit to the page, while <code class="docutils literal"><span class="pre">random</span></code> is a random number.</p>
+<p>You can list the parameters of the demo application using:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">plugin_sdk</span> <span class="n">start_demo_app</span> <span class="o">--</span><span class="n">help</span>
+</pre></div>
+</div>
+<p>This includes the parameters for changing the default port and turning on authentication.</p>
+</div>
+</div>
+<div class="section" id="your-first-plugin">
+<h2>Your first plugin<a class="headerlink" href="#your-first-plugin" title="Permalink to this headline">¶</a></h2>
+<p>Let's start with the plugin. Essentially it contains 2 files: <code class="docutils literal"><span class="pre">plugin.json</span></code> which includes the metadata required to run
+the plugin (including name, version and activation context) and the Python code, which is in the <code class="docutils literal"><span class="pre">demo_plugin.py</span></code> file.
+Let's start with the activation context of <code class="docutils literal"><span class="pre">plugin.json</span></code> which defines when the plugin should be started.
+There are 3 options to start a plugin:</p>
+<ul class="simple">
+<li>always run the plugin</li>
+<li>when a process of a given name is running on the machine</li>
+<li>when a process of a given technology is running on the machine.</li>
+</ul>
+<p>In the two last options multiple processes of the technology or matching the process name pattern may be working so it's possible to run the plugin in 2 modes:</p>
+<blockquote>
+<div><ul class="simple">
+<li>normal mode - for each instance of the matching process separate instance of the plugin will be running, this is the default mode</li>
+<li>singleton mode - only one instance of the plugin will be running and the plugin code has to handle this situation properly, meaning looking up the process snapshot and decide which process should report data.</li>
+</ul>
+</div></blockquote>
+<p>Complete description of activation can be found in <a class="reference internal" href="plugin_lifecycle/index.html"><span class="doc">Plugin life cycle</span></a></p>
+<p>In our example we use per technology option with singleton mode.</p>
+<blockquote>
+<div><div class="highlight-default"><div class="highlight"><pre><span></span>  <span class="s2">&quot;technologies&quot;</span><span class="p">:</span> <span class="p">[</span>
+    <span class="s2">&quot;PYTHON&quot;</span>
+  <span class="p">],</span>
+    <span class="s2">&quot;activation&quot;</span><span class="p">:</span> <span class="s2">&quot;Singleton&quot;</span>
+</pre></div>
+</div>
+</div></blockquote>
+<p>This starts single plugin instance if any Python process is discovered.
+Further description of the other parts of metadata will be shown later, now when we have proper activation assured let's get to the plugin code in the PY file:</p>
+<blockquote>
+<div><div class="highlight-default"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">requests</span>
+<span class="kn">from</span> <span class="nn">ruxit.api.base_plugin</span> <span class="k">import</span> <span class="n">BasePlugin</span>
+
+<span class="k">class</span> <span class="nc">DemoPlugin</span><span class="p">(</span><span class="n">BasePlugin</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">query</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;Activation context: </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_activation_context</span><span class="p">())</span>
+        <span class="n">stats_url</span> <span class="o">=</span> <span class="s2">&quot;http://localhost:8769&quot;</span>
+        <span class="n">stats</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">stats_url</span><span class="p">)</span><span class="o">.</span><span class="n">json</span><span class="p">()</span>
+        <span class="c1">#get the list of monitored entities related to the plugin activation context</span>
+        <span class="n">entities</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_monitored_entities</span><span class="p">()</span>
+        <span class="k">for</span> <span class="n">entity</span> <span class="ow">in</span> <span class="n">entities</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;Monitored entity: id=</span><span class="si">%s</span><span class="s2">, type=</span><span class="si">%s</span><span class="s2">, group name=</span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">entity</span><span class="o">.</span><span class="n">id</span><span class="p">,</span> <span class="n">entity</span><span class="o">.</span><span class="n">type</span><span class="p">,</span> <span class="n">entity</span><span class="o">.</span><span class="n">process_name</span><span class="p">)</span>
+            <span class="c1">#since this plugin runs as singleton multiple entries can be related to activation context so make sure that data is reported to correct entity</span>
+            <span class="k">if</span> <span class="n">entity</span><span class="o">.</span><span class="n">process_name</span> <span class="o">==</span> <span class="s1">&#39;plugin_sdk.demo_app&#39;</span><span class="p">:</span>
+                <span class="n">entity</span><span class="o">.</span><span class="n">absolute</span><span class="p">(</span><span class="n">key</span><span class="o">=</span><span class="s1">&#39;random&#39;</span><span class="p">,</span> <span class="n">value</span><span class="o">=</span><span class="n">stats</span><span class="p">[</span><span class="s1">&#39;random&#39;</span><span class="p">])</span>
+                <span class="n">entity</span><span class="o">.</span><span class="n">relative</span><span class="p">(</span><span class="n">key</span><span class="o">=</span><span class="s1">&#39;counter&#39;</span><span class="p">,</span> <span class="n">value</span><span class="o">=</span><span class="n">stats</span><span class="p">[</span><span class="s1">&#39;counter&#39;</span><span class="p">])</span>
+                <span class="n">entity</span><span class="o">.</span><span class="n">property</span><span class="p">(</span><span class="n">key</span><span class="o">=</span><span class="s2">&quot;Demo_app version&quot;</span><span class="p">,</span> <span class="n">value</span><span class="o">=</span><span class="n">stats</span><span class="p">[</span><span class="s1">&#39;version&#39;</span><span class="p">])</span>
+</pre></div>
+</td></tr></table></div>
+</div></blockquote>
+<p>The file defines one class <code class="docutils literal"><span class="pre">DemoPlugin</span></code>, which in turn defines one method <code class="docutils literal"><span class="pre">query</span></code>. When your plugin runs, this method is called once each
+minute to collect and send data to Dynatrace server. This particular query method gathers some data from monitored exemplary application, which is plugin_sdk.demo_app, it uses http request to get a json content with some stats:</p>
+<blockquote>
+<div><div class="highlight-default"><div class="highlight"><pre><span></span>        <span class="n">stats_url</span> <span class="o">=</span> <span class="s2">&quot;http://localhost:8769&quot;</span>
+        <span class="n">stats</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">stats_url</span><span class="p">)</span><span class="o">.</span><span class="n">json</span><span class="p">()</span>
+</pre></div>
+</div>
+</div></blockquote>
+<p>Now it's time to report those stats to Dynatrace server but all measurements in OneAgent must specify the entity that they're associated with. The entity consists of: ID, type, name and process snapshot, which is a data structure
+that contains all information about processes related to the entity discovered by OneAgent.
+To get the list of all entities related to the plugin defined by the activation context we use the following method:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span>        <span class="n">entities</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_monitored_entities</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>It will return the list of entities, which represents all currently running Python processes.</p>
+<p>Plugins allow reporting data on 3 levels: the monitored host, the monitored process (node) or the group of processes (cluster).
+There is a separate entity for each reporting level so before sending data we have to decide where it will be presented. For this purpose we use EntityType argument to <code class="docutils literal"><span class="pre">get_monitored_entities</span></code> method.
+If no argument is given than the <code class="docutils literal"><span class="pre">entity</span></code> property of plugin.json will be taken.
+The following table presents what are the reporting levels and corresponding EntityType arguments:</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="51%" />
+<col width="49%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Reporting level</th>
+<th class="head">Type</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>Host</td>
+<td>EntityType.HOST</td>
+</tr>
+<tr class="row-odd"><td>Process</td>
+<td>EntityType.PROCESS_GROUP_INSTANCE</td>
+</tr>
+<tr class="row-even"><td>Process group</td>
+<td>EntityType.PROCESS_GROUP</td>
+</tr>
+</tbody>
+</table>
+<p>Once we have the <code class="docutils literal"><span class="pre">entities</span></code> object, which represents all the running Python processes and is a list of individual entity, we can enumerate them and find the one we want to send data on.
+For this we may use process name or look up process snapshot to find processes details like: path, working dir, cmd line, listening ports, etc.
+In our example we just verify the process name:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span>            <span class="k">if</span> <span class="n">entity</span><span class="o">.</span><span class="n">process_name</span> <span class="o">==</span> <span class="s1">&#39;plugin_sdk.demo_app&#39;</span><span class="p">:</span>
+</pre></div>
+</div>
+<p>Note that the process name is the name given by Dynatrace, it may be different then the one reported by <code class="docutils literal"><span class="pre">ps</span></code> or <code class="docutils literal"><span class="pre">Task</span> <span class="pre">Manager</span></code> tools, both names and all details of processes related to the entity are available in the <code class="docutils literal"><span class="pre">snapshot</span></code> property of MonitoredEntity object.
+The Dynatrace process name is represented by the <code class="docutils literal"><span class="pre">group_name</span></code> property of the snapshot, system process name is represented by the <code class="docutils literal"><span class="pre">processes.process_name</span></code> property.</p>
+<p>To send data on given entity, which will be shown on the reporting level corresponding with the entity type we use the following methods:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span>                <span class="n">entity</span><span class="o">.</span><span class="n">absolute</span><span class="p">(</span><span class="n">key</span><span class="o">=</span><span class="s1">&#39;random&#39;</span><span class="p">,</span> <span class="n">value</span><span class="o">=</span><span class="n">stats</span><span class="p">[</span><span class="s1">&#39;random&#39;</span><span class="p">])</span>
+                <span class="n">entity</span><span class="o">.</span><span class="n">relative</span><span class="p">(</span><span class="n">key</span><span class="o">=</span><span class="s1">&#39;counter&#39;</span><span class="p">,</span> <span class="n">value</span><span class="o">=</span><span class="n">stats</span><span class="p">[</span><span class="s1">&#39;counter&#39;</span><span class="p">])</span>
+                <span class="n">entity</span><span class="o">.</span><span class="n">property</span><span class="p">(</span><span class="n">key</span><span class="o">=</span><span class="s2">&quot;Demo_app version&quot;</span><span class="p">,</span> <span class="n">value</span><span class="o">=</span><span class="n">stats</span><span class="p">[</span><span class="s1">&#39;version&#39;</span><span class="p">])</span>
+</pre></div>
+</div>
+<p><a class="reference internal" href="_apidoc/ruxit.api.html#ruxit.api.base_plugin.MonitoredEntity" title="ruxit.api.base_plugin.MonitoredEntity"><code class="xref py py-class docutils literal"><span class="pre">MonitoredEntity</span></code></a> class provides multiple methods for sending data to Dynatrace server.
+Depending on the data type we use <code class="docutils literal"><span class="pre">absolute</span></code>, <code class="docutils literal"><span class="pre">relative</span></code> or <code class="docutils literal"><span class="pre">per_second</span></code> for counters, <code class="docutils literal"><span class="pre">property</span></code> for a pair of key, value strings and another for events or state_metrics.
+When you submit measurements as <code class="docutils literal"><span class="pre">relative</span></code>, Dynatrace  automatically computes the difference between current and previous values and only sends the difference. This approach is useful for reporting on metrics that increase most of the time and you're only interested in the rate of change, not the absolute values.</p>
+<p>That's it for the Python part of the plugin. Note that while the demo plugin only includes a single file for the sake of simplicity, plugins are not limited to a single source file.</p>
+<p>The other vital part of each custom plugin is the <code class="docutils literal"><span class="pre">plugin.json</span></code> file</p>
+<blockquote>
+<div><div class="highlight-json"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="p">{</span>
+  <span class="nt">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;custom.python.demo_plugin&quot;</span><span class="p">,</span>
+  <span class="nt">&quot;version&quot;</span><span class="p">:</span> <span class="s2">&quot;2.44&quot;</span><span class="p">,</span>
+  <span class="nt">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;python&quot;</span><span class="p">,</span>
+  <span class="nt">&quot;entity&quot;</span><span class="p">:</span> <span class="s2">&quot;PROCESS_GROUP_INSTANCE&quot;</span><span class="p">,</span>
+  <span class="nt">&quot;technologies&quot;</span><span class="p">:</span> <span class="p">[</span>
+    <span class="s2">&quot;PYTHON&quot;</span>
+  <span class="p">],</span>
+  <span class="nt">&quot;source&quot;</span><span class="p">:</span> <span class="p">{</span>
+    <span class="nt">&quot;package&quot;</span><span class="p">:</span> <span class="s2">&quot;demo_plugin&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;className&quot;</span><span class="p">:</span> <span class="s2">&quot;DemoPlugin&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;install_requires&quot;</span><span class="p">:</span> <span class="p">[</span>
+      <span class="s2">&quot;requests&gt;=2.6.0&quot;</span>
+    <span class="p">],</span>
+    <span class="nt">&quot;activation&quot;</span><span class="p">:</span> <span class="s2">&quot;Singleton&quot;</span>
+  <span class="p">},</span>
+  <span class="nt">&quot;metricGroup&quot;</span><span class="p">:</span> <span class="s2">&quot;demo_metrics&quot;</span><span class="p">,</span>
+  <span class="nt">&quot;metrics&quot;</span><span class="p">:</span> <span class="p">[</span>
+    <span class="p">{</span>
+      <span class="nt">&quot;timeseries&quot;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="nt">&quot;key&quot;</span><span class="p">:</span> <span class="s2">&quot;random&quot;</span><span class="p">,</span>
+        <span class="nt">&quot;unit&quot;</span><span class="p">:</span> <span class="s2">&quot;Count&quot;</span><span class="p">,</span>
+        <span class="nt">&quot;displayname&quot;</span><span class="p">:</span> <span class="s2">&quot;Random Value&quot;</span>
+      <span class="p">}</span>
+    <span class="p">},</span>
+    <span class="p">{</span>
+      <span class="nt">&quot;timeseries&quot;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="nt">&quot;key&quot;</span><span class="p">:</span> <span class="s2">&quot;counter&quot;</span><span class="p">,</span>
+        <span class="nt">&quot;unit&quot;</span><span class="p">:</span> <span class="s2">&quot;Count&quot;</span><span class="p">,</span>
+        <span class="nt">&quot;displayname&quot;</span><span class="p">:</span> <span class="s2">&quot;Counter Value&quot;</span>
+      <span class="p">}</span>
+    <span class="p">},</span>
+    <span class="p">{</span>
+      <span class="nt">&quot;statetimeseries&quot;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="nt">&quot;key&quot;</span><span class="p">:</span> <span class="s2">&quot;state&quot;</span><span class="p">,</span>
+        <span class="nt">&quot;states&quot;</span><span class="p">:</span> <span class="p">[</span>
+          <span class="s2">&quot;OK&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;WARNING&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;ERROR&quot;</span>
+        <span class="p">],</span>
+        <span class="nt">&quot;displayname&quot;</span><span class="p">:</span> <span class="s2">&quot;State metric&quot;</span><span class="p">,</span>
+        <span class="nt">&quot;dimensions&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;app&quot;</span><span class="p">]</span>
+      <span class="p">}</span>
+    <span class="p">}</span>
+  <span class="p">],</span>
+  <span class="nt">&quot;configUI&quot;</span><span class="p">:</span> <span class="p">{</span>
+    <span class="nt">&quot;displayName&quot;</span><span class="p">:</span> <span class="s2">&quot;OneAgent Demo Extension&quot;</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</td></tr></table></div>
+</div></blockquote>
+<p>Let's go through the contents of this file.</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span>  <span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;custom.python.demo_plugin&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;version&quot;</span><span class="p">:</span> <span class="s2">&quot;2.44&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;python&quot;</span><span class="p">,</span>
+</pre></div>
+</div>
+<p>There are a few simple properties at the beginning: <code class="docutils literal"><span class="pre">plugin</span> <span class="pre">name</span></code>, <code class="docutils literal"><span class="pre">version</span></code>, and <code class="docutils literal"><span class="pre">type</span></code>.
+Python custom plugin names should follow <code class="docutils literal"><span class="pre">^custom.python(\.[a-zA-Z0-9_]+)+$</span></code> regex. For example, <cite>custom.python.my_plugin_2</cite>.
+Please ensure that the name of each plugin is unique. Dynatrace won't accept two plugins that have the same name.
+<code class="docutils literal"><span class="pre">Version</span></code> is fairly self explanatory, <code class="docutils literal"><span class="pre">type</span></code> describes the plugin technology, which for custom plugins is always set to <code class="docutils literal"><span class="pre">`python</span></code>.</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span>  <span class="s2">&quot;source&quot;</span><span class="p">:</span> <span class="p">{</span>
+    <span class="s2">&quot;package&quot;</span><span class="p">:</span> <span class="s2">&quot;demo_plugin&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;className&quot;</span><span class="p">:</span> <span class="s2">&quot;DemoPlugin&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;install_requires&quot;</span><span class="p">:</span> <span class="p">[</span>
+      <span class="s2">&quot;requests&gt;=2.6.0&quot;</span>
+    <span class="p">],</span>
+    <span class="s2">&quot;activation&quot;</span><span class="p">:</span> <span class="s2">&quot;Singleton&quot;</span>
+  <span class="p">},</span>
+</pre></div>
+</div>
+<p>The source section covers information specific to a given plugin type, in this case Python. Plugins written in Python don't necessarily monitor Python. The first two lines list the package name and class that is to be imported and executed by OneAgent. This corresponds to the name of the Python file that contains the code and the name of the class that's defined in it.</p>
+<p>The property <code class="docutils literal"><span class="pre">install_requires</span></code> lists the plugin's dependency, the requests library. Other libraries, along with their version requirements, can be listed here. If you're familiar with the Python packaging ecosystem, you'll note that these properties are similar to what you would write in your <code class="docutils literal"><span class="pre">setup.py</span></code> or <code class="docutils literal"><span class="pre">requirements.txt</span></code> files when developing a Python package.</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span>  <span class="s2">&quot;metricGroup&quot;</span><span class="p">:</span> <span class="s2">&quot;demo_metrics&quot;</span><span class="p">,</span>
+</pre></div>
+</div>
+<p>The metricGroup property defines metric name prefix that will be used for grouping metrics on Custom Charts.</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span>  <span class="s2">&quot;metrics&quot;</span><span class="p">:</span> <span class="p">[</span>
+    <span class="p">{</span>
+      <span class="s2">&quot;timeseries&quot;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="s2">&quot;key&quot;</span><span class="p">:</span> <span class="s2">&quot;random&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;unit&quot;</span><span class="p">:</span> <span class="s2">&quot;Count&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;displayname&quot;</span><span class="p">:</span> <span class="s2">&quot;Random Value&quot;</span>
+      <span class="p">}</span>
+    <span class="p">},</span>
+    <span class="p">{</span>
+      <span class="s2">&quot;timeseries&quot;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="s2">&quot;key&quot;</span><span class="p">:</span> <span class="s2">&quot;counter&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;unit&quot;</span><span class="p">:</span> <span class="s2">&quot;Count&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;displayname&quot;</span><span class="p">:</span> <span class="s2">&quot;Counter Value&quot;</span>
+      <span class="p">}</span>
+    <span class="p">},</span>
+    <span class="p">{</span>
+      <span class="s2">&quot;statetimeseries&quot;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="s2">&quot;key&quot;</span><span class="p">:</span> <span class="s2">&quot;state&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;states&quot;</span><span class="p">:</span> <span class="p">[</span>
+          <span class="s2">&quot;OK&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;WARNING&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;ERROR&quot;</span>
+        <span class="p">],</span>
+        <span class="s2">&quot;displayname&quot;</span><span class="p">:</span> <span class="s2">&quot;State metric&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;dimensions&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;app&quot;</span><span class="p">]</span>
+      <span class="p">}</span>
+    <span class="p">}</span>
+  <span class="p">],</span>
+</pre></div>
+</div>
+<p>The metrics section describes the data that's gathered by the plugin. This section provides two metrics that mirror both what our demo application
+serves, and also what the Python code collects.</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span>  <span class="s2">&quot;configUI&quot;</span><span class="p">:</span> <span class="p">{</span>
+    <span class="s2">&quot;displayName&quot;</span><span class="p">:</span> <span class="s2">&quot;OneAgent Demo Extension&quot;</span>
+  <span class="p">}</span>
+</pre></div>
+</div>
+<p>Lastly, the configUI section defines the plugin display name shown on Dynatrace UI.</p>
+<p><a class="reference internal" href="api/plugin_json_apidoc.html"><span class="doc">Learn more about plugin.json</span></a></p>
+</div>
+<div class="section" id="plugin-simulator">
+<h2>Plugin simulator<a class="headerlink" href="#plugin-simulator" title="Permalink to this headline">¶</a></h2>
+<p>To facilitate plugin development, this SDK comes with a tool that can execute your plugin without
+the need for you to run OneAgent or connect to Dynatrace Server. This plugin simulator is a purely Python
+solution that's designed to mimic OneAgent, with a few limitations:</p>
+<ul class="simple">
+<li>The process snapshot must be provided manually.</li>
+<li>Plugin configuration (if any) needs to be provided manually.</li>
+<li>No data is sent to or received from Dynatrace Server.</li>
+<li>The Python environment contains the libraries required by the plugin.</li>
+</ul>
+<p>The format used for both snapshot and properties configuration is JSON. Following is an example <code class="docutils literal"><span class="pre">simulator_snapshot.json</span></code> file that is sufficient for triggering the demo plugin:</p>
+<blockquote>
+<div><div class="highlight-json"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="p">{</span>
+  <span class="nt">&quot;host_id&quot;</span><span class="p">:</span> <span class="mi">112233445566</span><span class="p">,</span>
+  <span class="nt">&quot;entries&quot;</span><span class="p">:</span> <span class="p">[</span>
+    <span class="p">{</span>
+      <span class="nt">&quot;group_id&quot;</span><span class="p">:</span> <span class="mi">12668946693571282165</span><span class="p">,</span>
+      <span class="nt">&quot;group_instance_id&quot;</span><span class="p">:</span> <span class="mi">18165771568562771184</span><span class="p">,</span>
+      <span class="nt">&quot;group_name&quot;</span><span class="p">:</span> <span class="s2">&quot;plugin_sdk.demo_app&quot;</span><span class="p">,</span>
+      <span class="nt">&quot;processes&quot;</span><span class="p">:</span> <span class="p">[</span>
+        <span class="p">{</span>
+          <span class="nt">&quot;process_name&quot;</span><span class="p">:</span> <span class="s2">&quot;python3.5&quot;</span><span class="p">,</span>
+          <span class="nt">&quot;properties&quot;</span><span class="p">:</span> <span class="p">{</span>
+            <span class="nt">&quot;CmdLine&quot;</span><span class="p">:</span> <span class="s2">&quot;-m plugin_sdk.demo_app&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;WorkDir&quot;</span><span class="p">:</span> <span class="s2">&quot;/home/demo&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;ListeningPorts&quot;</span><span class="p">:</span> <span class="s2">&quot;8769&quot;</span>
+          <span class="p">}</span>
+        <span class="p">}</span>
+      <span class="p">],</span>
+      <span class="nt">&quot;properties&quot;</span><span class="p">:</span> <span class="p">{</span><span class="nt">&quot;Technologies&quot;</span><span class="p">:</span> <span class="s2">&quot;PYTHON&quot;</span><span class="p">}</span>
+    <span class="p">}</span>
+  <span class="p">]</span>
+<span class="p">}</span>
+</pre></div>
+</td></tr></table></div>
+</div></blockquote>
+<p>The structure of <code class="docutils literal"><span class="pre">simulator_snapshot.json</span></code> resembles <a class="reference internal" href="api/process_snapshot.html#embedded_api.ProcessSnapshot" title="embedded_api.ProcessSnapshot"><code class="xref py py-class docutils literal"><span class="pre">ProcessSnapshot</span></code></a>. The fields
+that aren't required at the moment, or that can be generated by the simulator (for example, process group IDs), can
+be omitted. In this particular snapshot you can see one process group of technology type Python with one
+process attached. This should be enough to run the demo plugin, provided that the demo_app is running.</p>
+<p>The simulator is started with the command:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">plugin_sdk</span> <span class="n">simulate_plugin</span>
+</pre></div>
+</div>
+<p>Or the shorter version:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">oneagent_sim</span>
+</pre></div>
+</div>
+<p>No additional arguments are needed if the command is run from the directory that contains the plugin. For other
+options, please refer to the command help message.</p>
+<p>The simulator runs until it is stopped manually (usually by pressing <code class="docutils literal"><span class="pre">Ctrl-C</span></code>), output is written to the terminal,
+and a short summary of operations is provided upon completion, which should look something like this:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">Plugin</span> <span class="n">simulator</span> <span class="n">summary</span><span class="p">:</span>
+<span class="n">At</span> <span class="mi">14</span><span class="p">:</span><span class="mi">23</span><span class="p">:</span><span class="mi">52</span> <span class="n">reported</span> <span class="n">measurements</span><span class="p">:</span>
+<span class="p">[</span><span class="n">PluginMeasurement</span><span class="p">(</span><span class="n">monitoredEntityId</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">tsIdentifier</span><span class="o">=</span><span class="s1">&#39;custom.python.demo_plugin:random&#39;</span><span class="p">,</span> <span class="n">dimensions</span><span class="o">=</span><span class="p">[],</span> <span class="n">value</span><span class="o">=</span><span class="mf">56.0</span><span class="p">,</span> <span class="n">aggregation</span><span class="o">=</span><span class="mi">1</span><span class="p">)]</span>
+<span class="n">At</span> <span class="mi">14</span><span class="p">:</span><span class="mi">23</span><span class="p">:</span><span class="mi">52</span> <span class="n">reported</span> <span class="n">status</span><span class="p">:</span> <span class="n">OK</span>
+<span class="n">At</span> <span class="mi">14</span><span class="p">:</span><span class="mi">24</span><span class="p">:</span><span class="mi">52</span> <span class="n">reported</span> <span class="n">measurements</span><span class="p">:</span>
+<span class="p">[</span><span class="n">PluginMeasurement</span><span class="p">(</span><span class="n">monitoredEntityId</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">tsIdentifier</span><span class="o">=</span><span class="s1">&#39;custom.python.demo_plugin:counter&#39;</span><span class="p">,</span> <span class="n">dimensions</span><span class="o">=</span><span class="p">[],</span> <span class="n">value</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">aggregation</span><span class="o">=</span><span class="mi">1</span><span class="p">),</span>
+ <span class="n">PluginMeasurement</span><span class="p">(</span><span class="n">monitoredEntityId</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">tsIdentifier</span><span class="o">=</span><span class="s1">&#39;custom.python.demo_plugin:random&#39;</span><span class="p">,</span> <span class="n">dimensions</span><span class="o">=</span><span class="p">[],</span> <span class="n">value</span><span class="o">=</span><span class="mf">313.0</span><span class="p">,</span> <span class="n">aggregation</span><span class="o">=</span><span class="mi">1</span><span class="p">)]</span>
+<span class="n">At</span> <span class="mi">14</span><span class="p">:</span><span class="mi">25</span><span class="p">:</span><span class="mi">52</span> <span class="n">reported</span> <span class="n">measurements</span><span class="p">:</span>
+<span class="p">[</span><span class="n">PluginMeasurement</span><span class="p">(</span><span class="n">monitoredEntityId</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">tsIdentifier</span><span class="o">=</span><span class="s1">&#39;custom.python.demo_plugin:counter&#39;</span><span class="p">,</span> <span class="n">dimensions</span><span class="o">=</span><span class="p">[],</span> <span class="n">value</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">aggregation</span><span class="o">=</span><span class="mi">1</span><span class="p">),</span>
+ <span class="n">PluginMeasurement</span><span class="p">(</span><span class="n">monitoredEntityId</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">tsIdentifier</span><span class="o">=</span><span class="s1">&#39;custom.python.demo_plugin:random&#39;</span><span class="p">,</span> <span class="n">dimensions</span><span class="o">=</span><span class="p">[],</span> <span class="n">value</span><span class="o">=</span><span class="mf">567.0</span><span class="p">,</span> <span class="n">aggregation</span><span class="o">=</span><span class="mi">1</span><span class="p">)]</span>
+</pre></div>
+</div>
+<p>If an error occurs, the summary may offer a hint as to why:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">At</span> <span class="mi">14</span><span class="p">:</span><span class="mi">28</span><span class="p">:</span><span class="mi">30</span> <span class="n">reported</span> <span class="n">status</span><span class="p">:</span> <span class="n">UNINITIALIZED</span>
+<span class="n">At</span> <span class="mi">14</span><span class="p">:</span><span class="mi">28</span><span class="p">:</span><span class="mi">30</span> <span class="n">reported</span> <span class="n">status</span><span class="p">:</span> <span class="n">ERROR_UNKNOWN</span>
+<span class="n">Status</span> <span class="n">details</span><span class="p">:</span>
+<span class="n">Traceback</span> <span class="p">(</span><span class="n">most</span> <span class="n">recent</span> <span class="n">call</span> <span class="n">last</span><span class="p">):</span>
+  <span class="n">File</span> <span class="s2">&quot;C:\work\envs\plugins_dev_35\lib\site-packages</span><span class="se">\r</span><span class="s2">equests\packages\urllib3\connection.py&quot;</span><span class="p">,</span> <span class="n">line</span> <span class="mi">137</span><span class="p">,</span> <span class="ow">in</span> <span class="n">_new_conn</span>
+    <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">host</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">port</span><span class="p">),</span> <span class="bp">self</span><span class="o">.</span><span class="n">timeout</span><span class="p">,</span> <span class="o">**</span><span class="n">extra_kw</span><span class="p">)</span>
+  <span class="n">File</span> <span class="s2">&quot;C:\work\envs\plugins_dev_35\lib\site-packages</span><span class="se">\r</span><span class="s2">equests\packages\urllib3\util\connection.py&quot;</span><span class="p">,</span> <span class="n">line</span> <span class="mi">91</span><span class="p">,</span> <span class="ow">in</span> <span class="n">create_connection</span>
+    <span class="k">raise</span> <span class="n">err</span>
+  <span class="n">File</span> <span class="s2">&quot;C:\work\envs\plugins_dev_35\lib\site-packages</span><span class="se">\r</span><span class="s2">equests\packages\urllib3\util\connection.py&quot;</span><span class="p">,</span> <span class="n">line</span> <span class="mi">81</span><span class="p">,</span> <span class="ow">in</span> <span class="n">create_connection</span>
+    <span class="n">sock</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="n">sa</span><span class="p">)</span>
+<span class="ne">ConnectionRefusedError</span><span class="p">:</span> <span class="p">[</span><span class="n">WinError</span> <span class="mi">10061</span><span class="p">]</span> <span class="n">No</span> <span class="n">connection</span> <span class="n">could</span> <span class="n">be</span> <span class="n">made</span> <span class="n">because</span> <span class="n">the</span> <span class="n">target</span> <span class="n">machine</span> <span class="n">actively</span> <span class="n">refused</span> <span class="n">it</span>
+</pre></div>
+</div>
+<p>In this example, the error was caused by not having a running <code class="docutils literal"><span class="pre">plugin_sdk.demo_app</span></code> process. So the plugin was unable to gather data.</p>
+<p>The report at the end of the simulator run is not the only source of information. You can also analyze log messages that are sent out while the simulator runs.</p>
+</div>
+<div class="section" id="run-the-plugin">
+<h2>Run the plugin<a class="headerlink" href="#run-the-plugin" title="Permalink to this headline">¶</a></h2>
+<p>By now, you should have a grasp of what the demo plugin can do, but you haven't run it yet!
+It's super easy; only 3 steps are required:</p>
+<ol class="arabic simple">
+<li>Build the plugin.</li>
+<li>Upload the plugin to Dynatrace Server.</li>
+<li>Deploy the plugin to OneAgent machines, where the monitored process runs.</li>
+</ol>
+<div class="section" id="build-the-plugin">
+<h3>Build the plugin<a class="headerlink" href="#build-the-plugin" title="Permalink to this headline">¶</a></h3>
+<p>The first step is easily accomplished with the help of the <code class="docutils literal"><span class="pre">plugin_sdk</span> <span class="pre">build_plugin</span> <span class="pre">--no_upload</span></code> command, which is available in the SDK. Just type:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">plugin_sdk</span> <span class="n">build_plugin</span> <span class="o">--</span><span class="n">no_upload</span>
+</pre></div>
+</div>
+<p>While in the directory that contains the files you worked on in the previous section, you should see output similar to this:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">Starting</span> <span class="n">oneagent_build_plugin</span>
+<span class="n">Validating</span> <span class="n">plugin</span><span class="o">.</span><span class="n">json</span> <span class="n">against</span> <span class="n">schema</span>
+<span class="n">Plugin</span> <span class="n">data</span><span class="p">:</span> <span class="n">Plugin</span> <span class="n">name</span><span class="o">=</span><span class="n">custom</span><span class="o">.</span><span class="n">python</span><span class="o">.</span><span class="n">demo_plugin</span><span class="p">,</span> <span class="n">version</span><span class="o">=</span><span class="mf">1.0</span>
+<span class="o">...</span>
+<span class="o">========================================</span>
+<span class="n">Plugin</span> <span class="n">deployed</span> <span class="n">successfully</span> <span class="n">into</span> <span class="o">/</span><span class="n">opt</span><span class="o">/</span><span class="n">dynatrace</span><span class="o">/</span><span class="n">oneagent</span><span class="o">/</span><span class="n">plugin_deployment</span><span class="o">/</span><span class="n">custom</span><span class="o">.</span><span class="n">python</span><span class="o">.</span><span class="n">demo_plugin</span>
+<span class="n">Plugin</span> <span class="n">archive</span> <span class="n">available</span> <span class="n">at</span> <span class="o">/</span><span class="n">opt</span><span class="o">/</span><span class="n">dynatrace</span><span class="o">/</span><span class="n">oneagent</span><span class="o">/</span><span class="n">plugin_deployment</span><span class="o">/</span><span class="n">custom</span><span class="o">.</span><span class="n">python</span><span class="o">.</span><span class="n">demo_plugin</span><span class="o">.</span><span class="n">zip</span>
+<span class="o">========================================</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p>Running the command requires write privileges for the target directory,
+usually <code class="docutils literal"><span class="pre">opt/dynatrace/oneagent</span></code> on Linux and <code class="docutils literal"><span class="pre">c:\\Program</span> <span class="pre">Files(x86)\\dynatrace\\oneagent</span></code> on Windows</p>
+<p>Also, the <code class="docutils literal"><span class="pre">build_plugin</span></code> command has a few options available that can be listed by issuing:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">plugin_sdk</span> <span class="n">build_plugin</span> <span class="o">--</span><span class="n">help</span>
+</pre></div>
+</div>
+<p class="last">These include options for specifying the source and target directories of the tool.</p>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<dl class="last docutils">
+<dt>Make sure that a plugin is built on the same OS platform as the plugin is going to be deployed. For example:</dt>
+<dd><ul class="first last simple">
+<li>If your plugin is going to be deployed on 32-bit Linux machine it has to be built on 32-bit Linux machine using 32-bit Python 3.6 interpreter,</li>
+<li>If your plugin is going to be deployed on 64-bit Windows machine it has to be built on 64-bit Windows machine using 64-bit Python 3.6 interpreter,</li>
+<li>etc.</li>
+</ul>
+</dd>
+</dl>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">If OneAgent is not installed on your machine you have to specify the &quot;DEPLOYMENT_DIR&quot; parameter to plugin_sdk build_plugin command, see the command help for the details.</p>
+</div>
+<p>The plugin package is now available for upload to the server.</p>
+</div>
+<div class="section" id="upload-the-plugin">
+<h3>Upload the plugin<a class="headerlink" href="#upload-the-plugin" title="Permalink to this headline">¶</a></h3>
+<p>To upload the plugin, complete the wokrflow you started with downloading the SDK</p>
+<ol class="arabic simple">
+<li>Go to <strong>Settings &gt; Monitoring &gt; Monitored technologies</strong>.</li>
+<li>Click the <strong>Add new technology monitoring</strong> button.</li>
+<li>In the <strong>Monitor any technology</strong> section, click the <strong>Add OneAgent plugin</strong> button.</li>
+<li>You will see a high level overview of the steps required to develop your plugin, along with the <strong>Upload plugin</strong> button.</li>
+</ol>
+<img alt="_images/download_sdk.png" data-action="zoom" src="_images/download_sdk.png" />
+<p>The plugin should be uploaded and visible on the  <strong>Monitored technologies</strong> page.</p>
+<img alt="_images/demo_01_uploaded_plugin.png" data-action="zoom" src="_images/demo_01_uploaded_plugin.png" />
+<p>Alternatively, the <code class="docutils literal"><span class="pre">oneagent_upload_plugin</span></code> commandline tool may be used to perform the upload. To use this you must first acquire an authentication token.</p>
+<p>The token is generated via the Dynatrace web UI using the <strong>Generate key</strong> button, which is located next to the <strong>Upload plugin</strong> button on the <strong>Custom plugins</strong> tab (see above). The token may than be stored in a local file as an environment variable or passed directly to the upload tool:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">plugin_sdk</span> <span class="n">upload_plugin</span> <span class="o">-</span><span class="n">t</span> <span class="n">pEnLDvdMTA2lhJ_IUNC8U</span>
+</pre></div>
+</div>
+<p>If the upload is successful, you should see an output resembling this:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">Starting</span> <span class="n">new</span> <span class="n">HTTPS</span> <span class="n">connection</span> <span class="p">(</span><span class="mi">1</span><span class="p">):</span> <span class="n">demo</span><span class="o">.</span><span class="n">live</span><span class="o">.</span><span class="n">ruxit</span><span class="o">.</span><span class="n">com</span>
+<span class="n">plugin</span> <span class="n">has</span> <span class="n">been</span> <span class="n">uploaded</span> <span class="n">successfully</span>
+</pre></div>
+</div>
+<p>To learn more about the commandline upload, please type:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">plugin_sdk</span> <span class="n">upload_plugin</span> <span class="o">--</span><span class="n">help</span>
+</pre></div>
+</div>
+<p>If you prefer, you can build, and upload, using a single command providing that OneAgent is installed on the machine with Plugin SDK.
+Just type <code class="docutils literal"><span class="pre">plugin_sdk</span> <span class="pre">build_plugin</span></code>. This will build the plugin, and upload the plugin to server.</p>
+</div>
+<div class="section" id="deploy-the-plugin">
+<h3>Deploy the plugin<a class="headerlink" href="#deploy-the-plugin" title="Permalink to this headline">¶</a></h3>
+<p>In this tutorial we assume that OneAgent is running on the machine where we develop and build the plugin as well as the monitored technology is running on this host so this step may be skipped.</p>
+<p>In real-life scenarios we assume that the plugin development and building is prepared on a developer's machine and when the plugin is ready it has to be deployed to all production machines or at least the one where monitored technology is running.
+This is achieved by manual unpacking the built plugin zip file to <code class="docutils literal"><span class="pre">plugin_deployment</span></code> directory which is a sub-directory of OneAgent, depending on the operating system it's:</p>
+<ul class="simple">
+<li>/opt/dynatrace/oneagent/plugin_deployment - for Linux</li>
+<li>&quot;C:\Program Files (x86)\dynatrace\oneagent\plugin_deployment&quot; - for Windows</li>
+</ul>
+</div>
+<div class="section" id="verify-that-the-plugin-works">
+<h3>Verify that the plugin works<a class="headerlink" href="#verify-that-the-plugin-works" title="Permalink to this headline">¶</a></h3>
+<p>To verify that the plugin works, make sure that the demo_app is running. Navigate to the app's host details page (see below), find the host you're working on, and click the <code class="docutils literal"><span class="pre">plugin_sdk.demo_app</span></code> process.</p>
+<img alt="_images/demo_01_host.png" data-action="zoom" src="_images/demo_01_host.png" />
+<p>From there, click <strong>Further details</strong>.</p>
+<img alt="_images/demo_01_pgi.png" data-action="zoom" src="_images/demo_01_pgi.png" />
+<p>Here, you can see the metrics:</p>
+<img alt="_images/demo_01_plugin_metrics.png" data-action="zoom" src="_images/demo_01_plugin_metrics.png" />
+<p>Congratulations, you've written your first custom OneAgent plugin!
+If you ran into any issues, please consult <a class="reference internal" href="troubleshooting/index.html"><span class="doc">the troubleshooting guide</span></a>.</p>
+<p class="rubric">Next steps</p>
+<p>The capabilities of custom OneAgent plugins don't end with monitoring demo applications.
+To learn more, please explore these additional resources:</p>
+<ul class="simple">
+<li><a class="reference internal" href="extending_plugin/demo_plugin_conf.html"><span class="doc">Adding configuration to your plugin</span></a>.</li>
+<li><a class="reference internal" href="extending_plugin/error_handling.html"><span class="doc">Error handling for your plugin</span></a>.</li>
+<li><a class="reference internal" href="extending_plugin/demo_plugin_apps.html"><span class="doc">Monitoring multiple applications with your plugin</span></a>.</li>
+<li><a class="reference internal" href="plugin_simulator/index.html"><span class="doc">More information on plugin simulator</span></a></li>
+<li><a class="reference internal" href="api/plugin_json_apidoc.html"><span class="doc">More information on plugin.json files</span></a>.</li>
+<li><a class="reference internal" href="plugin_lifecycle/index.html"><span class="doc">Plugin lifecycle</span></a>.</li>
+<li><a class="reference internal" href="apidoc.html"><span class="doc">Technical documentation</span></a>.</li>
+</ul>
+</div>
+</div>
+</div>
+
+
+            </main>
+            
+
+    <nav role="navigation" id="toc">
+        <div class="sidebar-element">
+            <h3>On this page</h3>
+            <ul id="inline-toc" class="toc">
+                
+                    <li><a href="#set-up-your-environment">Set up your environment</a></li>
+                
+                    <li><a href="#prerequisites">Prerequisites</a></li>
+                
+                    <li><a href="#demo-application">Demo application</a></li>
+                
+                    <li><a href="#your-first-plugin">Your first plugin</a></li>
+                
+                    <li><a href="#plugin-simulator">Plugin simulator</a></li>
+                
+                    <li><a href="#run-the-plugin">Run the plugin</a></li>
+                
+                    <li><a href="#build-the-plugin">Build the plugin</a></li>
+                
+                    <li><a href="#upload-the-plugin">Upload the plugin</a></li>
+                
+                    <li><a href="#deploy-the-plugin">Deploy the plugin</a></li>
+                
+                    <li><a href="#verify-that-the-plugin-works">Verify that the plugin works</a></li>
+                
+            </ul>
+        </div>
+    </nav>
+
+        </div>
+    </article>
+</div>
+
+<footer class="footer">
+  <div class="footer__socials">
+    <h3>Join us on</h3>
+    <a href="https://www.facebook.com/Dynatrace/" class="footer__sociallink">
+      <svg viewBox="0 1 23 23">
+        <title>Facebook</title>
+        <path d="M9.6,20.1v-7.3H7.2V9.6h2.4V8.4c0-2.2,1.6-4.1,3.6-4.1h2.6v3.2h-2.6c-0.3,0-0.6,0.3-0.6,0.9v1.3 h3.2v3.2h-3.2v7.3H9.6z"></path>
+      </svg>
+    </a>
+    <a href="https://twitter.com/Dynatrace" class="footer__sociallink">
+      <svg viewBox="0 0 23 23">
+        <title>Twitter</title>
+        <path id="twitter" d="M14.4,5.6c1.3,0,2,0.4,2.6,1c0.6,0,1.3-0.4,1.7-0.6c0.1-0.1,0.3-0.2,0.4-0.2 C19,6.5,18.6,7,18.1,7.4c-0.1,0.1-0.2,0.2-0.4,0.3v0c0.7,0,1.3-0.3,1.9-0.5v0c-0.3,0.5-0.7,1-1.1,1.3c-0.2,0.1-0.3,0.3-0.5,0.4 c0,0.8,0,1.5-0.2,2.1c-0.8,3.8-3,6.3-6.5,7.4C10,18.8,8,19,6.6,18.6c-0.7-0.2-1.4-0.4-2-0.6c-0.3-0.1-0.6-0.3-0.9-0.5 c-0.1-0.1-0.2-0.1-0.3-0.2c0.3,0,0.7,0.1,1.1,0c0.3-0.1,0.7,0,1-0.1c0.8-0.2,1.4-0.4,2-0.7c0.3-0.2,0.7-0.4,0.9-0.6 c-0.4,0-0.7-0.1-1-0.2c-1.1-0.4-1.7-1.1-2.1-2.1c0.3,0,1.3,0.1,1.5-0.1c-0.4,0-0.8-0.3-1.1-0.4C4.7,12.6,4,11.7,4,10.2 c0.1,0.1,0.2,0.1,0.3,0.2c0.2,0.1,0.4,0.1,0.7,0.2c0.1,0,0.3,0.1,0.5,0c0,0,0,0,0,0c-0.2-0.2-0.4-0.3-0.6-0.5 c-0.6-0.7-1.1-1.8-0.7-3c0.1-0.3,0.2-0.6,0.4-0.9c0,0,0,0,0,0c0.1,0.1,0.2,0.2,0.3,0.3c0.3,0.4,0.6,0.7,1,1c1.2,1,2.3,1.5,4.1,2 c0.4,0.1,1,0.2,1.5,0.2c-0.2-0.4-0.1-1.1,0-1.6c0.3-1.1,0.9-1.8,1.9-2.2c0.2-0.1,0.5-0.2,0.7-0.2C14.2,5.6,14.3,5.6,14.4,5.6z"></path>
+      </svg>
+    </a>
+    <a href="https://www.linkedin.com/company/dynatrace" class="footer__sociallink">
+      <svg viewBox="0 2 23 23">
+        <title>Linkedin</title>
+        <path d="M7.5,19.1V9.8H4.4v9.4H7.5z M6,8.5c1.1,0,1.8-0.7,1.8-1.6 C7.7,6,7.1,5.3,6,5.3C4.9,5.3,4.2,6,4.2,6.9C4.2,7.8,4.9,8.5,6,8.5L6,8.5L6,8.5z"></path>
+        <path d="M9.3,19.1h3.1v-5.2c0-0.3,0-0.6,0.1-0.8 c0.2-0.6,0.7-1.1,1.6-1.1c1.1,0,1.6,0.9,1.6,2.1v5h3.1v-5.4c0-2.9-1.5-4.2-3.6-4.2c-1.7,0-2.4,0.9-2.8,1.6h0V9.8H9.3 C9.3,10.7,9.3,19.1,9.3,19.1L9.3,19.1z"></path>
+      </svg>
+    </a>
+    <a href="https://plus.google.com/+dynatrace/about" class="footer__sociallink">
+      <svg viewBox="0 0 23 23">
+        <title>Google+</title>
+        <path d="M2.9,11.2c0-2.8,2.6-5.3,5.5-5.2C9.7,6,11,6.6,12,7.4c-0.4,0.5-0.9,1-1.4,1.4C9.4,8,7.6,7.7,6.4,8.7
+		c-1.8,1.2-1.9,4.1-0.1,5.5c1.7,1.5,4.8,0.8,5.3-1.6c-1,0-2.1,0-3.1,0c0-0.6,0-1.2,0-1.9c1.7,0,3.5,0,5.2,0c0.1,1.5-0.1,3-1,4.2
+		c-1.4,1.9-4.1,2.5-6.2,1.7C4.2,15.8,2.7,13.5,2.9,11.2z"></path> <path d="M17,9.1c0.5,0,1,0,1.6,0c0,0.5,0,1,0,1.6c0.5,0,1,0,1.6,0c0,0.5,0,1,0,1.6c-0.5,0-1,0-1.6,0c0,0.5,0,1,0,1.6
+		c-0.5,0-1,0-1.6,0c0-0.5,0-1,0-1.6c-0.5,0-1,0-1.6,0c0-0.5,0-1,0-1.6c0.5,0,1,0,1.6,0C17,10.2,17,9.7,17,9.1z"></path>
+      </svg>
+    </a>
+  </div>
+</footer>
+<script src="_static/js/main.js"></script>
+<script type="text/javascript">
+    var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:'',
+        VERSION:'1.221.112.20210715.143702',
+        COLLAPSE_INDEX:false,
+        FILE_SUFFIX:'.html',
+        HAS_SOURCE: true
+    };
+</script>
+  <script type="text/javascript" src="_static/jquery.js"></script>
+  <script type="text/javascript" src="_static/underscore.js"></script>
+  <script type="text/javascript" src="_static/doctools.js"></script>
+
+<script src="_static/js/ext.js"></script>
+
+<script type="text/javascript">
+  var ruxitFont = ruxitFont || {};
+
+  ruxitFont.cache = (function(s, xhr) {
+
+    var cssPath = '_static/css/fonts.css';
+
+    if (s.getItem(ruxitFont.storeKey) === null) {
+      var http = new xhr();
+        http.open('GET', cssPath);
+      http.send();
+      http.onload = function() {
+        ruxitFont.addStyles(this.responseText);
+        s.setItem(ruxitFont.storeKey, this.responseText);
+      }
+    } else {
+      ruxitFont.addStyles(s.getItem(ruxitFont.storeKey));
+    }
+
+  })(window.localStorage, XMLHttpRequest);
+</script> 
+
+</body>
+
+</html>

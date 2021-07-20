@@ -1,0 +1,86 @@
+{
+    "version": "1.1",
+    "name": "custom.python.custom_mongo_extension",
+    "type": "python",
+    "entity": "PROCESS_GROUP_INSTANCE",
+    "processTypeNames": ["UNKNOWN", "MONGODB"],
+    "metricGroup": "tech.MongoDB.CustomExtension",
+    "source": {
+        "package": "custom_mongo_extension",
+        "className": "CustomMongoExtension",
+        "install_requires": [
+          "requests>=2.6.0"
+        ],
+        "activation": "Singleton"
+      },
+    "ui": {
+      "keyMetrics": [
+        {
+          "key": "current_connections",
+          "displayname": "Connections",
+          "mergeaggregation" : "sum"
+        }
+      ],
+      "keycharts": [
+        {
+          "title" : "Current connections",
+          "group" : "MongoDB metrics",
+          "series" : [
+            {
+              "key" : "current_connections",
+              "displayname" : "Connections",
+              "seriestype" : "bar",
+              "unit" : "Count"
+            }
+          ]
+        }
+      ]
+    },
+    "configUI" :{
+      "displayName": "CustomMongoExtension",
+      "properties" : [
+        { "key" : "auth_user", "displayName": "User", "displayOrder": 1 },
+        { "key" : "auth_password", "displayName": "Password", "displayOrder": 2 },
+        { "key" : "port", "displayName": "Port", "displayOrder": 3 },
+        { "key" : "auth_db", "displayName": "Authentication Database", "displayOrder": 4, "displayHint": "Leave empty for default" },
+        { "key" : "profile", "displayName": "Monitoring Profile", "displayOrder": 5, "displayHint": "Number of metrics, Basic: 9, Standard: 16, Advanced: 29" }
+      ]
+    },
+    "properties" : [
+      {
+        "key" : "port",
+        "type" :  "String",
+        "defaultValue" : "27017"
+      },
+      {
+        "key" : "auth_user",
+        "type" :  "String",
+        "defaultValue" : "d1pacmworkshop"
+      },
+      {
+        "key" : "auth_password",
+        "type" :  "Password",
+        "defaultValue" : "dynatrace"
+      },
+      {
+        "key" : "auth_db",
+        "type": "String",
+        "defaultValue":  ""
+      },
+      {
+        "key" : "profile",
+        "type": "Dropdown",
+        "dropdownValues":  ["Basic", "Standard", "Advanced"],
+        "defaultValue": "Basic"
+      }
+    ],
+    "metrics": [
+      {
+        "timeseries": {
+          "key": "current_connections",
+          "unit": "Count",
+          "displayname" : "Current connections"
+        }
+      }
+    ]
+  }

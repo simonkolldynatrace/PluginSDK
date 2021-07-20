@@ -1,0 +1,48 @@
+Alerting
+========
+
+One of the key features of Dynatrace is its ability to detect and analyze performance issues before your customers are affected by them. This is achieved by a system of smart alerting,
+which allows you to find the root cause of performance issues even in complex environments. In order to take advantage of this functionality, your plugin may specify
+alerts, which will be generated when unexpected behavior is detected within monitored processes.
+
+For any timeseries reported by your plugin, it's possible to define criteria for multiple alert types.  To do this, the ``alert_settings`` section must
+be added to your plugin metrics definition. Provided below is a sample plugin.json definition. Please note, that no changes in the plugin code itself are required.
+
+.. code-block:: json
+
+	{
+		"metrics": [
+			{
+				"metricKey": "counter",
+				"alertSettings": [
+					{
+						"alertId": "counter_alert_high",
+						"eventType": "PGI_CUSTOM_PERFORMANCE",
+						"eventName": "Enormous counter rate",
+						"threshold": 10.0,
+						"alertCondition": "ABOVE",
+						"samples": 5,
+						"violatingSamples": 3,
+						"deAlertingSamples": 5
+					},
+					{
+						"alertId": "counter_alert_low",
+						"eventType": "PGI_CUSTOM_ERROR",
+						"eventName": "Low counter rate",
+						"threshold": 1.0,
+						"alertCondition": "BELOW",
+						"samples": 5,
+						"violatingSamples": 5,
+						"deAlertingSamples": 3
+					}
+				]
+			}
+		]
+	}
+
+
+Please refer to :doc:`plugin.json reference </api/plugin_json_apidoc>` to find details about configuring alerts.
+
+Once the definition is provided, the alert activation, as well as deactivation, is automatically handled by Dynatrace Cluster Node. When an alert is displayed, you'll see detailed information about the problem and affected components on the corresponding **Problem** page:
+
+.. image:: /images/demo_04_high_alert.png

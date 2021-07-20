@@ -1,0 +1,274 @@
+{
+  "name": "custom.python.demo_plugin_ui",
+  "version": "1.7",
+  "type": "python",
+  "requiredAgentVersion": "1.90",
+  "entity": "PROCESS_GROUP_INSTANCE",
+  "metricGroup": "demo_metrics.ui",
+  "technologies": ["PYTHON"],
+  "source": {
+    "package": "demo_plugin_ui",
+    "className": "DemoPlugin",
+    "install_requires": ["requests>=2.6.0"],
+    "activation": "Singleton"
+  },
+  "configUI": {
+    "displayName": "OneAgent Demo UI Extension"
+  },
+  "metrics": [
+    {
+      "timeseries": {
+        "key": "random",
+        "unit": "Count",
+	"displayname": "Random Value"
+      }
+    },
+    {
+      "timeseries": {
+        "key": "counter",
+        "unit": "Count",
+	"displayname": "Counter Value"
+
+      }
+    },
+    {
+      "timeseries": {
+        "key": "randbar_red",
+        "unit": "Count",
+	"displayname": "Random Red Value"
+      }
+    },
+    {
+      "timeseries": {
+        "key": "randbar_yellow",
+        "unit": "Count",
+	"displayname": "Random Yellow  Value"
+      }
+    },
+    {
+      "timeseries": {
+        "key": "randbar_green",
+        "unit": "Count",
+	"displayname": "Random Green Value"
+      }
+    },
+    {
+      "timeseries": {
+        "key": "rand_stacked1",
+        "unit": "PerSecond",
+	"displayname": "Random Stacked Value"
+
+      }
+    },
+    {
+      "timeseries": {
+        "key": "rand_stacked2",
+        "unit": "PerSecond",
+	"displayname": "Random Stacked 2 Value"
+
+      }
+    },
+    {
+      "timeseries": {
+        "key": "rand_stacked3",
+        "unit": "PerSecond",
+	"displayname": "Random Stacked 3 Value"
+
+      }
+    },
+    {
+      "timeseries": {
+        "key": "sin_small_noise",
+        "unit": "Count",
+	 "displayname": "Sinus Small  Noise"
+
+      }
+    },
+    {
+      "timeseries": {
+        "key": "sin_big_noise",
+        "unit": "Count",
+	"displayname": "Sinus Big Noise"
+
+      }
+    },
+    {
+      "timeseries": {
+        "key": "sin_rounded",
+        "unit": "Count",
+	"displayname": "Sinus Rounded"
+      }
+    }
+  ],
+  "ui": {
+    "keymetrics": [
+      {
+      "key": "rand_stacked3",
+      "aggregation": "count",
+      "displayname": "Stacked rand"
+      },
+      {
+      "key": "sin_rounded",
+      "aggregation": "count",
+      "displayname": "Sinus rounded"
+      }
+    ],
+    "keycharts": [
+      {
+      "group": "Bars",
+      "title": "Color bars",
+      "description": "There are traffic lights there",
+      "series": [
+        {
+        "key": "randbar_red",
+        "aggregation": "avg",
+        "displayname": "red light",
+        "color": "rgb(255, 0, 0)",
+        "seriestype": "bar",
+        "stacked": true
+        },
+        {
+        "key": "randbar_yellow",
+        "aggregation": "avg",
+        "displayname": "yellow light",
+        "color": "rgb(255, 255, 0)",
+        "seriestype": "bar",
+        "stacked": true
+        },
+        {
+        "key": "randbar_green",
+        "aggregation": "avg",
+        "displayname": "green light",
+        "color": "rgb(0, 255, 0)",
+        "seriestype": "bar",
+        "stacked": true
+        }
+      ]
+      }
+    ],
+    "charts": [
+      {
+      "group": "Bars",
+      "title": "Simple color bars",
+      "description": "Just color bars",
+      "series": [
+        {
+        "key": "randbar_red",
+        "aggregation": "avg",
+        "displayname": "red light",
+        "color": "rgb(255, 0, 0)",
+        "seriestype": "bar"
+        },
+        {
+        "key": "randbar_yellow",
+        "aggregation": "avg",
+        "displayname": "yellow light",
+        "color": "rgb(255, 255, 0)",
+        "seriestype": "bar"
+        },
+        {
+        "key": "randbar_green",
+        "aggregation": "avg",
+        "displayname": "green light",
+        "color": "rgb(0, 255, 0)",
+        "seriestype": "bar"
+        }
+      ]
+      },
+      {
+      "group": "Area chars",
+      "title": "Area stacked",
+      "description": "Just 3 stacked areas",
+      "series": [
+        {
+        "key": "rand_stacked1",
+        "aggregation": "avg",
+        "displayname": "RND1",
+        "color": "rgb(0, 0, 255)",
+        "seriestype": "area",
+        "stacked": true
+        },
+        {
+        "key": "rand_stacked2",
+        "aggregation": "avg",
+        "displayname": "RND2",
+        "color": "rgb(0, 0, 128)",
+        "seriestype": "area",
+        "stacked": true
+        },
+        {
+        "key": "rand_stacked3",
+        "aggregation": "avg",
+        "displayname": "RND3",
+        "color": "rgb(0, 0, 32)",
+        "seriestype": "area",
+        "stacked": true
+        }
+      ]
+      },
+      {
+      "group": "Area chars",
+      "title": "Area unit",
+      "description": "Area with other unit",
+      "series": [
+        {
+        "key": "rand_stacked3",
+        "aggregation": "avg",
+        "displayname": "RND3",
+        "seriestype": "area",
+        "unit": "PerMinute"
+        }
+      ]
+      },
+      {
+      "group": "Sinuses",
+      "title": "3 Sin",
+      "description": "Right axis",
+      "series": [
+        {
+        "key": "sin_small_noise",
+        "aggregation": "avg",
+        "displayname": "Small Noise",
+        "color": "rgba(255, 0, 0, 1)",
+        "seriestype": "line"
+        },
+        {
+        "key": "sin_big_noise",
+        "aggregation": "avg",
+        "displayname": "Big Noise",
+        "color": "rgba(0, 0, 255, 0.7)",
+        "seriestype": "area"
+        },
+        {
+        "key": "sin_rounded",
+        "aggregation": "avg",
+        "displayname": "Rounded",
+        "color": "rgba(0, 128, 0, 0.4)",
+        "seriestype": "bar",
+        "rightaxis": true
+        }
+      ]
+      },
+      {
+      "group": "Simple metrics",
+      "title": "Random and counter",
+      "description": "Metrics from base application",
+      "series": [
+        {
+        "key": "random",
+        "aggregation": "avg",
+        "displayname": "Random",
+        "seriestype": "line"
+        },
+        {
+        "key": "counter",
+        "aggregation": "avg",
+        "displayname": "Counter",
+        "seriestype": "line",
+        "rightaxis": true
+        }
+      ]
+      }
+    ]
+  }
+}

@@ -1,0 +1,4 @@
+.. automodule:: ruxit_postgresql
+    :members:
+    :undoc-members:
+    :show-inheritance:

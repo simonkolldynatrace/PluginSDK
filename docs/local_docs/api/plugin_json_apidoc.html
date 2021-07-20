@@ -1,0 +1,1063 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Plugin.json reference</title>
+  
+
+  <link rel="stylesheet" href="../_static/css/main.css">
+  <link rel="stylesheet" href="../_static/css/ext.css">
+  <link rel="stylesheet" href="../_static/css/fonts.css">
+
+  <script>document.documentElement.className += ' js';</script>
+  <script type="text/javascript">
+    var ruxitFont = ruxitFont || {};
+    ruxitFont.storeKey = 'fcache';
+
+    ruxitFont.addStyles = function addStyles(fonts) {
+      if(document.getElementById('font-css') !== null) {
+        return;
+      }
+      var scriptElem = document.getElementsByTagName('script')[0];
+      var styleTag = document.createElement('style');
+      styleTag.id = 'font-css';
+      styleTag.setAttribute('type', 'text/css');
+      styleTag.innerHTML = fonts;
+      scriptElem.parentNode.insertBefore(styleTag, scriptElem);
+    }
+
+    if (localStorage.getItem(ruxitFont.storeKey) !== null) {
+      ruxitFont.addStyles(localStorage.getItem(ruxitFont.storeKey));
+    }
+  </script>
+</head>
+
+<body>
+
+<header class="header header-alt">
+  <a class="header-brand-link" href="https://help.dynatrace.com/">
+
+      <img src="../_static/images/logos/dynatrace-logo.svg" alt="Dynatrace" class="header-brand-logo svgLogo" height="36">
+  </a>
+  <div class="header-nav-right">
+    <a class="btn btn--navigation nav__cta" href="https://www.dynatrace.com/trial/">Free trial</a>
+  </div>
+  <nav id="oc-nav" class="menubar">
+    <div class="menubar-nav">
+      <ul class="menubar-list">
+
+
+
+          <li class="menubar-listitem menu-level-0"><a title="Help" href="https://help.dynatrace.com/">Help</a></li>
+          <li class="menubar-listitem menu-level-0"><a title="Answers" href="https://answers.ruxit.com/">Answers</a>
+          </li>
+          <li class="menubar-listitem menu-level-0"><a title="Support" href="https://support.ruxit.com/">Support</a>
+          </li>
+
+        <li class="menubar-listitem menu-level-0">
+          <svg class="icon-defs" xmlns="http://www.w3.org/2000/svg"> <defs> <g id="search_magnifyingglass"> <path d="M200.759,104.318c25.76,0,49.979,10.032,68.194,28.248c37.6,37.604,37.6,98.785,0,136.385
+c-18.216,18.216-42.434,28.248-68.194,28.248c-25.76,0-49.978-10.032-68.194-28.248c-18.216-18.212-28.245-42.431-28.245-68.19
+s10.029-49.979,28.245-68.194C150.781,114.351,174.999,104.318,200.759,104.318 M200.759,66
+c-34.486,0-68.973,13.157-95.286,39.475c-52.628,52.623-52.628,137.948,0,190.572c26.31,26.314,60.796,39.471,95.286,39.471
+c34.486,0,68.973-13.156,95.287-39.471c52.627-52.627,52.627-137.949,0-190.572C269.731,79.157,235.245,66,200.759,66L200.759,66z"></path> <path d="M443.765,411.84c2.979,2.979,2.979,7.858,0,10.837l-21.083,21.09c-2.979,2.979-7.854,2.979-10.837,0
+l-106.699-106.7c-2.979-2.979-2.979-7.857,0-10.836l21.086-21.087c2.982-2.979,7.854-2.979,10.837,0L443.765,411.84z"></path> </g> </defs> </svg>
+
+
+
+
+
+
+
+
+
+          <form autocomplete="off" id="search" action="../search.html" method="GET">
+            <input id="search-input" class="search-input" type="input" name="q" placeholder="Search for..." value="">
+            <label for="search-input" aria-label="Search">
+              <svg class="search-icon" viewBox="0 0 512 512">
+                <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#search_magnifyingglass"></use>
+              </svg>
+            </label>
+            <input type="hidden" name="check_keywords" value="yes" />
+            <input type="hidden" name="area" value="default" />
+          </form>
+        </li>
+      </ul>
+    </div>
+  </nav>
+</header>
+<ul class="breadcrumbs">
+    <li><a href="../index.html">Docs</a></li>
+      
+          <li><a href="../apidoc.html">Reference</a></li>
+      
+    <li><span>Plugin.json reference</span></li>
+</ul>
+
+<div class="main-area">
+    <nav class="sidebar">
+    
+        <h1 class="headline">
+            <a href="../index.html"> Plugin SDK </a>
+            <div class="sidebar__info">version: 1.221</div>
+        </h1>
+    
+
+    
+    
+    
+        
+            
+        
+        <a class="sidebar__item" href="../readme.html">
+            <span class="sidebar__headline">Write your first OneAgent plugin</span>
+        </a>
+    
+        
+            
+        
+        <a class="sidebar__item" href="../extending_plugin/index.html">
+            <span class="sidebar__headline">Extend your plugin</span>
+        </a>
+    
+        
+            
+        
+        <a class="sidebar__item" href="../deploying_extension/index.html">
+            <span class="sidebar__headline">Deploy your plugin</span>
+        </a>
+    
+        
+            
+        
+        <a class="sidebar__item" href="../troubleshooting/index.html">
+            <span class="sidebar__headline">Troubleshooting</span>
+        </a>
+    
+        
+            
+        
+        <a class="sidebar__item" href="../plugin_lifecycle/index.html">
+            <span class="sidebar__headline">Plugin life cycle</span>
+        </a>
+    
+        
+            
+        
+        <a class="sidebar__item sidebar__item--active" href="../apidoc.html">
+            <span class="sidebar__headline">Reference</span>
+        </a>
+    
+        
+            
+        
+        <a class="sidebar__item" href="../plugins/index.html">
+            <span class="sidebar__headline">Plugin reference</span>
+        </a>
+    
+        
+            
+        
+        <a class="sidebar__item" href="remote_python_apidoc.html">
+            <span class="sidebar__headline">ActiveGate Plugins API Reference</span>
+        </a>
+    
+        
+            
+        
+        <a class="sidebar__item" href="index.html">
+            <span class="sidebar__headline">Index</span>
+        </a>
+    
+</nav>
+    <article id="content" class="wrapper cf">
+        <div class="content-area content">
+            <main role="main">
+                
+  <div class="section" id="plugin-json-reference">
+<h1>Plugin.json reference<a class="headerlink" href="#plugin-json-reference" title="Permalink to this headline">¶</a></h1>
+<p>Plugin.json consists of 4 main elements: metadata, metrics, visualization, and configuration. The basic format is as follows:</p>
+<div class="highlight-json"><div class="highlight"><pre><span></span><span class="p">{</span>
+    <span class="nt">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;custom.python.demo_plugin&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;version&quot;</span><span class="p">:</span> <span class="s2">&quot;1.000&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;python&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;requiredAgentVersion&quot;</span><span class="p">:</span> <span class="s2">&quot;1.90&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;entity&quot;</span><span class="p">:</span> <span class="s2">&quot;PROCESS_GROUP_INSTANCE&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;technologies&quot;</span> <span class="p">:</span> <span class="p">[</span>
+        <span class="s2">&quot;PYTHON&quot;</span>
+    <span class="p">],</span>
+    <span class="nt">&quot;source&quot;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="nt">&quot;package&quot;</span><span class="p">:</span> <span class="s2">&quot;demo_plugin&quot;</span><span class="p">,</span>
+        <span class="nt">&quot;className&quot;</span><span class="p">:</span> <span class="s2">&quot;DemoPlugin&quot;</span><span class="p">,</span>
+        <span class="nt">&quot;install_requires&quot;</span><span class="p">:</span> <span class="p">[</span>
+            <span class="s2">&quot;requests&gt;=2.6.0&quot;</span>
+        <span class="p">],</span>
+        <span class="nt">&quot;activation&quot;</span><span class="p">:</span> <span class="s2">&quot;Singleton&quot;</span>
+    <span class="p">},</span>
+    <span class="nt">&quot;metricGroup&quot;</span><span class="p">:</span> <span class="s2">&quot;My_Metrics.plugins&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;metrics&quot;</span><span class="p">:</span> <span class="p">[</span>
+        <span class="p">{</span>
+            <span class="nt">&quot;timeseries&quot;</span><span class="p">:</span> <span class="p">{</span>
+                <span class="nt">&quot;key&quot;</span><span class="p">:</span> <span class="s2">&quot;random&quot;</span><span class="p">,</span>
+                <span class="nt">&quot;unit&quot;</span><span class="p">:</span> <span class="s2">&quot;Count&quot;</span><span class="p">,</span>
+                <span class="nt">&quot;displayname&quot;</span><span class="p">:</span><span class="s2">&quot;.NET GC time&quot;</span>
+            <span class="p">}</span>
+        <span class="p">},</span>
+        <span class="p">{</span>
+            <span class="nt">&quot;timeseries&quot;</span><span class="p">:</span> <span class="p">{</span>
+                <span class="nt">&quot;key&quot;</span><span class="p">:</span> <span class="s2">&quot;counter&quot;</span><span class="p">,</span>
+                <span class="nt">&quot;unit&quot;</span><span class="p">:</span> <span class="s2">&quot;Count&quot;</span><span class="p">,</span>
+                <span class="nt">&quot;displayname&quot;</span><span class="p">:</span><span class="s2">&quot;Counter Value&quot;</span>
+            <span class="p">},</span>
+            <span class="nt">&quot;alert_settings&quot;</span><span class="p">:</span> <span class="p">[</span>
+                <span class="p">{</span>
+                            <span class="nt">&quot;alert_id&quot;</span><span class="p">:</span> <span class="s2">&quot;custom_gc_alert_high&quot;</span><span class="p">,</span>
+                            <span class="nt">&quot;event_type&quot;</span><span class="p">:</span> <span class="s2">&quot;PERFORMANCE_EVENT&quot;</span><span class="p">,</span>
+                            <span class="nt">&quot;event_name&quot;</span><span class="p">:</span> <span class="s2">&quot;High GC time&quot;</span><span class="p">,</span>
+                            <span class="nt">&quot;description&quot;</span><span class="p">:</span> <span class="s2">&quot;The {metricname} of {severity} is {alert_condition} the threshold of {threshold}&quot;</span><span class="p">,</span>
+                            <span class="nt">&quot;threshold&quot;</span><span class="p">:</span> <span class="mf">35.0</span><span class="p">,</span>
+                            <span class="nt">&quot;alert_condition&quot;</span><span class="p">:</span> <span class="s2">&quot;ABOVE&quot;</span><span class="p">,</span>
+                            <span class="nt">&quot;samples&quot;</span><span class="p">:</span><span class="mi">5</span><span class="p">,</span>
+                            <span class="nt">&quot;violating_samples&quot;</span><span class="p">:</span><span class="mi">3</span><span class="p">,</span>
+                            <span class="nt">&quot;dealerting_samples&quot;</span><span class="p">:</span><span class="mi">5</span>
+                                    <span class="p">}</span>
+            <span class="p">]</span>
+        <span class="p">}</span>
+    <span class="p">],</span>
+    <span class="nt">&quot;ui&quot;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="nt">&quot;keymetrics&quot;</span><span class="p">:</span> <span class="p">[],</span>
+        <span class="nt">&quot;keycharts&quot;</span><span class="p">:</span> <span class="p">[],</span>
+        <span class="nt">&quot;charts&quot;</span><span class="p">:</span> <span class="p">[]</span>
+    <span class="p">},</span>
+    <span class="nt">&quot;configUI&quot;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="nt">&quot;displayName&quot;</span><span class="p">:</span> <span class="s2">&quot;DemoPlugin&quot;</span><span class="p">,</span>
+        <span class="nt">&quot;properties&quot;</span><span class="p">:</span> <span class="p">[]</span>
+    <span class="p">},</span>
+    <span class="nt">&quot;properties&quot;</span><span class="p">:</span> <span class="p">[]</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<div class="section" id="metadata">
+<h2>Metadata<a class="headerlink" href="#metadata" title="Permalink to this headline">¶</a></h2>
+<p>Each plugin has the following properties:</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="22%" />
+<col width="9%" />
+<col width="12%" />
+<col width="58%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Field</th>
+<th class="head">Type</th>
+<th class="head">Mandatory</th>
+<th class="head">Description</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>version</td>
+<td>String</td>
+<td>Yes</td>
+<td>The plugin version in format &quot;d.d+(.d+)?&quot;, must be
+updated whenever the plugin definition is updated.</td>
+</tr>
+<tr class="row-odd"><td>name</td>
+<td>String</td>
+<td>Yes</td>
+<td>A unique plugin name in Java package format.
+Custom plugins should follow  custom.&quot;jmx&quot;|&quot;python&quot;|
+pmi&quot;.&quot;a&quot;..&quot;z&quot;|&quot;A&quot;..&quot;Z&quot;|&quot;0&quot;..&quot;9&quot;|&quot;_&quot; | &quot;-&quot; rule.
+For example custom.python.MyNewPlugin_Ver1
+or custom.jmx.azNewA-Ver2</td>
+</tr>
+<tr class="row-even"><td>experimentalMinVersion
+productiveMinVersion</td>
+<td>String</td>
+<td>No</td>
+<td>Those fields are used internally for build-in plugin
+releases and should not be used in custom plugins.</td>
+</tr>
+<tr class="row-odd"><td>type</td>
+<td>String</td>
+<td>Yes</td>
+<td>Possible values: &quot;python&quot; for python custom plugins data
+collection, &quot;JMX&quot; for collecting data from Java Mbeans.</td>
+</tr>
+<tr class="row-even"><td>requiredAgentVersion</td>
+<td>String</td>
+<td>No</td>
+<td>Used to mark plugins that require a minimum OneAgent
+version. This should be used when new APIs
+are introduced in OneAgent.</td>
+</tr>
+<tr class="row-odd"><td>entity</td>
+<td>String</td>
+<td>Yes</td>
+<td>Entity type used in plugin activation rules and default
+assignment of metrics. Use &quot;PROCESS_GROUP_INSTANCE&quot;.</td>
+</tr>
+<tr class="row-even"><td>metricGroup</td>
+<td>String</td>
+<td>Yes</td>
+<td>Metric group is used for grouping custom metrics
+into a hierarchical namespace where different sources,
+for example multiple plugins can contribute. Moreover,
+metric group becomes primary part of metric key.
+Hence once defined it could not be changed. Allowed
+characters are: &quot;a&quot;..&quot;z&quot;|&quot;A&quot;..&quot;Z&quot;|&quot;0&quot;..&quot;9&quot;|&quot;_&quot;|&quot;-&quot;|&quot;.&quot;.
+To add metrics to &quot;Technology&quot; group use prefix &quot;tech.&quot;
+and technology group as defined in the:
+<a class="reference internal" href="metric_groups.html"><span class="doc">technologies group table.</span></a>
+It is also possible to create own entry, for example:
+&quot;My_Metrics.plugins&quot;</td>
+</tr>
+<tr class="row-odd"><td>processTypeNames</td>
+<td>String
+Array</td>
+<td rowspan="3">Need one</td>
+<td>Type of process that plugin monitors,
+as defined in process type name of the
+<a class="reference internal" href="known_process.html"><span class="doc">known process types table.</span></a>
+The method is kept for compatibility,
+we recommend to use improved &quot;technologies&quot; instead.</td>
+</tr>
+<tr class="row-even"><td>processTypes</td>
+<td>Integer
+Array</td>
+<td>Type of process that plugin monitors,
+as defined in the ID column of the
+<a class="reference internal" href="known_process.html"><span class="doc">known process types table.</span></a>
+This serves as an alternative to processTypeNames.
+The method is kept for compatibility,
+we recommend to use improved &quot;technologies&quot; instead.</td>
+</tr>
+<tr class="row-odd"><td>technologies</td>
+<td>String
+Array</td>
+<td>Type of technology that plugin monitors,
+as defined in the
+<a class="reference internal" href="known_technologies.html"><span class="doc">known technologies table</span></a>.</td>
+</tr>
+</tbody>
+</table>
+<p>If both technologies and processTypeNames/processType fields are set they all must match for a plugin to activate.
+Technologies can viewed on Technology overview page:</p>
+<img alt="../_images/TechnologyOverview.png" data-action="zoom" src="../_images/TechnologyOverview.png" />
+<p>The preffered way of using Metric Group is adding prefix &quot;tech&quot; before your metric group definition.
+For example &quot;tech.elasticsearch&quot;. Thanks to this other users will be able to find additional metrics
+alnogside with others in contex of technology like in this example on Custom Charts page:</p>
+<img alt="../_images/CustomChartsMetricGroupTechnology.png" data-action="zoom" src="../_images/CustomChartsMetricGroupTechnology.png" />
+<p>MetricGroup field can be also used to create completely new entry. Note that you can use dots to create subgroups,
+like here in example &quot;My_Metrics.plugins&quot;:</p>
+<img alt="../_images/CustomChartsMetricGroupNewEntry.png" data-action="zoom" src="../_images/CustomChartsMetricGroupNewEntry.png" />
+<p>However, setting metricGroup field it is not needed for already exisiting and running plugins without it.
+In this case metricGroup will be set to be the same as plugin name automatically not to break continuity of your data.</p>
+<p>Source section:</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="20%" />
+<col width="7%" />
+<col width="13%" />
+<col width="60%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Field</th>
+<th class="head">Type</th>
+<th class="head">Mandatory Field</th>
+<th class="head">Description</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>package</td>
+<td>String</td>
+<td>Yes</td>
+<td>Package name which will be imported and executed by OneAgent.</td>
+</tr>
+<tr class="row-odd"><td>className</td>
+<td>String</td>
+<td>Yes</td>
+<td>Name of the plugin's main Python class. Must inherit from
+<a class="reference internal" href="../_apidoc/ruxit.api.html#ruxit.api.base_plugin.BasePlugin" title="ruxit.api.base_plugin.BasePlugin"><code class="xref py py-class docutils literal"><span class="pre">BasePlugin</span></code></a>.</td>
+</tr>
+<tr class="row-even"><td>install_requires</td>
+<td>String
+Array</td>
+<td>&nbsp;</td>
+<td>Relates to Python packaging,
+see: <a class="reference external" href="https://docs.python.org/3.6/distutils/setupscript.html">https://docs.python.org/3.6/distutils/setupscript.html</a>.</td>
+</tr>
+<tr class="row-odd"><td>packages</td>
+<td>String
+Array</td>
+<td>&nbsp;</td>
+<td>Relates to Python packaging,
+see: <a class="reference external" href="https://docs.python.org/3.6/distutils/setupscript.html">https://docs.python.org/3.6/distutils/setupscript.html</a>.</td>
+</tr>
+<tr class="row-even"><td>package_data</td>
+<td>String
+Array</td>
+<td>&nbsp;</td>
+<td>Relates to Python packaging,
+see: <a class="reference external" href="https://docs.python.org/3.6/distutils/setupscript.html">https://docs.python.org/3.6/distutils/setupscript.html</a>.</td>
+</tr>
+<tr class="row-odd"><td>modules</td>
+<td>String
+Array</td>
+<td>&nbsp;</td>
+<td>Relates to Python packaging, see py_modules in:
+<a class="reference external" href="https://docs.python.org/3.6/distutils/setupscript.html">https://docs.python.org/3.6/distutils/setupscript.html</a>.</td>
+</tr>
+<tr class="row-even"><td>activation</td>
+<td>String</td>
+<td>&nbsp;</td>
+<td>An additional parameter that controls the plugin activation process,
+possible values: 'Singleton' or 'SnapshotEntry'.
+Singleton means that only one plugin class instance will be created,
+no matter how many process groups of a given type are detected on
+the system. SnapshotEntry means that one plugin class instance
+will be created for each detected process group of a given type.
+If activation is not define 'SnapshotEntry' will be used.</td>
+</tr>
+<tr class="row-odd"><td>activation_name_pattern</td>
+<td>String</td>
+<td>&nbsp;</td>
+<td>Python regular expression pattern for matching process group name:
+<a class="reference external" href="https://docs.python.org/3.6/library/re.html#regular-expression-syntax">https://docs.python.org/3.6/library/re.html#regular-expression-syntax</a>.</td>
+</tr>
+</tbody>
+</table>
+<p>If activation_name_pattern is defined the pattern has to match Process Group name to activate plugin. Process Group Names
+is visible on Technology overview page:</p>
+<img alt="../_images/TechnologyPGNames.PNG" data-action="zoom" src="../_images/TechnologyPGNames.PNG" />
+</div>
+<div class="section" id="metrics">
+<h2>Metrics<a class="headerlink" href="#metrics" title="Permalink to this headline">¶</a></h2>
+<p>This part of the JSON defines which metrics are collected by the plugin. Each metric is defined by JSON in a format similar to the following:</p>
+<div class="highlight-json"><div class="highlight"><pre><span></span><span class="p">{</span>
+        <span class="nt">&quot;metrics&quot;</span><span class="p">:</span> <span class="p">[</span>
+                <span class="p">{</span>
+                        <span class="nt">&quot;entity&quot;</span><span class="p">:</span> <span class="s2">&quot;PROCESS_GROUP_INSTANCE&quot;</span><span class="p">,</span>
+                        <span class="nt">&quot;timeseries&quot;</span><span class="p">:</span> <span class="p">{</span>
+                                <span class="nt">&quot;key&quot;</span><span class="p">:</span> <span class="s2">&quot;idx_tup_fetch&quot;</span><span class="p">,</span>
+                                <span class="nt">&quot;unit&quot;</span><span class="p">:</span> <span class="s2">&quot;PerSecond&quot;</span><span class="p">,</span>
+                                <span class="nt">&quot;aggregation&quot;</span><span class="p">:</span> <span class="s2">&quot;avg&quot;</span><span class="p">,</span>
+                                <span class="nt">&quot;dimensions&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;database&quot;</span><span class="p">],</span>
+                                <span class="nt">&quot;displayname&quot;</span><span class="p">:</span><span class="s2">&quot;Fetch&quot;</span>
+                        <span class="p">},</span>
+                        <span class="nt">&quot;source&quot;</span><span class="p">:</span> <span class="p">{</span>
+                                <span class="nt">&quot;query&quot;</span><span class="p">:</span> <span class="s2">&quot;db_stats[&#39;objects&#39;]&quot;</span>
+                        <span class="p">}</span>
+                <span class="p">}</span>
+        <span class="p">]</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>This part specifies the metadata of a metric:</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="11%" />
+<col width="8%" />
+<col width="82%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Field</th>
+<th class="head">Type</th>
+<th class="head">Description</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>entity</td>
+<td>String</td>
+<td>Entity type metrics should be associated with. Inherited from plugin metadata if
+not provided here.</td>
+</tr>
+<tr class="row-odd"><td>timeseries</td>
+<td>Object</td>
+<td>Specification for metric timeseries. See chart below.</td>
+</tr>
+<tr class="row-even"><td>source</td>
+<td>&nbsp;</td>
+<td>Can be used to specify any valid JSON structure, to be processed by the Plugin.
+See <a class="reference internal" href="../plugins/ruxit_mssql.html"><span class="doc">MSSQL</span></a> or <a class="reference internal" href="../plugins/ruxit_mongodb.html"><span class="doc">MongoDB</span></a>
+plugins for sample usage.</td>
+</tr>
+</tbody>
+</table>
+<p>Specification for metric timeseries is defined using following fields:</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="11%" />
+<col width="7%" />
+<col width="82%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Field</th>
+<th class="head">Type</th>
+<th class="head">Description</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>key</td>
+<td>String</td>
+<td>Metric name. Must be unique within this plugin.
+Only letters, numbers and &quot;-&quot; , &quot;_&quot; chars are allowed in metrics keys.</td>
+</tr>
+<tr class="row-odd"><td>unit</td>
+<td>Unit</td>
+<td>Metric unit. Must be one of the available units described below.</td>
+</tr>
+<tr class="row-even"><td>aggregation</td>
+<td>String</td>
+<td>Time series data point aggregation (MIN/MAX/AVG/SUM). Default: AVG.</td>
+</tr>
+<tr class="row-odd"><td>dimensions</td>
+<td>String
+Array</td>
+<td>Dimensions are used to provide 1 metric per plugin ObjectName key property value.
+For example, version, service, or database.
+Dimension &quot;rx_pid&quot; at index 0 means the system process ID (PID).
+Only letters, numbers and &quot;-&quot; , &quot;_&quot; chars are allowed in metrics dimensions.</td>
+</tr>
+<tr class="row-even"><td>displayname</td>
+<td>String</td>
+<td>Metric display name represent metric in Dynatrace. This field is obligatory. Must
+be different than metric key.</td>
+</tr>
+</tbody>
+</table>
+<p>Available units: NanoSecond, MicroSecond, MilliSecond, Second, Byte, KiloByte, MegaByte, BytePerSecond, BytePerMinute, KiloBytePerSecond, KiloBytePerMinute, MegaBytePerSecond, MegaBytePerMinute, Ratio, Percent, Promille, Count, PerSecond, PerMinute</p>
+</div>
+<div class="section" id="metrics-alerts">
+<h2>Metrics alerts<a class="headerlink" href="#metrics-alerts" title="Permalink to this headline">¶</a></h2>
+<p>This part of the JSON defines metrics alerts generated by Dynatrace Cluster Node. It is possible to define several alert settings per timeseries that is produced by the plugin.</p>
+<p>This part specifies the metadata of metric alerts:</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="21%" />
+<col width="10%" />
+<col width="69%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Field</th>
+<th class="head">Type</th>
+<th class="head">Description</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>alert_id</td>
+<td>String</td>
+<td>Unique alert id.
+Only letters, numbers and &quot;-&quot; , &quot;_&quot; chars are allowed
+in alert_id.</td>
+</tr>
+<tr class="row-odd"><td>event_type</td>
+<td>String</td>
+<td>String  Allowed types: PERFORMANCE_EVENT, ERROR_EVENT,
+AVAILABILITY_EVENT.</td>
+</tr>
+<tr class="row-even"><td>description</td>
+<td>String</td>
+<td>Description defines alert message, following code snippets
+could be used: {threshold} the value of the custom threshold
+that was violated {severity} the violating value
+{entityname} the display name of the entity where the metric
+violated
+{violating_samples} the number of violating samples that led
+to that event
+{dimensions} a string containg the violating dimensions of
+the metric
+{alert_condition} a string showing if above or below
+threshold is alerting</td>
+</tr>
+<tr class="row-odd"><td>event_name</td>
+<td>String</td>
+<td>Event name displayed on UI pages.</td>
+</tr>
+<tr class="row-even"><td>threshold</td>
+<td>Float</td>
+<td>The value of the threshold.</td>
+</tr>
+<tr class="row-odd"><td>alert_condition</td>
+<td>String</td>
+<td>ABOVE or BELOW.</td>
+</tr>
+<tr class="row-even"><td>samples</td>
+<td>Integer</td>
+<td>Size of the “window” in which violating_samples are counted.</td>
+</tr>
+<tr class="row-odd"><td>violating_samples</td>
+<td>Integer</td>
+<td>The number of violating samples that rise an alert.</td>
+</tr>
+<tr class="row-even"><td>dealerting_samples</td>
+<td>Integer</td>
+<td>The number of not violating samples that deactivate the alert.</td>
+</tr>
+</tbody>
+</table>
+<p>An example is shown below:</p>
+<img alt="../_images/alert.png" data-action="zoom" src="../_images/alert.png" />
+<div class="highlight-json"><div class="highlight"><pre><span></span><span class="p">{</span>
+        <span class="nt">&quot;timeseries&quot;</span><span class="p">:</span>
+        <span class="p">{</span>
+                <span class="nt">&quot;key&quot;</span><span class="p">:</span><span class="s2">&quot;TimeInGC&quot;</span><span class="p">,</span>
+                <span class="nt">&quot;unit&quot;</span><span class="p">:</span><span class="s2">&quot;Percent&quot;</span><span class="p">,</span>
+                <span class="nt">&quot;displayname&quot;</span><span class="p">:</span><span class="s2">&quot;.NET GC time&quot;</span><span class="p">,</span>
+                <span class="nt">&quot;dimensions&quot;</span><span class="p">:[</span><span class="s2">&quot;rx_pid&quot;</span><span class="p">]</span>
+        <span class="p">},</span>
+        <span class="nt">&quot;alert_settings&quot;</span><span class="p">:</span> <span class="p">[</span>
+                <span class="p">{</span>
+                        <span class="nt">&quot;alert_id&quot;</span><span class="p">:</span> <span class="s2">&quot;custom_gc_alert_high&quot;</span><span class="p">,</span>
+                        <span class="nt">&quot;event_type&quot;</span><span class="p">:</span> <span class="s2">&quot;PERFORMANCE_EVENT&quot;</span><span class="p">,</span>
+                        <span class="nt">&quot;event_name&quot;</span><span class="p">:</span> <span class="s2">&quot;High GC time&quot;</span><span class="p">,</span>
+                        <span class="nt">&quot;description&quot;</span><span class="p">:</span> <span class="s2">&quot;The {metricname} of {severity} is {alert_condition} the threshold of {threshold}&quot;</span><span class="p">,</span>
+                        <span class="nt">&quot;threshold&quot;</span><span class="p">:</span> <span class="mf">35.0</span><span class="p">,</span>
+                        <span class="nt">&quot;alert_condition&quot;</span><span class="p">:</span> <span class="s2">&quot;ABOVE&quot;</span><span class="p">,</span>
+                        <span class="nt">&quot;samples&quot;</span><span class="p">:</span><span class="mi">5</span><span class="p">,</span>
+                        <span class="nt">&quot;violating_samples&quot;</span><span class="p">:</span><span class="mi">3</span><span class="p">,</span>
+                        <span class="nt">&quot;dealerting_samples&quot;</span><span class="p">:</span><span class="mi">5</span>
+                <span class="p">}</span>
+        <span class="p">],</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>In this case alert will be raised if 3 out of 5 samples will be above 35%.  Alert will be deactivated if 5 samples in the row will be below 35%.</p>
+</div>
+<div class="section" id="visualization">
+<h2>Visualization<a class="headerlink" href="#visualization" title="Permalink to this headline">¶</a></h2>
+<p>This part of the JSON defines how metrics are charted on each Process page. It contains an optional charts section and an optional keycharts section. Each section has the same format and looks like this:</p>
+<div class="highlight-json"><div class="highlight"><pre><span></span><span class="p">{</span>
+        <span class="nt">&quot;ui&quot;</span> <span class="p">:</span>
+        <span class="p">{</span>
+                <span class="nt">&quot;keymetrics&quot;</span> <span class="p">:</span> <span class="p">[</span>
+                        <span class="p">{</span>
+                        <span class="nt">&quot;key&quot;</span> <span class="p">:</span> <span class="s2">&quot;requestCount&quot;</span><span class="p">,</span>
+                        <span class="nt">&quot;aggregation&quot;</span> <span class="p">:</span> <span class="s2">&quot;avg&quot;</span><span class="p">,</span>
+                        <span class="nt">&quot;mergeaggregation&quot;</span> <span class="p">:</span> <span class="s2">&quot;sum&quot;</span><span class="p">,</span>
+                        <span class="nt">&quot;displayname&quot;</span> <span class="p">:</span> <span class="s2">&quot;Requests&quot;</span>
+                        <span class="p">}</span>
+                <span class="p">],</span>
+                <span class="nt">&quot;keycharts&quot;</span> <span class="p">:</span> <span class="p">[</span> <span class="p">],</span>
+                <span class="nt">&quot;charts&quot;</span><span class="p">:</span> <span class="p">[</span> <span class="p">]</span>
+        <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>The keymetrics section is completely optional and allows you to define up to two metrics that should be part of the Process infographic. It has the following attributes.</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="15%" />
+<col width="12%" />
+<col width="14%" />
+<col width="59%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Field</th>
+<th class="head">Type</th>
+<th class="head">Mandatory Field</th>
+<th class="head">Description</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>key</td>
+<td>String</td>
+<td>Yes</td>
+<td>The key for the time series to put into the graphic.</td>
+</tr>
+<tr class="row-odd"><td>aggregation</td>
+<td>String</td>
+<td>&nbsp;</td>
+<td>Time series data point aggregation (min/max/avg/sum/count).
+Default: AVG.</td>
+</tr>
+<tr class="row-even"><td>mergeaggregation</td>
+<td>String</td>
+<td>&nbsp;</td>
+<td>If the metric contains multiple dimensions,
+this defines how to aggregate the dimension values into a single one.
+Default: AVG.</td>
+</tr>
+<tr class="row-odd"><td>displayname</td>
+<td>String</td>
+<td>&nbsp;</td>
+<td>The name to display in the graphic. Overwite metric displayname.
+Default: metric displayname.</td>
+</tr>
+<tr class="row-even"><td>unit</td>
+<td>Unit</td>
+<td>&nbsp;</td>
+<td>Displayed unit. Must be one of the available units.
+Default: metric unit.</td>
+</tr>
+</tbody>
+</table>
+<p>Here is an example of a keymetric in web UI:</p>
+<img alt="../_images/viz_03_keymetric_01.png" data-action="zoom" src="../_images/viz_03_keymetric_01.png" />
+<p>Each chart and keychart sections have the same format and look like this:</p>
+<div class="highlight-json"><div class="highlight"><pre><span></span><span class="p">{</span>
+    <span class="nt">&quot;group&quot;</span><span class="p">:</span> <span class="s2">&quot;Section Name&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;title&quot;</span><span class="p">:</span> <span class="s2">&quot;Chart Name&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;series&quot;</span><span class="p">:</span> <span class="p">[</span>
+     <span class="p">{</span>
+            <span class="nt">&quot;key&quot;</span><span class="p">:</span> <span class="s2">&quot;MetricName&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;aggregation&quot;</span><span class="p">:</span> <span class="s2">&quot;avg&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;displayname&quot;</span><span class="p">:</span> <span class="s2">&quot;Display name for metric&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;seriestype&quot;</span><span class="p">:</span> <span class="s2">&quot;area&quot;</span>
+     <span class="p">},</span>
+     <span class="p">{</span>
+            <span class="nt">&quot;key&quot;</span><span class="p">:</span> <span class="s2">&quot;Other Metric Name&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;aggregation&quot;</span><span class="p">:</span> <span class="s2">&quot;avg&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;displayname&quot;</span><span class="p">:</span> <span class="s2">&quot;Display name for metric&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;color&quot;</span><span class="p">:</span> <span class="s2">&quot;rgba(42, 182, 244, 0.6)&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;seriestype&quot;</span><span class="p">:</span> <span class="s2">&quot;area&quot;</span>
+     <span class="p">}</span>
+    <span class="p">]</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>The charts section describes how to chart each metric in the details section of the process page (available by clicking <strong>Further details</strong>).</p>
+<p>Both sections allow an array of charts to be defined. A chart has the following required attributes:</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="14%" />
+<col width="7%" />
+<col width="19%" />
+<col width="60%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>Field</td>
+<td>Type</td>
+<td>Mandatory Field</td>
+<td>Description</td>
+</tr>
+<tr class="row-even"><td>group</td>
+<td>String</td>
+<td>Yes</td>
+<td>The section name that the chart should be put into.</td>
+</tr>
+<tr class="row-odd"><td>title</td>
+<td>String</td>
+<td>Yes</td>
+<td>The name of the chart.</td>
+</tr>
+<tr class="row-even"><td>description</td>
+<td>String</td>
+<td>&nbsp;</td>
+<td>Chart description.</td>
+</tr>
+<tr class="row-odd"><td>series</td>
+<td>Array</td>
+<td>Yes</td>
+<td>An array of time series and charting definitions.
+One chart can contain multiple metrics.</td>
+</tr>
+</tbody>
+</table>
+<p>A series has the following attributes:</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="15%" />
+<col width="10%" />
+<col width="15%" />
+<col width="60%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Field</th>
+<th class="head">Type</th>
+<th class="head">Mandatory Field</th>
+<th class="head">Description</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>key</td>
+<td>String</td>
+<td>Yes</td>
+<td>The key for the time series to chart.</td>
+</tr>
+<tr class="row-odd"><td>displayname</td>
+<td>String</td>
+<td>&nbsp;</td>
+<td>Display name to show for the metric. Default: metric key.</td>
+</tr>
+<tr class="row-even"><td>aggregation</td>
+<td>String</td>
+<td>&nbsp;</td>
+<td>How multiple minute values should be aggregated in charts when
+viewing a longer time frame. Possible values: SUM, AVG, MIN, MAX.
+Default: AVG.</td>
+</tr>
+<tr class="row-odd"><td>mergeaggregation</td>
+<td>String</td>
+<td>&nbsp;</td>
+<td>Key charts do not show multiple dimensions. If the metric
+contains multiple dimensions, this defines how to aggregate
+the dimension values into a single dimension. Default: AVG.</td>
+</tr>
+<tr class="row-even"><td>color</td>
+<td>String</td>
+<td>&nbsp;</td>
+<td>HTML notation of a color (RGB or RGBA). Default: #00a6fb.</td>
+</tr>
+<tr class="row-odd"><td>seriestype</td>
+<td>String</td>
+<td>&nbsp;</td>
+<td>Chart type. Possible values are: line, area, and bar.
+Default: area.</td>
+</tr>
+<tr class="row-even"><td>rightaxis</td>
+<td>Boolean</td>
+<td>&nbsp;</td>
+<td>If true, the metric will be placed on the right instead of the left axis.
+Note that web UI does support dual axis charts.
+Default: false.</td>
+</tr>
+<tr class="row-odd"><td>stacked</td>
+<td>Boolean</td>
+<td>&nbsp;</td>
+<td>If true, then multiple metrics will be stacked upon each other.
+This only works for area and bar charts. Default: false.</td>
+</tr>
+<tr class="row-even"><td>unit</td>
+<td>Unit</td>
+<td>&nbsp;</td>
+<td>Displayed unit. Must be one of the available units.
+Default: metric unit.</td>
+</tr>
+</tbody>
+</table>
+<p>Keycharts are visible on each Process page. They look like this:</p>
+<img alt="../_images/viz_01_keychart_01.png" data-action="zoom" src="../_images/viz_01_keychart_01.png" />
+<p>Other charts are available after drilling down into the <strong>Further details</strong> section of each Process page.</p>
+<img alt="../_images/viz_02_chart_01.png" data-action="zoom" src="../_images/viz_02_chart_01.png" />
+<img alt="../_images/viz_02_chart_02.png" data-action="zoom" src="../_images/viz_02_chart_02.png" />
+</div>
+<div class="section" id="plugin-configuration">
+<h2>Plugin configuration<a class="headerlink" href="#plugin-configuration" title="Permalink to this headline">¶</a></h2>
+<p>The plugin configuration section controls the plugin appearance in web UI at <strong>Settings &gt; Monitored technologies</strong> and its configuration, for example: user name, password, connection string, etc.
+The <code class="docutils literal"><span class="pre">configUI</span></code> section defines the configuration fields that are displayed in the UI. The <code class="docutils literal"><span class="pre">properties</span></code> section defines the configuration properties that are sent to the plugin.</p>
+<p>The following sample shows how to define a plugin configuration:</p>
+<div class="highlight-json"><div class="highlight"><pre><span></span><span class="p">{</span>
+        <span class="nt">&quot;configUI&quot;</span> <span class="p">:{</span>
+                <span class="nt">&quot;displayName&quot;</span><span class="p">:</span> <span class="s2">&quot;HAProxy&quot;</span><span class="p">,</span>
+                <span class="nt">&quot;properties&quot;</span> <span class="p">:</span> <span class="p">[</span>
+                        <span class="p">{</span> <span class="nt">&quot;key&quot;</span> <span class="p">:</span> <span class="s2">&quot;url&quot;</span><span class="p">,</span> <span class="nt">&quot;displayName&quot;</span><span class="p">:</span> <span class="s2">&quot;URL&quot;</span><span class="p">,</span> <span class="nt">&quot;displayOrder&quot;</span><span class="p">:</span> <span class="mi">3</span><span class="p">,</span> <span class="nt">&quot;displayHint&quot;</span><span class="p">:</span> <span class="s2">&quot;http://localhost:8080/haproxy-statistics&quot;</span> <span class="p">},</span>
+                        <span class="p">{</span> <span class="nt">&quot;key&quot;</span> <span class="p">:</span> <span class="s2">&quot;auth_user&quot;</span><span class="p">,</span> <span class="nt">&quot;displayName&quot;</span><span class="p">:</span> <span class="s2">&quot;User&quot;</span><span class="p">,</span> <span class="nt">&quot;displayOrder&quot;</span><span class="p">:</span> <span class="mi">1</span> <span class="p">},</span>
+                        <span class="p">{</span> <span class="nt">&quot;key&quot;</span> <span class="p">:</span> <span class="s2">&quot;auth_password&quot;</span><span class="p">,</span> <span class="nt">&quot;displayName&quot;</span><span class="p">:</span> <span class="s2">&quot;Password&quot;</span><span class="p">,</span> <span class="nt">&quot;displayOrder&quot;</span><span class="p">:</span> <span class="mi">2</span> <span class="p">}</span>
+                <span class="p">]</span>
+         <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>The <code class="docutils literal"><span class="pre">ConfigUI</span></code> section has the following attributes:</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="19%" />
+<col width="10%" />
+<col width="13%" />
+<col width="57%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Field</th>
+<th class="head">Type</th>
+<th class="head">Mandatory Field</th>
+<th class="head">Description</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>displayName</td>
+<td>String</td>
+<td>&nbsp;</td>
+<td>Human readable plugin name. This name is displayed
+in web UI at <strong>Settings &gt; Monitored technologies &gt; Custom plugins</strong>
+once the plugin is uploaded.</td>
+</tr>
+<tr class="row-odd"><td>properties.key</td>
+<td>String</td>
+<td>Yes</td>
+<td>Config property key, needs to match key
+from configUI properties section.</td>
+</tr>
+<tr class="row-even"><td>properties.displayName</td>
+<td>String</td>
+<td>Yes</td>
+<td>Human readable property name.</td>
+</tr>
+<tr class="row-odd"><td>properties.displayHint</td>
+<td>String</td>
+<td>&nbsp;</td>
+<td>Hint displayed in the tool-tip.</td>
+</tr>
+<tr class="row-even"><td>properties.displayOrder</td>
+<td>String</td>
+<td>&nbsp;</td>
+<td>Determines display order on plugin configuration tile.</td>
+</tr>
+</tbody>
+</table>
+<p>If plugin configuration is required, the properties corresponding to the configuration UI must be defined.
+These properties carry the configuration values set in the UI for the plugin.
+Please refer to <a class="reference internal" href="../extending_plugin/demo_plugin_conf.html"><span class="doc">Providing configuration</span></a> for further details regarding how to handle the configuration in plugin code.</p>
+<p>Each property is defined by JSON in a format similar to the following:</p>
+<div class="highlight-json"><div class="highlight"><pre><span></span><span class="p">{</span>
+        <span class="nt">&quot;properties&quot;</span> <span class="p">:</span> <span class="p">[</span>
+                 <span class="p">{</span>
+                          <span class="nt">&quot;key&quot;</span> <span class="p">:</span> <span class="s2">&quot;url&quot;</span><span class="p">,</span>
+                          <span class="nt">&quot;type&quot;</span> <span class="p">:</span>  <span class="s2">&quot;String&quot;</span><span class="p">,</span>
+                          <span class="nt">&quot;defaultValue&quot;</span> <span class="p">:</span> <span class="s2">&quot;https://localhost/haproxy_stats_ssl&quot;</span>
+                 <span class="p">},</span>
+                 <span class="p">{</span>
+                          <span class="nt">&quot;key&quot;</span> <span class="p">:</span> <span class="s2">&quot;auth_user&quot;</span><span class="p">,</span>
+                          <span class="nt">&quot;type&quot;</span> <span class="p">:</span>  <span class="s2">&quot;String&quot;</span><span class="p">,</span>
+                 <span class="p">},</span>
+                 <span class="p">{</span>
+                          <span class="nt">&quot;key&quot;</span> <span class="p">:</span> <span class="s2">&quot;auth_password&quot;</span><span class="p">,</span>
+                          <span class="nt">&quot;type&quot;</span> <span class="p">:</span>  <span class="s2">&quot;Password&quot;</span><span class="p">,</span>
+                          <span class="nt">&quot;defaultValue&quot;</span> <span class="p">:</span> <span class="s2">&quot;password&quot;</span>
+                 <span class="p">}</span>
+          <span class="p">]</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>The <code class="docutils literal"><span class="pre">properties</span></code> section has the following attributes:</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="11%" />
+<col width="14%" />
+<col width="14%" />
+<col width="61%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>Field</td>
+<td>Type</td>
+<td>Mandatory Field</td>
+<td>Description</td>
+</tr>
+<tr class="row-even"><td>key</td>
+<td>String</td>
+<td>Yes</td>
+<td>Property key.
+Must be unique within this plugin and must match
+the key from configUI properties.</td>
+</tr>
+<tr class="row-odd"><td>type</td>
+<td>String</td>
+<td>Yes</td>
+<td>Possible values: 'STRING', 'BOOLEAN', 'INTEGER', 'FLOAT', 'PASSWORD'.
+For 'PASSWORD' stars will be displayed while typing.</td>
+</tr>
+<tr class="row-even"><td>defaultValue</td>
+<td>Defined in'type'</td>
+<td>&nbsp;</td>
+<td>Default value.</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+
+
+            </main>
+            
+
+    <nav role="navigation" id="toc">
+        <div class="sidebar-element">
+            <h3>On this page</h3>
+            <ul id="inline-toc" class="toc">
+                
+                    <li><a href="#metadata">Metadata</a></li>
+                
+                    <li><a href="#metrics">Metrics</a></li>
+                
+                    <li><a href="#metrics-alerts">Metrics alerts</a></li>
+                
+                    <li><a href="#visualization">Visualization</a></li>
+                
+                    <li><a href="#plugin-configuration">Plugin configuration</a></li>
+                
+            </ul>
+        </div>
+    </nav>
+
+        </div>
+    </article>
+</div>
+
+<footer class="footer">
+  <div class="footer__socials">
+    <h3>Join us on</h3>
+    <a href="https://www.facebook.com/Dynatrace/" class="footer__sociallink">
+      <svg viewBox="0 1 23 23">
+        <title>Facebook</title>
+        <path d="M9.6,20.1v-7.3H7.2V9.6h2.4V8.4c0-2.2,1.6-4.1,3.6-4.1h2.6v3.2h-2.6c-0.3,0-0.6,0.3-0.6,0.9v1.3 h3.2v3.2h-3.2v7.3H9.6z"></path>
+      </svg>
+    </a>
+    <a href="https://twitter.com/Dynatrace" class="footer__sociallink">
+      <svg viewBox="0 0 23 23">
+        <title>Twitter</title>
+        <path id="twitter" d="M14.4,5.6c1.3,0,2,0.4,2.6,1c0.6,0,1.3-0.4,1.7-0.6c0.1-0.1,0.3-0.2,0.4-0.2 C19,6.5,18.6,7,18.1,7.4c-0.1,0.1-0.2,0.2-0.4,0.3v0c0.7,0,1.3-0.3,1.9-0.5v0c-0.3,0.5-0.7,1-1.1,1.3c-0.2,0.1-0.3,0.3-0.5,0.4 c0,0.8,0,1.5-0.2,2.1c-0.8,3.8-3,6.3-6.5,7.4C10,18.8,8,19,6.6,18.6c-0.7-0.2-1.4-0.4-2-0.6c-0.3-0.1-0.6-0.3-0.9-0.5 c-0.1-0.1-0.2-0.1-0.3-0.2c0.3,0,0.7,0.1,1.1,0c0.3-0.1,0.7,0,1-0.1c0.8-0.2,1.4-0.4,2-0.7c0.3-0.2,0.7-0.4,0.9-0.6 c-0.4,0-0.7-0.1-1-0.2c-1.1-0.4-1.7-1.1-2.1-2.1c0.3,0,1.3,0.1,1.5-0.1c-0.4,0-0.8-0.3-1.1-0.4C4.7,12.6,4,11.7,4,10.2 c0.1,0.1,0.2,0.1,0.3,0.2c0.2,0.1,0.4,0.1,0.7,0.2c0.1,0,0.3,0.1,0.5,0c0,0,0,0,0,0c-0.2-0.2-0.4-0.3-0.6-0.5 c-0.6-0.7-1.1-1.8-0.7-3c0.1-0.3,0.2-0.6,0.4-0.9c0,0,0,0,0,0c0.1,0.1,0.2,0.2,0.3,0.3c0.3,0.4,0.6,0.7,1,1c1.2,1,2.3,1.5,4.1,2 c0.4,0.1,1,0.2,1.5,0.2c-0.2-0.4-0.1-1.1,0-1.6c0.3-1.1,0.9-1.8,1.9-2.2c0.2-0.1,0.5-0.2,0.7-0.2C14.2,5.6,14.3,5.6,14.4,5.6z"></path>
+      </svg>
+    </a>
+    <a href="https://www.linkedin.com/company/dynatrace" class="footer__sociallink">
+      <svg viewBox="0 2 23 23">
+        <title>Linkedin</title>
+        <path d="M7.5,19.1V9.8H4.4v9.4H7.5z M6,8.5c1.1,0,1.8-0.7,1.8-1.6 C7.7,6,7.1,5.3,6,5.3C4.9,5.3,4.2,6,4.2,6.9C4.2,7.8,4.9,8.5,6,8.5L6,8.5L6,8.5z"></path>
+        <path d="M9.3,19.1h3.1v-5.2c0-0.3,0-0.6,0.1-0.8 c0.2-0.6,0.7-1.1,1.6-1.1c1.1,0,1.6,0.9,1.6,2.1v5h3.1v-5.4c0-2.9-1.5-4.2-3.6-4.2c-1.7,0-2.4,0.9-2.8,1.6h0V9.8H9.3 C9.3,10.7,9.3,19.1,9.3,19.1L9.3,19.1z"></path>
+      </svg>
+    </a>
+    <a href="https://plus.google.com/+dynatrace/about" class="footer__sociallink">
+      <svg viewBox="0 0 23 23">
+        <title>Google+</title>
+        <path d="M2.9,11.2c0-2.8,2.6-5.3,5.5-5.2C9.7,6,11,6.6,12,7.4c-0.4,0.5-0.9,1-1.4,1.4C9.4,8,7.6,7.7,6.4,8.7
+		c-1.8,1.2-1.9,4.1-0.1,5.5c1.7,1.5,4.8,0.8,5.3-1.6c-1,0-2.1,0-3.1,0c0-0.6,0-1.2,0-1.9c1.7,0,3.5,0,5.2,0c0.1,1.5-0.1,3-1,4.2
+		c-1.4,1.9-4.1,2.5-6.2,1.7C4.2,15.8,2.7,13.5,2.9,11.2z"></path> <path d="M17,9.1c0.5,0,1,0,1.6,0c0,0.5,0,1,0,1.6c0.5,0,1,0,1.6,0c0,0.5,0,1,0,1.6c-0.5,0-1,0-1.6,0c0,0.5,0,1,0,1.6
+		c-0.5,0-1,0-1.6,0c0-0.5,0-1,0-1.6c-0.5,0-1,0-1.6,0c0-0.5,0-1,0-1.6c0.5,0,1,0,1.6,0C17,10.2,17,9.7,17,9.1z"></path>
+      </svg>
+    </a>
+  </div>
+</footer>
+<script src="../_static/js/main.js"></script>
+<script type="text/javascript">
+    var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:'',
+        VERSION:'1.221.112.20210715.143702',
+        COLLAPSE_INDEX:false,
+        FILE_SUFFIX:'.html',
+        HAS_SOURCE: true
+    };
+</script>
+  <script type="text/javascript" src="../_static/jquery.js"></script>
+  <script type="text/javascript" src="../_static/underscore.js"></script>
+  <script type="text/javascript" src="../_static/doctools.js"></script>
+
+<script src="../_static/js/ext.js"></script>
+
+<script type="text/javascript">
+  var ruxitFont = ruxitFont || {};
+
+  ruxitFont.cache = (function(s, xhr) {
+
+    var cssPath = '../_static/css/fonts.css';
+
+    if (s.getItem(ruxitFont.storeKey) === null) {
+      var http = new xhr();
+        http.open('GET', cssPath);
+      http.send();
+      http.onload = function() {
+        ruxitFont.addStyles(this.responseText);
+        s.setItem(ruxitFont.storeKey, this.responseText);
+      }
+    } else {
+      ruxitFont.addStyles(s.getItem(ruxitFont.storeKey));
+    }
+
+  })(window.localStorage, XMLHttpRequest);
+</script> 
+
+</body>
+
+</html>

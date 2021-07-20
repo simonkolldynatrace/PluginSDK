@@ -1,0 +1,31 @@
+Changing plugin definition
+========================================================
+
+Once the plugin.json has been uploaded to the server, not every aspect of plugin definition may be modified. This is especially 
+related to plugin metric definition, as consistency with historic data must be ensured. In this section we will discuss 
+which parts of plugin definition may be changed and how to approach changes in those that may not.  
+
+.. note :: Please remember, that whenever plugin.json is modified, the ``version`` field needs to be incremented. 
+
+In particular no element of *"timeseries"* from *"metrics"* may be modified. If any *"timeseries"* field is changed 
+plugin's name has to change. Otherwise server does not allow to upload modified plugin bundle. While you may always remove
+old plugin and create a new one, the table below presents some alternatives.
+
+================================ =================== ===================================================================
+Change                           Possible            Comment 
+================================ =================== ===================================================================
+Visualization                    | Yes               | Entire *"ui"* section may be safely modified.  
+                                                     | 
+Configuration                    | Yes               | Entire *"configUI"* section may be modified.
+                                                     |  Note that backward plugins compatibility could 
+                                                     | be broken if an old configuration parameter is removed.
+Alert definition                 | Yes               | *"alert_settings"* section of *"metrics"* may be 
+                                                     | safely modified. 
+Adding new timeseries            | Yes               | 
+Removing timeseries              | No                | If new version of plugin does not send given timeseries
+                                                     | it will disappear from UI over time. 
+Changing timeseries name         | No                | You have to create a new timeseries with different name
+Changing timeseries unit         | No                | You have to create a new timeseries with different name
+================================ =================== ===================================================================
+
+For details of sections discussed in this chapter, legal field values and entire plugin.json format please refer to :doc:`../api/plugin_json_apidoc`

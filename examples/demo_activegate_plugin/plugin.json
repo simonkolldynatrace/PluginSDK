@@ -1,0 +1,99 @@
+{
+  "name": "custom.remote.python.demo",
+  "version": "1.3",
+  "type": "python",
+  "entity": "CUSTOM_DEVICE",
+  "metricGroup": "tech.Custom_Technology",
+  "processTypeNames": ["PYTHON"],
+  "technologies": ["Custom Technology"],
+  "favicon": "https://lh3.googleusercontent.com/gN6iBKP1b2GTXZZoCxhyXiYIAh8QJ_8xzlhEK6csyDadA4GdkEdIEy9Bc8s5jozt1g=w300",
+  "source": {
+    "package": "demo_activegate_plugin",
+    "className": "DemoPluginRemote",
+    "install_requires": ["requests>=2.6.0"],
+    "activation": "Remote"
+  },
+  "metrics": [
+    {
+      "entity": "CUSTOM_DEVICE",
+      "timeseries": {
+        "key": "randomcd",
+        "unit": "Count",
+        "displayname": "randomcd"
+      }
+    },
+    {
+      "entity": "CUSTOM_DEVICE",
+      "timeseries": {
+        "key": "countercd",
+        "unit": "Count",
+        "displayname": "cauntercd"
+      }
+    }
+  ],
+    "properties" : [
+    {
+	  "key" : "url",
+      "type" :  "String"
+    }
+  ],
+  "configUI": {
+        "displayName": "ActiveGate Demo Extension",
+        "properties": [
+			{"key" : "url",
+			"displayName" :  "URL",
+			"displayHint": "http://localhost:8769" }
+	  ]
+    },
+     "ui": {
+       "keymetrics" : [
+      {
+        "key": "countercd",
+        "aggregation": "avg",
+        "mergeaggregation": "avg",
+        "displayname": "Counter"
+      },
+      {
+        "key": "randomcd",
+        "aggregation": "avg",
+        "mergeaggregation": "avg",
+        "displayname": "Random"
+      }
+    ],
+        "charts": [
+            {
+                "group": "Demo group",
+                "title": "Demo title",
+                "description": "Demo description",
+                "explanation": "Not used",
+                "link": "Demo link",
+                "series": [
+                    {
+                        "key": "countercd",
+                        "displayname": "Counter",
+                        "aggregation": "avg",
+                        "mergeaggregation": "avg",
+                        "color": "#00a6fb",
+                        "seriestype": "line",
+                        "rightaxis": false,
+                        "stacked": false,
+                        "unit": "Count",
+                        "metricexplanation": "Not used"
+                    },
+                    {
+                        "key": "randomcd",
+                        "displayname": "Random",
+                        "aggregation": "avg",
+                        "mergeaggregation": "avg",
+                        "color": "#008cdb",
+                        "seriestype": "line",
+                        "rightaxis": false,
+                        "stacked": false,
+                        "unit": "Count",
+                        "metricexplanation": "Not used"
+                    }
+                ]
+            }
+        ]
+    }
+}

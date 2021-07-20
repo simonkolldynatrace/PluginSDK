@@ -1,0 +1,81 @@
+article * + ul {
+    margin-top: 0.1em
+}
+
+#content h1 {
+    margin-top: 30px
+}
+
+a.headerlink {
+    visibility: hidden;
+}
+
+nav#toc {
+    margin-top: 3em;
+}
+
+h1:hover > a.headerlink,
+h2:hover > a.headerlink,
+h3:hover > a.headerlink,
+h4:hover > a.headerlink,
+h5:hover > a.headerlink,
+h6:hover > a.headerlink,
+dt:hover > a.headerlink,
+caption:hover > a.headerlink,
+p.caption:hover > a.headerlink,
+div.code-block-caption:hover > a.headerlink {
+    visibility: visible;
+}
+
+.highlighted{background:#F1C40F;display:inline-block;font-weight:bold;padding:0 6px}
+
+div.context {
+    margin-top: 0.2em;
+    margin-bottom: 0.2em;
+}
+/* applies style from .callout  .calltout.information*/
+.admonition{
+    border: 1px solid #454646;
+    border-radius: 3px;
+    padding: 2rem 2.5rem
+}
+
+.admonition.note {
+    border-color: #ffe11c
+}
+
+/* footnote spacing */
+div.hider ~ div.hider {
+    margin-top: 0.2em;
+}
+
+/* module index */
+table.modindextable td {
+    height: 1.75rem;
+}
+
+table.modindextable tr:nth-child(2n) {
+    background-color: #fff;
+}
+
+table.modindextable code {
+    background-color: #fff;
+}
+
+/* identical font size for pre sections with and without line-numbers */
+div.highlight pre {
+    font-size: 0.875rem;
+}
+
+table.docutils td {
+    height: 0.75rem
+}
+
+.class .descclassname {
+    font-size: 1.25rem;
+}
+
+.class .descname {
+    font-size: 1.25rem;
+    font-weight: bold;
+}

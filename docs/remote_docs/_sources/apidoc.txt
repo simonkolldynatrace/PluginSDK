@@ -1,0 +1,11 @@
+Reference
+*************
+
+.. if you're wondering how to create .rst files with contents like ::automodule:: check sphinx-apidoc command
+
+.. toctree::
+   :maxdepth: 2
+
+   api/python_apidoc
+   api/plugin_json_apidoc
+   plugin_simulator/index

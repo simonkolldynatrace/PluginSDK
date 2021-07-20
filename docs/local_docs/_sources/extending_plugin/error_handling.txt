@@ -1,0 +1,72 @@
+Error handling
+==============
+
+Writing custom OneAgent plugins isn't much different than any other programming tasks. This means that errors may occur.
+Some errors are fairly predictable while others are less predictable. Plugin developers have two options for handling errors:
+
+#. Have OneAgent handle errors
+#. Intercept predictable erroneous situations, categorize them, and provide a custom error message.
+
+The first approach doesn't necessarily require any additional work. If for some reason the plugin code throws an exception, error
+details will be sent to Dynatrace Cluster Node and the plugin will resume within a few seconds.
+There is a failure limit however, after which the plugin will not resume.
+To learn more about the details of this mechanism, see the :doc:`plugin lifecycle guide <../plugin_lifecycle/index>`
+
+The second approach is a bit more involved, but it gives you more control over the error messages that are provided to users of the
+plugin. Imagine a situation in which a library you use to connect to a database server responds with an ``error 80010`` message,
+which means invalid credentials. Would you rather that the user read the ``error 80010``
+message, or would you prefer a more user-friendly message, like "The provided credentials were rejected by the server"?
+
+To demonstrate this second approach, we will extend the plugin we created earlier in :doc:`plugin configuration <demo_plugin_conf>`. The plugin in question receives some
+configuration from the server and uses it to authenticate itself with our demo application. For the purposes of this tutorial we will
+assume that everything in the previous tutorial proceeded as expected. Now, let's discuss how to handle various problems.
+
+As a reminder, we're monitoring a demo application that can be started using::
+
+    python -m plugin_sdk.demo_app_auth
+
+The demo application listens on port 8090 and expects authentication with ruxit:ruxit credentials. Please
+remember that you can start ``python -m plugin_sdk.demo_app_auth --help`` to learn more about how to use the demo application.
+
+Let's take a look at the extended plugin:
+
+.. literalinclude:: ../plugin_sdk/examples/demo_oneagent_plugin_auth/demo_plugin_auth.py
+	:emphasize-lines: 18-28
+
+Note the corresponding ``plugin.json`` doesn't need to be changed:
+
+.. literalinclude:: ../plugin_sdk/examples/demo_oneagent_plugin_auth/plugin.json
+    :language: json
+
+As you can see, the way to inform OneAgent of a specific category of error is by raising exceptions of a
+particular type.
+
+.. literalinclude:: ../plugin_sdk/examples/demo_oneagent_plugin_auth/demo_plugin_auth.py
+    :lines: 20-21
+
+The first type of error we handle is a problem with the server not providing access to the stats we want to gather.
+HTTP applications usually signal this with an ``401 error`` code. We check the error and raise an
+:class:`~ruxit.api.exceptions.AuthException`. The results on the server may look like this:
+
+.. image:: ../images/demo_02_configuration_auth_error.png
+
+Apart from invalid credentials, other errors may occur. If you want to intercept them and provide
+a custom error message, do it like this:
+
+.. literalinclude:: ../plugin_sdk/examples/demo_oneagent_plugin_auth/demo_plugin_auth.py
+    :lines: 23-28
+
+Here a few specific errors are caught and transformed into :class:`~ruxit.api.exceptions.ConfigException`:
+
+* A timeout on connection might occur (the server might be busy)
+* You may be unable to connect (maybe it's working on a different port?)
+* The received response is unexpected
+  (maybe we connected to a different server, or got a text response instead of JSON?)
+
+If any of these situations should occur, the web UI will display your error message like this:
+
+.. image:: ../images/demo_02_configuration_config_error.png
+
+Note, that as in real scenarios, a many different errors types can occur. The server may respond with an ``HTTP 500`` code. The server might respond with valid JSON, but it may not contain the requested data (random and counter keys),
+or the values may be filled with data that can't be converted into numbers. We leave the task of deciding which of these
+issues requires special attention and handling to you.

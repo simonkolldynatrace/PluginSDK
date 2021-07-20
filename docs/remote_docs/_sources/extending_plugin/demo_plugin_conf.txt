@@ -1,0 +1,76 @@
+Configuration
+=============
+
+In this section you will learn how to provide a plugin with configuration from Dynatrace Cluster Node. To achieve this
+we will extend the plugin described in the :doc:`first tutorial <../readme>`.
+
+This new plugin will monitor an application that is similar to the one used earlier, except this time,
+reaching the statistics page requires that you provide credentials (via HTTP basic auth mechanism). The application is also included
+in the SDK. You can start it with::
+
+    python -m plugin_sdk.demo_app_auth
+
+By default this app listens on port 8090 and serves stats to the user authenticated with the ruxit:ruxit credentials. You can
+explore the options with ``python -m plugin_sdk.demo_app_auth --help``
+
+Let's start by looking at the whole ``plugin.json`` and source of the plugin. Then we'll go over the modifications.
+Here's the plugin source code:
+
+.. literalinclude:: ../plugin_sdk/examples/demo_oneagent_plugin_conf/demo_plugin_conf.py
+    :linenos:
+
+And here's the corresponding ``plugin.json``:
+
+.. literalinclude:: ../plugin_sdk/examples/demo_oneagent_plugin_conf/plugin.json
+    :linenos:
+    :language: json
+
+Adding configuration for a plugin requires declaring the possible parameters in the plugin.json, like this:
+
+.. literalinclude:: ../plugin_sdk/examples/demo_oneagent_plugin_conf/plugin.json
+    :lines: 33-41
+
+Each property needs to have a key and type specified. Additionally, you can specify a default value
+under the ``defaultValue`` key in JSON. In order to have the option of providing the configuration in web UI, you
+also need to specify the name you want your plugin to appear under on the web page.
+This is also done in ``plugin.json``. It looks like this:
+
+.. literalinclude:: ../plugin_sdk/examples/demo_oneagent_plugin_conf/plugin.json
+    :lines: 30-32
+
+Note that ``displayName`` and ``plugin.name`` don't have to be the same.
+
+Please refer to :doc:`plugin.json reference <../api/plugin_json_apidoc>` for further information regarding
+properties and configUI elements, including more descriptive field names, ordering of fields, and more.
+
+Once you upload your plugin to Dynatrace Cluster Node, you can enter the desired configuration. Within web UI go to **Settings > Monitored technologies > Custom plugins** and select the ``OneAgent Demo Auth Extension`` plugin.
+custom.python.demo_plugin
+.. image:: ../images/demo_02_configuration_blank.png
+
+Expand the plugin configuration form, enter the credentials, and click **Save**:
+
+.. image:: ../images/demo_02_configuration_form.png
+
+If you've entered the credentials correctly, you should see that the plugin is doing fine:
+
+.. image:: ../images/demo_02_configuration_ok.png
+
+Knowing how to declare required properties and entering them is not enough. You must also handle them in code.
+This is quite simple, and is accomplished like this:
+
+.. literalinclude:: ../plugin_sdk/examples/demo_oneagent_plugin_conf/demo_plugin_conf.py
+    :lines: 10-13
+
+And a few lines later:
+
+.. literalinclude:: ../plugin_sdk/examples/demo_oneagent_plugin_conf/demo_plugin_conf.py
+    :lines: 17
+
+Once OneAgent receives plugin configuration info from the server, it passes it to the query method under the ``config``
+keyword in the form of a Python dictionary with keys that correspond to those present in the JSON file.
+Extracting configuration info from the dictionary and passing to the request library is straightforward.
+
+**Note:** Your plugin will not be run until the configuration is entered on the server side. Meaning, the ``DemoPlugin`` object will not be created and the query method will not be called.
+
+As a result, you don't need to worry about properties that aren't present in the dictionary. However, the provided values may still be invalid. 
+To learn both how OneAgent handles this scenario and how to create effective error handling, please take a look at our :doc:`error handling guide <error_handling>`.

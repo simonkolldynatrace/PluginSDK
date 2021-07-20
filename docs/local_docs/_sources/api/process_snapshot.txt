@@ -1,0 +1,96 @@
+Process snapshot
+================
+
+.. module:: embedded_api
+
+The embedded_api module is available only in the Python interpreter embedded in OneAgent.
+It exposes a few data structures that can be useful when developing plugins, particularly the process snapshot.
+
+Note that there are other methods available for processing the snapshot.
+
+
+
+    .. class:: ProcessSnapshot
+
+       Contains information about the current state of processes on the system, as perceived by OneAgent. The
+       main purpose of this class is to provide information so that entities and their associated IDs can be used
+       when reporting plugin measurements
+
+        .. attribute:: host_id
+
+           The ID of the host - int.
+
+        .. py:attribute:: entries
+
+           Process groups detected on the host.  An iterable of :class:`ProcessSnapshotEntry` instances.
+
+        .. py:attribute:: entries
+
+           Containers information detected on the host. An iterable of :class:`ContainerInfo` instances.
+
+    .. class:: ProcessSnapshotEntry
+
+       Contains information about a single process group. It contains the entity of the group that should be
+       used to report measurements associated with processes in the group.
+
+       .. py:attribute:: group_id
+
+          Group ID of the snapshot entry. A “process group” is a set of processes that perform the same
+          function across multiple hosts. For example, you might have a cluster of servers with
+          each server running the same process in support of multiple hosts.
+
+       .. py:attribute:: node_id
+
+          Node of the process snapshot entry. This is a value used to differentiate between multiple process
+          group instances running on the same host. It's calculated based on a set of process-type specific
+          parameters, though often the value is 0.
+
+       .. py:attribute:: group_instance_id
+
+          Process group instance is the ID of a group of processes that perform the same task on a given host.
+          Process group instance ID is a unique identifier in your environment, and thus should be used to
+          report associated data.
+
+       .. py:attribute:: process_type
+
+          Process group type (int). Please refer to :any:`/api/plugin_json_apidoc` for the full list of
+          available process types.
+
+       .. py:attribute:: group_name
+
+          Name of the process group. This is assigned in a manner specific to each process type.
+
+       .. py:attribute:: processes
+
+          Processes assigned to this process group. An iterable of :class:`ProcessInfo` instances.
+
+       .. py:attribute:: properties
+
+          Additional information on the process in the form of a dictionary. Possible keys include:
+
+          * mssql_instance_name - instance name of MSSQL, assigned only to process groups of type MSSQL.
+
+    .. class:: ProcessInfo
+
+       Contains information about a single process.
+
+       .. py:attribute:: pid
+
+          Pid of the process
+
+       .. py:attribute:: process_name
+
+          Name of the process
+
+       .. py:attribute:: properties
+
+          Additional information on the process in the form of a dictionary. Possible keys include:
+
+          * WorkDir - working directory of the process
+          * CmdLine - command line of the process
+          * PortBindings - TCP port binding data. Use
+            :func:`.snapshot.parse_port_bindings`
+            to receive parsed data.
+            The parsed data is list of 2 element tuple. The first field is a binded IP address (string) and the second field is a port (integer).
+            *0.0.0.0* bind address is converted to local host address *127.0.0.1*.
+          * ListeningPorts - ports on which the process is listening in the form of a space-separated string. This is deprecated, so please use **PortBindings**.

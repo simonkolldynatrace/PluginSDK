@@ -1,0 +1,18 @@
+Deploy your plugin
+******************
+
+Once you decide that your plugin is ready for distribution, build the final version of the plugin using the ``oneagent_build_plugin`` tool.
+
+.. rubric:: Important considerations
+
+Please note when distributing custom plugins:
+
+* The plugin directories require at least read permissions for the appropriate user [1]_.
+* If you're unsure how the plugins are loaded, and if you've copied them to the right place,
+  learn more at :doc:`../plugin_lifecycle/index` in the "Plugin loading" section.
+* Make sure that a plugin is built on the same OS platform as the plugin is going to be deployed. For example: 
+    * If your plugin is going to be deployed on 32-bit Linux machine it has to be built on 32-bit Linux machine using 32-bit Python 3.6 interpreter,
+    * If your plugin is going to be deployed on 64-bit Windows machine it has to be built on 64-bit Windows machine using 64-bit Python 3.6 interpreter,
+    * etc.
+
+.. [1] ``dtuser`` on linux, ``Local system account`` on Windows

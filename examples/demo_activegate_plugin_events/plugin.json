@@ -1,0 +1,41 @@
+{
+	"name": "custom.remote.python.demo_events",
+	"version": "1.013",
+	"type": "python",
+	"entity": "CUSTOM_DEVICE",
+	"metricGroup": "tech.Demo_Technology.Events",
+	"processTypeNames": ["PYTHON"],
+	"technologies": ["ActiveGate Demo Technology"],
+	"favicon": "https://lh3.googleusercontent.com/gN6iBKP1b2GTXZZoCxhyXiYIAh8QJ_8xzlhEK6csyDadA4GdkEdIEy9Bc8s5jozt1g=w300",
+	"source": {
+		"package": "demo_activegate_plugin_events",
+		"className": "DemoPluginRemote",
+		"install_requires": ["requests>=2.6.0"],
+		"activation": "Remote"
+	},
+	"configUI": {
+		"displayName": "ActiveGate Demo Extension - Events",
+		"properties": [{
+			"key": "url",
+			"displayName": "URL",
+			"displayHint": "http://localhost:8769"
+		}]
+	},
+	"properties": [{
+		"key": "url",
+		"type": "String",
+        "defaultValue": "http://localhost:8769"
+	}],
+	"metrics": [{
+			"entity": "CUSTOM_DEVICE",
+			"timeseries": {
+				"key": "counter",
+				"unit": "Count",
+				"displayname": "Counter"
+			}
+		}
+	],
+	"ui": {
+
+	}
+}

@@ -1,0 +1,1586 @@
+
+<!DOCTYPE html>
+
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title></title>
+  
+
+  <link rel="stylesheet" href="_static/css/main.css">
+  <link rel="stylesheet" href="_static/css/ext.css">
+  <link rel="stylesheet" href="_static/css/fonts.css">
+
+  <script>document.documentElement.className += ' js';</script>
+  <script type="text/javascript">
+    var ruxitFont = ruxitFont || {};
+    ruxitFont.storeKey = 'fcache';
+
+    ruxitFont.addStyles = function addStyles(fonts) {
+      if(document.getElementById('font-css') !== null) {
+        return;
+      }
+      var scriptElem = document.getElementsByTagName('script')[0];
+      var styleTag = document.createElement('style');
+      styleTag.id = 'font-css';
+      styleTag.setAttribute('type', 'text/css');
+      styleTag.innerHTML = fonts;
+      scriptElem.parentNode.insertBefore(styleTag, scriptElem);
+    }
+
+    if (localStorage.getItem(ruxitFont.storeKey) !== null) {
+      ruxitFont.addStyles(localStorage.getItem(ruxitFont.storeKey));
+    }
+  </script>
+</head>
+
+<body>
+
+<header class="header header-alt">
+  <a class="header-brand-link" href="https://help.dynatrace.com/">
+
+      <img src="_static/images/logos/dynatrace-logo.svg" alt="Dynatrace" class="header-brand-logo svgLogo" height="36">
+  </a>
+  <div class="header-nav-right">
+    <a class="btn btn--navigation nav__cta" href="https://www.dynatrace.com/trial/">Free trial</a>
+  </div>
+  <nav id="oc-nav" class="menubar">
+    <div class="menubar-nav">
+      <ul class="menubar-list">
+
+
+
+          <li class="menubar-listitem menu-level-0"><a title="Help" href="https://help.dynatrace.com/">Help</a></li>
+          <li class="menubar-listitem menu-level-0"><a title="Answers" href="https://answers.ruxit.com/">Answers</a>
+          </li>
+          <li class="menubar-listitem menu-level-0"><a title="Support" href="https://support.ruxit.com/">Support</a>
+          </li>
+
+        <li class="menubar-listitem menu-level-0">
+          <svg class="icon-defs" xmlns="http://www.w3.org/2000/svg"> <defs> <g id="search_magnifyingglass"> <path d="M200.759,104.318c25.76,0,49.979,10.032,68.194,28.248c37.6,37.604,37.6,98.785,0,136.385
+c-18.216,18.216-42.434,28.248-68.194,28.248c-25.76,0-49.978-10.032-68.194-28.248c-18.216-18.212-28.245-42.431-28.245-68.19
+s10.029-49.979,28.245-68.194C150.781,114.351,174.999,104.318,200.759,104.318 M200.759,66
+c-34.486,0-68.973,13.157-95.286,39.475c-52.628,52.623-52.628,137.948,0,190.572c26.31,26.314,60.796,39.471,95.286,39.471
+c34.486,0,68.973-13.156,95.287-39.471c52.627-52.627,52.627-137.949,0-190.572C269.731,79.157,235.245,66,200.759,66L200.759,66z"></path> <path d="M443.765,411.84c2.979,2.979,2.979,7.858,0,10.837l-21.083,21.09c-2.979,2.979-7.854,2.979-10.837,0
+l-106.699-106.7c-2.979-2.979-2.979-7.857,0-10.836l21.086-21.087c2.982-2.979,7.854-2.979,10.837,0L443.765,411.84z"></path> </g> </defs> </svg>
+
+
+
+
+
+
+
+
+
+          <form autocomplete="off" id="search" action="search.html" method="GET">
+            <input id="search-input" class="search-input" type="input" name="q" placeholder="Search for..." value="">
+            <label for="search-input" aria-label="Search">
+              <svg class="search-icon" viewBox="0 0 512 512">
+                <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#search_magnifyingglass"></use>
+              </svg>
+            </label>
+            <input type="hidden" name="check_keywords" value="yes" />
+            <input type="hidden" name="area" value="default" />
+          </form>
+        </li>
+      </ul>
+    </div>
+  </nav>
+</header>
+<ul class="breadcrumbs">
+    <li><a href="index.html">Docs</a></li>
+      
+    <li><span></span></li>
+</ul>
+
+<div class="main-area">
+    <nav class="sidebar">
+    
+        <h1 class="headline">
+            <a href="index.html"> Plugin SDK </a>
+            <div class="sidebar__info">version: 1.221</div>
+        </h1>
+    
+
+    
+    
+    
+        
+            
+        
+        <a class="sidebar__item" href="readme.html">
+            <span class="sidebar__headline">Write your first OneAgent plugin</span>
+        </a>
+    
+        
+            
+        
+        <a class="sidebar__item" href="extending_plugin/index.html">
+            <span class="sidebar__headline">Extend your plugin</span>
+        </a>
+    
+        
+            
+        
+        <a class="sidebar__item" href="deploying_extension/index.html">
+            <span class="sidebar__headline">Deploy your plugin</span>
+        </a>
+    
+        
+            
+        
+        <a class="sidebar__item" href="troubleshooting/index.html">
+            <span class="sidebar__headline">Troubleshooting</span>
+        </a>
+    
+        
+            
+        
+        <a class="sidebar__item" href="plugin_lifecycle/index.html">
+            <span class="sidebar__headline">Plugin life cycle</span>
+        </a>
+    
+        
+            
+        
+        <a class="sidebar__item" href="apidoc.html">
+            <span class="sidebar__headline">Reference</span>
+        </a>
+    
+        
+            
+        
+        <a class="sidebar__item" href="plugins/index.html">
+            <span class="sidebar__headline">Plugin reference</span>
+        </a>
+    
+        
+            
+        
+        <a class="sidebar__item" href="api/remote_python_apidoc.html">
+            <span class="sidebar__headline">ActiveGate Plugins API Reference</span>
+        </a>
+    
+        
+            
+        
+        <a class="sidebar__item" href="api/index.html">
+            <span class="sidebar__headline">Index</span>
+        </a>
+    
+</nav>
+    <article id="content" class="wrapper cf">
+        <div class="content-area content">
+            <main role="main">
+                
+
+<h1 id="index">Index</h1>
+
+<div class="genindex-jumpbox">
+ <a href="#A"><strong>A</strong></a>
+ | <a href="#B"><strong>B</strong></a>
+ | <a href="#C"><strong>C</strong></a>
+ | <a href="#D"><strong>D</strong></a>
+ | <a href="#E"><strong>E</strong></a>
+ | <a href="#F"><strong>F</strong></a>
+ | <a href="#G"><strong>G</strong></a>
+ | <a href="#H"><strong>H</strong></a>
+ | <a href="#I"><strong>I</strong></a>
+ | <a href="#K"><strong>K</strong></a>
+ | <a href="#L"><strong>L</strong></a>
+ | <a href="#M"><strong>M</strong></a>
+ | <a href="#N"><strong>N</strong></a>
+ | <a href="#O"><strong>O</strong></a>
+ | <a href="#P"><strong>P</strong></a>
+ | <a href="#Q"><strong>Q</strong></a>
+ | <a href="#R"><strong>R</strong></a>
+ | <a href="#S"><strong>S</strong></a>
+ | <a href="#T"><strong>T</strong></a>
+ | <a href="#U"><strong>U</strong></a>
+ | <a href="#V"><strong>V</strong></a>
+ | <a href="#W"><strong>W</strong></a>
+ | <a href="#X"><strong>X</strong></a>
+ 
+</div>
+<h2 id="A">A</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%" valign="top"><dl>
+      
+  <dt><a href="_apidoc/ruxit.api.html#ruxit.api.base_plugin.MonitoredEntity.absolute">absolute() (ruxit.api.base_plugin.MonitoredEntity method)</a>
+  </dt>
+
+      <dd><dl>
+        
+  <dt><a href="_apidoc/ruxit.api.html#ruxit.api.results_builder.ResultsBuilder.absolute">(ruxit.api.results_builder.ResultsBuilder method)</a>
+  </dt>
+
+        
+  <dt><a href="_apidoc/ruxit_remote.api.html#ruxit.api.topology_builder.MetricSink.absolute">(ruxit.api.topology_builder.MetricSink method)</a>
+  </dt>
+
+      </dl></dd>
+      
+  <dt><a href="plugins/ruxit_memcached.html#ruxit_memcached.MemcachedPlugin.absolute_values">absolute_values (ruxit_memcached.MemcachedPlugin attribute)</a>
+  </dt>
+
+      
+  <dt><a href="_apidoc/ruxit.api.html#ruxit.api.results_builder.ResultsBuilder.add_absolute_result">add_absolute_result() (ruxit.api.results_builder.ResultsBuilder method)</a>
+  </dt>
+
+      
+  <dt><a href="plugins/ruxit_mssql.html#ruxit_mssql.MsSqlPlugin.add_counters">add_counters() (ruxit_mssql.MsSqlPlugin method)</a>
+  </dt>
+
+      
+  <dt><a href="_apidoc/ruxit_remote.api.html#ruxit.api.topology_builder.Device.add_endpoint">add_endpoint() (ruxit.api.topology_builder.Device method)</a>
+  </dt>
+
+      
+  <dt><a href="_apidoc/ruxit.api.html#ruxit.api.results_builder.ResultsBuilder.add_event">add_event() (ruxit.api.results_builder.ResultsBuilder method)</a>
+  </dt>
+
+  </dl></td>
+  <td style="width: 33%" valign="top"><dl>
+      
+  <dt><a href="_apidoc/ruxit.api.html#ruxit.api.results_builder.ResultsBuilder.add_per_second_result">add_per_second_result() (ruxit.api.results_builder.ResultsBuilder method)</a>
+  </dt>
+
+      
+  <dt><a href="_apidoc/ruxit.api.html#ruxit.api.results_builder.ResultsBuilder.add_property">add_property() (ruxit.api.results_builder.ResultsBuilder method)</a>
+  </dt>
+
+      
+  <dt><a href="_apidoc/ruxit.api.html#ruxit.api.results_builder.ResultsBuilder.add_relative_result">add_relative_result() (ruxit.api.results_builder.ResultsBuilder method)</a>
+  </dt>
+
+      
+  <dt><a href="_apidoc/ruxit.api.html#ruxit.api.base_plugin.BasePlugin.agent_version">agent_version (ruxit.api.base_plugin.BasePlugin attribute)</a>
+  </dt>
+
+      <dd><dl>
+        
+  <dt><a href="_apidoc/ruxit.api.html#ruxit.api.base_plugin.ExternalFunctions.agent_version">(ruxit.api.base_plugin.ExternalFunctions attribute)</a>
+  </dt>
+
+      </dl></dd>
+      
+  <dt><a href="_apidoc/ruxit.api.html#ruxit.api.exceptions.AuthException">AuthException</a>
+  </dt>
+
+  </dl></td>
+</tr></table>
+
+<h2 id="B">B</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%" valign="top"><dl>
+      
+  <dt><a href="_apidoc/ruxit.api.html#ruxit.api.data.BaseMetric">BaseMetric (class in ruxit.api.data)</a>
+  </dt>
+
+      
+  <dt><a href="_apidoc/ruxit.api.html#ruxit.api.base_plugin.BasePlugin">BasePlugin (class in ruxit.api.base_plugin)</a>
+  </dt>
+
+      
+  <dt><a href="_apidoc/ruxit.api.html#ruxit.api.base_plugin.BasePlugin.AgentVersion">BasePlugin.AgentVersion (class in ruxit.api.base_plugin)</a>
+  </dt>
+
+  </dl></td>
+  <td style="width: 33%" valign="top"><dl>
+      
+  <dt><a href="plugins/ruxit_postgresql.html#ruxit_postgresql.DatabasePerSecondStats.blks_hit">blks_hit (ruxit_postgresql.DatabasePerSecondStats attribute)</a>
+  </dt>
+
+      
+  <dt><a href="plugins/ruxit_postgresql.html#ruxit_postgresql.DatabasePerSecondStats.blks_read">blks_read (ruxit_postgresql.DatabasePerSecondStats attribute)</a>
+  </dt>
+
+      
+  <dt><a href="_apidoc/ruxit.api.html#ruxit.api.base_plugin.BasePlugin.AgentVersion.build">build (ruxit.api.base_plugin.BasePlugin.AgentVersion attribute)</a>
+  </dt>
+
+  </dl></td>
+</tr></table>
+
+<h2 id="C">C</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%" valign="top"><dl>
+      
+  <dt><a href="plugins/ruxit_haproxy.html#ruxit_haproxy.HaProxyPlugin.check_socket">check_socket() (ruxit_haproxy.HaProxyPlugin method)</a>
+  </dt>
+
+      
+  <dt><a href="_apidoc/ruxit.api.html#ruxit.api.data.PluginMeasurementStorage.clear_results_only">clear_results_only() (ruxit.api.data.PluginMeasurementStorage method)</a>
+  </dt>
+
+      
+  <dt><a href="_apidoc/ruxit.api.html#ruxit.api.base_plugin.BasePlugin.close">close() (ruxit.api.base_plugin.BasePlugin method)</a>
+  </dt>
+
+      <dd><dl>
+        
+  <dt><a href="plugins/ruxit_mssql.html#ruxit_mssql.MsSqlPlugin.close">(ruxit_mssql.MsSqlPlugin method)</a>
+  </dt>
+
+        
+  <dt><a href="plugins/ruxit_mysql.html#ruxit_mysql.MySqlPlugin.close">(ruxit_mysql.MySqlPlugin method)</a>
+  </dt>
+
+      </dl></dd>
+      
+  <dt><a href="_apidoc/ruxit.api.html#ruxit.api.snapshot.command_line_regex">command_line_regex() (in module ruxit.api.snapshot)</a>
+  </dt>
+
+      
+  <dt><a href="_apidoc/ruxit_remote.api.html#ruxit.api.topology_builder.Topology.config_id">config_id (ruxit.api.topology_builder.Topology attribute)</a>
+  </dt>
+
+      
+  <dt><a href="_apidoc/ruxit.api.html#ruxit.api.exceptions.ConfigException">ConfigException</a>
+  </dt>
+
+      
+  <dt><a href="_apidoc/ruxit.api.html#ruxit.api.data.MEAttribute.CONTRIBUTED_NAME">CONTRIBUTED_NAME (ruxit.api.data.MEAttribute attribute)</a>
+  </dt>
+
+      
+  <dt><a href="plugins/ruxit_mssql.html#ruxit_mssql.CounterDesc">CounterDesc (class in ruxit_mssql)</a>
+  </dt>
+
+      
+  <dt><a href="plugins/ruxit_mongodb.html#ruxit_mongodb.MongodbPlugin.create_client">create_client() (ruxit_mongodb.MongodbPlugin method)</a>
+  </dt>
+
+  </dl></td>
+  <td style="width: 33%" valign="top"><dl>
+      
+  <dt><a href="_apidoc/ruxit_remote.api.html#ruxit.api.topology_builder.Group.create_device">create_device() (ruxit.api.topology_builder.Group method)</a>
+  </dt>
+
+      
+  <dt><a href="_apidoc/ruxit_remote.api.html#ruxit.api.topology_builder.Group.create_element">create_element() (ruxit.api.topology_builder.Group method)</a>
+  </dt>
+
+      
+  <dt><a href="_apidoc/ruxit_remote.api.html#ruxit.api.topology_builder.TopologyBuilder.create_group">create_group() (ruxit.api.topology_builder.TopologyBuilder method)</a>
+  </dt>
+
+      
+  <dt><a href="_apidoc/ruxit.api.html#ruxit.api.selectors.EntityType.CUSTOM_DEVICE">CUSTOM_DEVICE (ruxit.api.selectors.EntityType attribute)</a>
+  </dt>
+
+      
+  <dt><a href="_apidoc/ruxit.api.html#ruxit.api.selectors.EntityType.CUSTOM_DEVICE_GROUP">CUSTOM_DEVICE_GROUP (ruxit.api.selectors.EntityType attribute)</a>
+  </dt>
+
+      
+  <dt><a href="_apidoc/ruxit.api.html#ruxit.api.data.MEAttribute.CUSTOM_DEVICE_METADATA">CUSTOM_DEVICE_METADATA (ruxit.api.data.MEAttribute attribute)</a>
+  </dt>
+
+      
+  <dt><a href="_apidoc/ruxit.api.html#ruxit.api.data.MEAttribute.CUSTOM_HOST_METADATA">CUSTOM_HOST_METADATA (ruxit.api.data.MEAttribute attribute)</a>
+  </dt>
+
+      
+  <dt><a href="_apidoc/ruxit.api.html#ruxit.api.data.MEAttribute.CUSTOM_PG_METADATA">CUSTOM_PG_METADATA (ruxit.api.data.MEAttribute attribute)</a>
+  </dt>
+
+  </dl></td>
+</tr></table>
+
+<h2 id="D">D</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%" valign="top"><dl>
+      
+  <dt><a href="plugins/ruxit_postgresql.html#ruxit_postgresql.DatabasePerSecondStats">DatabasePerSecondStats (class in ruxit_postgresql)</a>
+  </dt>
+
+      
+  <dt><a href="_apidoc/ruxit_remote.api.html#ruxit.api.topology_builder.Device">Device (class in ruxit.api.topology_builder)</a>
+  </dt>
+
+      
+  <dt><a href="_apidoc/ruxit.api.html#ruxit.api.data.BaseMetric.dimensions">dimensions (ruxit.api.data.BaseMetric attribute)</a>
+  </dt>
+
+      
+  <dt><a href="_apidoc/ruxit.api.html#ruxit.api.data.BaseMetric.dimensions_keys_tuple">dimensions_keys_tuple (ruxit.api.data.BaseMetric attribute)</a>
+  </dt>
+
+  </dl></td>
+  <td style="width: 33%" valign="top"><dl>
+      
+  <dt><a href="_apidoc/ruxit.api.html#ruxit.api.selectors.EntityType.DOCKER_CONTAINER_GROUP_INSTANCE">DOCKER_CONTAINER_GROUP_INSTANCE (ruxit.api.selectors.EntityType attribute)</a>
+  </dt>
+
+      
+  <dt><a href="_apidoc/ruxit.api.html#ruxit.api.data.MEAttribute.DOCKER_CONTAINER_PROPS">DOCKER_CONTAINER_PROPS (ruxit.api.data.MEAttribute attribute)</a>
+  </dt>
+
+      
+  <dt><a href="_apidoc/ruxit.api.html#ruxit.api.selectors.DockerSelector">DockerSelector (class in ruxit.api.selectors)</a>
+  </dt>
+
+  </dl></td>
+</tr></table>
+
+<h2 id="E">E</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%" valign="top"><dl>
+      
+  <dt><a href="api/process_snapshot.html#module-embedded_api">embedded_api (module)</a>
+  </dt>
+
+      
+  <dt><a href="_apidoc/ruxit.api.html#ruxit.api.selectors.EntityType">EntityType (class in ruxit.api.selectors)</a>
+  </dt>
+
+      
+  <dt><a href="api/process_snapshot.html#embedded_api.ProcessSnapshot.entries">entries (embedded_api.ProcessSnapshot attribute)</a>, <a href="api/process_snapshot.html#embedded_api.ProcessSnapshot.entries">[1]</a>
+  </dt>
+
+      
+  <dt><a href="_apidoc/ruxit.api.html#ruxit.api.base_plugin.MonitoredEntity.event_availability">event_availability() (ruxit.api.base_plugin.MonitoredEntity method)</a>
+  </dt>
+
+      
+  <dt><a href="_apidoc/ruxit.api.html#ruxit.api.base_plugin.MonitoredEntity.event_custom_annotation">event_custom_annotation() (ruxit.api.base_plugin.MonitoredEntity method)</a>
+  </dt>
+
+      
+  <dt><a href="_apidoc/ruxit.api.html#ruxit.api.base_plugin.MonitoredEntity.event_custom_deployment">event_custom_deployment() (ruxit.api.base_plugin.MonitoredEntity method)</a>
+  </dt>
+
+      
+  <dt><a href="_apidoc/ruxit.api.html#ruxit.api.base_plugin.MonitoredEntity.event_custom_info">event_custom_info() (ruxit.api.base_plugin.MonitoredEntity method)</a>
+  </dt>
+
+  </dl></td>
+  <td style="width: 33%" valign="top"><dl>
+      
+  <dt><a href="_apidoc/ruxit.api.html#ruxit.api.base_plugin.MonitoredEntity.event_error">event_error() (ruxit.api.base_plugin.MonitoredEntity method)</a>
+  </dt>
+
+      
+  <dt><a href="_apidoc/ruxit.api.html#ruxit.api.base_plugin.MonitoredEntity.event_performance">event_performance() (ruxit.api.base_plugin.MonitoredEntity method)</a>
+  </dt>
+
+      
+  <dt><a href="_apidoc/ruxit.api.html#ruxit.api.base_plugin.MonitoredEntity.event_resource_contention">event_resource_contention() (ruxit.api.base_plugin.MonitoredEntity method)</a>
+  </dt>
+
+      
+  <dt><a href="_apidoc/ruxit.api.html#ruxit.api.selectors.ExplicitPgiSelector">ExplicitPgiSelector (class in ruxit.api.selectors)</a>
+  </dt>
+
+      
+  <dt><a href="_apidoc/ruxit.api.html#ruxit.api.selectors.ExplicitSelector">ExplicitSelector (class in ruxit.api.selectors)</a>
+  </dt>
+
+      
+  <dt><a href="_apidoc/ruxit.api.html#ruxit.api.base_plugin.ExternalFunctions">ExternalFunctions (class in ruxit.api.base_plugin)</a>
+  </dt>
+
+  </dl></td>
+</tr></table>
+
+<h2 id="F">F</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%" valign="top"><dl>
+      
+  <dt><a href="plugins/ruxit_mongodb.html#ruxit_mongodb.MongodbPlugin.filter_auth_exceptions">filter_auth_exceptions() (ruxit_mongodb.MongodbPlugin method)</a>
+  </dt>
+
+      
+  <dt><a href="_apidoc/ruxit.api.html#ruxit.api.base_plugin.BasePlugin.find_all_process_groups">find_all_process_groups() (ruxit.api.base_plugin.BasePlugin method)</a>
+  </dt>
+
+      
+  <dt><a href="_apidoc/ruxit.api.html#ruxit.api.base_plugin.BasePlugin.find_all_processes">find_all_processes() (ruxit.api.base_plugin.BasePlugin method)</a>
+  </dt>
+
+      
+  <dt><a href="_apidoc/ruxit.api.html#ruxit.api.base_plugin.BasePlugin.find_single_process">find_single_process() (ruxit.api.base_plugin.BasePlugin method)</a>
+  </dt>
+
+  </dl></td>
+  <td style="width: 33%" valign="top"><dl>
+      
+  <dt><a href="_apidoc/ruxit.api.html#ruxit.api.base_plugin.BasePlugin.find_single_process_group">find_single_process_group() (ruxit.api.base_plugin.BasePlugin method)</a>
+  </dt>
+
+      
+  <dt><a href="_apidoc/ruxit.api.html#ruxit.api.data.PluginMeasurementStorage.flush">flush() (ruxit.api.data.PluginMeasurementStorage method)</a>
+  </dt>
+
+      
+  <dt><a href="_apidoc/ruxit.api.html#ruxit.api.selectors.FromPluginSelector">FromPluginSelector (class in ruxit.api.selectors)</a>
+  </dt>
+
+  </dl></td>
+</tr></table>
+
+<h2 id="G">G</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%" valign="top"><dl>
+      
+  <dt><a href="_apidoc/ruxit.api.html#ruxit.api.base_plugin.MonitoredEntities.get">get() (ruxit.api.base_plugin.MonitoredEntities method)</a>
+  </dt>
+
+      
+  <dt><a href="plugins/ruxit_postgresql.html#ruxit_postgresql.PostgresqlPlugin.get_database_level_statistics">get_database_level_statistics() (ruxit_postgresql.PostgresqlPlugin method)</a>
+  </dt>
+
+      
+  <dt><a href="plugins/ruxit_mongodb.html#ruxit_mongodb.MongodbPlugin.get_database_metrics">get_database_metrics() (ruxit_mongodb.MongodbPlugin method)</a>
+  </dt>
+
+      
+  <dt><a href="plugins/ruxit_postgresql.html#ruxit_postgresql.PostgresqlPlugin.get_databases">get_databases() (ruxit_postgresql.PostgresqlPlugin method)</a>
+  </dt>
+
+      
+  <dt><a href="_apidoc/ruxit.api.html#ruxit.api.base_plugin.BasePlugin.get_monitored_entities">get_monitored_entities() (ruxit.api.base_plugin.BasePlugin method)</a>
+  </dt>
+
+      
+  <dt><a href="plugins/ruxit_mssql.html#ruxit_mssql.MsSqlPlugin.get_objectname_prefix">get_objectname_prefix() (ruxit_mssql.MsSqlPlugin method)</a>
+  </dt>
+
+      
+  <dt><a href="_apidoc/ruxit.api.html#ruxit.api.snapshot.get_pids">get_pids() (in module ruxit.api.snapshot)</a>
+  </dt>
+
+      
+  <dt><a href="_apidoc/ruxit.api.html#ruxit.api.snapshot.get_ports">get_ports() (in module ruxit.api.snapshot)</a>
+  </dt>
+
+      
+  <dt><a href="plugins/ruxit_mongodb.html#ruxit_mongodb.MongodbPlugin.get_server_metrics">get_server_metrics() (ruxit_mongodb.MongodbPlugin method)</a>
+  </dt>
+
+      
+  <dt><a href="plugins/ruxit_postgresql.html#ruxit_postgresql.PostgresqlPlugin.get_table_level_statistics">get_table_level_statistics() (ruxit_postgresql.PostgresqlPlugin method)</a>
+  </dt>
+
+      
+  <dt><a href="_apidoc/ruxit.api.html#ruxit.api.snapshot.get_technologies">get_technologies() (in module ruxit.api.snapshot)</a>
+  </dt>
+
+  </dl></td>
+  <td style="width: 33%" valign="top"><dl>
+      
+  <dt><a href="_apidoc/ruxit.api.html#ruxit.api.results_builder.ResultsBuilder.get_topx_overflow_info">get_topx_overflow_info (ruxit.api.results_builder.ResultsBuilder attribute)</a>
+  </dt>
+
+      
+  <dt><a href="plugins/ruxit_mongodb.html#ruxit_mongodb.MongodbPlugin.get_value_of_indices_chain">get_value_of_indices_chain() (ruxit_mongodb.MongodbPlugin static method)</a>
+  </dt>
+
+      
+  <dt><a href="plugins/ruxit_haproxy.html#ruxit_haproxy.HaProxyPlugin.getIdleFromHttp">getIdleFromHttp() (ruxit_haproxy.HaProxyPlugin method)</a>
+  </dt>
+
+      
+  <dt><a href="plugins/ruxit_haproxy.html#ruxit_haproxy.HaProxyPlugin.getIdleFromSocket">getIdleFromSocket() (ruxit_haproxy.HaProxyPlugin method)</a>
+  </dt>
+
+      
+  <dt><a href="plugins/ruxit_haproxy.html#ruxit_haproxy.HaProxyPlugin.getResponseFromHttp">getResponseFromHttp() (ruxit_haproxy.HaProxyPlugin method)</a>
+  </dt>
+
+      
+  <dt><a href="plugins/ruxit_haproxy.html#ruxit_haproxy.HaProxyPlugin.getResponseFromSocket">getResponseFromSocket() (ruxit_haproxy.HaProxyPlugin method)</a>
+  </dt>
+
+      
+  <dt><a href="_apidoc/ruxit_remote.api.html#ruxit.api.topology_builder.Group">Group (class in ruxit.api.topology_builder)</a>
+  </dt>
+
+      
+  <dt><a href="_apidoc/ruxit_remote.api.html#ruxit.api.topology_builder.Topology.group">group (ruxit.api.topology_builder.Topology attribute)</a>
+  </dt>
+
+      
+  <dt><a href="api/process_snapshot.html#embedded_api.ProcessSnapshotEntry.group_id">group_id (embedded_api.ProcessSnapshotEntry attribute)</a>
+  </dt>
+
+      <dd><dl>
+        
+  <dt><a href="_apidoc/ruxit.api.html#ruxit.api.base_plugin.ProcessGroupInstance.group_id">(ruxit.api.base_plugin.ProcessGroupInstance attribute)</a>
+  </dt>
+
+      </dl></dd>
+      
+  <dt><a href="api/process_snapshot.html#embedded_api.ProcessSnapshotEntry.group_instance_id">group_instance_id (embedded_api.ProcessSnapshotEntry attribute)</a>
+  </dt>
+
+      <dd><dl>
+        
+  <dt><a href="_apidoc/ruxit.api.html#ruxit.api.base_plugin.ProcessGroupInstance.group_instance_id">(ruxit.api.base_plugin.ProcessGroupInstance attribute)</a>
+  </dt>
+
+      </dl></dd>
+      
+  <dt><a href="api/process_snapshot.html#embedded_api.ProcessSnapshotEntry.group_name">group_name (embedded_api.ProcessSnapshotEntry attribute)</a>
+  </dt>
+
+      <dd><dl>
+        
+  <dt><a href="_apidoc/ruxit.api.html#ruxit.api.base_plugin.ProcessGroupInstance.group_name">(ruxit.api.base_plugin.ProcessGroupInstance attribute)</a>
+  </dt>
+
+      </dl></dd>
+  </dl></td>
+</tr></table>
+
+<h2 id="H">H</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%" valign="top"><dl>
+      
+  <dt><a href="plugins/ruxit_mssql.html#ruxit_mssql.CounterDesc.handle">handle (ruxit_mssql.CounterDesc attribute)</a>
+  </dt>
+
+      
+  <dt><a href="plugins/ruxit_postgresql.html#ruxit_postgresql.handle_ERROR_RESPONSE_patch">handle_ERROR_RESPONSE_patch() (in module ruxit_postgresql)</a>
+  </dt>
+
+      
+  <dt><a href="plugins/ruxit_haproxy.html#ruxit_haproxy.HaProxyPlugin">HaProxyPlugin (class in ruxit_haproxy)</a>
+  </dt>
+
+  </dl></td>
+  <td style="width: 33%" valign="top"><dl>
+      
+  <dt><a href="_apidoc/ruxit.api.html#ruxit.api.selectors.EntityType.HOST">HOST (ruxit.api.selectors.EntityType attribute)</a>
+  </dt>
+
+      
+  <dt><a href="api/process_snapshot.html#embedded_api.ProcessSnapshot.host_id">host_id (embedded_api.ProcessSnapshot attribute)</a>
+  </dt>
+
+      
+  <dt><a href="_apidoc/ruxit.api.html#ruxit.api.selectors.HostSelector">HostSelector (class in ruxit.api.selectors)</a>
+  </dt>
+
+  </dl></td>
+</tr></table>
+
+<h2 id="I">I</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%" valign="top"><dl>
+      
+  <dt><a href="_apidoc/ruxit.api.html#ruxit.api.base_plugin.MonitoredEntity.id">id (ruxit.api.base_plugin.MonitoredEntity attribute)</a>
+  </dt>
+
+      
+  <dt><a href="plugins/ruxit_postgresql.html#ruxit_postgresql.TablePerSecondStats.idx_scan">idx_scan (ruxit_postgresql.TablePerSecondStats attribute)</a>
+  </dt>
+
+      
+  <dt><a href="plugins/ruxit_postgresql.html#ruxit_postgresql.TablePerSecondStats.idx_tup_fetch">idx_tup_fetch (ruxit_postgresql.TablePerSecondStats attribute)</a>
+  </dt>
+
+      
+  <dt><a href="_apidoc/ruxit.api.html#ruxit.api.base_plugin.BasePlugin.initialize">initialize() (ruxit.api.base_plugin.BasePlugin method)</a>
+  </dt>
+
+      <dd><dl>
+        
+  <dt><a href="plugins/ruxit_haproxy.html#ruxit_haproxy.HaProxyPlugin.initialize">(ruxit_haproxy.HaProxyPlugin method)</a>
+  </dt>
+
+        
+  <dt><a href="plugins/ruxit_memcached.html#ruxit_memcached.MemcachedPlugin.initialize">(ruxit_memcached.MemcachedPlugin method)</a>
+  </dt>
+
+        
+  <dt><a href="plugins/ruxit_mongodb.html#ruxit_mongodb.MongodbPlugin.initialize">(ruxit_mongodb.MongodbPlugin method)</a>
+  </dt>
+
+        
+  <dt><a href="plugins/ruxit_mssql.html#ruxit_mssql.MsSqlPlugin.initialize">(ruxit_mssql.MsSqlPlugin method)</a>
+  </dt>
+
+        
+  <dt><a href="plugins/ruxit_mysql.html#ruxit_mysql.MySqlPlugin.initialize">(ruxit_mysql.MySqlPlugin method)</a>
+  </dt>
+
+        
+  <dt><a href="plugins/ruxit_postgresql.html#ruxit_postgresql.PostgresqlPlugin.initialize">(ruxit_postgresql.PostgresqlPlugin method)</a>
+  </dt>
+
+      </dl></dd>
+      
+  <dt><a href="plugins/ruxit_mongodb.html#ruxit_mongodb.MongodbPlugin.initialize_metrics">initialize_metrics() (ruxit_mongodb.MongodbPlugin method)</a>
+  </dt>
+
+  </dl></td>
+  <td style="width: 33%" valign="top"><dl>
+      
+  <dt><a href="plugins/ruxit_haproxy.html#ruxit_haproxy.HaProxyPlugin.initializeSockets">initializeSockets() (ruxit_haproxy.HaProxyPlugin method)</a>
+  </dt>
+
+      
+  <dt><a href="_apidoc/ruxit.api.html#ruxit.api.data.MEAttribute.INTERNAL_DEBUG_PROPERTY">INTERNAL_DEBUG_PROPERTY (ruxit.api.data.MEAttribute attribute)</a>
+  </dt>
+
+      
+  <dt><a href="_apidoc/ruxit.api.html#ruxit.api.data.PluginProperty.is_allowed_for_pa">is_allowed_for_pa() (ruxit.api.data.PluginProperty class method)</a>
+  </dt>
+
+      
+  <dt><a href="_apidoc/ruxit.api.html#ruxit.api.data.PluginProperty.is_custom">is_custom() (ruxit.api.data.PluginProperty class method)</a>
+  </dt>
+
+      
+  <dt><a href="_apidoc/ruxit.api.html#ruxit.api.data.PluginMeasurementStorage.items">items() (ruxit.api.data.PluginMeasurementStorage method)</a>
+  </dt>
+
+  </dl></td>
+</tr></table>
+
+<h2 id="K">K</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%" valign="top"><dl>
+      
+  <dt><a href="_apidoc/ruxit.api.html#ruxit.api.data.BaseMetric.key">key (ruxit.api.data.BaseMetric attribute)</a>
+  </dt>
+
+      <dd><dl>
+        
+  <dt><a href="_apidoc/ruxit.api.html#ruxit.api.data.PluginMeasurement.key">(ruxit.api.data.PluginMeasurement attribute)</a>
+  </dt>
+
+        
+  <dt><a href="_apidoc/ruxit.api.html#ruxit.api.data.PluginMeasurementV3.key">(ruxit.api.data.PluginMeasurementV3 attribute)</a>
+  </dt>
+
+        
+  <dt><a href="_apidoc/ruxit.api.html#ruxit.api.data.PluginProperty.key">(ruxit.api.data.PluginProperty attribute)</a>
+  </dt>
+
+        
+  <dt><a href="_apidoc/ruxit.api.html#ruxit.api.data.PluginStateMetric.key">(ruxit.api.data.PluginStateMetric attribute)</a>
+  </dt>
+
+      </dl></dd>
+  </dl></td>
+</tr></table>
+
+<h2 id="L">L</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%" valign="top"><dl>
+      
+  <dt><a href="_apidoc/ruxit.api.html#ruxit.api.selectors.ListenPortSelector">ListenPortSelector (class in ruxit.api.selectors)</a>
+  </dt>
+
+  </dl></td>
+  <td style="width: 33%" valign="top"><dl>
+      
+  <dt><a href="_apidoc/ruxit.api.html#ruxit.api.data.PluginMeasurementStorage.load">load() (ruxit.api.data.PluginMeasurementStorage method)</a>
+  </dt>
+
+  </dl></td>
+</tr></table>
+
+<h2 id="M">M</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%" valign="top"><dl>
+      
+  <dt><a href="_apidoc/ruxit.api.html#ruxit.api.base_plugin.BasePlugin.AgentVersion.major">major (ruxit.api.base_plugin.BasePlugin.AgentVersion attribute)</a>
+  </dt>
+
+      
+  <dt><a href="_apidoc/ruxit.api.html#ruxit.api.data.PluginMeasurementStorage.MAX_DIMENSIONS_PER_METRIC">MAX_DIMENSIONS_PER_METRIC (ruxit.api.data.PluginMeasurementStorage attribute)</a>
+  </dt>
+
+      
+  <dt><a href="_apidoc/ruxit.api.html#ruxit.api.data.PluginProperty.me_attribute">me_attribute (ruxit.api.data.PluginProperty attribute)</a>
+  </dt>
+
+      
+  <dt><a href="_apidoc/ruxit.api.html#ruxit.api.selectors.ListenPortSelector.me_type">me_type (ruxit.api.selectors.ListenPortSelector attribute)</a>
+  </dt>
+
+      
+  <dt><a href="_apidoc/ruxit.api.html#ruxit.api.selectors.EntityType.ME_TYPE_UNKNOWN">ME_TYPE_UNKNOWN (ruxit.api.selectors.EntityType attribute)</a>
+  </dt>
+
+      
+  <dt><a href="_apidoc/ruxit.api.html#ruxit.api.data.MEAttribute">MEAttribute (class in ruxit.api.data)</a>
+  </dt>
+
+      
+  <dt><a href="_apidoc/ruxit.api.html#ruxit.api.selectors.MeId">MeId (class in ruxit.api.selectors)</a>
+  </dt>
+
+      
+  <dt><a href="_apidoc/ruxit.api.html#ruxit.api.selectors.MeId.meid">meid (ruxit.api.selectors.MeId attribute)</a>
+  </dt>
+
+      
+  <dt><a href="plugins/ruxit_memcached.html#ruxit_memcached.MemcachedPlugin">MemcachedPlugin (class in ruxit_memcached)</a>
+  </dt>
+
+  </dl></td>
+  <td style="width: 33%" valign="top"><dl>
+      
+  <dt><a href="_apidoc/ruxit_remote.api.html#ruxit.api.topology_builder.MetricSink">MetricSink (class in ruxit.api.topology_builder)</a>
+  </dt>
+
+      
+  <dt><a href="_apidoc/ruxit.api.html#ruxit.api.selectors.MeId.metype">metype (ruxit.api.selectors.MeId attribute)</a>
+  </dt>
+
+      
+  <dt><a href="_apidoc/ruxit.api.html#ruxit.api.base_plugin.BasePlugin.AgentVersion.minor">minor (ruxit.api.base_plugin.BasePlugin.AgentVersion attribute)</a>
+  </dt>
+
+      
+  <dt><a href="plugins/ruxit_mongodb.html#ruxit_mongodb.MongodbPlugin">MongodbPlugin (class in ruxit_mongodb)</a>
+  </dt>
+
+      
+  <dt><a href="_apidoc/ruxit.api.html#ruxit.api.base_plugin.MonitoredEntities">MonitoredEntities (class in ruxit.api.base_plugin)</a>
+  </dt>
+
+      
+  <dt><a href="_apidoc/ruxit.api.html#ruxit.api.base_plugin.MonitoredEntity">MonitoredEntity (class in ruxit.api.base_plugin)</a>
+  </dt>
+
+      
+  <dt><a href="plugins/ruxit_mssql.html#ruxit_mssql.MsSqlPlugin">MsSqlPlugin (class in ruxit_mssql)</a>
+  </dt>
+
+      
+  <dt><a href="plugins/ruxit_mysql.html#ruxit_mysql.MySqlPlugin">MySqlPlugin (class in ruxit_mysql)</a>
+  </dt>
+
+  </dl></td>
+</tr></table>
+
+<h2 id="N">N</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%" valign="top"><dl>
+      
+  <dt><a href="_apidoc/ruxit.api.html#ruxit.api.base_plugin.ProcessInfo.name">name (ruxit.api.base_plugin.ProcessInfo attribute)</a>
+  </dt>
+
+      
+  <dt><a href="_apidoc/ruxit.api.html#ruxit.api.selectors.ListenPortSelector.name_pattern">name_pattern (ruxit.api.selectors.ListenPortSelector attribute)</a>
+  </dt>
+
+  </dl></td>
+  <td style="width: 33%" valign="top"><dl>
+      
+  <dt><a href="api/process_snapshot.html#embedded_api.ProcessSnapshotEntry.node_id">node_id (embedded_api.ProcessSnapshotEntry attribute)</a>
+  </dt>
+
+      <dd><dl>
+        
+  <dt><a href="_apidoc/ruxit.api.html#ruxit.api.base_plugin.ProcessGroupInstance.node_id">(ruxit.api.base_plugin.ProcessGroupInstance attribute)</a>
+  </dt>
+
+      </dl></dd>
+      
+  <dt><a href="_apidoc/ruxit.api.html#ruxit.api.exceptions.NothingToReportException">NothingToReportException</a>
+  </dt>
+
+  </dl></td>
+</tr></table>
+
+<h2 id="O">O</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%" valign="top"><dl>
+      
+  <dt><a href="_apidoc/ruxit.api.html#ruxit.api.data.PluginMeasurementStorage.overflow_info">overflow_info (ruxit.api.data.PluginMeasurementStorage attribute)</a>
+  </dt>
+
+  </dl></td>
+</tr></table>
+
+<h2 id="P">P</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%" valign="top"><dl>
+      
+  <dt><a href="_apidoc/ruxit.api.html#ruxit.api.snapshot.parse_port_bindings">parse_port_bindings() (in module ruxit.api.snapshot)</a>
+  </dt>
+
+      
+  <dt><a href="plugins/ruxit_mssql.html#ruxit_mssql.CounterDesc.path">path (ruxit_mssql.CounterDesc attribute)</a>
+  </dt>
+
+      
+  <dt><a href="_apidoc/ruxit.api.html#ruxit.api.base_plugin.MonitoredEntity.per_second">per_second() (ruxit.api.base_plugin.MonitoredEntity method)</a>
+  </dt>
+
+      <dd><dl>
+        
+  <dt><a href="_apidoc/ruxit.api.html#ruxit.api.results_builder.ResultsBuilder.per_second">(ruxit.api.results_builder.ResultsBuilder method)</a>
+  </dt>
+
+        
+  <dt><a href="_apidoc/ruxit_remote.api.html#ruxit.api.topology_builder.MetricSink.per_second">(ruxit.api.topology_builder.MetricSink method)</a>
+  </dt>
+
+      </dl></dd>
+      
+  <dt><a href="plugins/ruxit_mongodb.html#ruxit_mongodb.QueryDesc.per_second_result_flag">per_second_result_flag (ruxit_mongodb.QueryDesc attribute)</a>
+  </dt>
+
+      
+  <dt><a href="plugins/ruxit_memcached.html#ruxit_memcached.MemcachedPlugin.per_second_values">per_second_values (ruxit_memcached.MemcachedPlugin attribute)</a>
+  </dt>
+
+      
+  <dt><a href="_apidoc/ruxit.api.html#ruxit.api.snapshot.pgi_name">pgi_name() (in module ruxit.api.snapshot)</a>
+  </dt>
+
+      
+  <dt><a href="api/process_snapshot.html#embedded_api.ProcessInfo.pid">pid (embedded_api.ProcessInfo attribute)</a>
+  </dt>
+
+      <dd><dl>
+        
+  <dt><a href="_apidoc/ruxit.api.html#ruxit.api.base_plugin.ProcessInfo.pid">(ruxit.api.base_plugin.ProcessInfo attribute)</a>
+  </dt>
+
+      </dl></dd>
+      
+  <dt><a href="_apidoc/ruxit.api.html#ruxit.api.data.BaseMetric.PID_KEY">PID_KEY (ruxit.api.data.BaseMetric attribute)</a>
+  </dt>
+
+      
+  <dt><a href="_apidoc/ruxit.api.html#ruxit.api.data.PluginMeasurement">PluginMeasurement (class in ruxit.api.data)</a>
+  </dt>
+
+      
+  <dt><a href="_apidoc/ruxit.api.html#ruxit.api.data.PluginMeasurementList">PluginMeasurementList (class in ruxit.api.data)</a>
+  </dt>
+
+      
+  <dt><a href="_apidoc/ruxit.api.html#ruxit.api.data.PluginMeasurementStorage">PluginMeasurementStorage (class in ruxit.api.data)</a>
+  </dt>
+
+      
+  <dt><a href="_apidoc/ruxit.api.html#ruxit.api.data.PluginMeasurementV3">PluginMeasurementV3 (class in ruxit.api.data)</a>
+  </dt>
+
+      
+  <dt><a href="_apidoc/ruxit.api.html#ruxit.api.data.PluginProperty">PluginProperty (class in ruxit.api.data)</a>
+  </dt>
+
+      
+  <dt><a href="_apidoc/ruxit.api.html#ruxit.api.data.PluginStateMetric">PluginStateMetric (class in ruxit.api.data)</a>
+  </dt>
+
+      
+  <dt><a href="plugins/ruxit_postgresql.html#ruxit_postgresql.PostgresqlPlugin.postgres_auth_errors">postgres_auth_errors (ruxit_postgresql.PostgresqlPlugin attribute)</a>
+  </dt>
+
+  </dl></td>
+  <td style="width: 33%" valign="top"><dl>
+      
+  <dt><a href="plugins/ruxit_postgresql.html#ruxit_postgresql.PostgresqlPlugin.postgres_auth_msgs">postgres_auth_msgs (ruxit_postgresql.PostgresqlPlugin attribute)</a>
+  </dt>
+
+      
+  <dt><a href="plugins/ruxit_postgresql.html#ruxit_postgresql.PostgresqlPlugin">PostgresqlPlugin (class in ruxit_postgresql)</a>
+  </dt>
+
+      
+  <dt><a href="_apidoc/ruxit.api.html#ruxit.api.selectors.EntityType.PROCESS_GROUP">PROCESS_GROUP (ruxit.api.selectors.EntityType attribute)</a>
+  </dt>
+
+      
+  <dt><a href="_apidoc/ruxit.api.html#ruxit.api.selectors.EntityType.PROCESS_GROUP_INSTANCE">PROCESS_GROUP_INSTANCE (ruxit.api.selectors.EntityType attribute)</a>
+  </dt>
+
+      
+  <dt><a href="_apidoc/ruxit.api.html#ruxit.api.data.MEAttribute.PROCESS_GROUP_TECHS">PROCESS_GROUP_TECHS (ruxit.api.data.MEAttribute attribute)</a>
+  </dt>
+
+      
+  <dt><a href="api/process_snapshot.html#embedded_api.ProcessInfo.process_name">process_name (embedded_api.ProcessInfo attribute)</a>
+  </dt>
+
+      <dd><dl>
+        
+  <dt><a href="_apidoc/ruxit.api.html#ruxit.api.base_plugin.MonitoredEntity.process_name">(ruxit.api.base_plugin.MonitoredEntity attribute)</a>
+  </dt>
+
+      </dl></dd>
+      
+  <dt><a href="api/process_snapshot.html#embedded_api.ProcessSnapshotEntry.process_type">process_type (embedded_api.ProcessSnapshotEntry attribute)</a>
+  </dt>
+
+      <dd><dl>
+        
+  <dt><a href="_apidoc/ruxit.api.html#ruxit.api.base_plugin.ProcessGroupInstance.process_type">(ruxit.api.base_plugin.ProcessGroupInstance attribute)</a>
+  </dt>
+
+      </dl></dd>
+      
+  <dt><a href="api/process_snapshot.html#embedded_api.ProcessSnapshotEntry.processes">processes (embedded_api.ProcessSnapshotEntry attribute)</a>
+  </dt>
+
+      <dd><dl>
+        
+  <dt><a href="_apidoc/ruxit.api.html#ruxit.api.base_plugin.ProcessGroupInstance.processes">(ruxit.api.base_plugin.ProcessGroupInstance attribute)</a>
+  </dt>
+
+      </dl></dd>
+      
+  <dt><a href="_apidoc/ruxit.api.html#ruxit.api.base_plugin.ProcessGroupInstance">ProcessGroupInstance (class in ruxit.api.base_plugin)</a>
+  </dt>
+
+      
+  <dt><a href="api/process_snapshot.html#embedded_api.ProcessInfo">ProcessInfo (class in embedded_api)</a>
+  </dt>
+
+      <dd><dl>
+        
+  <dt><a href="_apidoc/ruxit.api.html#ruxit.api.base_plugin.ProcessInfo">(class in ruxit.api.base_plugin)</a>
+  </dt>
+
+      </dl></dd>
+      
+  <dt><a href="api/process_snapshot.html#embedded_api.ProcessSnapshot">ProcessSnapshot (class in embedded_api)</a>
+  </dt>
+
+      
+  <dt><a href="api/process_snapshot.html#embedded_api.ProcessSnapshotEntry">ProcessSnapshotEntry (class in embedded_api)</a>
+  </dt>
+
+      
+  <dt><a href="api/process_snapshot.html#embedded_api.ProcessInfo.properties">properties (embedded_api.ProcessInfo attribute)</a>
+  </dt>
+
+      <dd><dl>
+        
+  <dt><a href="api/process_snapshot.html#embedded_api.ProcessSnapshotEntry.properties">(embedded_api.ProcessSnapshotEntry attribute)</a>
+  </dt>
+
+        
+  <dt><a href="_apidoc/ruxit.api.html#ruxit.api.base_plugin.ProcessGroupInstance.properties">(ruxit.api.base_plugin.ProcessGroupInstance attribute)</a>
+  </dt>
+
+        
+  <dt><a href="_apidoc/ruxit.api.html#ruxit.api.base_plugin.ProcessInfo.properties">(ruxit.api.base_plugin.ProcessInfo attribute)</a>
+  </dt>
+
+      </dl></dd>
+      
+  <dt><a href="_apidoc/ruxit.api.html#ruxit.api.base_plugin.MonitoredEntity.property">property() (ruxit.api.base_plugin.MonitoredEntity method)</a>
+  </dt>
+
+      
+  <dt><a href="_apidoc/ruxit.api.html#ruxit.api.snapshot.python_module">python_module() (in module ruxit.api.snapshot)</a>
+  </dt>
+
+  </dl></td>
+</tr></table>
+
+<h2 id="Q">Q</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%" valign="top"><dl>
+      
+  <dt><a href="_apidoc/ruxit.api.html#ruxit.api.base_plugin.BasePlugin.query">query() (ruxit.api.base_plugin.BasePlugin method)</a>
+  </dt>
+
+      <dd><dl>
+        
+  <dt><a href="plugins/ruxit_haproxy.html#ruxit_haproxy.HaProxyPlugin.query">(ruxit_haproxy.HaProxyPlugin method)</a>
+  </dt>
+
+        
+  <dt><a href="plugins/ruxit_memcached.html#ruxit_memcached.MemcachedPlugin.query">(ruxit_memcached.MemcachedPlugin method)</a>
+  </dt>
+
+        
+  <dt><a href="plugins/ruxit_mongodb.html#ruxit_mongodb.MongodbPlugin.query">(ruxit_mongodb.MongodbPlugin method)</a>
+  </dt>
+
+        
+  <dt><a href="plugins/ruxit_mssql.html#ruxit_mssql.MsSqlPlugin.query">(ruxit_mssql.MsSqlPlugin method)</a>
+  </dt>
+
+        
+  <dt><a href="plugins/ruxit_mysql.html#ruxit_mysql.MySqlPlugin.query">(ruxit_mysql.MySqlPlugin method)</a>
+  </dt>
+
+        
+  <dt><a href="plugins/ruxit_postgresql.html#ruxit_postgresql.PostgresqlPlugin.query">(ruxit_postgresql.PostgresqlPlugin method)</a>
+  </dt>
+
+      </dl></dd>
+  </dl></td>
+  <td style="width: 33%" valign="top"><dl>
+      
+  <dt><a href="plugins/ruxit_mongodb.html#ruxit_mongodb.QueryDesc">QueryDesc (class in ruxit_mongodb)</a>
+  </dt>
+
+  </dl></td>
+</tr></table>
+
+<h2 id="R">R</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%" valign="top"><dl>
+      
+  <dt><a href="plugins/ruxit_haproxy.html#ruxit_haproxy.HaProxyPlugin.readHttp">readHttp() (ruxit_haproxy.HaProxyPlugin method)</a>
+  </dt>
+
+      
+  <dt><a href="plugins/ruxit_haproxy.html#ruxit_haproxy.HaProxyPlugin.readSocket">readSocket() (ruxit_haproxy.HaProxyPlugin method)</a>
+  </dt>
+
+      
+  <dt><a href="_apidoc/ruxit.api.html#ruxit.api.base_plugin.MonitoredEntity.relative">relative() (ruxit.api.base_plugin.MonitoredEntity method)</a>
+  </dt>
+
+      <dd><dl>
+        
+  <dt><a href="_apidoc/ruxit.api.html#ruxit.api.results_builder.ResultsBuilder.relative">(ruxit.api.results_builder.ResultsBuilder method)</a>
+  </dt>
+
+        
+  <dt><a href="_apidoc/ruxit_remote.api.html#ruxit.api.topology_builder.MetricSink.relative">(ruxit.api.topology_builder.MetricSink method)</a>
+  </dt>
+
+      </dl></dd>
+      
+  <dt><a href="_apidoc/ruxit.api.html#ruxit.api.base_plugin.RemoteBasePlugin">RemoteBasePlugin (class in ruxit.api.base_plugin)</a>
+  </dt>
+
+      
+  <dt><a href="_apidoc/ruxit.api.html#ruxit.api.results_builder.ResultsBuilder.report_availability_event">report_availability_event() (ruxit.api.results_builder.ResultsBuilder method)</a>
+  </dt>
+
+      <dd><dl>
+        
+  <dt><a href="_apidoc/ruxit_remote.api.html#ruxit.api.topology_builder.Device.report_availability_event">(ruxit.api.topology_builder.Device method)</a>
+  </dt>
+
+      </dl></dd>
+      
+  <dt><a href="_apidoc/ruxit.api.html#ruxit.api.results_builder.ResultsBuilder.report_custom_annotation_event">report_custom_annotation_event() (ruxit.api.results_builder.ResultsBuilder method)</a>
+  </dt>
+
+      <dd><dl>
+        
+  <dt><a href="_apidoc/ruxit_remote.api.html#ruxit.api.topology_builder.Device.report_custom_annotation_event">(ruxit.api.topology_builder.Device method)</a>
+  </dt>
+
+      </dl></dd>
+      
+  <dt><a href="_apidoc/ruxit.api.html#ruxit.api.results_builder.ResultsBuilder.report_custom_deployment_event">report_custom_deployment_event() (ruxit.api.results_builder.ResultsBuilder method)</a>
+  </dt>
+
+      <dd><dl>
+        
+  <dt><a href="_apidoc/ruxit_remote.api.html#ruxit.api.topology_builder.Device.report_custom_deployment_event">(ruxit.api.topology_builder.Device method)</a>
+  </dt>
+
+      </dl></dd>
+      
+  <dt><a href="_apidoc/ruxit.api.html#ruxit.api.results_builder.ResultsBuilder.report_custom_info_event">report_custom_info_event() (ruxit.api.results_builder.ResultsBuilder method)</a>
+  </dt>
+
+      <dd><dl>
+        
+  <dt><a href="_apidoc/ruxit_remote.api.html#ruxit.api.topology_builder.Device.report_custom_info_event">(ruxit.api.topology_builder.Device method)</a>
+  </dt>
+
+      </dl></dd>
+      
+  <dt><a href="_apidoc/ruxit.api.html#ruxit.api.results_builder.ResultsBuilder.report_error_event">report_error_event() (ruxit.api.results_builder.ResultsBuilder method)</a>
+  </dt>
+
+      <dd><dl>
+        
+  <dt><a href="_apidoc/ruxit_remote.api.html#ruxit.api.topology_builder.Device.report_error_event">(ruxit.api.topology_builder.Device method)</a>
+  </dt>
+
+      </dl></dd>
+      
+  <dt><a href="_apidoc/ruxit.api.html#ruxit.api.results_builder.ResultsBuilder.report_performance_event">report_performance_event() (ruxit.api.results_builder.ResultsBuilder method)</a>
+  </dt>
+
+      <dd><dl>
+        
+  <dt><a href="_apidoc/ruxit_remote.api.html#ruxit.api.topology_builder.Device.report_performance_event">(ruxit.api.topology_builder.Device method)</a>
+  </dt>
+
+      </dl></dd>
+      
+  <dt><a href="_apidoc/ruxit.api.html#ruxit.api.results_builder.ResultsBuilder.report_property">report_property() (ruxit.api.results_builder.ResultsBuilder method)</a>
+  </dt>
+
+      <dd><dl>
+        
+  <dt><a href="_apidoc/ruxit_remote.api.html#ruxit.api.topology_builder.MetricSink.report_property">(ruxit.api.topology_builder.MetricSink method)</a>
+  </dt>
+
+      </dl></dd>
+      
+  <dt><a href="_apidoc/ruxit.api.html#ruxit.api.results_builder.ResultsBuilder.report_resource_contention_event">report_resource_contention_event() (ruxit.api.results_builder.ResultsBuilder method)</a>
+  </dt>
+
+      <dd><dl>
+        
+  <dt><a href="_apidoc/ruxit_remote.api.html#ruxit.api.topology_builder.Device.report_resource_contention_event">(ruxit.api.topology_builder.Device method)</a>
+  </dt>
+
+      </dl></dd>
+      
+  <dt><a href="_apidoc/ruxit.api.html#ruxit.api.results_builder.ResultsBuilder">ResultsBuilder (class in ruxit.api.results_builder)</a>
+  </dt>
+
+      
+  <dt><a href="_apidoc/ruxit.api.html#ruxit.api.base_plugin.BasePlugin.AgentVersion.revision">revision (ruxit.api.base_plugin.BasePlugin.AgentVersion attribute)</a>
+  </dt>
+
+  </dl></td>
+  <td style="width: 33%" valign="top"><dl>
+      
+  <dt><a href="_apidoc/ruxit.api.html#module-ruxit.api">ruxit.api (module)</a>
+  </dt>
+
+      
+  <dt><a href="_apidoc/ruxit.api.html#module-ruxit.api.base_plugin">ruxit.api.base_plugin (module)</a>
+  </dt>
+
+      
+  <dt><a href="_apidoc/ruxit.api.html#module-ruxit.api.data">ruxit.api.data (module)</a>
+  </dt>
+
+      
+  <dt><a href="_apidoc/ruxit.api.html#module-ruxit.api.exceptions">ruxit.api.exceptions (module)</a>
+  </dt>
+
+      
+  <dt><a href="_apidoc/ruxit.api.html#module-ruxit.api.results_builder">ruxit.api.results_builder (module)</a>
+  </dt>
+
+      
+  <dt><a href="_apidoc/ruxit.api.html#module-ruxit.api.selectors">ruxit.api.selectors (module)</a>
+  </dt>
+
+      
+  <dt><a href="_apidoc/ruxit.api.html#module-ruxit.api.snapshot">ruxit.api.snapshot (module)</a>
+  </dt>
+
+      
+  <dt><a href="_apidoc/ruxit_remote.api.html#module-ruxit.api.topology_builder">ruxit.api.topology_builder (module)</a>
+  </dt>
+
+      
+  <dt><a href="plugins/ruxit_haproxy.html#module-ruxit_haproxy">ruxit_haproxy (module)</a>
+  </dt>
+
+      
+  <dt><a href="plugins/ruxit_memcached.html#module-ruxit_memcached">ruxit_memcached (module)</a>
+  </dt>
+
+      
+  <dt><a href="plugins/ruxit_mongodb.html#module-ruxit_mongodb">ruxit_mongodb (module)</a>
+  </dt>
+
+      
+  <dt><a href="plugins/ruxit_mssql.html#module-ruxit_mssql">ruxit_mssql (module)</a>
+  </dt>
+
+      
+  <dt><a href="plugins/ruxit_mysql.html#module-ruxit_mysql">ruxit_mysql (module)</a>
+  </dt>
+
+      
+  <dt><a href="plugins/ruxit_postgresql.html#module-ruxit_postgresql">ruxit_postgresql (module)</a>
+  </dt>
+
+  </dl></td>
+</tr></table>
+
+<h2 id="S">S</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%" valign="top"><dl>
+      
+  <dt><a href="_apidoc/ruxit.api.html#ruxit.api.selectors.DockerSelector.select_id">select_id() (ruxit.api.selectors.DockerSelector method)</a>
+  </dt>
+
+      <dd><dl>
+        
+  <dt><a href="_apidoc/ruxit.api.html#ruxit.api.selectors.ExplicitPgiSelector.select_id">(ruxit.api.selectors.ExplicitPgiSelector method)</a>
+  </dt>
+
+        
+  <dt><a href="_apidoc/ruxit.api.html#ruxit.api.selectors.ExplicitSelector.select_id">(ruxit.api.selectors.ExplicitSelector method)</a>
+  </dt>
+
+        
+  <dt><a href="_apidoc/ruxit.api.html#ruxit.api.selectors.FromPluginSelector.select_id">(ruxit.api.selectors.FromPluginSelector method)</a>
+  </dt>
+
+        
+  <dt><a href="_apidoc/ruxit.api.html#ruxit.api.selectors.HostSelector.select_id">(ruxit.api.selectors.HostSelector method)</a>
+  </dt>
+
+        
+  <dt><a href="_apidoc/ruxit.api.html#ruxit.api.selectors.ListenPortSelector.select_id">(ruxit.api.selectors.ListenPortSelector method)</a>
+  </dt>
+
+      </dl></dd>
+      
+  <dt><a href="plugins/ruxit_postgresql.html#ruxit_postgresql.TablePerSecondStats.seq_tup_read">seq_tup_read (ruxit_postgresql.TablePerSecondStats attribute)</a>
+  </dt>
+
+      
+  <dt><a href="plugins/ruxit_memcached.html#ruxit_memcached.MemcachedPlugin.set_communication_data">set_communication_data() (ruxit_memcached.MemcachedPlugin method)</a>
+  </dt>
+
+      
+  <dt><a href="_apidoc/ruxit.api.html#ruxit.api.data.PluginMeasurementStorage.size">size (ruxit.api.data.PluginMeasurementStorage attribute)</a>
+  </dt>
+
+  </dl></td>
+  <td style="width: 33%" valign="top"><dl>
+      
+  <dt><a href="_apidoc/ruxit.api.html#ruxit.api.base_plugin.MonitoredEntity.snapshot">snapshot (ruxit.api.base_plugin.MonitoredEntity attribute)</a>
+  </dt>
+
+      
+  <dt><a href="plugins/ruxit_memcached.html#ruxit_memcached.MemcachedPlugin.SOCKET_TIMEOUT_SECONDS">SOCKET_TIMEOUT_SECONDS (ruxit_memcached.MemcachedPlugin attribute)</a>
+  </dt>
+
+      
+  <dt><a href="_apidoc/ruxit.api.html#ruxit.api.base_plugin.MonitoredEntity.state_metric">state_metric() (ruxit.api.base_plugin.MonitoredEntity method)</a>
+  </dt>
+
+      <dd><dl>
+        
+  <dt><a href="_apidoc/ruxit.api.html#ruxit.api.results_builder.ResultsBuilder.state_metric">(ruxit.api.results_builder.ResultsBuilder method)</a>
+  </dt>
+
+        
+  <dt><a href="_apidoc/ruxit_remote.api.html#ruxit.api.topology_builder.MetricSink.state_metric">(ruxit.api.topology_builder.MetricSink method)</a>
+  </dt>
+
+      </dl></dd>
+      
+  <dt><a href="_apidoc/ruxit.api.html#ruxit.api.data.PluginMeasurementStorage.store">store() (ruxit.api.data.PluginMeasurementStorage method)</a>
+  </dt>
+
+  </dl></td>
+</tr></table>
+
+<h2 id="T">T</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%" valign="top"><dl>
+      
+  <dt><a href="plugins/ruxit_postgresql.html#ruxit_postgresql.TablePerSecondStats">TablePerSecondStats (class in ruxit_postgresql)</a>
+  </dt>
+
+      
+  <dt><a href="_apidoc/ruxit.api.html#ruxit.api.base_plugin.ProcessGroupInstance.technologies">technologies (ruxit.api.base_plugin.ProcessGroupInstance attribute)</a>
+  </dt>
+
+      <dd><dl>
+        
+  <dt><a href="_apidoc/ruxit.api.html#ruxit.api.selectors.ListenPortSelector.technologies">(ruxit.api.selectors.ListenPortSelector attribute)</a>
+  </dt>
+
+      </dl></dd>
+      
+  <dt><a href="plugins/ruxit_mongodb.html#ruxit_mongodb.QueryDesc.timeseries_key">timeseries_key (ruxit_mongodb.QueryDesc attribute)</a>
+  </dt>
+
+      
+  <dt><a href="plugins/ruxit_mssql.html#ruxit_mssql.CounterDesc.timeseriesKey">timeseriesKey (ruxit_mssql.CounterDesc attribute)</a>
+  </dt>
+
+      
+  <dt><a href="_apidoc/ruxit_remote.api.html#ruxit.api.topology_builder.Topology">Topology (class in ruxit.api.topology_builder)</a>
+  </dt>
+
+      
+  <dt><a href="_apidoc/ruxit_remote.api.html#ruxit.api.topology_builder.TopologyBuilder">TopologyBuilder (class in ruxit.api.topology_builder)</a>
+  </dt>
+
+  </dl></td>
+  <td style="width: 33%" valign="top"><dl>
+      
+  <dt><a href="_apidoc/ruxit.api.html#ruxit.api.data.PluginMeasurementStorage.topx_overflow">topx_overflow (ruxit.api.data.PluginMeasurementStorage attribute)</a>
+  </dt>
+
+      
+  <dt><a href="plugins/ruxit_postgresql.html#ruxit_postgresql.DatabasePerSecondStats.tup_deleted">tup_deleted (ruxit_postgresql.DatabasePerSecondStats attribute)</a>
+  </dt>
+
+      
+  <dt><a href="plugins/ruxit_postgresql.html#ruxit_postgresql.DatabasePerSecondStats.tup_inserted">tup_inserted (ruxit_postgresql.DatabasePerSecondStats attribute)</a>
+  </dt>
+
+      
+  <dt><a href="plugins/ruxit_postgresql.html#ruxit_postgresql.DatabasePerSecondStats.tup_updated">tup_updated (ruxit_postgresql.DatabasePerSecondStats attribute)</a>
+  </dt>
+
+      
+  <dt><a href="_apidoc/ruxit.api.html#ruxit.api.base_plugin.MonitoredEntity.type">type (ruxit.api.base_plugin.MonitoredEntity attribute)</a>
+  </dt>
+
+  </dl></td>
+</tr></table>
+
+<h2 id="U">U</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%" valign="top"><dl>
+      
+  <dt><a href="plugins/ruxit_memcached.html#ruxit_memcached.MemcachedPlugin.UDP_MAX_RETRIES">UDP_MAX_RETRIES (ruxit_memcached.MemcachedPlugin attribute)</a>
+  </dt>
+
+  </dl></td>
+</tr></table>
+
+<h2 id="V">V</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%" valign="top"><dl>
+      
+  <dt><a href="_apidoc/ruxit.api.html#ruxit.api.data.BaseMetric.value">value (ruxit.api.data.BaseMetric attribute)</a>
+  </dt>
+
+      <dd><dl>
+        
+  <dt><a href="_apidoc/ruxit.api.html#ruxit.api.data.PluginMeasurement.value">(ruxit.api.data.PluginMeasurement attribute)</a>
+  </dt>
+
+        
+  <dt><a href="_apidoc/ruxit.api.html#ruxit.api.data.PluginMeasurementV3.value">(ruxit.api.data.PluginMeasurementV3 attribute)</a>
+  </dt>
+
+        
+  <dt><a href="_apidoc/ruxit.api.html#ruxit.api.data.PluginProperty.value">(ruxit.api.data.PluginProperty attribute)</a>
+  </dt>
+
+        
+  <dt><a href="_apidoc/ruxit.api.html#ruxit.api.data.PluginStateMetric.value">(ruxit.api.data.PluginStateMetric attribute)</a>
+  </dt>
+
+      </dl></dd>
+  </dl></td>
+</tr></table>
+
+<h2 id="W">W</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%" valign="top"><dl>
+      
+  <dt><a href="_apidoc/ruxit.api.html#ruxit.api.results_builder.ResultsBuilder.was_topx_overflow">was_topx_overflow (ruxit.api.results_builder.ResultsBuilder attribute)</a>
+  </dt>
+
+  </dl></td>
+</tr></table>
+
+<h2 id="X">X</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%" valign="top"><dl>
+      
+  <dt><a href="plugins/ruxit_postgresql.html#ruxit_postgresql.DatabasePerSecondStats.xact_commit">xact_commit (ruxit_postgresql.DatabasePerSecondStats attribute)</a>
+  </dt>
+
+  </dl></td>
+  <td style="width: 33%" valign="top"><dl>
+      
+  <dt><a href="plugins/ruxit_postgresql.html#ruxit_postgresql.DatabasePerSecondStats.xact_rollback">xact_rollback (ruxit_postgresql.DatabasePerSecondStats attribute)</a>
+  </dt>
+
+  </dl></td>
+</tr></table>
+
+
+
+            </main>
+            
+
+        </div>
+    </article>
+</div>
+
+<footer class="footer">
+  <div class="footer__socials">
+    <h3>Join us on</h3>
+    <a href="https://www.facebook.com/Dynatrace/" class="footer__sociallink">
+      <svg viewBox="0 1 23 23">
+        <title>Facebook</title>
+        <path d="M9.6,20.1v-7.3H7.2V9.6h2.4V8.4c0-2.2,1.6-4.1,3.6-4.1h2.6v3.2h-2.6c-0.3,0-0.6,0.3-0.6,0.9v1.3 h3.2v3.2h-3.2v7.3H9.6z"></path>
+      </svg>
+    </a>
+    <a href="https://twitter.com/Dynatrace" class="footer__sociallink">
+      <svg viewBox="0 0 23 23">
+        <title>Twitter</title>
+        <path id="twitter" d="M14.4,5.6c1.3,0,2,0.4,2.6,1c0.6,0,1.3-0.4,1.7-0.6c0.1-0.1,0.3-0.2,0.4-0.2 C19,6.5,18.6,7,18.1,7.4c-0.1,0.1-0.2,0.2-0.4,0.3v0c0.7,0,1.3-0.3,1.9-0.5v0c-0.3,0.5-0.7,1-1.1,1.3c-0.2,0.1-0.3,0.3-0.5,0.4 c0,0.8,0,1.5-0.2,2.1c-0.8,3.8-3,6.3-6.5,7.4C10,18.8,8,19,6.6,18.6c-0.7-0.2-1.4-0.4-2-0.6c-0.3-0.1-0.6-0.3-0.9-0.5 c-0.1-0.1-0.2-0.1-0.3-0.2c0.3,0,0.7,0.1,1.1,0c0.3-0.1,0.7,0,1-0.1c0.8-0.2,1.4-0.4,2-0.7c0.3-0.2,0.7-0.4,0.9-0.6 c-0.4,0-0.7-0.1-1-0.2c-1.1-0.4-1.7-1.1-2.1-2.1c0.3,0,1.3,0.1,1.5-0.1c-0.4,0-0.8-0.3-1.1-0.4C4.7,12.6,4,11.7,4,10.2 c0.1,0.1,0.2,0.1,0.3,0.2c0.2,0.1,0.4,0.1,0.7,0.2c0.1,0,0.3,0.1,0.5,0c0,0,0,0,0,0c-0.2-0.2-0.4-0.3-0.6-0.5 c-0.6-0.7-1.1-1.8-0.7-3c0.1-0.3,0.2-0.6,0.4-0.9c0,0,0,0,0,0c0.1,0.1,0.2,0.2,0.3,0.3c0.3,0.4,0.6,0.7,1,1c1.2,1,2.3,1.5,4.1,2 c0.4,0.1,1,0.2,1.5,0.2c-0.2-0.4-0.1-1.1,0-1.6c0.3-1.1,0.9-1.8,1.9-2.2c0.2-0.1,0.5-0.2,0.7-0.2C14.2,5.6,14.3,5.6,14.4,5.6z"></path>
+      </svg>
+    </a>
+    <a href="https://www.linkedin.com/company/dynatrace" class="footer__sociallink">
+      <svg viewBox="0 2 23 23">
+        <title>Linkedin</title>
+        <path d="M7.5,19.1V9.8H4.4v9.4H7.5z M6,8.5c1.1,0,1.8-0.7,1.8-1.6 C7.7,6,7.1,5.3,6,5.3C4.9,5.3,4.2,6,4.2,6.9C4.2,7.8,4.9,8.5,6,8.5L6,8.5L6,8.5z"></path>
+        <path d="M9.3,19.1h3.1v-5.2c0-0.3,0-0.6,0.1-0.8 c0.2-0.6,0.7-1.1,1.6-1.1c1.1,0,1.6,0.9,1.6,2.1v5h3.1v-5.4c0-2.9-1.5-4.2-3.6-4.2c-1.7,0-2.4,0.9-2.8,1.6h0V9.8H9.3 C9.3,10.7,9.3,19.1,9.3,19.1L9.3,19.1z"></path>
+      </svg>
+    </a>
+    <a href="https://plus.google.com/+dynatrace/about" class="footer__sociallink">
+      <svg viewBox="0 0 23 23">
+        <title>Google+</title>
+        <path d="M2.9,11.2c0-2.8,2.6-5.3,5.5-5.2C9.7,6,11,6.6,12,7.4c-0.4,0.5-0.9,1-1.4,1.4C9.4,8,7.6,7.7,6.4,8.7
+		c-1.8,1.2-1.9,4.1-0.1,5.5c1.7,1.5,4.8,0.8,5.3-1.6c-1,0-2.1,0-3.1,0c0-0.6,0-1.2,0-1.9c1.7,0,3.5,0,5.2,0c0.1,1.5-0.1,3-1,4.2
+		c-1.4,1.9-4.1,2.5-6.2,1.7C4.2,15.8,2.7,13.5,2.9,11.2z"></path> <path d="M17,9.1c0.5,0,1,0,1.6,0c0,0.5,0,1,0,1.6c0.5,0,1,0,1.6,0c0,0.5,0,1,0,1.6c-0.5,0-1,0-1.6,0c0,0.5,0,1,0,1.6
+		c-0.5,0-1,0-1.6,0c0-0.5,0-1,0-1.6c-0.5,0-1,0-1.6,0c0-0.5,0-1,0-1.6c0.5,0,1,0,1.6,0C17,10.2,17,9.7,17,9.1z"></path>
+      </svg>
+    </a>
+  </div>
+</footer>
+<script src="_static/js/main.js"></script>
+<script type="text/javascript">
+    var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:'',
+        VERSION:'1.221.112.20210715.143702',
+        COLLAPSE_INDEX:false,
+        FILE_SUFFIX:'.html',
+        HAS_SOURCE: true
+    };
+</script>
+  <script type="text/javascript" src="_static/jquery.js"></script>
+  <script type="text/javascript" src="_static/underscore.js"></script>
+  <script type="text/javascript" src="_static/doctools.js"></script>
+
+<script src="_static/js/ext.js"></script>
+
+<script type="text/javascript">
+  var ruxitFont = ruxitFont || {};
+
+  ruxitFont.cache = (function(s, xhr) {
+
+    var cssPath = '_static/css/fonts.css';
+
+    if (s.getItem(ruxitFont.storeKey) === null) {
+      var http = new xhr();
+        http.open('GET', cssPath);
+      http.send();
+      http.onload = function() {
+        ruxitFont.addStyles(this.responseText);
+        s.setItem(ruxitFont.storeKey, this.responseText);
+      }
+    } else {
+      ruxitFont.addStyles(s.getItem(ruxitFont.storeKey));
+    }
+
+  })(window.localStorage, XMLHttpRequest);
+</script> 
+
+</body>
+
+</html>

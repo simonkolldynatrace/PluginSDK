@@ -1,0 +1,565 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Plugin life cycle</title>
+  
+
+  <link rel="stylesheet" href="../_static/css/main.css">
+  <link rel="stylesheet" href="../_static/css/ext.css">
+  <link rel="stylesheet" href="../_static/css/fonts.css">
+
+  <script>document.documentElement.className += ' js';</script>
+  <script type="text/javascript">
+    var ruxitFont = ruxitFont || {};
+    ruxitFont.storeKey = 'fcache';
+
+    ruxitFont.addStyles = function addStyles(fonts) {
+      if(document.getElementById('font-css') !== null) {
+        return;
+      }
+      var scriptElem = document.getElementsByTagName('script')[0];
+      var styleTag = document.createElement('style');
+      styleTag.id = 'font-css';
+      styleTag.setAttribute('type', 'text/css');
+      styleTag.innerHTML = fonts;
+      scriptElem.parentNode.insertBefore(styleTag, scriptElem);
+    }
+
+    if (localStorage.getItem(ruxitFont.storeKey) !== null) {
+      ruxitFont.addStyles(localStorage.getItem(ruxitFont.storeKey));
+    }
+  </script>
+</head>
+
+<body>
+
+<header class="header header-alt">
+  <a class="header-brand-link" href="https://help.dynatrace.com/">
+
+      <img src="../_static/images/logos/dynatrace-logo.svg" alt="Dynatrace" class="header-brand-logo svgLogo" height="36">
+  </a>
+  <div class="header-nav-right">
+    <a class="btn btn--navigation nav__cta" href="https://www.dynatrace.com/trial/">Free trial</a>
+  </div>
+  <nav id="oc-nav" class="menubar">
+    <div class="menubar-nav">
+      <ul class="menubar-list">
+
+
+
+          <li class="menubar-listitem menu-level-0"><a title="Help" href="https://help.dynatrace.com/">Help</a></li>
+          <li class="menubar-listitem menu-level-0"><a title="Answers" href="https://answers.ruxit.com/">Answers</a>
+          </li>
+          <li class="menubar-listitem menu-level-0"><a title="Support" href="https://support.ruxit.com/">Support</a>
+          </li>
+
+        <li class="menubar-listitem menu-level-0">
+          <svg class="icon-defs" xmlns="http://www.w3.org/2000/svg"> <defs> <g id="search_magnifyingglass"> <path d="M200.759,104.318c25.76,0,49.979,10.032,68.194,28.248c37.6,37.604,37.6,98.785,0,136.385
+c-18.216,18.216-42.434,28.248-68.194,28.248c-25.76,0-49.978-10.032-68.194-28.248c-18.216-18.212-28.245-42.431-28.245-68.19
+s10.029-49.979,28.245-68.194C150.781,114.351,174.999,104.318,200.759,104.318 M200.759,66
+c-34.486,0-68.973,13.157-95.286,39.475c-52.628,52.623-52.628,137.948,0,190.572c26.31,26.314,60.796,39.471,95.286,39.471
+c34.486,0,68.973-13.156,95.287-39.471c52.627-52.627,52.627-137.949,0-190.572C269.731,79.157,235.245,66,200.759,66L200.759,66z"></path> <path d="M443.765,411.84c2.979,2.979,2.979,7.858,0,10.837l-21.083,21.09c-2.979,2.979-7.854,2.979-10.837,0
+l-106.699-106.7c-2.979-2.979-2.979-7.857,0-10.836l21.086-21.087c2.982-2.979,7.854-2.979,10.837,0L443.765,411.84z"></path> </g> </defs> </svg>
+
+
+
+
+
+
+
+
+
+          <form autocomplete="off" id="search" action="../search.html" method="GET">
+            <input id="search-input" class="search-input" type="input" name="q" placeholder="Search for..." value="">
+            <label for="search-input" aria-label="Search">
+              <svg class="search-icon" viewBox="0 0 512 512">
+                <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#search_magnifyingglass"></use>
+              </svg>
+            </label>
+            <input type="hidden" name="check_keywords" value="yes" />
+            <input type="hidden" name="area" value="default" />
+          </form>
+        </li>
+      </ul>
+    </div>
+  </nav>
+</header>
+<ul class="breadcrumbs">
+    <li><a href="../index.html">Docs</a></li>
+      
+    <li><span>Plugin life cycle</span></li>
+</ul>
+
+<div class="main-area">
+    <nav class="sidebar">
+    
+        <h1 class="headline">
+            <a href="../index.html"> Plugin SDK </a>
+            <div class="sidebar__info">version: 1.221</div>
+        </h1>
+    
+
+    
+    
+    
+        
+            
+        
+        <a class="sidebar__item" href="../readme.html">
+            <span class="sidebar__headline">Write your first OneAgent plugin</span>
+        </a>
+    
+        
+            
+        
+        <a class="sidebar__item" href="../extending_plugin/index.html">
+            <span class="sidebar__headline">Extend your plugin</span>
+        </a>
+    
+        
+            
+        
+        <a class="sidebar__item" href="../deploying_extension/index.html">
+            <span class="sidebar__headline">Deploy your plugin</span>
+        </a>
+    
+        
+            
+        
+        <a class="sidebar__item" href="../troubleshooting/index.html">
+            <span class="sidebar__headline">Troubleshooting</span>
+        </a>
+    
+        
+            
+        
+        <a class="sidebar__item sidebar__item--active" href="">
+            <span class="sidebar__headline">Plugin life cycle</span>
+        </a>
+    
+        
+            
+        
+        <a class="sidebar__item" href="../apidoc.html">
+            <span class="sidebar__headline">Reference</span>
+        </a>
+    
+        
+            
+        
+        <a class="sidebar__item" href="../plugins/index.html">
+            <span class="sidebar__headline">Plugin reference</span>
+        </a>
+    
+        
+            
+        
+        <a class="sidebar__item" href="../api/remote_python_apidoc.html">
+            <span class="sidebar__headline">ActiveGate Plugins API Reference</span>
+        </a>
+    
+        
+            
+        
+        <a class="sidebar__item" href="../api/index.html">
+            <span class="sidebar__headline">Index</span>
+        </a>
+    
+</nav>
+    <article id="content" class="wrapper cf">
+        <div class="content-area content">
+            <main role="main">
+                
+  <div class="section" id="plugin-life-cycle">
+<h1>Plugin life cycle<a class="headerlink" href="#plugin-life-cycle" title="Permalink to this headline">¶</a></h1>
+<p>While OneAgent automates all plugin activity (for example, deciding whether or not a particular plugin
+should be run, restarting plugins that generate errors, and gathering required configuration details) there
+are situations where deeper understanding of internal agent mechanisms can be beneficial. For example, if a
+newly developed plugin doesn't start, an outdated version of a plugin is running, or you run into other unexpected
+behavior.</p>
+<p>Here are the stages of a plugin's life cycle:</p>
+<ol class="arabic simple">
+<li>Loading</li>
+<li>Activation</li>
+<li>Running</li>
+<li>Closing</li>
+</ol>
+<div class="section" id="plugin-loading">
+<h2>Plugin loading<a class="headerlink" href="#plugin-loading" title="Permalink to this headline">¶</a></h2>
+<p>The plugin loading process takes place when OneAgent starts. This process evaluates whether or not the plugin is compatible with the current version of OneAgent and other plugins</p>
+<p>When the loading process is over, plugins wait until certain conditions are meant before they are activated (plugin activation is described in the next section).</p>
+<p>OneAgent uses 3 locations to load plugins:</p>
+<ul class="simple">
+<li><code class="docutils literal"><span class="pre">plugin_deployment</span></code> directory - located in the root of your OneAgent installation <a class="footnote-reference" href="#id2" id="id1">[1]</a></li>
+<li>plugins downloaded from Dynatrace Cluster Node by OneAgent</li>
+<li>plugins distributed with the OneAgent installer</li>
+</ul>
+<p>Each plugin is checked for compatibility with already loaded plugins.
+Two plugins may declare that they require a certain library in a conflicting version (in other words, plugin_a
+needs requests==2.9.1 while plugin_b states that it needs requests&lt;=2.8.3. The plugin that causes the
+conflict will not be loaded. The plugin that causes the conflict depends on the order of loading, which
+is the order of locations stated above, and the lexicographical order of the plugin names within each location.</p>
+<p>For details of possible plugin incompatibility and ways to cope with this, please refer to <a class="reference internal" href="../troubleshooting/limitations.html"><span class="doc">Limitations</span></a>.</p>
+<p>The last 2 locations are used only internally. Files located here should not be modified manually.
+The <code class="docutils literal"><span class="pre">plugin_deployment</span></code> folder can however be used in any way you want.</p>
+</div>
+<div class="section" id="plugin-activation">
+<h2>Plugin activation<a class="headerlink" href="#plugin-activation" title="Permalink to this headline">¶</a></h2>
+<p>In most cases, a plugin starts when it detects the process it is to monitor.</p>
+<p>Once a plugin is loaded, OneAgent decides if it should activate it.
+Activating a plugin triggers an attempt to get the plugin's configuration, which is stored on the server. OneAgent also confirms that the plugin is enabled.
+Once available, the plugin is run.</p>
+<p>The most important factor in plugin activation is the <a class="reference internal" href="../api/process_snapshot.html"><span class="doc">process snapshot</span></a>. This data
+structure contains information about the important processes recognized on your system. If a match is
+detected between a process snapshot and information contained in <code class="docutils literal"><span class="pre">plugin.json</span></code>, the plugin is activated. In most cases,
+this information takes the form of detection of a process of a given type. Consequently, if data from the process snapshot disappears,
+the plugin will no longer be active.</p>
+<p>The second factor that determines plugin activation is the <code class="docutils literal"><span class="pre">plugin.json</span></code> file. In this file, you can declare
+which process types are to trigger your plugin activation.</p>
+<p>3 types of activation are currently available:</p>
+<blockquote>
+<div><ul class="simple">
+<li>Run a single plugin instance when a triggering process is detected</li>
+<li>Run as many plugin instances as there are detected monitored process group instances</li>
+<li>Always run the plugin</li>
+</ul>
+</div></blockquote>
+<p>So much for the description. Now let's take a look at possible activation types:</p>
+<div class="section" id="activate-a-single-plugin-instance-for-all-monitored-processes">
+<h3>Activate a single plugin instance for all monitored processes<a class="headerlink" href="#activate-a-single-plugin-instance-for-all-monitored-processes" title="Permalink to this headline">¶</a></h3>
+<p>In most common cases (as presented in our <a class="reference internal" href="../readme.html"><span class="doc">first tutorial</span></a>) it's best to create one instance of a plugin
+when a process of a specified type is detected. This requires the following in <code class="docutils literal"><span class="pre">plugin.json</span></code>:</p>
+<div class="highlight-json"><div class="highlight"><pre><span></span><span class="p">{</span>
+  <span class="nt">&quot;entity&quot;</span><span class="p">:</span> <span class="s2">&quot;PROCESS_GROUP_INSTANCE&quot;</span><span class="p">,</span>
+  <span class="nt">&quot;technologies&quot;</span><span class="p">:</span> <span class="p">[</span> <span class="s2">&quot;PYTHON&quot;</span> <span class="p">],</span>
+  <span class="nt">&quot;source&quot;</span><span class="p">:</span> <span class="p">{</span>
+    <span class="nt">&quot;activation&quot;</span><span class="p">:</span> <span class="s2">&quot;Singleton&quot;</span>
+  <span class="p">},</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>With above code snippet included in a <code class="docutils literal"><span class="pre">plugin.json</span></code>, any Python process group instance present in the snapshot will activate the plugin.
+So, for example, the following snapshot would be sufficient:</p>
+<blockquote>
+<div><div class="highlight-python"><div class="highlight"><pre><span></span> <span class="n">ProcessSnapshot</span><span class="p">(</span>
+     <span class="n">host_id</span><span class="o">=</span><span class="mi">11711730974707348096</span><span class="p">,</span>
+     <span class="n">entries</span><span class="o">=</span><span class="p">[</span>
+         <span class="n">ProcessSnapshotEntry</span><span class="p">(</span>
+             <span class="n">group_id</span><span class="o">=</span><span class="mi">9849894537414073908</span><span class="p">,</span>
+             <span class="n">node_id</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
+             <span class="n">group_instance_id</span><span class="o">=</span><span class="mi">11914897446187082808</span><span class="p">,</span>
+<span class="hll">             <span class="n">group_name</span><span class="o">=</span><span class="s1">&#39;plugin_sdk.demo_app&#39;</span><span class="p">,</span>
+</span>             <span class="n">processes</span><span class="o">=</span><span class="p">[</span>
+                 <span class="n">ProcessInfo</span><span class="p">(</span>
+                     <span class="n">pid</span><span class="o">=</span><span class="mi">1541</span><span class="p">,</span>
+                     <span class="n">process_name</span><span class="o">=</span><span class="s1">&#39;python3.5&#39;</span><span class="p">,</span>
+                     <span class="n">properties</span><span class="o">=</span><span class="p">{</span>
+                         <span class="s1">&#39;CmdLine&#39;</span><span class="p">:</span> <span class="s1">&#39;-m plugin_sdk.demo_app&#39;</span><span class="p">,</span>
+                         <span class="s1">&#39;WorkDir&#39;</span><span class="p">:</span> <span class="s1">&#39;/home/demo&#39;</span><span class="p">,</span>
+                         <span class="s1">&#39;ListeningPorts&#39;</span><span class="p">:</span> <span class="s1">&#39;8090&#39;</span>
+                     <span class="p">})</span>
+                 <span class="p">],</span>
+<span class="hll">             <span class="n">properties</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;Technologies&quot;</span><span class="p">:</span> <span class="s2">&quot;PYTHON&quot;</span><span class="p">}</span>
+</span>         <span class="p">),</span>
+         <span class="n">ProcessSnapshotEntry</span><span class="p">(</span>
+             <span class="n">group_id</span><span class="o">=</span><span class="mi">483552688914919364</span><span class="p">,</span>
+             <span class="n">node_id</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
+             <span class="n">group_instance_id</span><span class="o">=</span><span class="mi">11834758190185815364</span><span class="p">,</span>
+<span class="hll">             <span class="n">group_name</span><span class="o">=</span><span class="s1">&#39;puppet&#39;</span><span class="p">,</span>
+</span>             <span class="n">processes</span><span class="o">=</span><span class="p">[</span>
+                 <span class="n">ProcessInfo</span><span class="p">(</span>
+                     <span class="n">pid</span><span class="o">=</span><span class="mi">1257</span><span class="p">,</span>
+                     <span class="n">process_name</span><span class="o">=</span><span class="s1">&#39;puppet&#39;</span><span class="p">,</span>
+                     <span class="n">properties</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;CmdLine&#39;</span><span class="p">:</span> <span class="s1">&#39;/usr/bin/puppet agent&#39;</span><span class="p">,</span> <span class="s1">&#39;WorkDir&#39;</span><span class="p">:</span> <span class="s1">&#39;/&#39;</span><span class="p">})</span>
+             <span class="p">],</span>
+<span class="hll">             <span class="n">properties</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;Technologies&#39;</span><span class="p">:</span> <span class="s1">&#39;RUBY&#39;</span><span class="p">}</span>
+</span>         <span class="p">)</span>
+     <span class="n">containers</span><span class="o">=</span><span class="p">[]</span>
+ <span class="p">)</span>
+</pre></div>
+</div>
+</div></blockquote>
+<p>This snapshot contains 2 process groups, one of type <code class="docutils literal"><span class="pre">python</span></code>, which includes <code class="docutils literal"><span class="pre">plugin_sdk.demo_app</span></code>, and one of type <code class="docutils literal"><span class="pre">ruby</span></code>,
+which runs <code class="docutils literal"><span class="pre">puppet</span></code>.</p>
+<p>Only one instance of the plugin is created regardless of how many Python processes are running. This means that if the process type is a common one
+(like Python, Java, or Ruby), you'll need to check if the snapshot contains the process you want to monitor.</p>
+</div>
+<div class="section" id="activate-a-plugin-for-each-process-group-of-a-given-type">
+<h3>Activate a plugin for each process group of a given type<a class="headerlink" href="#activate-a-plugin-for-each-process-group-of-a-given-type" title="Permalink to this headline">¶</a></h3>
+<p>In some circumstances it's best to create one plugin instance per process group instance detected on the host. With
+this approach, you don't need to worry about searching the process snapshot to make sure the process you want to monitor
+is running. On the downside, if your plugin requires configuration, and multiple process group instances
+of the monitored process are running, you can't use Dynatrace Server to provide the configuration (because it would provide the same configuration
+to each plugin instance).</p>
+<p>A good example of a plugin that works fine with the &quot;per process group instance&quot; approach is MSSQL plugin. This plugin requires
+no additional configuration, and its <code class="docutils literal"><span class="pre">plugin.json</span></code> file only declares:</p>
+<blockquote>
+<div><div class="highlight-json"><div class="highlight"><pre><span></span><span class="p">{</span>
+  <span class="nt">&quot;entity&quot;</span><span class="p">:</span> <span class="s2">&quot;PROCESS_GROUP_INSTANCE&quot;</span><span class="p">,</span>
+  <span class="nt">&quot;technologies&quot;</span><span class="p">:</span> <span class="p">[</span> <span class="s2">&quot;MSSQL&quot;</span> <span class="p">]</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div></blockquote>
+<p>So, given this example process snapshot:</p>
+<blockquote>
+<div><div class="highlight-python"><div class="highlight"><pre><span></span> <span class="n">ProcessSnapshot</span><span class="p">(</span><span class="n">host_id</span><span class="o">=</span><span class="mi">16649240629743570171</span><span class="p">,</span> <span class="n">entries</span><span class="o">=</span><span class="p">[</span>
+     <span class="n">ProcessSnapshotEntry</span><span class="p">(</span>
+         <span class="n">group_id</span><span class="o">=</span><span class="mi">4337044249244370985</span><span class="p">,</span>
+         <span class="n">node_id</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
+         <span class="n">group_instance_id</span><span class="o">=</span><span class="mi">9687064182437432279</span><span class="p">,</span>
+         <span class="n">group_name</span><span class="o">=</span><span class="s1">&#39;MSSQL10_50.NAMED_ID&#39;</span><span class="p">,</span>
+         <span class="n">processes</span><span class="o">=</span><span class="p">[</span>
+             <span class="n">ProcessInfo</span><span class="p">(</span>
+                 <span class="n">pid</span><span class="o">=</span><span class="mi">26988</span><span class="p">,</span>
+                 <span class="n">process_name</span><span class="o">=</span><span class="s1">&#39;sqlservr.exe&#39;</span><span class="p">,</span>
+                 <span class="n">properties</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;CmdLine&#39;</span><span class="p">:</span> <span class="s1">&#39;-sNAMED_INSTANCE_01&#39;</span><span class="p">,</span> <span class="s1">&#39;WorkDir&#39;</span><span class="p">:</span> <span class="s1">&#39;C:</span><span class="se">\\</span><span class="s1">Windows</span><span class="se">\\</span><span class="s1">system32</span><span class="se">\\</span><span class="s1">&#39;</span><span class="p">})</span>
+             <span class="p">],</span>
+<span class="hll">             <span class="n">properties</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;Technologies&#39;</span><span class="p">:</span> <span class="s1">&#39;MSSQL&#39;</span><span class="p">,</span> <span class="s1">&#39;mssql_instance_name&#39;</span><span class="p">:</span> <span class="s1">&#39;NAMED_INSTANCE_01&#39;</span><span class="p">}),</span>
+</span>     <span class="n">ProcessSnapshotEntry</span><span class="p">(</span>
+         <span class="n">group_id</span><span class="o">=</span><span class="mi">12107707763631947228</span><span class="p">,</span>
+         <span class="n">node_id</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
+         <span class="n">group_instance_id</span><span class="o">=</span><span class="mi">10160066155805379574</span><span class="p">,</span>
+         <span class="n">group_name</span><span class="o">=</span><span class="s1">&#39;MSSQL10.SQLEXPRESS&#39;</span><span class="p">,</span>
+         <span class="n">processes</span><span class="o">=</span><span class="p">[</span>
+             <span class="n">ProcessInfo</span><span class="p">(</span>
+                 <span class="n">pid</span><span class="o">=</span><span class="mi">36632</span><span class="p">,</span>
+                 <span class="n">process_name</span><span class="o">=</span><span class="s1">&#39;sqlservr.exe&#39;</span><span class="p">,</span>
+                 <span class="n">properties</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;CmdLine&#39;</span><span class="p">:</span> <span class="s1">&#39;-sSQLEXPRESS&#39;</span><span class="p">,</span> <span class="s1">&#39;WorkDir&#39;</span><span class="p">:</span> <span class="s1">&#39;C:</span><span class="se">\\</span><span class="s1">Windows</span><span class="se">\\</span><span class="s1">system32</span><span class="se">\\</span><span class="s1">&#39;</span><span class="p">})</span>
+             <span class="p">],</span>
+<span class="hll">         <span class="n">properties</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;Technologies&#39;</span><span class="p">:</span> <span class="s1">&#39;MSSQL&#39;</span><span class="p">,</span> <span class="s1">&#39;mssql_instance_name&#39;</span><span class="p">:</span> <span class="s1">&#39;SQLEXPRESS&#39;</span><span class="p">})</span>
+</span>     <span class="n">containers</span><span class="o">=</span><span class="p">[]</span>
+ <span class="p">)</span>
+</pre></div>
+</div>
+</div></blockquote>
+<p>Two instances of such a plugin would be created by OneAgent, as there are 2 group instances of process technology type Python
+(in this case, these correspond to MSSQL instances).</p>
+<p>In summary, if your plugin monitors a process of an uncommon type, and you don't need to use Dynatrace Server for
+additional configuration, activating 1 plugin instance per process group instance is a viable approach.</p>
+</div>
+<div class="section" id="activate-only-if-a-process-name-matches-pattern">
+<h3>Activate only if a process name matches pattern<a class="headerlink" href="#activate-only-if-a-process-name-matches-pattern" title="Permalink to this headline">¶</a></h3>
+<p>In cases where activation per process type is too open an approach, you can specify additional criteria to determine when an
+plugin should be run. Modify your <cite>plugin.json</cite> file to contain a fragment such as this:</p>
+<blockquote>
+<div><div class="highlight-json"><div class="highlight"><pre><span></span> <span class="p">{</span>
+   <span class="nt">&quot;entity&quot;</span><span class="p">:</span> <span class="s2">&quot;PROCESS_GROUP_INSTANCE&quot;</span><span class="p">,</span>
+   <span class="nt">&quot;technologies&quot;</span><span class="p">:</span> <span class="p">[</span> <span class="s2">&quot;PYTHON&quot;</span> <span class="p">],</span>
+   <span class="nt">&quot;source&quot;</span><span class="p">:</span> <span class="p">{</span>
+<span class="hll">     <span class="nt">&quot;activation_name_pattern&quot;</span><span class="p">:</span> <span class="s2">&quot;^plugin_sdk.demo_app$&quot;</span>
+</span>   <span class="p">}</span>
+ <span class="p">}</span>
+</pre></div>
+</div>
+</div></blockquote>
+<p>In this case the plugin will be activated only if detected processes have a name that matches the specified pattern.
+Matching is done via Python's <a class="reference external" href="https://docs.python.org/3.6/library/re.html#re.search">re.search function</a>.
+The difference between these two modes of activation is that the first one creates a plugin instance for each
+occurrence of the process that meets the matching criteria. Whereas the second activation mode creates at most 1 instance of the plugin.</p>
+</div>
+<div class="section" id="keep-plugin-active-continuously">
+<h3>Keep plugin active continuously<a class="headerlink" href="#keep-plugin-active-continuously" title="Permalink to this headline">¶</a></h3>
+<p>The last option for activation is to have the plugin continuously active. This is achieved with the following configuration:</p>
+<blockquote>
+<div><div class="highlight-json"><div class="highlight"><pre><span></span><span class="p">{</span>
+  <span class="nt">&quot;entity&quot;</span><span class="p">:</span> <span class="s2">&quot;HOST&quot;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div></blockquote>
+<p>In this case, as soon as OneAgent receives a process snapshot it activates the plugin. This activation type is
+however not recommended for a few reasons:</p>
+<ul class="simple">
+<li>Your plugin needs to do all the work required to check if it has any data to gather.</li>
+<li>Each measurement you specify in the <cite>plugin.json</cite> file needs to also declare the &quot;entity&quot; type that it's associated with.
+Otherwise the measurements will be associated with the host and it won't be visible on the server.</li>
+<li>Each measurement you gather in Python code needs to have an entity ID extracted from the process snapshot.</li>
+</ul>
+</div>
+<div class="section" id="activation-tips">
+<h3>Activation tips<a class="headerlink" href="#activation-tips" title="Permalink to this headline">¶</a></h3>
+<p>If your plugin isn't activated:</p>
+<ul class="simple">
+<li>Take a look at the agent logs to see if your plugin is activated.
+Refer to the Auditing logs section of <a class="reference internal" href="../troubleshooting/index.html"><span class="doc">troubleshooting guide</span></a>.</li>
+<li>Make sure the process you want to monitor is running.</li>
+<li>Make sure the process you want to monitor is relevant (confirm that it's listed on the corresponding Host page in the in the UI).</li>
+<li>Use <code class="docutils literal"><span class="pre">demo_oneagent_plugin_snapshot</span></code> plugin from Plugin SDK examples to get the information about all discovered processes, entities IDs and process names which can be used for activation. Just deploy the plugin to your production machine with the technology you want to monitor running and you will get the process snapshot information in plugin agent log file. The plugin activation information will be also displayed on UI in <code class="docutils literal"><span class="pre">Properties</span></code> section of each process as <code class="docutils literal"><span class="pre">Extension</span> <span class="pre">technology</span></code>. There are <code class="docutils literal"><span class="pre">Python</span> <span class="pre">plugin</span> <span class="pre">activation</span> <span class="pre">technologies</span></code> which can be used as the <code class="docutils literal"><span class="pre">technologies</span></code> property in plugin.json and <code class="docutils literal"><span class="pre">Python</span> <span class="pre">plugin</span> <span class="pre">activation_name_pattern</span></code> which can be used as the <code class="docutils literal"><span class="pre">activation_name_pattern</span></code> in the source section of plugin.json.</li>
+</ul>
+</div>
+</div>
+<div class="section" id="running-plugins">
+<h2>Running plugins<a class="headerlink" href="#running-plugins" title="Permalink to this headline">¶</a></h2>
+<p>Once active plugins have received their required configurations they're ready to do their work. In the
+most simple case, a plugin query method is run with a 1-minute interval. Nonetheless, there are a few rules you should follow:</p>
+<p>OneAgent tries to limit the amount of plugin instances created. That is, as long as a plugin is working properly (no exceptions are thrown from its methods)
+and its configuration hasn't changed, all calls will happen on the same instance object. This is useful if you want to maintain
+some state in your plugin. This is easily achieved by overriding the
+<a class="reference internal" href="../_apidoc/ruxit.api.html#ruxit.api.base_plugin.BasePlugin.initialize" title="ruxit.api.base_plugin.BasePlugin.initialize"><code class="xref py py-func docutils literal"><span class="pre">initialize()</span></code></a> method.</p>
+<p>When a plugin's configuration changes (for example, if you modified the credentials used to connect to a
+monitored system) the previous plugin instance is discarded, and the query method is called
+on a new plugin instance. Before this occurs you have the option of cleaning up the <a class="reference internal" href="../_apidoc/ruxit.api.html#ruxit.api.base_plugin.BasePlugin.close" title="ruxit.api.base_plugin.BasePlugin.close"><code class="xref py py-func docutils literal"><span class="pre">close()</span></code></a> method, if you overrode it with your plugin.</p>
+<p>The plugin instance will also be replaced if your plugin throws exceptions.</p>
+<blockquote>
+<div><ul class="simple">
+<li>If the exception comes from  <a class="reference internal" href="../_apidoc/ruxit.api.html#module-ruxit.api.exceptions" title="ruxit.api.exceptions"><code class="xref py py-mod docutils literal"><span class="pre">ruxit.api.exceptions</span></code></a>
+we classify it as a recoverable error. A plugin will be quickly restarted a couple times and then
+OneAgent will attempt to run it every hour.</li>
+<li>If the exception isn't recognized, and the plugin failed to execute correctly
+for a limited number of trials, the plugin is no longer scheduled.</li>
+<li>Successful plugin execution resets any crash count associated with it.</li>
+<li>The current crash limit is set to 20.</li>
+<li>While the plugin query method executes on a given plugin instance, it won't be scheduled
+again until it completes. If your plugin gathers data for longer than a minute (for example 2 minutes), it
+will only be executed every 2 minutes. If the plugin hangs indefinitely, OneAgent won't schedule another
+round of data gathering (though other plugins will be unaffected).</li>
+</ul>
+</div></blockquote>
+<p>Note that creating a new instance of your plugin:</p>
+<blockquote>
+<div><ul class="simple">
+<li>Doesn't affect the <code class="xref py py-class docutils literal"><span class="pre">ResultsBuilder</span></code> associated with your plugin. This remains
+the same until your plugin is deactivated (for example, the monitored process is no longer detected).</li>
+<li>Doesn't reload the Python modules used by your plugin. This can only be achieved
+by restarting OneAgent.</li>
+</ul>
+</div></blockquote>
+</div>
+<div class="section" id="plugin-closing">
+<h2>Plugin closing<a class="headerlink" href="#plugin-closing" title="Permalink to this headline">¶</a></h2>
+<p>A plugin is closed when its life comes to an end (a sad, but inevitable fact). At the end of the road, the
+<a class="reference internal" href="../_apidoc/ruxit.api.html#ruxit.api.base_plugin.BasePlugin.close" title="ruxit.api.base_plugin.BasePlugin.close"><code class="xref py py-func docutils literal"><span class="pre">close()</span></code></a> method is called, so if your plugin
+acquired some resources, it can release them. The most common reasons for calling this method are:</p>
+<blockquote>
+<div><ul class="simple">
+<li>the plugin instance is being replaced with a new one due to an error or configuration change</li>
+<li>the plugin is being deactivated (monitored processes are no longer detected on the system)</li>
+<li>OneAgent is closing, and it closes all the plugins as well.</li>
+</ul>
+</div></blockquote>
+<table class="docutils footnote" frame="void" id="id2" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id1">[1]</a></td><td>Usually &quot;/opt/dynatrace/oneagent&quot; or &quot;C:\Program Files (x86)\dynatrace\oneagent&quot;</td></tr>
+</tbody>
+</table>
+</div>
+</div>
+
+
+            </main>
+            
+
+    <nav role="navigation" id="toc">
+        <div class="sidebar-element">
+            <h3>On this page</h3>
+            <ul id="inline-toc" class="toc">
+                
+                    <li><a href="#plugin-loading">Plugin loading</a></li>
+                
+                    <li><a href="#plugin-activation">Plugin activation</a></li>
+                
+                    <li><a href="#activate-a-single-plugin-instance-for-all-monitored-processes">Activate a single plugin instance for all monitored processes</a></li>
+                
+                    <li><a href="#activate-a-plugin-for-each-process-group-of-a-given-type">Activate a plugin for each process group of a given type</a></li>
+                
+                    <li><a href="#activate-only-if-a-process-name-matches-pattern">Activate only if a process name matches pattern</a></li>
+                
+                    <li><a href="#keep-plugin-active-continuously">Keep plugin active continuously</a></li>
+                
+                    <li><a href="#activation-tips">Activation tips</a></li>
+                
+                    <li><a href="#running-plugins">Running plugins</a></li>
+                
+                    <li><a href="#plugin-closing">Plugin closing</a></li>
+                
+            </ul>
+        </div>
+    </nav>
+
+        </div>
+    </article>
+</div>
+
+<footer class="footer">
+  <div class="footer__socials">
+    <h3>Join us on</h3>
+    <a href="https://www.facebook.com/Dynatrace/" class="footer__sociallink">
+      <svg viewBox="0 1 23 23">
+        <title>Facebook</title>
+        <path d="M9.6,20.1v-7.3H7.2V9.6h2.4V8.4c0-2.2,1.6-4.1,3.6-4.1h2.6v3.2h-2.6c-0.3,0-0.6,0.3-0.6,0.9v1.3 h3.2v3.2h-3.2v7.3H9.6z"></path>
+      </svg>
+    </a>
+    <a href="https://twitter.com/Dynatrace" class="footer__sociallink">
+      <svg viewBox="0 0 23 23">
+        <title>Twitter</title>
+        <path id="twitter" d="M14.4,5.6c1.3,0,2,0.4,2.6,1c0.6,0,1.3-0.4,1.7-0.6c0.1-0.1,0.3-0.2,0.4-0.2 C19,6.5,18.6,7,18.1,7.4c-0.1,0.1-0.2,0.2-0.4,0.3v0c0.7,0,1.3-0.3,1.9-0.5v0c-0.3,0.5-0.7,1-1.1,1.3c-0.2,0.1-0.3,0.3-0.5,0.4 c0,0.8,0,1.5-0.2,2.1c-0.8,3.8-3,6.3-6.5,7.4C10,18.8,8,19,6.6,18.6c-0.7-0.2-1.4-0.4-2-0.6c-0.3-0.1-0.6-0.3-0.9-0.5 c-0.1-0.1-0.2-0.1-0.3-0.2c0.3,0,0.7,0.1,1.1,0c0.3-0.1,0.7,0,1-0.1c0.8-0.2,1.4-0.4,2-0.7c0.3-0.2,0.7-0.4,0.9-0.6 c-0.4,0-0.7-0.1-1-0.2c-1.1-0.4-1.7-1.1-2.1-2.1c0.3,0,1.3,0.1,1.5-0.1c-0.4,0-0.8-0.3-1.1-0.4C4.7,12.6,4,11.7,4,10.2 c0.1,0.1,0.2,0.1,0.3,0.2c0.2,0.1,0.4,0.1,0.7,0.2c0.1,0,0.3,0.1,0.5,0c0,0,0,0,0,0c-0.2-0.2-0.4-0.3-0.6-0.5 c-0.6-0.7-1.1-1.8-0.7-3c0.1-0.3,0.2-0.6,0.4-0.9c0,0,0,0,0,0c0.1,0.1,0.2,0.2,0.3,0.3c0.3,0.4,0.6,0.7,1,1c1.2,1,2.3,1.5,4.1,2 c0.4,0.1,1,0.2,1.5,0.2c-0.2-0.4-0.1-1.1,0-1.6c0.3-1.1,0.9-1.8,1.9-2.2c0.2-0.1,0.5-0.2,0.7-0.2C14.2,5.6,14.3,5.6,14.4,5.6z"></path>
+      </svg>
+    </a>
+    <a href="https://www.linkedin.com/company/dynatrace" class="footer__sociallink">
+      <svg viewBox="0 2 23 23">
+        <title>Linkedin</title>
+        <path d="M7.5,19.1V9.8H4.4v9.4H7.5z M6,8.5c1.1,0,1.8-0.7,1.8-1.6 C7.7,6,7.1,5.3,6,5.3C4.9,5.3,4.2,6,4.2,6.9C4.2,7.8,4.9,8.5,6,8.5L6,8.5L6,8.5z"></path>
+        <path d="M9.3,19.1h3.1v-5.2c0-0.3,0-0.6,0.1-0.8 c0.2-0.6,0.7-1.1,1.6-1.1c1.1,0,1.6,0.9,1.6,2.1v5h3.1v-5.4c0-2.9-1.5-4.2-3.6-4.2c-1.7,0-2.4,0.9-2.8,1.6h0V9.8H9.3 C9.3,10.7,9.3,19.1,9.3,19.1L9.3,19.1z"></path>
+      </svg>
+    </a>
+    <a href="https://plus.google.com/+dynatrace/about" class="footer__sociallink">
+      <svg viewBox="0 0 23 23">
+        <title>Google+</title>
+        <path d="M2.9,11.2c0-2.8,2.6-5.3,5.5-5.2C9.7,6,11,6.6,12,7.4c-0.4,0.5-0.9,1-1.4,1.4C9.4,8,7.6,7.7,6.4,8.7
+		c-1.8,1.2-1.9,4.1-0.1,5.5c1.7,1.5,4.8,0.8,5.3-1.6c-1,0-2.1,0-3.1,0c0-0.6,0-1.2,0-1.9c1.7,0,3.5,0,5.2,0c0.1,1.5-0.1,3-1,4.2
+		c-1.4,1.9-4.1,2.5-6.2,1.7C4.2,15.8,2.7,13.5,2.9,11.2z"></path> <path d="M17,9.1c0.5,0,1,0,1.6,0c0,0.5,0,1,0,1.6c0.5,0,1,0,1.6,0c0,0.5,0,1,0,1.6c-0.5,0-1,0-1.6,0c0,0.5,0,1,0,1.6
+		c-0.5,0-1,0-1.6,0c0-0.5,0-1,0-1.6c-0.5,0-1,0-1.6,0c0-0.5,0-1,0-1.6c0.5,0,1,0,1.6,0C17,10.2,17,9.7,17,9.1z"></path>
+      </svg>
+    </a>
+  </div>
+</footer>
+<script src="../_static/js/main.js"></script>
+<script type="text/javascript">
+    var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:'',
+        VERSION:'1.221.112.20210715.143702',
+        COLLAPSE_INDEX:false,
+        FILE_SUFFIX:'.html',
+        HAS_SOURCE: true
+    };
+</script>
+  <script type="text/javascript" src="../_static/jquery.js"></script>
+  <script type="text/javascript" src="../_static/underscore.js"></script>
+  <script type="text/javascript" src="../_static/doctools.js"></script>
+
+<script src="../_static/js/ext.js"></script>
+
+<script type="text/javascript">
+  var ruxitFont = ruxitFont || {};
+
+  ruxitFont.cache = (function(s, xhr) {
+
+    var cssPath = '../_static/css/fonts.css';
+
+    if (s.getItem(ruxitFont.storeKey) === null) {
+      var http = new xhr();
+        http.open('GET', cssPath);
+      http.send();
+      http.onload = function() {
+        ruxitFont.addStyles(this.responseText);
+        s.setItem(ruxitFont.storeKey, this.responseText);
+      }
+    } else {
+      ruxitFont.addStyles(s.getItem(ruxitFont.storeKey));
+    }
+
+  })(window.localStorage, XMLHttpRequest);
+</script> 
+
+</body>
+
+</html>

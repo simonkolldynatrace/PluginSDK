@@ -1,0 +1,4 @@
+.. automodule:: ruxit_memcached
+    :members:
+    :undoc-members:
+    :show-inheritance:

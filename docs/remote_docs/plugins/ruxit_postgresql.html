@@ -1,0 +1,434 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>OneAgent PostgreSQL plugin</title>
+  
+
+  <link rel="stylesheet" href="../_static/css/main.css">
+  <link rel="stylesheet" href="../_static/css/ext.css">
+  <link rel="stylesheet" href="../_static/css/fonts.css">
+
+  <script>document.documentElement.className += ' js';</script>
+  <script type="text/javascript">
+    var ruxitFont = ruxitFont || {};
+    ruxitFont.storeKey = 'fcache';
+
+    ruxitFont.addStyles = function addStyles(fonts) {
+      if(document.getElementById('font-css') !== null) {
+        return;
+      }
+      var scriptElem = document.getElementsByTagName('script')[0];
+      var styleTag = document.createElement('style');
+      styleTag.id = 'font-css';
+      styleTag.setAttribute('type', 'text/css');
+      styleTag.innerHTML = fonts;
+      scriptElem.parentNode.insertBefore(styleTag, scriptElem);
+    }
+
+    if (localStorage.getItem(ruxitFont.storeKey) !== null) {
+      ruxitFont.addStyles(localStorage.getItem(ruxitFont.storeKey));
+    }
+  </script>
+</head>
+
+<body>
+
+<header class="header header-alt">
+  <a class="header-brand-link" href="https://help.dynatrace.com/">
+
+      <img src="../_static/images/logos/dynatrace-logo.svg" alt="Dynatrace" class="header-brand-logo svgLogo" height="36">
+  </a>
+  <div class="header-nav-right">
+    <a class="btn btn--navigation nav__cta" href="https://www.dynatrace.com/trial/">Free trial</a>
+  </div>
+  <nav id="oc-nav" class="menubar">
+    <div class="menubar-nav">
+      <ul class="menubar-list">
+
+
+
+          <li class="menubar-listitem menu-level-0"><a title="Help" href="https://help.dynatrace.com/">Help</a></li>
+          <li class="menubar-listitem menu-level-0"><a title="Answers" href="https://answers.ruxit.com/">Answers</a>
+          </li>
+          <li class="menubar-listitem menu-level-0"><a title="Support" href="https://support.ruxit.com/">Support</a>
+          </li>
+
+        <li class="menubar-listitem menu-level-0">
+          <svg class="icon-defs" xmlns="http://www.w3.org/2000/svg"> <defs> <g id="search_magnifyingglass"> <path d="M200.759,104.318c25.76,0,49.979,10.032,68.194,28.248c37.6,37.604,37.6,98.785,0,136.385
+c-18.216,18.216-42.434,28.248-68.194,28.248c-25.76,0-49.978-10.032-68.194-28.248c-18.216-18.212-28.245-42.431-28.245-68.19
+s10.029-49.979,28.245-68.194C150.781,114.351,174.999,104.318,200.759,104.318 M200.759,66
+c-34.486,0-68.973,13.157-95.286,39.475c-52.628,52.623-52.628,137.948,0,190.572c26.31,26.314,60.796,39.471,95.286,39.471
+c34.486,0,68.973-13.156,95.287-39.471c52.627-52.627,52.627-137.949,0-190.572C269.731,79.157,235.245,66,200.759,66L200.759,66z"></path> <path d="M443.765,411.84c2.979,2.979,2.979,7.858,0,10.837l-21.083,21.09c-2.979,2.979-7.854,2.979-10.837,0
+l-106.699-106.7c-2.979-2.979-2.979-7.857,0-10.836l21.086-21.087c2.982-2.979,7.854-2.979,10.837,0L443.765,411.84z"></path> </g> </defs> </svg>
+
+
+
+
+
+
+
+
+
+          <form autocomplete="off" id="search" action="../search.html" method="GET">
+            <input id="search-input" class="search-input" type="input" name="q" placeholder="Search for..." value="">
+            <label for="search-input" aria-label="Search">
+              <svg class="search-icon" viewBox="0 0 512 512">
+                <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#search_magnifyingglass"></use>
+              </svg>
+            </label>
+            <input type="hidden" name="check_keywords" value="yes" />
+            <input type="hidden" name="area" value="default" />
+          </form>
+        </li>
+      </ul>
+    </div>
+  </nav>
+</header>
+<ul class="breadcrumbs">
+    <li><a href="../index.html">Docs</a></li>
+      
+          <li><a href="index.html">Plugin reference</a></li>
+      
+    <li><span>OneAgent PostgreSQL plugin</span></li>
+</ul>
+
+<div class="main-area">
+    <nav class="sidebar">
+    
+        <h1 class="headline">
+            <a href="../index.html"> Plugin SDK </a>
+            <div class="sidebar__info">version: 1.221</div>
+        </h1>
+    
+
+    
+    
+    
+        
+            
+        
+        <a class="sidebar__item" href="../readme.html">
+            <span class="sidebar__headline">Write your first OneAgent plugin</span>
+        </a>
+    
+        
+            
+        
+        <a class="sidebar__item" href="../extending_plugin/index.html">
+            <span class="sidebar__headline">Extend your plugin</span>
+        </a>
+    
+        
+            
+        
+        <a class="sidebar__item" href="../deploying_extension/index.html">
+            <span class="sidebar__headline">Deploy your plugin</span>
+        </a>
+    
+        
+            
+        
+        <a class="sidebar__item" href="../troubleshooting/index.html">
+            <span class="sidebar__headline">Troubleshooting</span>
+        </a>
+    
+        
+            
+        
+        <a class="sidebar__item" href="../plugin_lifecycle/index.html">
+            <span class="sidebar__headline">Plugin life cycle</span>
+        </a>
+    
+        
+            
+        
+        <a class="sidebar__item" href="../apidoc.html">
+            <span class="sidebar__headline">Reference</span>
+        </a>
+    
+        
+            
+        
+        <a class="sidebar__item sidebar__item--active" href="index.html">
+            <span class="sidebar__headline">Plugin reference</span>
+        </a>
+    
+        
+            
+        
+        <a class="sidebar__item" href="../api/remote_python_apidoc.html">
+            <span class="sidebar__headline">ActiveGate Plugins API Reference</span>
+        </a>
+    
+        
+            
+        
+        <a class="sidebar__item" href="../api/index.html">
+            <span class="sidebar__headline">Index</span>
+        </a>
+    
+</nav>
+    <article id="content" class="wrapper cf">
+        <div class="content-area content">
+            <main role="main">
+                
+  <span class="target" id="module-ruxit_postgresql"></span><div class="section" id="oneagent-postgresql-plugin">
+<h1>OneAgent PostgreSQL plugin<a class="headerlink" href="#oneagent-postgresql-plugin" title="Permalink to this headline">¶</a></h1>
+<p>Gathers PostgreSQL stats.
+The full description of stats is described at <a class="reference external" href="https://www.postgresql.org/docs/current/static/monitoring-stats.html">https://www.postgresql.org/docs/current/static/monitoring-stats.html</a></p>
+<p>Plugin collects subset of:</p>
+<ul class="simple">
+<li>database level metrics available at <em>pg_stat_database</em> view. Only non-template databases are taken into account (those that have <em>datistemplate</em> set to <em>false</em>)</li>
+<li>aggregated table level metrics read from <em>pg_stat_all_tables</em></li>
+</ul>
+<p>This is a singleton type plugin - one instance will be created even if multiple PostgreSQL process
+groups instances are detected. To enable plugin following configuration options need to be specified:</p>
+<ul class="simple">
+<li>user credentials - role with <em>md5</em> authentication method should be provided</li>
+<li>port - access to the PostgreSQL via localhost interface is required</li>
+<li>database name</li>
+</ul>
+<dl class="class">
+<dt id="ruxit_postgresql.DatabasePerSecondStats">
+<em class="property">class </em><code class="descclassname">ruxit_postgresql.</code><code class="descname">DatabasePerSecondStats</code><span class="sig-paren">(</span><em>tup_inserted</em>, <em>tup_updated</em>, <em>tup_deleted</em>, <em>xact_commit</em>, <em>xact_rollback</em>, <em>blks_hit</em>, <em>blks_read</em><span class="sig-paren">)</span><a class="headerlink" href="#ruxit_postgresql.DatabasePerSecondStats" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">tuple</span></code></p>
+<p>List of metrics that are collected on database level as per second stats:</p>
+<dl class="attribute">
+<dt id="ruxit_postgresql.DatabasePerSecondStats.blks_hit">
+<code class="descname">blks_hit</code><a class="headerlink" href="#ruxit_postgresql.DatabasePerSecondStats.blks_hit" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="ruxit_postgresql.DatabasePerSecondStats.blks_read">
+<code class="descname">blks_read</code><a class="headerlink" href="#ruxit_postgresql.DatabasePerSecondStats.blks_read" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="ruxit_postgresql.DatabasePerSecondStats.tup_deleted">
+<code class="descname">tup_deleted</code><a class="headerlink" href="#ruxit_postgresql.DatabasePerSecondStats.tup_deleted" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="ruxit_postgresql.DatabasePerSecondStats.tup_inserted">
+<code class="descname">tup_inserted</code><a class="headerlink" href="#ruxit_postgresql.DatabasePerSecondStats.tup_inserted" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="ruxit_postgresql.DatabasePerSecondStats.tup_updated">
+<code class="descname">tup_updated</code><a class="headerlink" href="#ruxit_postgresql.DatabasePerSecondStats.tup_updated" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="ruxit_postgresql.DatabasePerSecondStats.xact_commit">
+<code class="descname">xact_commit</code><a class="headerlink" href="#ruxit_postgresql.DatabasePerSecondStats.xact_commit" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="ruxit_postgresql.DatabasePerSecondStats.xact_rollback">
+<code class="descname">xact_rollback</code><a class="headerlink" href="#ruxit_postgresql.DatabasePerSecondStats.xact_rollback" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="ruxit_postgresql.TablePerSecondStats">
+<em class="property">class </em><code class="descclassname">ruxit_postgresql.</code><code class="descname">TablePerSecondStats</code><span class="sig-paren">(</span><em>idx_tup_fetch</em>, <em>seq_tup_read</em>, <em>idx_scan</em><span class="sig-paren">)</span><a class="headerlink" href="#ruxit_postgresql.TablePerSecondStats" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">tuple</span></code></p>
+<p>List of metrics that are collected on table level as per second stats:</p>
+<dl class="attribute">
+<dt id="ruxit_postgresql.TablePerSecondStats.idx_scan">
+<code class="descname">idx_scan</code><a class="headerlink" href="#ruxit_postgresql.TablePerSecondStats.idx_scan" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="ruxit_postgresql.TablePerSecondStats.idx_tup_fetch">
+<code class="descname">idx_tup_fetch</code><a class="headerlink" href="#ruxit_postgresql.TablePerSecondStats.idx_tup_fetch" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="ruxit_postgresql.TablePerSecondStats.seq_tup_read">
+<code class="descname">seq_tup_read</code><a class="headerlink" href="#ruxit_postgresql.TablePerSecondStats.seq_tup_read" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="function">
+<dt id="ruxit_postgresql.handle_ERROR_RESPONSE_patch">
+<code class="descclassname">ruxit_postgresql.</code><code class="descname">handle_ERROR_RESPONSE_patch</code><span class="sig-paren">(</span><em>self</em>, <em>data</em>, <em>ps</em><span class="sig-paren">)</span><a class="headerlink" href="#ruxit_postgresql.handle_ERROR_RESPONSE_patch" title="Permalink to this definition">¶</a></dt>
+<dd><p>Patch for handle_ERROR_RESPONSE function from pg8000 package ensuring that plugin will not crash
+while decoding error response in the situation when proper encoding is not set yet.</p>
+</dd></dl>
+
+<dl class="class">
+<dt id="ruxit_postgresql.PostgresqlPlugin">
+<em class="property">class </em><code class="descclassname">ruxit_postgresql.</code><code class="descname">PostgresqlPlugin</code><span class="sig-paren">(</span><em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#ruxit_postgresql.PostgresqlPlugin" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="../_apidoc/ruxit.api.html#ruxit.api.base_plugin.BasePlugin" title="ruxit.api.base_plugin.BasePlugin"><code class="xref py py-class docutils literal"><span class="pre">ruxit.api.base_plugin.BasePlugin</span></code></a></p>
+<p>PostgreSQL plugin class. This plugin is stateful - initialize method is defined
+in order to maintain one connection to database engine for the lifetime of the plugin.</p>
+<p>__init__ should not be overridden without a call to super.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>config</strong> -- <code class="xref py py-class docutils literal"><span class="pre">Dict[str,</span> <span class="pre">str]</span></code> plugin configuration</li>
+<li><strong>results_builder</strong> -- <a class="reference internal" href="../_apidoc/ruxit.api.html#ruxit.api.results_builder.ResultsBuilder" title="ruxit.api.results_builder.ResultsBuilder"><code class="xref py py-class docutils literal"><span class="pre">ResultsBuilder</span></code></a> instance for this plugin</li>
+<li><strong>json_config</strong> -- parsed plugin.json contents</li>
+<li><strong>plugin_info</strong> -- <code class="xref py py-class docutils literal"><span class="pre">ruxit.package_utils.plugin_updater.PluginInfo</span></code> json data of the plugin exposed in a more convenient way</li>
+<li><strong>associated_entity</strong> -- monitored entity associated with the plugin, if any (deprecated)</li>
+<li><strong>activation_context</strong> -- activation context for the plugin</li>
+<li><strong>process_snapshot</strong> -- <code class="xref py py-class docutils literal"><span class="pre">ProcessSnapshot</span></code> latest available at method call</li>
+<li><strong>entity_resolver</strong> -- <code class="xref py py-class docutils literal"><span class="pre">ruxit.entity_resolver.EntityResolver</span></code>  exposes additional methods for querying snapshot</li>
+<li><strong>logger</strong> -- plugin: specific logger for plugin development, set to None only in unit tests</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<dl class="attribute">
+<dt id="ruxit_postgresql.PostgresqlPlugin.postgres_auth_errors">
+<code class="descname">postgres_auth_errors</code><em class="property"> = ['28P01']</em><a class="headerlink" href="#ruxit_postgresql.PostgresqlPlugin.postgres_auth_errors" title="Permalink to this definition">¶</a></dt>
+<dd><p>PostgreSQL authentication error code</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="ruxit_postgresql.PostgresqlPlugin.postgres_auth_msgs">
+<code class="descname">postgres_auth_msgs</code><em class="property"> = ['md5 password authentication failed', 'server requesting password authentication, but no password was provided', 'server requesting MD5 password authentication, but no password was provided']</em><a class="headerlink" href="#ruxit_postgresql.PostgresqlPlugin.postgres_auth_msgs" title="Permalink to this definition">¶</a></dt>
+<dd><p>List of messages returned by PostgreSQL that raises authorization exception if encountered while initializing database connection</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="ruxit_postgresql.PostgresqlPlugin.initialize">
+<code class="descname">initialize</code><span class="sig-paren">(</span><em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#ruxit_postgresql.PostgresqlPlugin.initialize" title="Permalink to this definition">¶</a></dt>
+<dd><p>Plugin initialization is limited to parsing configuration.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="ruxit_postgresql.PostgresqlPlugin.get_databases">
+<code class="descname">get_databases</code><span class="sig-paren">(</span><em>cursor</em><span class="sig-paren">)</span><a class="headerlink" href="#ruxit_postgresql.PostgresqlPlugin.get_databases" title="Permalink to this definition">¶</a></dt>
+<dd><p>Collects and stores list of existing database.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="ruxit_postgresql.PostgresqlPlugin.get_database_level_statistics">
+<code class="descname">get_database_level_statistics</code><span class="sig-paren">(</span><em>cursor</em><span class="sig-paren">)</span><a class="headerlink" href="#ruxit_postgresql.PostgresqlPlugin.get_database_level_statistics" title="Permalink to this definition">¶</a></dt>
+<dd><p>Performs query that selects requested database metrics and sends gathered results.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="ruxit_postgresql.PostgresqlPlugin.get_table_level_statistics">
+<code class="descname">get_table_level_statistics</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#ruxit_postgresql.PostgresqlPlugin.get_table_level_statistics" title="Permalink to this definition">¶</a></dt>
+<dd><p>Method that tries connecting to every database and gets its stats.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="ruxit_postgresql.PostgresqlPlugin.query">
+<code class="descname">query</code><span class="sig-paren">(</span><em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#ruxit_postgresql.PostgresqlPlugin.query" title="Permalink to this definition">¶</a></dt>
+<dd><p>Main method that connects to PostgreSQL using configuration from global variable.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Raises:</th><td class="field-body"><ul class="first last simple">
+<li><a class="reference internal" href="../_apidoc/ruxit.api.html#ruxit.api.exceptions.AuthException" title="ruxit.api.exceptions.AuthException"><code class="xref py py-exc docutils literal"><span class="pre">ruxit.api.exceptions.AuthException</span></code></a> -- PostgreSQL responded with 28P01</li>
+<li><a class="reference internal" href="../_apidoc/ruxit.api.html#ruxit.api.exceptions.ConfigException" title="ruxit.api.exceptions.ConfigException"><code class="xref py py-exc docutils literal"><span class="pre">ruxit.api.exceptions.ConfigException</span></code></a> -- connection and data parsing errors</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+
+
+            </main>
+            
+
+        </div>
+    </article>
+</div>
+
+<footer class="footer">
+  <div class="footer__socials">
+    <h3>Join us on</h3>
+    <a href="https://www.facebook.com/Dynatrace/" class="footer__sociallink">
+      <svg viewBox="0 1 23 23">
+        <title>Facebook</title>
+        <path d="M9.6,20.1v-7.3H7.2V9.6h2.4V8.4c0-2.2,1.6-4.1,3.6-4.1h2.6v3.2h-2.6c-0.3,0-0.6,0.3-0.6,0.9v1.3 h3.2v3.2h-3.2v7.3H9.6z"></path>
+      </svg>
+    </a>
+    <a href="https://twitter.com/Dynatrace" class="footer__sociallink">
+      <svg viewBox="0 0 23 23">
+        <title>Twitter</title>
+        <path id="twitter" d="M14.4,5.6c1.3,0,2,0.4,2.6,1c0.6,0,1.3-0.4,1.7-0.6c0.1-0.1,0.3-0.2,0.4-0.2 C19,6.5,18.6,7,18.1,7.4c-0.1,0.1-0.2,0.2-0.4,0.3v0c0.7,0,1.3-0.3,1.9-0.5v0c-0.3,0.5-0.7,1-1.1,1.3c-0.2,0.1-0.3,0.3-0.5,0.4 c0,0.8,0,1.5-0.2,2.1c-0.8,3.8-3,6.3-6.5,7.4C10,18.8,8,19,6.6,18.6c-0.7-0.2-1.4-0.4-2-0.6c-0.3-0.1-0.6-0.3-0.9-0.5 c-0.1-0.1-0.2-0.1-0.3-0.2c0.3,0,0.7,0.1,1.1,0c0.3-0.1,0.7,0,1-0.1c0.8-0.2,1.4-0.4,2-0.7c0.3-0.2,0.7-0.4,0.9-0.6 c-0.4,0-0.7-0.1-1-0.2c-1.1-0.4-1.7-1.1-2.1-2.1c0.3,0,1.3,0.1,1.5-0.1c-0.4,0-0.8-0.3-1.1-0.4C4.7,12.6,4,11.7,4,10.2 c0.1,0.1,0.2,0.1,0.3,0.2c0.2,0.1,0.4,0.1,0.7,0.2c0.1,0,0.3,0.1,0.5,0c0,0,0,0,0,0c-0.2-0.2-0.4-0.3-0.6-0.5 c-0.6-0.7-1.1-1.8-0.7-3c0.1-0.3,0.2-0.6,0.4-0.9c0,0,0,0,0,0c0.1,0.1,0.2,0.2,0.3,0.3c0.3,0.4,0.6,0.7,1,1c1.2,1,2.3,1.5,4.1,2 c0.4,0.1,1,0.2,1.5,0.2c-0.2-0.4-0.1-1.1,0-1.6c0.3-1.1,0.9-1.8,1.9-2.2c0.2-0.1,0.5-0.2,0.7-0.2C14.2,5.6,14.3,5.6,14.4,5.6z"></path>
+      </svg>
+    </a>
+    <a href="https://www.linkedin.com/company/dynatrace" class="footer__sociallink">
+      <svg viewBox="0 2 23 23">
+        <title>Linkedin</title>
+        <path d="M7.5,19.1V9.8H4.4v9.4H7.5z M6,8.5c1.1,0,1.8-0.7,1.8-1.6 C7.7,6,7.1,5.3,6,5.3C4.9,5.3,4.2,6,4.2,6.9C4.2,7.8,4.9,8.5,6,8.5L6,8.5L6,8.5z"></path>
+        <path d="M9.3,19.1h3.1v-5.2c0-0.3,0-0.6,0.1-0.8 c0.2-0.6,0.7-1.1,1.6-1.1c1.1,0,1.6,0.9,1.6,2.1v5h3.1v-5.4c0-2.9-1.5-4.2-3.6-4.2c-1.7,0-2.4,0.9-2.8,1.6h0V9.8H9.3 C9.3,10.7,9.3,19.1,9.3,19.1L9.3,19.1z"></path>
+      </svg>
+    </a>
+    <a href="https://plus.google.com/+dynatrace/about" class="footer__sociallink">
+      <svg viewBox="0 0 23 23">
+        <title>Google+</title>
+        <path d="M2.9,11.2c0-2.8,2.6-5.3,5.5-5.2C9.7,6,11,6.6,12,7.4c-0.4,0.5-0.9,1-1.4,1.4C9.4,8,7.6,7.7,6.4,8.7
+		c-1.8,1.2-1.9,4.1-0.1,5.5c1.7,1.5,4.8,0.8,5.3-1.6c-1,0-2.1,0-3.1,0c0-0.6,0-1.2,0-1.9c1.7,0,3.5,0,5.2,0c0.1,1.5-0.1,3-1,4.2
+		c-1.4,1.9-4.1,2.5-6.2,1.7C4.2,15.8,2.7,13.5,2.9,11.2z"></path> <path d="M17,9.1c0.5,0,1,0,1.6,0c0,0.5,0,1,0,1.6c0.5,0,1,0,1.6,0c0,0.5,0,1,0,1.6c-0.5,0-1,0-1.6,0c0,0.5,0,1,0,1.6
+		c-0.5,0-1,0-1.6,0c0-0.5,0-1,0-1.6c-0.5,0-1,0-1.6,0c0-0.5,0-1,0-1.6c0.5,0,1,0,1.6,0C17,10.2,17,9.7,17,9.1z"></path>
+      </svg>
+    </a>
+  </div>
+</footer>
+<script src="../_static/js/main.js"></script>
+<script type="text/javascript">
+    var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:'',
+        VERSION:'1.221.112.20210715.143702',
+        COLLAPSE_INDEX:false,
+        FILE_SUFFIX:'.html',
+        HAS_SOURCE: true
+    };
+</script>
+  <script type="text/javascript" src="../_static/jquery.js"></script>
+  <script type="text/javascript" src="../_static/underscore.js"></script>
+  <script type="text/javascript" src="../_static/doctools.js"></script>
+
+<script src="../_static/js/ext.js"></script>
+
+<script type="text/javascript">
+  var ruxitFont = ruxitFont || {};
+
+  ruxitFont.cache = (function(s, xhr) {
+
+    var cssPath = '../_static/css/fonts.css';
+
+    if (s.getItem(ruxitFont.storeKey) === null) {
+      var http = new xhr();
+        http.open('GET', cssPath);
+      http.send();
+      http.onload = function() {
+        ruxitFont.addStyles(this.responseText);
+        s.setItem(ruxitFont.storeKey, this.responseText);
+      }
+    } else {
+      ruxitFont.addStyles(s.getItem(ruxitFont.storeKey));
+    }
+
+  })(window.localStorage, XMLHttpRequest);
+</script> 
+
+</body>
+
+</html>

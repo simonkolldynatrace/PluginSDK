@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Error handling</title>
+  
+
+  <link rel="stylesheet" href="../_static/css/main.css">
+  <link rel="stylesheet" href="../_static/css/ext.css">
+  <link rel="stylesheet" href="../_static/css/fonts.css">
+
+  <script>document.documentElement.className += ' js';</script>
+  <script type="text/javascript">
+    var ruxitFont = ruxitFont || {};
+    ruxitFont.storeKey = 'fcache';
+
+    ruxitFont.addStyles = function addStyles(fonts) {
+      if(document.getElementById('font-css') !== null) {
+        return;
+      }
+      var scriptElem = document.getElementsByTagName('script')[0];
+      var styleTag = document.createElement('style');
+      styleTag.id = 'font-css';
+      styleTag.setAttribute('type', 'text/css');
+      styleTag.innerHTML = fonts;
+      scriptElem.parentNode.insertBefore(styleTag, scriptElem);
+    }
+
+    if (localStorage.getItem(ruxitFont.storeKey) !== null) {
+      ruxitFont.addStyles(localStorage.getItem(ruxitFont.storeKey));
+    }
+  </script>
+</head>
+
+<body>
+
+<header class="header header-alt">
+  <a class="header-brand-link" href="https://help.dynatrace.com/">
+
+      <img src="../_static/images/logos/dynatrace-logo.svg" alt="Dynatrace" class="header-brand-logo svgLogo" height="36">
+  </a>
+  <div class="header-nav-right">
+    <a class="btn btn--navigation nav__cta" href="https://www.dynatrace.com/trial/">Free trial</a>
+  </div>
+  <nav id="oc-nav" class="menubar">
+    <div class="menubar-nav">
+      <ul class="menubar-list">
+
+
+
+          <li class="menubar-listitem menu-level-0"><a title="Help" href="https://help.dynatrace.com/">Help</a></li>
+          <li class="menubar-listitem menu-level-0"><a title="Answers" href="https://answers.ruxit.com/">Answers</a>
+          </li>
+          <li class="menubar-listitem menu-level-0"><a title="Support" href="https://support.ruxit.com/">Support</a>
+          </li>
+
+        <li class="menubar-listitem menu-level-0">
+          <svg class="icon-defs" xmlns="http://www.w3.org/2000/svg"> <defs> <g id="search_magnifyingglass"> <path d="M200.759,104.318c25.76,0,49.979,10.032,68.194,28.248c37.6,37.604,37.6,98.785,0,136.385
+c-18.216,18.216-42.434,28.248-68.194,28.248c-25.76,0-49.978-10.032-68.194-28.248c-18.216-18.212-28.245-42.431-28.245-68.19
+s10.029-49.979,28.245-68.194C150.781,114.351,174.999,104.318,200.759,104.318 M200.759,66
+c-34.486,0-68.973,13.157-95.286,39.475c-52.628,52.623-52.628,137.948,0,190.572c26.31,26.314,60.796,39.471,95.286,39.471
+c34.486,0,68.973-13.156,95.287-39.471c52.627-52.627,52.627-137.949,0-190.572C269.731,79.157,235.245,66,200.759,66L200.759,66z"></path> <path d="M443.765,411.84c2.979,2.979,2.979,7.858,0,10.837l-21.083,21.09c-2.979,2.979-7.854,2.979-10.837,0
+l-106.699-106.7c-2.979-2.979-2.979-7.857,0-10.836l21.086-21.087c2.982-2.979,7.854-2.979,10.837,0L443.765,411.84z"></path> </g> </defs> </svg>
+
+
+
+
+
+
+
+
+
+          <form autocomplete="off" id="search" action="../search.html" method="GET">
+            <input id="search-input" class="search-input" type="input" name="q" placeholder="Search for..." value="">
+            <label for="search-input" aria-label="Search">
+              <svg class="search-icon" viewBox="0 0 512 512">
+                <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#search_magnifyingglass"></use>
+              </svg>
+            </label>
+            <input type="hidden" name="check_keywords" value="yes" />
+            <input type="hidden" name="area" value="default" />
+          </form>
+        </li>
+      </ul>
+    </div>
+  </nav>
+</header>
+<ul class="breadcrumbs">
+    <li><a href="../index.html">Docs</a></li>
+      
+          <li><a href="index.html">Extend your plugin</a></li>
+      
+    <li><span>Error handling</span></li>
+</ul>
+
+<div class="main-area">
+    <nav class="sidebar">
+    
+        <h1 class="headline">
+            <a href="../index.html"> Plugin SDK </a>
+            <div class="sidebar__info">version: 1.221</div>
+        </h1>
+    
+
+    
+    
+    
+        
+            
+        
+        <a class="sidebar__item" href="../readme.html">
+            <span class="sidebar__headline">Write your first OneAgent plugin</span>
+        </a>
+    
+        
+            
+        
+        <a class="sidebar__item sidebar__item--active" href="index.html">
+            <span class="sidebar__headline">Extend your plugin</span>
+        </a>
+    
+        
+            
+        
+        <a class="sidebar__item" href="../deploying_extension/index.html">
+            <span class="sidebar__headline">Deploy your plugin</span>
+        </a>
+    
+        
+            
+        
+        <a class="sidebar__item" href="../troubleshooting/index.html">
+            <span class="sidebar__headline">Troubleshooting</span>
+        </a>
+    
+        
+            
+        
+        <a class="sidebar__item" href="../plugin_lifecycle/index.html">
+            <span class="sidebar__headline">Plugin life cycle</span>
+        </a>
+    
+        
+            
+        
+        <a class="sidebar__item" href="../apidoc.html">
+            <span class="sidebar__headline">Reference</span>
+        </a>
+    
+        
+            
+        
+        <a class="sidebar__item" href="../plugins/index.html">
+            <span class="sidebar__headline">Plugin reference</span>
+        </a>
+    
+        
+            
+        
+        <a class="sidebar__item" href="../api/remote_python_apidoc.html">
+            <span class="sidebar__headline">ActiveGate Plugins API Reference</span>
+        </a>
+    
+        
+            
+        
+        <a class="sidebar__item" href="../api/index.html">
+            <span class="sidebar__headline">Index</span>
+        </a>
+    
+</nav>
+    <article id="content" class="wrapper cf">
+        <div class="content-area content">
+            <main role="main">
+                
+  <div class="section" id="error-handling">
+<h1>Error handling<a class="headerlink" href="#error-handling" title="Permalink to this headline">¶</a></h1>
+<p>Writing custom OneAgent plugins isn't much different than any other programming tasks. This means that errors may occur.
+Some errors are fairly predictable while others are less predictable. Plugin developers have two options for handling errors:</p>
+<ol class="arabic simple">
+<li>Have OneAgent handle errors</li>
+<li>Intercept predictable erroneous situations, categorize them, and provide a custom error message.</li>
+</ol>
+<p>The first approach doesn't necessarily require any additional work. If for some reason the plugin code throws an exception, error
+details will be sent to Dynatrace Cluster Node and the plugin will resume within a few seconds.
+There is a failure limit however, after which the plugin will not resume.
+To learn more about the details of this mechanism, see the <a class="reference internal" href="../plugin_lifecycle/index.html"><span class="doc">plugin lifecycle guide</span></a></p>
+<p>The second approach is a bit more involved, but it gives you more control over the error messages that are provided to users of the
+plugin. Imagine a situation in which a library you use to connect to a database server responds with an <code class="docutils literal"><span class="pre">error</span> <span class="pre">80010</span></code> message,
+which means invalid credentials. Would you rather that the user read the <code class="docutils literal"><span class="pre">error</span> <span class="pre">80010</span></code>
+message, or would you prefer a more user-friendly message, like &quot;The provided credentials were rejected by the server&quot;?</p>
+<p>To demonstrate this second approach, we will extend the plugin we created earlier in <a class="reference internal" href="demo_plugin_conf.html"><span class="doc">plugin configuration</span></a>. The plugin in question receives some
+configuration from the server and uses it to authenticate itself with our demo application. For the purposes of this tutorial we will
+assume that everything in the previous tutorial proceeded as expected. Now, let's discuss how to handle various problems.</p>
+<p>As a reminder, we're monitoring a demo application that can be started using:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">python</span> <span class="o">-</span><span class="n">m</span> <span class="n">plugin_sdk</span><span class="o">.</span><span class="n">demo_app_auth</span>
+</pre></div>
+</div>
+<p>The demo application listens on port 8090 and expects authentication with ruxit:ruxit credentials. Please
+remember that you can start <code class="docutils literal"><span class="pre">python</span> <span class="pre">-m</span> <span class="pre">plugin_sdk.demo_app_auth</span> <span class="pre">--help</span></code> to learn more about how to use the demo application.</p>
+<p>Let's take a look at the extended plugin:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">requests</span>
+<span class="kn">import</span> <span class="nn">requests.exceptions</span>
+<span class="kn">import</span> <span class="nn">json</span>
+<span class="kn">from</span> <span class="nn">ruxit.api.base_plugin</span> <span class="k">import</span> <span class="n">BasePlugin</span>
+<span class="kn">from</span> <span class="nn">ruxit.api.exceptions</span> <span class="k">import</span> <span class="n">AuthException</span><span class="p">,</span> <span class="n">ConfigException</span>
+<span class="kn">from</span> <span class="nn">ruxit.api.snapshot</span> <span class="k">import</span> <span class="n">pgi_name</span>
+
+
+<span class="k">class</span> <span class="nc">DemoPlugin</span><span class="p">(</span><span class="n">BasePlugin</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">query</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="n">user</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">config</span><span class="p">[</span><span class="s2">&quot;user&quot;</span><span class="p">]</span>
+        <span class="n">password</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">config</span><span class="p">[</span><span class="s2">&quot;password&quot;</span><span class="p">]</span>
+        <span class="n">pgi</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">find_single_process_group</span><span class="p">(</span><span class="n">pgi_name</span><span class="p">(</span><span class="s1">&#39;plugin_sdk.demo_app_auth&#39;</span><span class="p">))</span>
+        <span class="n">pgi_id</span> <span class="o">=</span> <span class="n">pgi</span><span class="o">.</span><span class="n">group_instance_id</span>
+        <span class="n">stats_url</span> <span class="o">=</span> <span class="s2">&quot;http://localhost:8090&quot;</span>
+
+        <span class="k">try</span><span class="p">:</span>
+<span class="hll">            <span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">stats_url</span><span class="p">,</span> <span class="n">auth</span><span class="o">=</span><span class="p">(</span><span class="n">user</span><span class="p">,</span> <span class="n">password</span><span class="p">))</span>
+</span><span class="hll">            <span class="k">if</span> <span class="n">response</span><span class="o">.</span><span class="n">status_code</span> <span class="o">==</span> <span class="mi">401</span><span class="p">:</span>
+</span><span class="hll">                <span class="k">raise</span> <span class="n">AuthException</span><span class="p">(</span><span class="n">response</span><span class="p">)</span>
+</span><span class="hll">            <span class="n">stats</span> <span class="o">=</span> <span class="n">response</span><span class="o">.</span><span class="n">json</span><span class="p">()</span>
+</span><span class="hll">        <span class="k">except</span> <span class="n">requests</span><span class="o">.</span><span class="n">exceptions</span><span class="o">.</span><span class="n">ConnectTimeout</span> <span class="k">as</span> <span class="n">ex</span><span class="p">:</span>
+</span><span class="hll">            <span class="k">raise</span> <span class="n">ConfigException</span><span class="p">(</span><span class="s1">&#39;Timeout on connecting with &quot;</span><span class="si">%s</span><span class="s1">&quot;&#39;</span> <span class="o">%</span> <span class="n">stats_url</span><span class="p">)</span> <span class="kn">from</span> <span class="nn">ex</span>
+</span><span class="hll">        <span class="k">except</span> <span class="n">requests</span><span class="o">.</span><span class="n">exceptions</span><span class="o">.</span><span class="n">RequestException</span> <span class="k">as</span> <span class="n">ex</span><span class="p">:</span>
+</span><span class="hll">            <span class="k">raise</span> <span class="n">ConfigException</span><span class="p">(</span><span class="s1">&#39;Unable to connect to &quot;</span><span class="si">%s</span><span class="s1">&quot;&#39;</span> <span class="o">%</span> <span class="n">stats_url</span><span class="p">)</span> <span class="kn">from</span> <span class="nn">ex</span>
+</span><span class="hll">        <span class="k">except</span> <span class="n">json</span><span class="o">.</span><span class="n">JSONDecodeError</span> <span class="k">as</span> <span class="n">ex</span><span class="p">:</span>
+</span><span class="hll">            <span class="k">raise</span> <span class="n">ConfigException</span><span class="p">(</span><span class="s1">&#39;Server response from </span><span class="si">%s</span><span class="s1"> is not json&#39;</span> <span class="o">%</span> <span class="n">stats_url</span><span class="p">)</span> <span class="kn">from</span> <span class="nn">ex</span>
+</span><span class="hll">
+</span>        <span class="bp">self</span><span class="o">.</span><span class="n">results_builder</span><span class="o">.</span><span class="n">absolute</span><span class="p">(</span><span class="n">key</span><span class="o">=</span><span class="s1">&#39;random&#39;</span><span class="p">,</span> <span class="n">value</span><span class="o">=</span><span class="n">stats</span><span class="p">[</span><span class="s1">&#39;random&#39;</span><span class="p">],</span> <span class="n">entity_id</span><span class="o">=</span><span class="n">pgi_id</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">results_builder</span><span class="o">.</span><span class="n">relative</span><span class="p">(</span><span class="n">key</span><span class="o">=</span><span class="s1">&#39;counter&#39;</span><span class="p">,</span> <span class="n">value</span><span class="o">=</span><span class="n">stats</span><span class="p">[</span><span class="s1">&#39;counter&#39;</span><span class="p">],</span> <span class="n">entity_id</span><span class="o">=</span><span class="n">pgi_id</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Note the corresponding <code class="docutils literal"><span class="pre">plugin.json</span></code> doesn't need to be changed:</p>
+<div class="highlight-json"><div class="highlight"><pre><span></span><span class="p">{</span>
+  <span class="nt">&quot;version&quot;</span><span class="p">:</span> <span class="s2">&quot;1.8&quot;</span><span class="p">,</span>
+  <span class="nt">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;custom.python.demo_plugin_auth&quot;</span><span class="p">,</span>
+  <span class="nt">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;python&quot;</span><span class="p">,</span>
+  <span class="nt">&quot;entity&quot;</span><span class="p">:</span> <span class="s2">&quot;PROCESS_GROUP_INSTANCE&quot;</span><span class="p">,</span>
+  <span class="nt">&quot;metricGroup&quot;</span><span class="p">:</span> <span class="s2">&quot;demo_metrics.auth&quot;</span><span class="p">,</span>
+  <span class="nt">&quot;technologies&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;PYTHON&quot;</span><span class="p">],</span>
+  <span class="nt">&quot;source&quot;</span><span class="p">:</span> <span class="p">{</span>
+    <span class="nt">&quot;package&quot;</span><span class="p">:</span> <span class="s2">&quot;demo_plugin_auth&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;className&quot;</span><span class="p">:</span> <span class="s2">&quot;DemoPlugin&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;install_requires&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;requests&gt;=2.6.0&quot;</span><span class="p">],</span>
+    <span class="nt">&quot;activation&quot;</span><span class="p">:</span> <span class="s2">&quot;Singleton&quot;</span>
+  <span class="p">},</span>
+  <span class="nt">&quot;metrics&quot;</span><span class="p">:</span> <span class="p">[</span>
+    <span class="p">{</span>
+      <span class="nt">&quot;timeseries&quot;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="nt">&quot;key&quot;</span><span class="p">:</span> <span class="s2">&quot;random&quot;</span><span class="p">,</span>
+        <span class="nt">&quot;unit&quot;</span><span class="p">:</span> <span class="s2">&quot;Count&quot;</span><span class="p">,</span>
+        <span class="nt">&quot;dimensions&quot;</span><span class="p">:</span> <span class="p">[],</span>
+	<span class="nt">&quot;displayname&quot;</span><span class="p">:</span> <span class="s2">&quot;Random value&quot;</span>
+      <span class="p">}</span>
+    <span class="p">},</span>
+    <span class="p">{</span>
+      <span class="nt">&quot;timeseries&quot;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="nt">&quot;key&quot;</span><span class="p">:</span> <span class="s2">&quot;counter&quot;</span><span class="p">,</span>
+        <span class="nt">&quot;unit&quot;</span><span class="p">:</span> <span class="s2">&quot;Count&quot;</span><span class="p">,</span>
+        <span class="nt">&quot;dimensions&quot;</span><span class="p">:</span> <span class="p">[],</span>
+	<span class="nt">&quot;displayname&quot;</span><span class="p">:</span><span class="s2">&quot;Counter Value&quot;</span>
+      <span class="p">}</span>
+    <span class="p">}</span>
+  <span class="p">],</span>
+  <span class="nt">&quot;configUI&quot;</span><span class="p">:</span> <span class="p">{</span>
+    <span class="nt">&quot;displayName&quot;</span><span class="p">:</span> <span class="s2">&quot;OneAgent Demo Auth Extension&quot;</span>
+  <span class="p">},</span>
+  <span class="nt">&quot;properties&quot;</span><span class="p">:</span> <span class="p">[</span>
+    <span class="p">{</span>
+      <span class="nt">&quot;key&quot;</span><span class="p">:</span> <span class="s2">&quot;user&quot;</span><span class="p">,</span>
+      <span class="nt">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;String&quot;</span>
+    <span class="p">},</span>
+    <span class="p">{</span>
+      <span class="nt">&quot;key&quot;</span><span class="p">:</span> <span class="s2">&quot;password&quot;</span><span class="p">,</span>
+      <span class="nt">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;Password&quot;</span>
+    <span class="p">}</span>
+  <span class="p">]</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>As you can see, the way to inform OneAgent of a specific category of error is by raising exceptions of a
+particular type.</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span>                <span class="k">raise</span> <span class="n">AuthException</span><span class="p">(</span><span class="n">response</span><span class="p">)</span>
+            <span class="n">stats</span> <span class="o">=</span> <span class="n">response</span><span class="o">.</span><span class="n">json</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>The first type of error we handle is a problem with the server not providing access to the stats we want to gather.
+HTTP applications usually signal this with an <code class="docutils literal"><span class="pre">401</span> <span class="pre">error</span></code> code. We check the error and raise an
+<a class="reference internal" href="../_apidoc/ruxit.api.html#ruxit.api.exceptions.AuthException" title="ruxit.api.exceptions.AuthException"><code class="xref py py-class docutils literal"><span class="pre">AuthException</span></code></a>. The results on the server may look like this:</p>
+<img alt="../_images/demo_02_configuration_auth_error.png" data-action="zoom" src="../_images/demo_02_configuration_auth_error.png" />
+<p>Apart from invalid credentials, other errors may occur. If you want to intercept them and provide
+a custom error message, do it like this:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span>            <span class="k">raise</span> <span class="n">ConfigException</span><span class="p">(</span><span class="s1">&#39;Timeout on connecting with &quot;</span><span class="si">%s</span><span class="s1">&quot;&#39;</span> <span class="o">%</span> <span class="n">stats_url</span><span class="p">)</span> <span class="kn">from</span> <span class="nn">ex</span>
+        <span class="k">except</span> <span class="n">requests</span><span class="o">.</span><span class="n">exceptions</span><span class="o">.</span><span class="n">RequestException</span> <span class="k">as</span> <span class="n">ex</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="n">ConfigException</span><span class="p">(</span><span class="s1">&#39;Unable to connect to &quot;</span><span class="si">%s</span><span class="s1">&quot;&#39;</span> <span class="o">%</span> <span class="n">stats_url</span><span class="p">)</span> <span class="kn">from</span> <span class="nn">ex</span>
+        <span class="k">except</span> <span class="n">json</span><span class="o">.</span><span class="n">JSONDecodeError</span> <span class="k">as</span> <span class="n">ex</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="n">ConfigException</span><span class="p">(</span><span class="s1">&#39;Server response from </span><span class="si">%s</span><span class="s1"> is not json&#39;</span> <span class="o">%</span> <span class="n">stats_url</span><span class="p">)</span> <span class="kn">from</span> <span class="nn">ex</span>
+
+</pre></div>
+</div>
+<p>Here a few specific errors are caught and transformed into <a class="reference internal" href="../_apidoc/ruxit.api.html#ruxit.api.exceptions.ConfigException" title="ruxit.api.exceptions.ConfigException"><code class="xref py py-class docutils literal"><span class="pre">ConfigException</span></code></a>:</p>
+<ul class="simple">
+<li>A timeout on connection might occur (the server might be busy)</li>
+<li>You may be unable to connect (maybe it's working on a different port?)</li>
+<li>The received response is unexpected
+(maybe we connected to a different server, or got a text response instead of JSON?)</li>
+</ul>
+<p>If any of these situations should occur, the web UI will display your error message like this:</p>
+<img alt="../_images/demo_02_configuration_config_error.png" data-action="zoom" src="../_images/demo_02_configuration_config_error.png" />
+<p>Note, that as in real scenarios, a many different errors types can occur. The server may respond with an <code class="docutils literal"><span class="pre">HTTP</span> <span class="pre">500</span></code> code. The server might respond with valid JSON, but it may not contain the requested data (random and counter keys),
+or the values may be filled with data that can't be converted into numbers. We leave the task of deciding which of these
+issues requires special attention and handling to you.</p>
+</div>
+
+
+            </main>
+            
+
+        </div>
+    </article>
+</div>
+
+<footer class="footer">
+  <div class="footer__socials">
+    <h3>Join us on</h3>
+    <a href="https://www.facebook.com/Dynatrace/" class="footer__sociallink">
+      <svg viewBox="0 1 23 23">
+        <title>Facebook</title>
+        <path d="M9.6,20.1v-7.3H7.2V9.6h2.4V8.4c0-2.2,1.6-4.1,3.6-4.1h2.6v3.2h-2.6c-0.3,0-0.6,0.3-0.6,0.9v1.3 h3.2v3.2h-3.2v7.3H9.6z"></path>
+      </svg>
+    </a>
+    <a href="https://twitter.com/Dynatrace" class="footer__sociallink">
+      <svg viewBox="0 0 23 23">
+        <title>Twitter</title>
+        <path id="twitter" d="M14.4,5.6c1.3,0,2,0.4,2.6,1c0.6,0,1.3-0.4,1.7-0.6c0.1-0.1,0.3-0.2,0.4-0.2 C19,6.5,18.6,7,18.1,7.4c-0.1,0.1-0.2,0.2-0.4,0.3v0c0.7,0,1.3-0.3,1.9-0.5v0c-0.3,0.5-0.7,1-1.1,1.3c-0.2,0.1-0.3,0.3-0.5,0.4 c0,0.8,0,1.5-0.2,2.1c-0.8,3.8-3,6.3-6.5,7.4C10,18.8,8,19,6.6,18.6c-0.7-0.2-1.4-0.4-2-0.6c-0.3-0.1-0.6-0.3-0.9-0.5 c-0.1-0.1-0.2-0.1-0.3-0.2c0.3,0,0.7,0.1,1.1,0c0.3-0.1,0.7,0,1-0.1c0.8-0.2,1.4-0.4,2-0.7c0.3-0.2,0.7-0.4,0.9-0.6 c-0.4,0-0.7-0.1-1-0.2c-1.1-0.4-1.7-1.1-2.1-2.1c0.3,0,1.3,0.1,1.5-0.1c-0.4,0-0.8-0.3-1.1-0.4C4.7,12.6,4,11.7,4,10.2 c0.1,0.1,0.2,0.1,0.3,0.2c0.2,0.1,0.4,0.1,0.7,0.2c0.1,0,0.3,0.1,0.5,0c0,0,0,0,0,0c-0.2-0.2-0.4-0.3-0.6-0.5 c-0.6-0.7-1.1-1.8-0.7-3c0.1-0.3,0.2-0.6,0.4-0.9c0,0,0,0,0,0c0.1,0.1,0.2,0.2,0.3,0.3c0.3,0.4,0.6,0.7,1,1c1.2,1,2.3,1.5,4.1,2 c0.4,0.1,1,0.2,1.5,0.2c-0.2-0.4-0.1-1.1,0-1.6c0.3-1.1,0.9-1.8,1.9-2.2c0.2-0.1,0.5-0.2,0.7-0.2C14.2,5.6,14.3,5.6,14.4,5.6z"></path>
+      </svg>
+    </a>
+    <a href="https://www.linkedin.com/company/dynatrace" class="footer__sociallink">
+      <svg viewBox="0 2 23 23">
+        <title>Linkedin</title>
+        <path d="M7.5,19.1V9.8H4.4v9.4H7.5z M6,8.5c1.1,0,1.8-0.7,1.8-1.6 C7.7,6,7.1,5.3,6,5.3C4.9,5.3,4.2,6,4.2,6.9C4.2,7.8,4.9,8.5,6,8.5L6,8.5L6,8.5z"></path>
+        <path d="M9.3,19.1h3.1v-5.2c0-0.3,0-0.6,0.1-0.8 c0.2-0.6,0.7-1.1,1.6-1.1c1.1,0,1.6,0.9,1.6,2.1v5h3.1v-5.4c0-2.9-1.5-4.2-3.6-4.2c-1.7,0-2.4,0.9-2.8,1.6h0V9.8H9.3 C9.3,10.7,9.3,19.1,9.3,19.1L9.3,19.1z"></path>
+      </svg>
+    </a>
+    <a href="https://plus.google.com/+dynatrace/about" class="footer__sociallink">
+      <svg viewBox="0 0 23 23">
+        <title>Google+</title>
+        <path d="M2.9,11.2c0-2.8,2.6-5.3,5.5-5.2C9.7,6,11,6.6,12,7.4c-0.4,0.5-0.9,1-1.4,1.4C9.4,8,7.6,7.7,6.4,8.7
+		c-1.8,1.2-1.9,4.1-0.1,5.5c1.7,1.5,4.8,0.8,5.3-1.6c-1,0-2.1,0-3.1,0c0-0.6,0-1.2,0-1.9c1.7,0,3.5,0,5.2,0c0.1,1.5-0.1,3-1,4.2
+		c-1.4,1.9-4.1,2.5-6.2,1.7C4.2,15.8,2.7,13.5,2.9,11.2z"></path> <path d="M17,9.1c0.5,0,1,0,1.6,0c0,0.5,0,1,0,1.6c0.5,0,1,0,1.6,0c0,0.5,0,1,0,1.6c-0.5,0-1,0-1.6,0c0,0.5,0,1,0,1.6
+		c-0.5,0-1,0-1.6,0c0-0.5,0-1,0-1.6c-0.5,0-1,0-1.6,0c0-0.5,0-1,0-1.6c0.5,0,1,0,1.6,0C17,10.2,17,9.7,17,9.1z"></path>
+      </svg>
+    </a>
+  </div>
+</footer>
+<script src="../_static/js/main.js"></script>
+<script type="text/javascript">
+    var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:'',
+        VERSION:'1.221.112.20210715.143702',
+        COLLAPSE_INDEX:false,
+        FILE_SUFFIX:'.html',
+        HAS_SOURCE: true
+    };
+</script>
+  <script type="text/javascript" src="../_static/jquery.js"></script>
+  <script type="text/javascript" src="../_static/underscore.js"></script>
+  <script type="text/javascript" src="../_static/doctools.js"></script>
+
+<script src="../_static/js/ext.js"></script>
+
+<script type="text/javascript">
+  var ruxitFont = ruxitFont || {};
+
+  ruxitFont.cache = (function(s, xhr) {
+
+    var cssPath = '../_static/css/fonts.css';
+
+    if (s.getItem(ruxitFont.storeKey) === null) {
+      var http = new xhr();
+        http.open('GET', cssPath);
+      http.send();
+      http.onload = function() {
+        ruxitFont.addStyles(this.responseText);
+        s.setItem(ruxitFont.storeKey, this.responseText);
+      }
+    } else {
+      ruxitFont.addStyles(s.getItem(ruxitFont.storeKey));
+    }
+
+  })(window.localStorage, XMLHttpRequest);
+</script> 
+
+</body>
+
+</html>
