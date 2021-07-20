@@ -23,9 +23,9 @@ class CustomMongoExtension(BasePlugin):
         password = self.config.get("auth_password")
 
         if not user or not password:
-            url = f"mongodb://127.0.0.1:{port}"
+            url = f"mongodb://127.0.0.1:{port}/test"
         else:
-            url = f"mongodb://{user}:{password}@127.0.0.1:{port}"
+            url = f"mongodb://{user}:{password}@127.0.0.1:{port}/test"
         auth_db = self.config.get("auth_db", False)
         if auth_db:
             url = f"{url}/?authSource={auth_db}"

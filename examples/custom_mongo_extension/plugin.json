@@ -1,5 +1,5 @@
 {
-    "version": "1.9",
+    "version": "1.10",
     "name": "custom.python.custom_mongo_extension",
     "type": "python",
     "entity": "PROCESS_GROUP_INSTANCE",
