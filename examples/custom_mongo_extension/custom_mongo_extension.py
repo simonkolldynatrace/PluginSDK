@@ -49,7 +49,7 @@ class CustomMongoExtension(BasePlugin):
 
     def get_server_metrics(self):
         server_status = self.mongodb_client.db.command("serverStatus")
-        self.send_metric("current_connections", server_status["connections"]["current"])
+        self.send_metric("simons_current_connections", server_status["connections"]["current"])
 
     def send_metric(self, key, value):
         self.results_builder.absolute(key=key, value=value, entity_selector=ListenPortSelector(self.config.get("port")))
