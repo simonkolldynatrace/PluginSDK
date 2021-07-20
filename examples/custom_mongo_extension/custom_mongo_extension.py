@@ -7,6 +7,7 @@ from datetime import datetime
 import requests
 
 from ruxit.api.base_plugin import BasePlugin
+from ruxit.api.selectors import ListenPortSelector
 
 log = logging.getLogger(__name__)
 
@@ -15,7 +16,10 @@ class CustomMongoExtension(BasePlugin):
         self.mongodb_client = self.create_client(url)
 
     def create_client(self) -> Optional[pymongo.MongoClient]:
-        url = "mongodb://d1pacmworkshop:dynatrace@127.0.0.1:27017/test"
+        port = self.config.get("port")
+        user = self.config.get("auth_user")
+        password = self.config.get("auth_password")
+        url = f"mongodb://{user}:{password}@127.0.0.1:{port}/test"
         try:
             mongodb_client = pymongo.MongoClient(url, ssl=True, ssl_cert_reqs=ssl.CERT_NONE, serverSelectionTimeoutMS=TIMEOUT)
             mongodb_client.list_databases()
@@ -38,5 +42,5 @@ class CustomMongoExtension(BasePlugin):
         self.send_metric("current_connections", server_status["connections"]["current"])
 
     def send_metric(self, key, value):
-        self.results_builder.absulute(key=key, value=value,, entity_id=pgi_id)
+        self.results_builder.absolute(key=key, value=value, dimensions=NONE, entity_selector=ListenPortSelector(self.config.get("port"))
         
