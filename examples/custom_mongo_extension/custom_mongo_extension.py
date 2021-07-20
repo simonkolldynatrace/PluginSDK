@@ -11,6 +11,8 @@ from ruxit.api.selectors import ListenPortSelector
 
 log = logging.getLogger(__name__)
 
+TIMEOUT = 15 * 1000
+
 class CustomMongoExtension(BasePlugin):
     def initialize(self, **kwargs):
         self.mongodb_client = self.create_client()
